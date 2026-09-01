@@ -1,0 +1,545 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Ingleslegal — Certification Exam</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Archivo:ital,wght@0,400;0,500;0,600;1,400&family=Spectral:ital,wght@0,400;0,600;1,400&display=swap" rel="stylesheet">
+<style>
+  :root{
+    /* Ingleslegal brand guidelines v1 */
+    --aubergine:#2A1B33;      /* primary surface */
+    --gold:#C9A96E;           /* accent, primary actions — badge/button scale only */
+    --cream:#F1EBDE;          /* text on dark, source dot */
+    --bronze:#A9713F;         /* middle arc, labels on light */
+    --panel-line:#6E5A79;     /* outer arc, borders and rules */
+    --lifted-aubergine:#503A5C; /* "legal" on cream, headings on light */
+    --light-section:#FBF8F1;  /* reading surface */
+    --body-on-light:#6B5F62;  /* running text on cream */
+    --bad:#a3402f;
+  }
+  *{box-sizing:border-box;}
+  body{
+    margin:0; background:var(--light-section); color:var(--body-on-light);
+    font-family:"Spectral", Georgia, serif;
+    -webkit-font-smoothing:antialiased;
+  }
+  .topbar{
+    background:var(--aubergine); color:var(--cream); padding:16px 24px;
+    display:flex; align-items:center; justify-content:space-between;
+  }
+  .brandmark{ display:flex; align-items:center; gap:10px; }
+  .wordmark{ font-family:"Archivo", Arial, sans-serif; font-weight:600; letter-spacing:-0.01em; font-size:19px; }
+  .wordmark .ingles{ color:var(--gold); }
+  .wordmark .legal{ color:var(--cream); }
+  .tag{ font-size:11px; color:var(--panel-line); font-family:"Archivo", Arial, sans-serif; letter-spacing:.5px; text-transform:uppercase;}
+  .wrap{ max-width:720px; margin:0 auto; padding:28px 20px 60px; }
+  .card{
+    background:#fff; border:1px solid var(--panel-line-t); border:1px solid rgba(110,90,121,.18); border-radius:3px;
+    padding:32px 30px; box-shadow:0 1px 3px rgba(42,27,51,.06);
+  }
+  h1{ font-family:"Archivo", Arial, sans-serif; font-weight:600; font-size:26px; margin:0 0 6px; color:var(--lifted-aubergine); letter-spacing:-0.01em;}
+  h2{ font-family:"Archivo", Arial, sans-serif; font-weight:600; font-size:19px; margin:0 0 14px; color:var(--lifted-aubergine); }
+  .sub{ font-family:"Archivo", Arial, sans-serif; color:var(--body-on-light); font-size:14px; margin-bottom:22px; line-height:1.5;}
+  .progress-shell{
+    max-width:720px; margin:0 auto; padding:14px 20px 0; font-family:"Archivo", Arial, sans-serif;
+  }
+  .tabs{ display:flex; gap:4px; margin-bottom:6px; }
+  .tab{
+    flex:1; text-align:center; font-size:11px; padding:6px 2px; border-radius:2px 2px 0 0;
+    color:var(--panel-line); background:#efe9db; letter-spacing:.4px; font-weight:600;
+  }
+  .tab.active{ background:var(--aubergine); color:var(--cream); }
+  .tab.done{ background:var(--gold); color:var(--aubergine); }
+  .bar-outer{ height:6px; background:#efe9db; border-radius:4px; overflow:hidden; }
+  .bar-inner{ height:100%; background:linear-gradient(90deg, var(--aubergine), var(--gold)); width:0%; transition:width .25s ease; }
+  .qmeta{ font-family:"Archivo", Arial, sans-serif; font-weight:500; font-size:12px; color:var(--bronze); margin-bottom:8px; letter-spacing:.3px; text-transform:uppercase;}
+  .stem{ font-family:"Spectral", Georgia, serif; font-size:19px; line-height:1.5; margin-bottom:22px; color:var(--lifted-aubergine); }
+  .stem em{ font-style:italic; }
+  .opt{
+    display:block; width:100%; text-align:left; background:#fffdf9; border:1.5px solid rgba(110,90,121,.25);
+    border-radius:3px; padding:14px 16px; margin-bottom:10px; font-family:"Archivo", Arial, sans-serif;
+    font-size:15px; cursor:pointer; transition:.12s; color:var(--body-on-light);
+  }
+  .opt:hover{ border-color:var(--gold); background:#fff; }
+  .opt .letter{ display:inline-block; width:22px; font-weight:600; color:var(--bronze); }
+  .navrow{ display:flex; justify-content:space-between; align-items:center; margin-top:18px; font-family:"Archivo", Arial, sans-serif;}
+  .btn{
+    background:var(--aubergine); color:var(--cream); border:none; padding:12px 22px; border-radius:3px;
+    font-family:"Archivo", Arial, sans-serif; font-weight:500; font-size:14px; cursor:pointer; letter-spacing:.3px;
+  }
+  .btn:hover{ background:var(--lifted-aubergine); }
+  .btn.gold{ background:var(--gold); color:var(--aubergine); }
+  .btn.gold:hover{ background:#d9bd8a; }
+  .btn:disabled{ background:#d8d2c8; color:#8a8a8a; cursor:not-allowed; }
+  .btn.ghost{ background:transparent; color:var(--aubergine); border:1.5px solid var(--aubergine); }
+  .skip{ font-family:"Archivo", Arial, sans-serif; font-size:12px; color:var(--body-on-light); background:none; border:none; cursor:pointer; text-decoration:underline; }
+  .field{ margin-bottom:14px; font-family:"Archivo", Arial, sans-serif; }
+  .field label{ display:block; font-size:13px; color:var(--body-on-light); margin-bottom:5px; }
+  .field input{
+    width:100%; padding:11px 12px; border:1.5px solid rgba(110,90,121,.3); border-radius:3px; font-size:15px;
+    font-family:"Archivo", Arial, sans-serif;
+  }
+  .banner{
+    background:var(--aubergine); color:var(--cream); padding:16px 20px; border-radius:3px; margin-bottom:20px;
+    font-family:"Archivo", Arial, sans-serif; font-size:14px; line-height:1.5;
+  }
+  .banner.gold{ background:var(--aubergine); color:var(--cream); border-left:3px solid var(--gold); }
+  .scorebox{
+    display:flex; gap:14px; margin:18px 0; font-family:"Archivo", Arial, sans-serif;
+  }
+  .scorebox .cell{
+    flex:1; background:var(--light-section); border:1px solid rgba(110,90,121,.2); border-radius:3px; padding:14px; text-align:center;
+  }
+  .scorebox .num{ font-family:"Archivo", Arial, sans-serif; font-size:26px; font-weight:600; color:var(--lifted-aubergine); }
+  .scorebox .lbl{ font-size:11px; color:var(--bronze); text-transform:uppercase; letter-spacing:.4px; margin-top:2px;}
+  table.results{ width:100%; border-collapse:collapse; font-family:"Archivo", Arial, sans-serif; font-size:13px; margin:16px 0; }
+  table.results th, table.results td{ border:1px solid rgba(110,90,121,.2); padding:8px 10px; text-align:left; }
+  table.results th{ background:var(--aubergine); color:var(--cream); font-size:11px; text-transform:uppercase; font-weight:500; }
+  table.results tr:nth-child(even) td{ background:var(--light-section); }
+  .placement{
+    background:var(--aubergine); color:var(--cream); border-left:3px solid var(--gold); border-radius:3px; padding:18px 20px; margin:18px 0;
+    font-family:"Archivo", Arial, sans-serif;
+  }
+  .placement .headline{ font-weight:600; color:var(--gold); font-size:16px; margin-bottom:4px; }
+  .footer-note{ font-family:"Archivo", Arial, sans-serif; font-size:12px; color:var(--body-on-light); margin-top:18px; line-height:1.5; }
+  @media (max-width:600px){
+    .wrap{ padding:16px 12px 40px; } .card{ padding:22px 18px; } h1{ font-size:22px; } .stem{font-size:17px;}
+  }
+</style>
+</head>
+<body>
+
+<div class="topbar">
+  <div class="brandmark">
+    <svg width="32" height="32" viewBox="0 0 40 40" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+      <path d="M18,4 A16,16 0 0 0 18,36" fill="none" stroke="#6E5A79" stroke-width="1.5"/>
+      <path d="M18,9 A11,11 0 0 0 18,31" fill="none" stroke="#A9713F" stroke-width="2"/>
+      <path d="M18,14 A6,6 0 0 0 18,26" fill="none" stroke="#C9A96E" stroke-width="3"/>
+      <circle cx="25" cy="20" r="3" fill="#F1EBDE"/>
+    </svg>
+    <div class="wordmark"><span class="ingles">Ingles</span><span class="legal">legal</span></div>
+  </div>
+  <div class="tag">Certification Exam</div>
+</div>
+
+<div class="progress-shell" id="progressShell" style="display:none;">
+  <div class="tabs" id="tabs"></div>
+  <div class="bar-outer"><div class="bar-inner" id="barInner"></div></div>
+</div>
+
+<div class="wrap">
+  <div class="card" id="card"></div>
+</div>
+
+<script>
+// ============================================================
+// QUESTION BANK — 100 items. Tier 1: idx 0-49 (batches 1-2).
+// Tier 2: idx 50-74 (batch 3). Tier 3: idx 75-99 (batch 4).
+// ============================================================
+const QUESTIONS = [
+
+// ---- TIER 1 · Category A: General Register & Professionalism (10) ----
+{tier:1, cat:"General Register", stem:`Choose the most professionally appropriate way to tell a client you don't have an update yet:`, opts:[`"I don't know, nobody's told me anything."`,`"I don't have new information at this time, but I will follow up with the attorney and update you by [date]."`,`"That's not really my department."`,`"You'll have to wait and see."`], a:1},
+{tier:1, cat:"General Register", stem:`Which sentence correctly uses professional/formal register during an intake call?`, opts:[`"So yeah, basically what happened is..."`,`"Could you please describe, in your own words, the events leading up to the incident?"`,`"Just tell me what happened, quick version."`,`"Whatever you remember, I guess."`], a:1},
+{tier:1, cat:"General Register", stem:`A client says, "I got let go." In an employment intake context, what is the most important clarifying follow-up?`, opts:[`"That's too bad."`,`"Was this a termination, layoff, or resignation, and what was the exact last date worked?"`,`"Do you want to sue them?"`,`"Let's move to the next question."`], a:1},
+{tier:1, cat:"General Register", stem:`A Spanish-speaking client says their case is "<em>actualmente</em>" in progress. The correct English rendering, avoiding the false-cognate trap, is:`, opts:[`"Actually" in progress`,`"Currently" in progress`,`"Eventually" in progress`,`"Presently, at a later date"`], a:1},
+{tier:1, cat:"General Register", stem:`A frustrated client uses profanity while describing the other party. The most professional way to continue the intake is to:`, opts:[`Match their tone to build rapport`,`Acknowledge their frustration calmly and redirect to the facts needed for the file`,`Tell them their language is inappropriate and hang up`,`Ignore them until they stop talking`], a:1},
+{tier:1, cat:"General Register", stem:`A client describes a topic as "<em>sensible</em>" information, using the Spanish sense of the word (<em>sensible</em> = sensitive). The correct English rendering is:`, opts:[`"Sensible" information`,`"Sensitive" information`,`"Practical" information`,`"Logical" information`], a:1},
+{tier:1, cat:"General Register", stem:`Which closing line is most appropriate for a written case-status update email to a client?`, opts:[`"That's all for now, bye."`,`"Please let us know if you have any questions, and we will follow up by [date]."`,`"Don't worry about it."`,`"We'll get to it eventually."`], a:1},
+{tier:1, cat:"General Register", stem:`A client's account of events is disorganized and emotional. The best intake technique is to:`, opts:[`Interrupt and tell them to focus`,`Let them finish, then paraphrase back the key facts in order to confirm accuracy`,`Fill in gaps with assumptions to save time`,`Stop the call and reschedule`], a:1},
+{tier:1, cat:"General Register", stem:`A client mentions receiving a "<em>carta</em>" from the court. This should be understood and recorded in English as a:`, opts:[`Cart`,`Letter`,`Card`,`Chart`], a:1},
+{tier:1, cat:"General Register", stem:`Which voicemail greeting best reflects firm professional standards?`, opts:[`"Hey, leave a message."`,`"You've reached [Name] at [Firm]. I'm unable to take your call; please leave your name, number, and a brief message, and I'll return your call within one business day."`,`"Not available right now."`,`"Call back later."`], a:1},
+
+// ---- TIER 1 · Category B: Immigration Terminology & Red Flags (10) ----
+{tier:1, cat:"Immigration", stem:`A name mismatch between a client's passport and a prior filing is best treated as:`, opts:[`A minor typo — ignore it`,`A red flag requiring escalation to the attorney before filing`,`Something to fix later, no rush`,`Not relevant to the case`], a:1},
+{tier:1, cat:"Immigration", stem:`"Priority date" refers to:`, opts:[`The date the visa was approved`,`The date that establishes a foreign national's place in line for an immigrant visa`,`The date of the client's intake call`,`The court hearing date`], a:1},
+{tier:1, cat:"Immigration", stem:`A client mentions a prior removal order during intake. The correct action is:`, opts:[`Note it and continue normally`,`Immediately flag it for attorney review before proceeding further`,`Tell the client it doesn't matter`,`Advise the client to omit it from the file`], a:1},
+{tier:1, cat:"Immigration", stem:`A "Notice to Appear" (NTA) is best described as:`, opts:[`A scheduling confirmation for an attorney meeting`,`The document that initiates removal (deportation) proceedings against a noncitizen`,`A visa approval notice`,`A request for additional evidence`], a:1},
+{tier:1, cat:"Immigration", stem:`"Adjustment of status" refers to:`, opts:[`Changing the attorney assigned to a case`,`Applying for lawful permanent residence from within the U.S. without leaving for a consular interview`,`A change in a client's marital status`,`Updating a client's mailing address`], a:1},
+{tier:1, cat:"Immigration", stem:`A client mentions a prior period of unlawful presence in the U.S. exceeding one year. This should be treated as:`, opts:[`Irrelevant background detail`,`A red flag that may trigger a reentry bar and requires attorney review before advising on strategy`,`Something to omit from the file`,`A reason to end the call`], a:1},
+{tier:1, cat:"Immigration", stem:`A client says they have "<em>residencia</em>," meaning green card status in Spanish. The precise English intake term to record is:`, opts:[`"Residency," without specifying status`,`"Lawful permanent resident (green card holder)" status`,`"Citizenship"`,`"Visitor visa"`], a:1},
+{tier:1, cat:"Immigration", stem:`The "I-94" record is significant at intake because it:`, opts:[`Shows the client's tax filing status`,`Documents a noncitizen's official arrival/departure record and authorized period of stay`,`Is only relevant for employment cases`,`Confirms attorney fee agreements`], a:1},
+{tier:1, cat:"Immigration", stem:`Given the sensitivity of immigration status, intake staff should:`, opts:[`Discuss the client's status openly with anyone who calls asking`,`Limit disclosure of status details strictly to authorized case staff and the client`,`Post case updates in a shared public channel`,`Assume status doesn't need special handling`], a:1},
+{tier:1, cat:"Immigration", stem:`A client describes wanting to file for asylum but arrived in the U.S. over a year ago. This is a red flag because:`, opts:[`Asylum applications are generally free`,`There is generally a one-year filing deadline from arrival, with limited exceptions, so late filing needs immediate attorney review`,`It means the case must go to immigration court only`,`It has no bearing on eligibility`], a:1},
+
+// ---- TIER 1 · Category C: Labor Terminology & Red Flags (10) ----
+{tier:1, cat:"Labor", stem:`Why does the distinction between "last day worked" and "termination date" matter in a labor intake?`, opts:[`It doesn't — they're the same thing`,`Statutory filing deadlines may run from one date and not the other, so an error can cost the claim`,`It's a formality with no legal effect`,`It only applies to immigration cases`], a:1},
+{tier:1, cat:"Labor", stem:`A client says they were fired the same day they reported a safety concern. This is a red flag for:`, opts:[`Nothing in particular`,`A possible retaliation claim requiring immediate attorney flag`,`A scheduling conflict`,`A billing question`], a:1},
+{tier:1, cat:"Labor", stem:`"At-will employment" means:`, opts:[`The employee can be terminated at any time for almost any legal reason, absent an exception`,`The employee cannot be terminated`,`The employer must give two weeks' notice`,`The employee sets their own hours`], a:0},
+{tier:1, cat:"Labor", stem:`A "wage and hour" claim generally involves disputes over:`, opts:[`Workplace décor`,`Unpaid wages, overtime, meal/rest breaks, or minimum wage violations`,`Health insurance enrollment`,`Parking assignments`], a:1},
+{tier:1, cat:"Labor", stem:`A client says they were let go shortly after disclosing a pregnancy. This is a red flag for:`, opts:[`Nothing unusual`,`Possible pregnancy/sex discrimination requiring prompt attorney flag`,`A routine layoff`,`A billing question`], a:1},
+{tier:1, cat:"Labor", stem:`A "non-compete clause" in an employment contract is best described as:`, opts:[`A bonus structure`,`A provision restricting the employee from working for competitors for a period after leaving`,`A vacation policy`,`A confidentiality waiver`], a:1},
+{tier:1, cat:"Labor", stem:`Why must intake staff record the exact date of an adverse employment action rather than an approximate one?`, opts:[`It's not important`,`Statutory deadlines are often calculated from that exact date, so an approximate date risks miscalculating the filing window`,`Exact dates are only needed for immigration cases`,`Approximate dates are always fine`], a:1},
+{tier:1, cat:"Labor", stem:`A client asking about unemployment benefits eligibility, separate from a wrongful termination claim, should be:`, opts:[`Told they're the same thing`,`Noted as a related but distinct process, often with its own state agency and deadlines`,`Ignored, since it doesn't matter`,`Refused any response`], a:1},
+{tier:1, cat:"Labor", stem:`"FMLA" leave generally refers to:`, opts:[`A type of severance package`,`Job-protected unpaid leave for qualifying medical or family reasons under federal law`,`A workplace social event`,`A union dues structure`], a:1},
+{tier:1, cat:"Labor", stem:`A client mentions being required to work "off the clock" without pay before their shift officially starts. This is a red flag for:`, opts:[`Nothing significant`,`A potential wage and hour violation requiring documentation and attorney review`,`A scheduling preference`,`A parking issue`], a:1},
+
+// ---- TIER 1 · Category D: Personal Injury Terminology & Red Flags (10) ----
+{tier:1, cat:"Personal Injury", stem:`Why is the statute of limitations one of the highest-priority red flags in a PI intake?`, opts:[`It isn't especially important`,`Missing it can permanently bar recovery, regardless of the case's merit`,`It only affects billing`,`It can always be extended on request`], a:1},
+{tier:1, cat:"Personal Injury", stem:`A client mentions they haven't sought medical treatment since the accident. This should be flagged because:`, opts:[`It's irrelevant to the claim`,`Treatment gaps can be used by insurers to argue the injury wasn't serious`,`It automatically means there is no case`,`It only matters in immigration cases`], a:1},
+{tier:1, cat:"Personal Injury", stem:`Under HIPAA, what must intake staff confirm before discussing a client's medical details with a third party calling on the client's behalf?`, opts:[`Nothing — HIPAA doesn't apply to intake calls`,`That a signed authorization/release permitting that disclosure is on file`,`The caller's phone number`,`A verbal statement of relationship is sufficient on its own`], a:1},
+{tier:1, cat:"Personal Injury", stem:`"Comparative negligence" in a PI case generally means:`, opts:[`The defendant is always fully liable`,`A plaintiff's own partial fault may reduce (or in some jurisdictions bar) their recovery`,`The case cannot proceed to trial`,`Damages are automatically doubled`], a:1},
+{tier:1, cat:"Personal Injury", stem:`A client discloses a pre-existing back injury before the accident. This should be flagged because:`, opts:[`It automatically disqualifies the claim`,`Insurers often use pre-existing conditions to argue the current injury isn't accident-related, so it needs careful documentation`,`It's irrelevant to the case`,`It only matters for immigration cases`], a:1},
+{tier:1, cat:"Personal Injury", stem:`A "medical lien" in a PI case refers to:`, opts:[`A type of jury instruction`,`A legal claim by a provider or insurer to be repaid from settlement proceeds for treatment already provided`,`A court filing fee`,`A form of punitive damages`], a:1},
+{tier:1, cat:"Personal Injury", stem:`A client mentions the insurance adjuster already asked for a recorded statement. The correct intake action is:`, opts:[`Congratulate the client for cooperating quickly`,`Flag it immediately for attorney review, since early recorded statements can be used to undermine the claim`,`Tell the client it doesn't matter`,`Advise them to ignore future adjuster calls without follow-up`], a:1},
+{tier:1, cat:"Personal Injury", stem:`Why is confirming whether a police report was filed a priority intake question in an auto accident PI case?`, opts:[`It isn't important`,`The report often contains key facts (fault, citations, witnesses) that shape the case's early strategy`,`Police reports are never admissible`,`It only matters for labor cases`], a:1},
+{tier:1, cat:"Personal Injury", stem:`A "third-party claim" in a PI case is best described as:`, opts:[`A claim against the client's own insurer`,`A claim against the party who caused the injury (or their insurer), as opposed to the client's own coverage`,`A claim only available in immigration cases`,`A claim that requires no documentation`], a:1},
+{tier:1, cat:"Personal Injury", stem:`Why should intake staff try to capture witness contact information as early as possible in a PI case?`, opts:[`It's not time-sensitive`,`Witnesses become harder to reach and memories fade over time, so early documentation preserves the case`,`Witnesses are never useful in PI cases`,`It only matters for labor cases`], a:1},
+
+// ---- TIER 1 · Category E: Software, Data Integrity & Confidentiality (10) ----
+{tier:1, cat:"Data Integrity", stem:`In case-management software (e.g., Clio/Litify), why is selecting the correct matter/case record before logging notes critical?`, opts:[`It isn't critical, any record works`,`Notes or documents logged to the wrong case can create serious confidentiality and case-management errors`,`It only affects billing totals`,`It only matters for immigration cases`], a:1},
+{tier:1, cat:"Data Integrity", stem:`A client's date of birth is entered as 03/04/1990 by a staffer who meant April 3rd (day/month format). This is a red flag because:`, opts:[`Date format doesn't matter in legal filings`,`Format inconsistency can misstate identity or eligibility information on official filings`,`It only affects internal notes`,`It is always caught automatically by the software`], a:1},
+{tier:1, cat:"Data Integrity", stem:`Under a firm's confidentiality policy, discussing a client's case details in a public space (e.g., an elevator) is:`, opts:[`Acceptable if no names are used`,`A confidentiality risk to avoid, since context can still reveal identifiable case details`,`Required for team communication`,`Only a concern for immigration cases`], a:1},
+{tier:1, cat:"Data Integrity", stem:`Before discussing case details with a caller claiming to be a client's family member, intake staff should first:`, opts:[`Assume the relationship is genuine and proceed`,`Verify authorization is on file permitting disclosure to that person`,`Share full case details to be helpful`,`Transfer the call without verification`], a:1},
+{tier:1, cat:"Data Integrity", stem:`Duplicate client records in the case-management system are a data-integrity risk primarily because they can:`, opts:[`Improve reporting accuracy`,`Split a client's documents and communication history across records, causing missed deadlines or conflicting information`,`Have no real effect on casework`,`Only affect the firm's marketing lists`], a:1},
+{tier:1, cat:"Data Integrity", stem:`"Conflict of interest" checking at intake exists primarily to:`, opts:[`Slow down the intake process unnecessarily`,`Confirm the firm can ethically represent the new client without conflicting duties to an existing client or matter`,`Verify the client's immigration status`,`Determine billing rates`], a:1},
+{tier:1, cat:"Data Integrity", stem:`A software field for "statute of limitations date" is left blank on a new PI intake. The correct action is:`, opts:[`Leave it blank and move on`,`Flag it as an incomplete critical field and escalate until it's calculated and entered`,`Guess a date to fill the field`,`Delete the field`], a:1},
+{tier:1, cat:"Data Integrity", stem:`Uploading a scanned client document with a generic filename like "scan001.pdf" instead of a clear, descriptive filename is a risk because:`, opts:[`It has no real downside`,`It makes the document difficult to locate later and increases the chance it's overlooked or misfiled`,`Software doesn't allow custom filenames anyway`,`Only PDF files need clear names`], a:1},
+{tier:1, cat:"Data Integrity", stem:`A staffer notices a software sync error caused two team members' notes on the same case to overwrite each other. The correct response is:`, opts:[`Ignore it, since notes aren't critical`,`Immediately flag the issue to a supervisor/IT and document what may have been lost`,`Recreate the notes from memory without telling anyone`,`Delete the case record and start over`], a:1},
+{tier:1, cat:"Data Integrity", stem:`Storing a client's sensitive documents on a personal (non-firm) device or personal cloud account is:`, opts:[`Acceptable if it's more convenient`,`A confidentiality and data-security violation of firm policy in virtually all cases`,`Required for remote work`,`Only a concern for large firms`], a:1},
+
+// ---- TIER 2 · Category F: Litigation Register & Substantive Drafting (10) ----
+{tier:2, cat:"Register & Drafting", stem:`Rewrite for professional litigation correspondence: "Your client needs to hurry up and get us the documents." Best rendering:`, opts:[`"Your client needs to hurry up and get us the documents."`,`"We respectfully request that your client provide the outstanding documents at your earliest convenience, and no later than [date]."`,`"Documents please, ASAP."`,`"Tell your client to send the stuff."`], a:1},
+{tier:2, cat:"Register & Drafting", stem:`In a demand letter, which phrasing best conveys firm, professional advocacy without overstatement?`, opts:[`"Our client demands you pay immediately or else."`,`"Our client's damages, supported by the enclosed medical records, warrant a settlement in the range of $X."`,`"Pay up now."`,`"We'll see you in court — no negotiation."`], a:1},
+{tier:2, cat:"Register & Drafting", stem:`A discovery request references "interrogatories." This term refers to:`, opts:[`Oral testimony under oath`,`Written questions one party sends another that must be answered under oath`,`Physical evidence submitted to the court`,`A settlement conference`], a:1},
+{tier:2, cat:"Register & Drafting", stem:`Identify the drafting problem: "The Plaintiff was negligently injured by the Defendant's careless driving, which was reckless and grossly negligent."`, opts:[`Nothing — it's fine as written`,`It stacks inconsistent legal standards (negligence, recklessness, gross negligence) without support, undermining precision`,`It's too short`,`It should not name the parties`], a:1},
+{tier:2, cat:"Register & Drafting", stem:`"Meet and confer" in litigation practice means:`, opts:[`A settlement offer`,`A required good-faith discussion between opposing counsel to resolve a dispute before involving the court`,`The initial client intake meeting`,`A deposition`], a:1},
+{tier:2, cat:"Register & Drafting", stem:`Marking a letter "Privileged and Confidential — Attorney Work Product" serves to:`, opts:[`Make the letter look more official`,`Signal the document's protected legal status and help preserve applicable privileges if later contested`,`Guarantee the letter can never be subpoenaed under any circumstance`,`Replace the need for proper drafting`], a:1},
+{tier:2, cat:"Register & Drafting", stem:`Which tone is most appropriate in written correspondence to opposing counsel, even in a contentious matter?`, opts:[`Hostile and personal`,`Firm, professional, and issue-focused, without personal attacks`,`Overly apologetic and deferential`,`Sarcastic, to signal frustration`], a:1},
+{tier:2, cat:"Register & Drafting", stem:`A settlement communication marked "without prejudice" generally means:`, opts:[`It can be freely used as evidence of liability later`,`It is generally intended to be inadmissible as an admission if litigation continues, subject to jurisdictional rules`,`It has no legal significance`,`It automatically ends the case`], a:1},
+{tier:2, cat:"Register & Drafting", stem:`In a drafted pleading, referring to an event as happening "recently" instead of citing the exact date is a drafting weakness because:`, opts:[`Vague language is always preferred in legal writing`,`Precision is often required for statute-of-limitations and factual-accuracy purposes`,`It saves space and is always acceptable`,`Dates are optional in pleadings`], a:1},
+{tier:2, cat:"Register & Drafting", stem:`Rewriting "Mistakes were made in processing the claim" to "The adjuster failed to process the claim within the required 30 days" improves the sentence primarily by:`, opts:[`Making it longer`,`Replacing vague passive voice with a specific, attributable, active statement of fact`,`Removing all factual content`,`Making the sentence less clear`], a:1},
+
+// ---- TIER 2 · Category G: Immigration Litigation-Level (5) ----
+{tier:2, cat:"Immigration", stem:`What does "RFE" stand for, and why does its deadline matter procedurally?`, opts:[`"Request for Evidence" — missing the response deadline can result in a denial`,`"Ready for Export" — not relevant to filings`,`"Refusal for Entry" — an immigration ban`,`"Reduced Filing Exception" — a fee waiver`], a:0},
+{tier:2, cat:"Immigration", stem:`A "motion to reopen" in immigration proceedings is generally used to:`, opts:[`Request a new judge assignment`,`Ask the court to reconsider a case based on new facts or evidence not available at the original hearing`,`Request a change of venue only`,`File an initial application`], a:1},
+{tier:2, cat:"Immigration", stem:`In a family-based case, the I-130 form primarily:`, opts:[`Grants a green card directly`,`Establishes the qualifying family relationship, while the I-485 is the application to adjust status`,`Is used only for employment cases`,`Cancels a prior filing`], a:1},
+{tier:2, cat:"Immigration", stem:`Why must an RFE response deadline be entered in the case-management software the same day it's received?`, opts:[`It's not urgent, deadlines are flexible`,`RFE response windows are strict, and missing one can result in a denial regardless of case merit`,`RFEs never have deadlines`,`Only attorneys need to know the deadline`], a:1},
+{tier:2, cat:"Immigration", stem:`A client says their prior petition was "<em>denegado</em>." The correct, precise English case-note entry is:`, opts:[`"Delayed"`,`"Denied"`,`"Deferred"`,`"Delivered"`], a:1},
+
+// ---- TIER 2 · Category H: Labor Litigation-Level (5) ----
+{tier:2, cat:"Labor", stem:`A "right-to-sue letter" from the EEOC signifies:`, opts:[`The case is permanently dismissed`,`The claimant may now proceed to file a lawsuit in court within the specified statutory window`,`The employer has formally admitted fault`,`No further deadlines apply`], a:1},
+{tier:2, cat:"Labor", stem:`The key procedural difference between mediation and arbitration is that:`, opts:[`They are identical processes`,`Mediation is a facilitated negotiation toward voluntary settlement, while arbitration results in a binding (or sometimes non-binding) decision by a neutral arbitrator`,`Arbitration is always non-binding`,`Mediation only occurs after trial`], a:1},
+{tier:2, cat:"Labor", stem:`A "collective action" under wage-and-hour law generally involves:`, opts:[`A single individual claim only`,`Multiple similarly situated employees joining to pursue claims together, often requiring opt-in participation`,`A criminal proceeding`,`An immigration filing`], a:1},
+{tier:2, cat:"Labor", stem:`Why is the deadline to file an EEOC charge (before a right-to-sue letter can issue) a critical case-management field?`, opts:[`It has no real deadline`,`Missing the charge-filing deadline can bar the claim entirely before litigation even begins`,`It only matters after the lawsuit is filed`,`It's optional to track`], a:1},
+{tier:2, cat:"Labor", stem:`When a client gives verbal settlement authority over the phone, best litigation case-management practice is to:`, opts:[`Rely on memory alone`,`Promptly document the authorization in writing in the case file, confirming the specific terms discussed`,`Avoid documenting it to save time`,`Assume the authority never changes`], a:1},
+
+// ---- TIER 2 · Category I: PI Litigation-Level (5) ----
+{tier:2, cat:"Personal Injury", stem:`"Subrogation" in a settlement context refers to:`, opts:[`A type of jury instruction`,`A health insurer's or lienholder's right to be reimbursed from settlement proceeds for amounts already paid`,`The statute of limitations`,`A form of punitive damages`], a:1},
+{tier:2, cat:"Personal Injury", stem:`Why must discovery deadlines be tracked with alert reminders rather than memory alone?`, opts:[`Discovery deadlines are rarely enforced`,`Missing discovery deadlines can result in sanctions, waived objections, or evidence being excluded`,`Discovery has no deadlines`,`Only immigration filings have deadlines`], a:1},
+{tier:2, cat:"Personal Injury", stem:`An "expert witness disclosure" in a PI litigation case generally refers to:`, opts:[`A settlement offer`,`The formal identification and reporting of an expert who will testify, along with their opinions and qualifications`,`A type of jury instruction`,`A discovery objection`], a:1},
+{tier:2, cat:"Personal Injury", stem:`A well-prepared PI demand package to an insurer typically includes:`, opts:[`Only a one-line request for payment`,`Medical records/bills, a liability narrative, and a specific, supported settlement demand amount`,`Nothing but the police report`,`The client's personal opinion only`], a:1},
+{tier:2, cat:"Personal Injury", stem:`A client describes their injury's "<em>gravedad</em>" (Spanish). The precise English case-note term is:`, opts:[`"Gravity" (as in physics)`,`"Severity"`,`"Weight"`,`"Location"`], a:1},
+
+// ---- TIER 3 · Category J: Strategic Register & Advocacy (10) ----
+{tier:3, cat:"Strategic Register", stem:`Which register is appropriate when advising an attorney on witness-preparation language nuance?`, opts:[`Casual, since it's an internal conversation`,`Precise and consultative — flagging exact phrasing risks, not just general topics`,`It doesn't matter; attorneys handle that`,`Deferential silence`], a:1},
+{tier:3, cat:"Strategic Register", stem:`Identify the strongest opening line for a persuasive motion introduction:`, opts:[`"Defendant respectfully submits this motion."`,`"This motion should be granted because Plaintiff cannot, as a matter of law, establish the essential elements of its claim."`,`"We think we should win this motion."`,`"Please consider granting this motion, thank you."`], a:1},
+{tier:3, cat:"Strategic Register", stem:`"Voir dire" refers to:`, opts:[`The closing argument`,`The jury-selection process, where attorneys and/or the judge question prospective jurors`,`A written brief`,`A settlement negotiation`], a:1},
+{tier:3, cat:"Strategic Register", stem:`A senior attorney asks you to flag any "impeachment material" in a witness's prior statements. This means:`, opts:[`Evidence of criminal charges only`,`Any prior inconsistent statement or credibility-undermining information usable on cross-examination`,`A scheduling conflict`,`A translation error`], a:1},
+{tier:3, cat:"Strategic Register", stem:`When advising on register for a closing argument versus a written appellate brief, the key strategic distinction is:`, opts:[`There is no difference — the same words work for both`,`Closing-argument register is more rhetorical and spoken; appellate-brief register is more formal, precise, and citation-supported for a reading judge`,`Appellate briefs should be conversational`,`Closing arguments should avoid all persuasion`], a:1},
+{tier:3, cat:"Strategic Register", stem:`A "theory of the case," in strategic terms, is best described as:`, opts:[`A list of all filed documents`,`The coherent narrative and legal framework that explains why the client should prevail, guiding every strategic choice in the case`,`A summary of billing hours`,`An unrelated internal memo`], a:1},
+{tier:3, cat:"Strategic Register", stem:`The key register difference between an internal strategy memo to the attorney and a persuasive filing to the court is:`, opts:[`There is no difference — both should be equally persuasive`,`The internal memo should be candid and analytical, including weaknesses, while the court filing should be advocacy-focused and persuasive`,`Court filings should include internal weaknesses too`,`Internal memos should never mention risks`], a:1},
+{tier:3, cat:"Strategic Register", stem:`In a strategic risk memo, writing "the case is probably fine" instead of naming the specific exposure and its likelihood is a weakness because:`, opts:[`Vague language is preferred at the strategic level`,`It gives the attorney no actionable basis for decision-making`,`Precision is unnecessary at the strategic level`,`It saves the attorney time`], a:1},
+{tier:3, cat:"Strategic Register", stem:`A strategic memo comparing settlement value versus trial risk should primarily:`, opts:[`Only state a final number with no analysis`,`Lay out the quantified risks, likely outcomes, and reasoning supporting each path so the attorney can decide`,`Avoid discussing trial risk entirely`,`Recommend settlement in all cases`], a:1},
+{tier:3, cat:"Strategic Register", stem:`Correctly identifying the applicable "standard of review" (e.g., de novo, abuse of discretion) in an appellate strategy memo matters because it:`, opts:[`Has no effect on the argument's strength`,`Determines how much deference the appellate court gives the lower court's decision, shaping the entire argument strategy`,`Is only a formality with no legal weight`,`Only matters in immigration cases`], a:1},
+
+// ---- TIER 3 · Category K: Immigration Strategic-Level (5) ----
+{tier:3, cat:"Immigration", stem:`In a strategic case-assessment memo, why does precise tense ("has resided" vs. "resided") matter when describing a client's immigration history?`, opts:[`It doesn't — it's a stylistic choice only`,`Tense can imply ongoing vs. completed status, which affects eligibility arguments and must match the facts exactly`,`Only past tense is ever correct in legal writing`,`Attorneys don't read tense carefully`], a:1},
+{tier:3, cat:"Immigration", stem:`In a strategic memo for "cancellation of removal," continuous physical presence and hardship to qualifying relatives are examples of:`, opts:[`Irrelevant background details`,`Statutory factors that must be strategically documented and argued to support eligibility`,`Only administrative formalities`,`Factors that apply exclusively to asylum cases`], a:1},
+{tier:3, cat:"Immigration", stem:`Citing a "precedent decision" (e.g., a published BIA decision) in a strategic immigration memo serves to:`, opts:[`Add unnecessary length`,`Ground the legal argument in binding or persuasive authority that supports the requested outcome`,`Replace the need for factual analysis`,`Confuse the reader intentionally`], a:1},
+{tier:3, cat:"Immigration", stem:`A strategic memo must precisely translate a client's "<em>antecedentes penales</em>" because this Spanish term specifically refers to:`, opts:[`General life history`,`Criminal record/history, which can carry serious immigration consequences if described imprecisely`,`Educational background`,`Employment history`], a:1},
+{tier:3, cat:"Immigration", stem:`A strategic memo should explicitly identify which party bears the "burden of proof" on a contested issue because:`, opts:[`It has no bearing on strategy`,`It shapes what evidence must be gathered and who must be persuaded of what, directly driving case strategy`,`Burden of proof is fixed and irrelevant to memo-writing`,`Only judges need to know this`], a:1},
+
+// ---- TIER 3 · Category L: Labor Strategic-Level (5) ----
+{tier:3, cat:"Labor", stem:`Drafting a strategic memo on a hostile-work-environment claim, which phrasing reflects the legal standard rather than a lay description?`, opts:[`"The workplace was kind of unpleasant sometimes."`,`"Conduct was severe or pervasive enough to alter the conditions of employment and create an abusive working environment."`,`"The boss was mean."`,`"It wasn't that bad."`], a:1},
+{tier:3, cat:"Labor", stem:`Arguing that an employer's stated reason for termination is "pretext" strategically means:`, opts:[`Agreeing the stated reason is true`,`Arguing the stated reason is not the real, true reason, and that the real reason was discriminatory or retaliatory`,`Requesting a continuance`,`Withdrawing the claim`], a:1},
+{tier:3, cat:"Labor", stem:`Distinguishing "back pay" from "front pay" in a strategic damages memo matters because:`, opts:[`They are the same and interchangeable`,`Back pay covers losses up to judgment/settlement while front pay addresses future losses, and each has different proof requirements`,`Only back pay is ever recoverable`,`Front pay only applies to immigration cases`], a:1},
+{tier:3, cat:"Labor", stem:`A strategic memo assessing whether to pursue class/collective certification should address factors such as:`, opts:[`Only the attorney's personal preference`,`Numerosity, commonality, and typicality of claims among the proposed class members`,`The client's favorite color`,`Only the defendant's revenue`], a:1},
+{tier:3, cat:"Labor", stem:`A client's description of a "<em>despido injustificado</em>" should be captured precisely in a strategic memo as:`, opts:[`A voluntary resignation`,`An unjustified/wrongful termination, which is a specific and legally significant characterization`,`A layoff due to downsizing`,`A disciplinary suspension`], a:1},
+
+// ---- TIER 3 · Category M: PI Strategic-Level (5) ----
+{tier:3, cat:"Personal Injury", stem:`The "collateral source rule" should be explained in a trial strategy memo as:`, opts:[`A rule barring all evidence of insurance, in every jurisdiction`,`A rule (varying by jurisdiction) generally preventing a defendant from reducing damages owed because the plaintiff received payment from an independent source, like their own insurance`,`A rule about witness credibility`,`A filing deadline`], a:1},
+{tier:3, cat:"Personal Injury", stem:`A strategic trial memo assessing likely fault allocation under comparative negligence should:`, opts:[`Assume the defendant bears 100% fault without analysis`,`Realistically assess and support the percentage of fault likely attributable to each party, since it directly affects recoverable damages`,`Ignore fault allocation entirely`,`Only discuss the plaintiff's fault`], a:1},
+{tier:3, cat:"Personal Injury", stem:`A "life care plan" in a strategic PI damages memo generally refers to:`, opts:[`A settlement offer letter`,`A detailed projection of a plaintiff's future medical and care needs and costs resulting from the injury`,`A witness list`,`A discovery request`], a:1},
+{tier:3, cat:"Personal Injury", stem:`A strategic memo assessing punitive damages exposure should focus on evidence of:`, opts:[`Ordinary negligence only`,`Conduct rising to the heightened standard typically required (e.g., recklessness, malice, or gross negligence, depending on jurisdiction)`,`The defendant's insurance policy limits only`,`The plaintiff's medical bills only`], a:1},
+{tier:3, cat:"Personal Injury", stem:`A common strategic principle when planning trial presentation order is to:`, opts:[`Present witnesses in random order`,`Sequence witnesses and evidence to build a clear, persuasive narrative arc for the jury, often opening and closing with strong points`,`Always call the weakest witness first`,`Avoid any narrative structure`], a:1},
+
+];
+
+// ============================================================
+// ENGINE
+// ============================================================
+const TOTAL = QUESTIONS.length; // 100
+const BATCH_SIZE = 25;
+const NUM_BATCHES = TOTAL / BATCH_SIZE; // 4
+
+let state = {
+  screen: "start",
+  candidate: { name: "", email: "" },
+  answers: new Array(TOTAL).fill(null),
+  qIndex: 0,
+  startedAt: null,
+};
+
+function tierBounds(tier){
+  if(tier === 1) return [0, 50];
+  if(tier === 2) return [50, 75];
+  return [75, 100];
+}
+function batchBounds(batchNum){
+  const start = (batchNum - 1) * BATCH_SIZE;
+  return [start, start + BATCH_SIZE];
+}
+function scoreBetween(start, end){
+  let correct = 0;
+  for(let i = start; i < end; i++){
+    if(state.answers[i] !== null && state.answers[i] === QUESTIONS[i].a) correct++;
+  }
+  return correct;
+}
+function batchOfIndex(i){ return Math.floor(i / BATCH_SIZE) + 1; }
+function tierOfIndex(i){ return i < 50 ? 1 : (i < 75 ? 2 : 3); }
+
+function placementDecision(){
+  const t1 = scoreBetween(...tierBounds(1)), t1pct = t1/50;
+  const t2 = scoreBetween(...tierBounds(2)), t2pct = t2/25;
+  const t3 = scoreBetween(...tierBounds(3)), t3pct = t3/25;
+  let headline, detail;
+  if(t1pct < 0.65){
+    headline = "Below Tier 1 threshold";
+    detail = "Recommend general legal-English preparation before starting Tier 1: Intake & Support Certified.";
+  } else if(t1pct >= 0.85 && t2pct >= 0.75 && t3pct >= 0.75){
+    headline = "Escalate to Tier 3: Trial & Strategy Certified";
+    detail = "Tier 1 and Tier 2 certification requirements are waived based on this result.";
+  } else if(t1pct >= 0.85 && t2pct >= 0.75){
+    headline = "Escalate to Tier 2: Litigation & Management Certified";
+    detail = "The Tier 1 certification requirement is waived based on this result.";
+  } else {
+    headline = "Place into Tier 1: Intake & Support Certified";
+    detail = "Standard starting placement based on this result.";
+  }
+  return { t1, t2, t3, t1pct, t2pct, t3pct, headline, detail };
+}
+
+function render(){
+  const card = document.getElementById("card");
+  const progressShell = document.getElementById("progressShell");
+
+  if(state.screen === "start"){
+    progressShell.style.display = "none";
+    card.innerHTML = `
+      <h1>Certification Placement &amp; Progress Exam</h1>
+      <div class="sub">100 questions across three certification tiers. Every batch of 25 gives you an immediate score. Strong performance in later sections can place you directly into Tier 2 or Tier 3, skipping the lower tier's requirement.</div>
+      <div class="field"><label>Full name</label><input id="inName" type="text" placeholder="Jane Candidate"></div>
+      <div class="field"><label>Email (optional)</label><input id="inEmail" type="email" placeholder="jane@example.com"></div>
+      <div class="navrow">
+        <span></span>
+        <button class="btn gold" onclick="beginExam()">Begin Exam</button>
+      </div>
+      <div class="footer-note">There is no penalty for an incorrect answer beyond that question. It's expected that later sections get harder — answer as many as you can.</div>
+    `;
+    return;
+  }
+
+  if(state.screen === "question"){
+    progressShell.style.display = "block";
+    renderTabs();
+    const i = state.qIndex;
+    const q = QUESTIONS[i];
+    const pct = Math.round(((i) / TOTAL) * 100);
+    document.getElementById("barInner").style.width = pct + "%";
+    card.innerHTML = `
+      <div class="qmeta">Tier ${q.tier} &middot; ${q.cat} &middot; Question ${i+1} of ${TOTAL} &middot; Batch ${batchOfIndex(i)} of ${NUM_BATCHES}</div>
+      <div class="stem">${q.stem}</div>
+      <div id="optsHolder"></div>
+      <div class="navrow">
+        <button class="skip" onclick="skipQuestion()">Skip this question</button>
+        <span></span>
+      </div>
+    `;
+    const holder = document.getElementById("optsHolder");
+    q.opts.forEach((opt, idx) => {
+      const btn = document.createElement("button");
+      btn.className = "opt";
+      btn.innerHTML = `<span class="letter">${String.fromCharCode(65+idx)}.</span> ${opt}`;
+      btn.onclick = () => selectAnswer(idx);
+      holder.appendChild(btn);
+    });
+    return;
+  }
+
+  if(state.screen === "batchEnd"){
+    progressShell.style.display = "block";
+    renderTabs();
+    document.getElementById("barInner").style.width = Math.round((batchBounds(state._justFinishedBatch)[1] / TOTAL) * 100) + "%";
+    const bn = state._justFinishedBatch;
+    const [bs, be] = batchBounds(bn);
+    const bScore = scoreBetween(bs, be);
+    const bPct = Math.round((bScore/BATCH_SIZE)*100);
+    const isTierEnd = (bn === 2 || bn === 3 || bn === 4);
+    let tierBlock = "";
+    if(isTierEnd){
+      const tierNum = bn === 2 ? 1 : (bn === 3 ? 2 : 3);
+      const [ts, te] = tierBounds(tierNum);
+      const tScore = scoreBetween(ts, te);
+      const tMax = te - ts;
+      const tPct = Math.round((tScore/tMax)*100);
+      tierBlock = `
+        <div class="banner gold">
+          <strong>Tier ${tierNum} section complete.</strong> Score: ${tScore} / ${tMax} (${tPct}%).
+        </div>`;
+    }
+    card.innerHTML = `
+      <h2>Batch ${bn} of ${NUM_BATCHES} complete</h2>
+      <div class="scorebox">
+        <div class="cell"><div class="num">${bScore}/${BATCH_SIZE}</div><div class="lbl">This batch</div></div>
+        <div class="cell"><div class="num">${bPct}%</div><div class="lbl">Batch score</div></div>
+      </div>
+      ${tierBlock}
+      <div class="navrow">
+        <span></span>
+        <button class="btn gold" onclick="continueAfterBatch()">${bn < NUM_BATCHES ? "Continue to next batch" : "See final results"}</button>
+      </div>
+    `;
+    return;
+  }
+
+  if(state.screen === "final"){
+    progressShell.style.display = "none";
+    const d = placementDecision();
+    const rows = [1,2,3,4].map(bn => {
+      const [bs,be] = batchBounds(bn);
+      const s = scoreBetween(bs,be);
+      return `<tr><td>Batch ${bn} (Q${bs+1}&ndash;${be})</td><td>${s} / ${BATCH_SIZE}</td><td>${Math.round((s/BATCH_SIZE)*100)}%</td></tr>`;
+    }).join("");
+    card.innerHTML = `
+      <h1>Exam Complete</h1>
+      <div class="sub">${state.candidate.name || "Candidate"}${state.candidate.email ? " &middot; " + state.candidate.email : ""}</div>
+      <table class="results">
+        <tr><th>Section</th><th>Score</th><th>%</th></tr>
+        ${rows}
+        <tr><td><strong>Tier 1 total</strong></td><td>${d.t1} / 50</td><td>${Math.round(d.t1pct*100)}%</td></tr>
+        <tr><td><strong>Tier 2 total</strong></td><td>${d.t2} / 25</td><td>${Math.round(d.t2pct*100)}%</td></tr>
+        <tr><td><strong>Tier 3 total</strong></td><td>${d.t3} / 25</td><td>${Math.round(d.t3pct*100)}%</td></tr>
+      </table>
+      <div class="placement">
+        <div class="headline">${d.headline}</div>
+        <div>${d.detail}</div>
+      </div>
+      <div class="navrow">
+        <button class="btn ghost" onclick="downloadResults()">Download my results</button>
+        <span></span>
+      </div>
+      <div class="footer-note">Your results are not automatically emailed anywhere. Download the file above and send it to the program administrator, or the administrator can review it directly with you.</div>
+    `;
+    return;
+  }
+}
+
+function renderTabs(){
+  const tabs = document.getElementById("tabs");
+  const currentBatch = state.screen === "batchEnd" ? state._justFinishedBatch : batchOfIndex(state.qIndex);
+  let html = "";
+  for(let b=1; b<=NUM_BATCHES; b++){
+    let cls = "tab";
+    if(b < currentBatch || (state.screen === "batchEnd" && b <= currentBatch)) cls += " done";
+    else if(b === currentBatch && state.screen !== "batchEnd") cls += " active";
+    html += `<div class="${cls}">Batch ${b}</div>`;
+  }
+  tabs.innerHTML = html;
+}
+
+function beginExam(){
+  state.candidate.name = document.getElementById("inName").value.trim();
+  state.candidate.email = document.getElementById("inEmail").value.trim();
+  state.startedAt = new Date().toISOString();
+  state.screen = "question";
+  state.qIndex = 0;
+  render();
+}
+
+function selectAnswer(idx){
+  state.answers[state.qIndex] = idx;
+  advance();
+}
+function skipQuestion(){
+  state.answers[state.qIndex] = null;
+  advance();
+}
+function advance(){
+  const finishedIndex = state.qIndex;
+  const justFinishedBatch = batchOfIndex(finishedIndex);
+  const isLastInBatch = (finishedIndex + 1) % BATCH_SIZE === 0;
+  if(isLastInBatch){
+    state._justFinishedBatch = justFinishedBatch;
+    state.screen = "batchEnd";
+  } else {
+    state.qIndex = finishedIndex + 1;
+    state.screen = "question";
+  }
+  render();
+}
+function continueAfterBatch(){
+  if(state._justFinishedBatch >= NUM_BATCHES){
+    state.screen = "final";
+  } else {
+    state.qIndex = state._justFinishedBatch * BATCH_SIZE;
+    state.screen = "question";
+  }
+  render();
+}
+
+function downloadResults(){
+  const d = placementDecision();
+  let lines = [];
+  lines.push("INGLESLEGAL CERTIFICATION EXAM — RESULTS");
+  lines.push("==========================================");
+  lines.push("Candidate: " + (state.candidate.name || "(not provided)"));
+  lines.push("Email: " + (state.candidate.email || "(not provided)"));
+  lines.push("Started: " + state.startedAt);
+  lines.push("Completed: " + new Date().toISOString());
+  lines.push("");
+  lines.push("BATCH SCORES");
+  for(let bn=1; bn<=NUM_BATCHES; bn++){
+    const [bs,be] = batchBounds(bn);
+    const s = scoreBetween(bs,be);
+    lines.push(`  Batch ${bn} (Q${bs+1}-${be}): ${s}/${BATCH_SIZE} (${Math.round((s/BATCH_SIZE)*100)}%)`);
+  }
+  lines.push("");
+  lines.push("TIER TOTALS");
+  lines.push(`  Tier 1: ${d.t1}/50 (${Math.round(d.t1pct*100)}%)`);
+  lines.push(`  Tier 2: ${d.t2}/25 (${Math.round(d.t2pct*100)}%)`);
+  lines.push(`  Tier 3: ${d.t3}/25 (${Math.round(d.t3pct*100)}%)`);
+  lines.push("");
+  lines.push("PLACEMENT DECISION");
+  lines.push("  " + d.headline);
+  lines.push("  " + d.detail);
+  lines.push("");
+  lines.push("DETAILED ANSWERS");
+  QUESTIONS.forEach((q, i) => {
+    const given = state.answers[i];
+    const givenLetter = given === null ? "SKIPPED" : String.fromCharCode(65+given);
+    const correctLetter = String.fromCharCode(65+q.a);
+    const isRight = given === q.a ? "CORRECT" : "INCORRECT";
+    lines.push(`  Q${i+1} [Tier ${q.tier} / ${q.cat}] — Given: ${givenLetter} | Correct: ${correctLetter} | ${isRight}`);
+  });
+
+  const blob = new Blob([lines.join("\n")], {type:"text/plain"});
+  const url = URL.createObjectURL(blob);
+  const a = document.createElement("a");
+  const safeName = (state.candidate.name || "candidate").replace(/[^a-z0-9]+/gi, "_");
+  a.href = url;
+  a.download = `InglesLegal_Exam_Results_${safeName}.txt`;
+  document.body.appendChild(a);
+  a.click();
+  document.body.removeChild(a);
+  URL.revokeObjectURL(url);
+}
+
+render();
+</script>
+</body>
+</html>
