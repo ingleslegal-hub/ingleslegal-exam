@@ -124,6 +124,8 @@ function scoreBetween(start, end){
 function totalScore(){ return scoreBetween(0, TOTAL); }
 
 function render(){
+  if(state.screen === "question" || state.screen === "batchEnd") saveProgress();
+  if(state.screen === "final") clearProgress();
   const card = document.getElementById("card");
   const progressShell = document.getElementById("progressShell");
 
@@ -227,7 +229,7 @@ function render(){
         <span></span>
       </div>
       <div class="synctag" id="syncTag">${RESULTS_WEBHOOK_URL ? "Submitting your results..." : ""}</div>
-      <div class="footer-note">Results and feedback will also be emailed to you shortly.</div>
+      <div class="footer-note">${RESULTS_WEBHOOK_URL ? "Results and feedback will also be emailed to you shortly." : "Please use Download my results to keep a copy for your records."}</div>
     `;
     if(RESULTS_WEBHOOK_URL){ submitResults(score, pct, passed); }
     return;
@@ -265,6 +267,7 @@ function advance(){
   const isLastInBatch = (finishedIndex + 1) % BATCH_SIZE === 0 || finishedIndex + 1 === TOTAL;
   if(isLastInBatch){
     state._justFinishedBatch = batchOfIndex(finishedIndex);
+    sendBatch(state._justFinishedBatch);
     state.screen = "batchEnd";
   } else {
     state.qIndex = finishedIndex + 1;
@@ -278,10 +281,37 @@ function continueAfterBatch(){
   render();
 }
 
+function batchSummary(){
+  const out = [];
+  for(let bn = 1; bn <= NUM_BATCHES; bn++){
+    const [bs, be] = batchBounds(bn);
+    if(state.answers[be - 1] === null) break;
+    const s = scoreBetween(bs, be);
+    out.push({ batch: bn, score: s, total: be - bs, percent: Math.round((s / (be - bs)) * 100) });
+  }
+  return out;
+}
+
+function sendBatch(bn){
+  if(!RESULTS_WEBHOOK_URL) return;
+  const b = batchSummary().find(x => x.batch === bn);
+  if(!b) return;
+  fetch(RESULTS_WEBHOOK_URL, {
+    method: "POST",
+    headers: { "Content-Type": "text/plain" },
+    body: JSON.stringify({
+      type: "batch", tier: TIER_LABEL,
+      name: state.candidate.name, email: state.candidate.email,
+      ...b, startedAt: state.startedAt, completedAt: new Date().toISOString()
+    })
+  }).catch(() => {});
+}
+
 async function submitResults(score, pct, passed){
   try{
     const payload = {
-      tier: TIER_LABEL, name: state.candidate.name, email: state.candidate.email,
+      type: "final", tier: TIER_LABEL, name: state.candidate.name, email: state.candidate.email,
+      batches: batchSummary(),
       startedAt: state.startedAt, completedAt: new Date().toISOString(),
       score, total: TOTAL, percent: Math.round(pct*1000)/10, passed,
       answers: QUESTIONS.map((q,i) => ({ cat: q.cat, given: state.answers[i], correct: q.a }))
@@ -330,6 +360,30 @@ function downloadResults(){
   URL.revokeObjectURL(url);
 }
 
+// ---- Progress saving + leave warning ----
+const SAVE_KEY = "ingleslegal_" + TIER_LABEL.replace(/\s+/g, "_");
+function saveProgress(){ try{ localStorage.setItem(SAVE_KEY, JSON.stringify(state)); }catch(e){} }
+function clearProgress(){ try{ localStorage.removeItem(SAVE_KEY); }catch(e){} }
+function loadProgress(){
+  try{
+    const s = JSON.parse(localStorage.getItem(SAVE_KEY));
+    if(s && (s.screen === "question" || s.screen === "batchEnd") && Array.isArray(s.answers) && s.answers.length === TOTAL) return s;
+  }catch(e){}
+  return null;
+}
+
+window.addEventListener("beforeunload", e => {
+  if(state.screen === "question" || state.screen === "batchEnd"){
+    e.preventDefault(); e.returnValue = "";
+  }
+});
+
+const saved = loadProgress();
+if(saved && confirm("You have an exam in progress (question " + (saved.qIndex + 1) + " of " + TOTAL + "). Resume where you left off?")){
+  state = saved;
+} else {
+  clearProgress();
+}
 render();
 </script>
 </body>
