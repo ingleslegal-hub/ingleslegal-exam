@@ -109,6 +109,8 @@ let state = {
   qIndex: 0,
   startedAt: null,
   awaitingNext: false,
+  completedCount: 0,
+  stoppedEarly: false,
 };
 
 function batchBounds(batchNum){
@@ -133,7 +135,7 @@ function render(){
     progressShell.style.display = "none";
     card.innerHTML = `
       <h1>${TIER_LABEL} Certification Exam</h1>
-      <div class="sub">${TOTAL} questions across ${NUM_BATCHES} batches of ${BATCH_SIZE}. You'll see the correct answer and rationale right after each question, and a score check after every batch.</div>
+      <div class="sub">${TOTAL} questions across ${NUM_BATCHES} batches of ${BATCH_SIZE}. You'll see the correct answer and rationale right after each question, and a score check after every batch. After any batch except the last, you can stop and get a provisional result based on what you've completed so far, or continue for a complete, non-provisional result.</div>
       <div class="field"><label>Full name</label><input id="inName" type="text" placeholder="Jane Candidate"></div>
       <div class="field"><label>Email</label><input id="inEmail" type="email" placeholder="jane@example.com"></div>
       <div class="navrow"><span></span><button class="btn gold" onclick="beginExam()">Begin Exam</button></div>
@@ -198,35 +200,41 @@ function render(){
         <div class="cell"><div class="num">${bScore}/${bMax}</div><div class="lbl">This batch</div></div>
         <div class="cell"><div class="num">${bPct}%</div><div class="lbl">Batch score</div></div>
       </div>
-      <div class="navrow"><span></span><button class="btn gold" onclick="continueAfterBatch()">${bn < NUM_BATCHES ? "Continue to next batch" : "See final results"}</button></div>
+      <div class="navrow">
+        ${bn < NUM_BATCHES ? '<button class="btn ghost" onclick="stopNow()">Stop here and see my results</button>' : '<span></span>'}
+        <button class="btn gold" onclick="continueAfterBatch()">${bn < NUM_BATCHES ? "Continue to next batch" : "See final results"}</button>
+      </div>
     `;
     return;
   }
 
   if(state.screen === "final"){
     progressShell.style.display = "none";
-    const score = totalScore();
-    const pct = score / TOTAL;
+    const completed = state.completedCount || TOTAL;
+    const partial = completed < TOTAL;
+    const score = scoreBetween(0, completed);
+    const pct = score / completed;
     const passed = pct >= PASS_THRESHOLD;
     const rows = [];
-    for(let bn=1; bn<=NUM_BATCHES; bn++){
+    const fullBatches = Math.floor(completed / BATCH_SIZE);
+    for(let bn=1; bn<=fullBatches; bn++){
       const [bs,be] = batchBounds(bn);
       const s = scoreBetween(bs,be);
       rows.push(`<tr><td>Batch ${bn} (Q${bs+1}&ndash;${be})</td><td>${s} / ${be-bs}</td><td>${Math.round((s/(be-bs))*100)}%</td></tr>`);
     }
     card.innerHTML = `
-      <h1>Exam Complete</h1>
-      <div class="sub">${state.candidate.name || "Candidate"}${state.candidate.email ? " &middot; " + state.candidate.email : ""}</div>
+      <h1>${partial ? "Exam Stopped Early — Provisional Results" : "Exam Complete"}</h1>
+      <div class="sub">${state.candidate.name || "Candidate"}${state.candidate.email ? " &middot; " + state.candidate.email : ""} &middot; ${completed} of ${TOTAL} questions completed</div>
       <table class="results"><tr><th>Section</th><th>Score</th><th>%</th></tr>${rows.join("")}
-        <tr><td><strong>Overall</strong></td><td>${score} / ${TOTAL}</td><td>${Math.round(pct*100)}%</td></tr>
+        <tr><td><strong>${partial ? "Overall so far" : "Overall"}</strong></td><td>${score} / ${completed}</td><td>${Math.round(pct*100)}%</td></tr>
       </table>
       <div class="placement">
-        <div class="headline">${passed ? TIER_LABEL + " — PASSED" : TIER_LABEL + " — Not yet passing"}</div>
-        <div>Passing threshold is ${Math.round(PASS_THRESHOLD*100)}%. You scored ${Math.round(pct*100)}%.</div>
+        <div class="headline">${TIER_LABEL} — ${passed ? "PASSED" : "Not yet passing"}${partial ? " (provisional)" : ""}</div>
+        <div>Passing threshold is ${Math.round(PASS_THRESHOLD*100)}%. You scored ${Math.round(pct*100)}%${partial ? " based on " + completed + " of " + TOTAL + " questions." : "."}</div>
       </div>
       <div class="navrow">
         <button class="btn ghost" onclick="downloadResults()">Download my results</button>
-        <span></span>
+        ${partial ? '<button class="btn gold" onclick="resumeExam()">Keep going</button>' : '<span></span>'}
       </div>
       <div class="synctag" id="syncTag">${RESULTS_WEBHOOK_URL ? "Submitting your results..." : ""}</div>
       <div class="footer-note">${RESULTS_WEBHOOK_URL ? "Results and feedback will also be emailed to you shortly." : "Please use Download my results to keep a copy for your records."}</div>
@@ -276,8 +284,25 @@ function advance(){
   render();
 }
 function continueAfterBatch(){
-  if(state._justFinishedBatch >= NUM_BATCHES){ state.screen = "final"; }
+  if(state._justFinishedBatch >= NUM_BATCHES){
+    state.completedCount = TOTAL;
+    state.stoppedEarly = false;
+    state.screen = "final";
+  }
   else { state.qIndex = state._justFinishedBatch * BATCH_SIZE; state.screen = "question"; }
+  render();
+}
+
+function stopNow(){
+  state.completedCount = batchBounds(state._justFinishedBatch)[1];
+  state.stoppedEarly = true;
+  state.screen = "final";
+  render();
+}
+
+function resumeExam(){
+  state.qIndex = Math.min(state.completedCount, TOTAL - 1);
+  state.screen = "question";
   render();
 }
 
@@ -327,25 +352,29 @@ async function submitResults(score, pct, passed){
 }
 
 function downloadResults(){
-  const score = totalScore(); const pct = score/TOTAL;
+  const completed = state.completedCount || TOTAL;
+  const partial = completed < TOTAL;
+  const score = scoreBetween(0, completed); const pct = score/completed;
   let lines = [];
-  lines.push(`INGLESLEGAL ${TIER_LABEL.toUpperCase()} EXAM — RESULTS`);
+  lines.push(`INGLESLEGAL ${TIER_LABEL.toUpperCase()} EXAM — RESULTS` + (partial ? " (PARTIAL — STOPPED EARLY)" : ""));
   lines.push("==========================================");
   lines.push("Candidate: " + (state.candidate.name || "(not provided)"));
   lines.push("Email: " + (state.candidate.email || "(not provided)"));
   lines.push("Started: " + state.startedAt);
   lines.push("Completed: " + new Date().toISOString());
+  lines.push("Questions completed: " + completed + " of " + TOTAL);
   lines.push("");
-  for(let bn=1; bn<=NUM_BATCHES; bn++){
+  const fullBatches = Math.floor(completed / BATCH_SIZE);
+  for(let bn=1; bn<=fullBatches; bn++){
     const [bs,be] = batchBounds(bn);
     const s = scoreBetween(bs,be);
     lines.push(`Batch ${bn} (Q${bs+1}-${be}): ${s}/${be-bs} (${Math.round((s/(be-bs))*100)}%)`);
   }
   lines.push("");
-  lines.push(`OVERALL: ${score}/${TOTAL} (${Math.round(pct*100)}%) — ${pct>=PASS_THRESHOLD ? "PASSED" : "Not yet passing"} (threshold ${Math.round(PASS_THRESHOLD*100)}%)`);
+  lines.push(`OVERALL: ${score}/${completed} (${Math.round(pct*100)}%) — ${pct>=PASS_THRESHOLD ? "PASSED" : "Not yet passing"}${partial ? " (provisional)" : ""} (threshold ${Math.round(PASS_THRESHOLD*100)}%)`);
   lines.push("");
   lines.push("DETAILED ANSWERS");
-  QUESTIONS.forEach((q,i) => {
+  QUESTIONS.slice(0, completed).forEach((q,i) => {
     const given = state.answers[i];
     const givenLetter = given === null ? "SKIPPED" : String.fromCharCode(65+given);
     const correctLetter = String.fromCharCode(65+q.a);
