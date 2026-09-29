@@ -1,0 +1,258 @@
+<div class="il-vocab-embed">
+  <style>
+    .il-vocab-embed {
+      margin: 40px 0;
+      text-align: center;
+    }
+    .il-vocab-embed .il-wrap {
+      position: relative;
+      display: inline-block;
+    }
+    .il-vocab-embed button.il-trigger {
+      font: inherit;
+      font-size: 16px;
+      font-weight: 700;
+      letter-spacing: 0.02em;
+      cursor: pointer;
+      background: #D9B25F;
+      color: #241906;
+      border: none;
+      border-radius: 9px;
+      padding: 16px 30px;
+      display: inline-flex;
+      align-items: center;
+      gap: 10px;
+      transition: all 0.18s ease;
+    }
+    .il-vocab-embed button.il-trigger:hover {
+      opacity: 0.92;
+      transform: translateY(-2px);
+      box-shadow: 0 8px 20px rgba(217, 178, 95, 0.3);
+    }
+    .il-vocab-embed button.il-trigger .il-chevron {
+      transition: transform 0.18s ease;
+    }
+    .il-vocab-embed button.il-trigger[aria-expanded="true"] .il-chevron {
+      transform: rotate(180deg);
+    }
+    .il-vocab-embed .il-panel {
+      position: absolute;
+      top: calc(100% + 10px);
+      left: 50%;
+      transform: translateX(-50%);
+      width: min(560px, 88vw);
+      max-height: 70vh;
+      overflow-y: auto;
+      text-align: left;
+      background: #1F1428;
+      border: 1px solid rgba(217, 178, 95, 0.3);
+      border-radius: 12px;
+      box-shadow: 0 18px 40px rgba(0, 0, 0, 0.45);
+      padding: 10px;
+      z-index: 40;
+      display: none;
+    }
+    .il-vocab-embed .il-panel.il-open {
+      display: block;
+      animation: slideDown 0.2s ease;
+    }
+    @keyframes slideDown {
+      from {
+        opacity: 0;
+        transform: translateX(-50%) translateY(-10px);
+      }
+      to {
+        opacity: 1;
+        transform: translateX(-50%) translateY(0);
+      }
+    }
+    .il-vocab-embed .il-group {
+      padding: 10px 12px 12px;
+      border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+    }
+    .il-vocab-embed .il-group:last-child {
+      border-bottom: none;
+    }
+    .il-vocab-embed .il-group h4 {
+      margin: 0 0 8px;
+      font-size: 14px;
+      color: #F3EFE4;
+      font-weight: 600;
+    }
+    .il-vocab-embed .il-btnrow {
+      display: flex;
+      gap: 8px;
+      flex-wrap: wrap;
+    }
+    .il-vocab-embed a.il-btn {
+      display: inline-block;
+      padding: 7px 12px;
+      border-radius: 6px;
+      border: 1px solid rgba(217, 178, 95, 0.5);
+      color: #D9B25F;
+      text-decoration: none;
+      font-size: 13px;
+      font-weight: 600;
+      transition: all 0.12s ease;
+    }
+    .il-vocab-embed a.il-btn:hover {
+      background: rgba(217, 178, 95, 0.12);
+      border-color: #D9B25F;
+    }
+    .il-vocab-embed a.il-btn.full {
+      background: #D9B25F;
+      color: #241906;
+      border-color: #D9B25F;
+    }
+    .il-vocab-embed a.il-btn.full:hover {
+      opacity: 0.9;
+    }
+    @media (max-width: 480px) {
+      .il-vocab-embed button.il-trigger {
+        font-size: 14px;
+        padding: 12px 20px;
+      }
+      .il-vocab-embed .il-group h4 {
+        font-size: 13px;
+      }
+    }
+  </style>
+
+  <div class="il-wrap">
+    <button type="button" class="il-trigger" id="ilVocabTrigger" aria-expanded="false" aria-controls="ilVocabPanel">
+      Free Vocabulary Practice Test
+      <svg class="il-chevron" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3">
+        <path d="M6 9l6 6 6-6" />
+      </svg>
+    </button>
+
+    <div class="il-panel" id="ilVocabPanel" role="menu">
+
+      <div class="il-group">
+        <h4>General Legal English</h4>
+        <div class="il-btnrow">
+          <a class="il-btn" role="menuitem" href="/exams/vocabulary/quiz-standalone.html?category=general_legal_english&quarter=1" target="_blank">Section 1</a>
+          <a class="il-btn" role="menuitem" href="/exams/vocabulary/quiz-standalone.html?category=general_legal_english&quarter=2" target="_blank">Section 2</a>
+          <a class="il-btn" role="menuitem" href="/exams/vocabulary/quiz-standalone.html?category=general_legal_english&quarter=3" target="_blank">Section 3</a>
+          <a class="il-btn" role="menuitem" href="/exams/vocabulary/quiz-standalone.html?category=general_legal_english&quarter=4" target="_blank">Section 4</a>
+        </div>
+      </div>
+
+      <div class="il-group">
+        <h4>Translation (EN ↔ ES)</h4>
+        <div class="il-btnrow">
+          <a class="il-btn" role="menuitem" href="/exams/vocabulary/quiz-standalone.html?category=translation&variant=half" target="_blank">Half</a>
+          <a class="il-btn full" role="menuitem" href="/exams/vocabulary/quiz-standalone.html?category=translation&variant=full" target="_blank">Full</a>
+        </div>
+      </div>
+
+      <div class="il-group">
+        <h4>Most Common Legal Expressions</h4>
+        <div class="il-btnrow">
+          <a class="il-btn" role="menuitem" href="/exams/vocabulary/quiz-standalone.html?category=common_expressions&variant=half" target="_blank">Half</a>
+          <a class="il-btn full" role="menuitem" href="/exams/vocabulary/quiz-standalone.html?category=common_expressions&variant=full" target="_blank">Full</a>
+        </div>
+      </div>
+
+      <div class="il-group">
+        <h4>Civil Law</h4>
+        <div class="il-btnrow">
+          <a class="il-btn" role="menuitem" href="/exams/vocabulary/quiz-standalone.html?category=civil_law&variant=half" target="_blank">Half</a>
+          <a class="il-btn full" role="menuitem" href="/exams/vocabulary/quiz-standalone.html?category=civil_law&variant=full" target="_blank">Full</a>
+        </div>
+      </div>
+
+      <div class="il-group">
+        <h4>Contract Law</h4>
+        <div class="il-btnrow">
+          <a class="il-btn" role="menuitem" href="/exams/vocabulary/quiz-standalone.html?category=contract_law&variant=half" target="_blank">Half</a>
+          <a class="il-btn full" role="menuitem" href="/exams/vocabulary/quiz-standalone.html?category=contract_law&variant=full" target="_blank">Full</a>
+        </div>
+      </div>
+
+      <div class="il-group">
+        <h4>Criminal Law</h4>
+        <div class="il-btnrow">
+          <a class="il-btn" role="menuitem" href="/exams/vocabulary/quiz-standalone.html?category=criminal_law&variant=half" target="_blank">Half</a>
+          <a class="il-btn full" role="menuitem" href="/exams/vocabulary/quiz-standalone.html?category=criminal_law&variant=full" target="_blank">Full</a>
+        </div>
+      </div>
+
+      <div class="il-group">
+        <h4>Immigration Law</h4>
+        <div class="il-btnrow">
+          <a class="il-btn" role="menuitem" href="/exams/vocabulary/quiz-standalone.html?category=immigration_law&variant=half" target="_blank">Half</a>
+          <a class="il-btn full" role="menuitem" href="/exams/vocabulary/quiz-standalone.html?category=immigration_law&variant=full" target="_blank">Full</a>
+        </div>
+      </div>
+
+      <div class="il-group">
+        <h4>Personal Injury</h4>
+        <div class="il-btnrow">
+          <a class="il-btn" role="menuitem" href="/exams/vocabulary/quiz-standalone.html?category=personal_injury&variant=half" target="_blank">Half</a>
+          <a class="il-btn full" role="menuitem" href="/exams/vocabulary/quiz-standalone.html?category=personal_injury&variant=full" target="_blank">Full</a>
+        </div>
+      </div>
+
+      <div class="il-group">
+        <h4>Family Law</h4>
+        <div class="il-btnrow">
+          <a class="il-btn" role="menuitem" href="/exams/vocabulary/quiz-standalone.html?category=family_law&variant=half" target="_blank">Half</a>
+          <a class="il-btn full" role="menuitem" href="/exams/vocabulary/quiz-standalone.html?category=family_law&variant=full" target="_blank">Full</a>
+        </div>
+      </div>
+
+      <div class="il-group">
+        <h4>Labor Law</h4>
+        <div class="il-btnrow">
+          <a class="il-btn" role="menuitem" href="/exams/vocabulary/quiz-standalone.html?category=labor_law&variant=half" target="_blank">Half</a>
+          <a class="il-btn full" role="menuitem" href="/exams/vocabulary/quiz-standalone.html?category=labor_law&variant=full" target="_blank">Full</a>
+        </div>
+      </div>
+
+      <div class="il-group">
+        <h4>Commercial Law</h4>
+        <div class="il-btnrow">
+          <a class="il-btn" role="menuitem" href="/exams/vocabulary/quiz-standalone.html?category=commercial_law&variant=half" target="_blank">Half</a>
+          <a class="il-btn full" role="menuitem" href="/exams/vocabulary/quiz-standalone.html?category=commercial_law&variant=full" target="_blank">Full</a>
+        </div>
+      </div>
+
+      <div class="il-group">
+        <h4>Other Branches</h4>
+        <div class="il-btnrow">
+          <a class="il-btn" role="menuitem" href="/exams/vocabulary/quiz-standalone.html?category=other_branches&variant=half" target="_blank">Half</a>
+          <a class="il-btn full" role="menuitem" href="/exams/vocabulary/quiz-standalone.html?category=other_branches&variant=full" target="_blank">Full</a>
+        </div>
+      </div>
+
+    </div>
+  </div>
+
+  <script>
+    (function() {
+      var trigger = document.getElementById('ilVocabTrigger');
+      var panel = document.getElementById('ilVocabPanel');
+      if (!trigger || !panel) return;
+
+      function close() {
+        panel.classList.remove('il-open');
+        trigger.setAttribute('aria-expanded', 'false');
+      }
+
+      function toggle(e) {
+        e.stopPropagation();
+        var open = panel.classList.toggle('il-open');
+        trigger.setAttribute('aria-expanded', open ? 'true' : 'false');
+      }
+
+      trigger.addEventListener('click', toggle);
+      document.addEventListener('click', function(e) {
+        if (!panel.contains(e.target) && e.target !== trigger) close();
+      });
+      document.addEventListener('keydown', function(e) {
+        if (e.key === 'Escape') close();
+      });
+    })();
+  </script>
+</div>
