@@ -1,0 +1,491 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Legal English Practice Exam</title>
+  <style>
+    :root{
+      --bg:#14171D;
+      --surface:#1C2029;
+      --surface-2:#252A35;
+      --ink:#ECE9E0;
+      --ink-dim:#A2A6B3;
+      --line:#333947;
+      --navy:#C7D2E8;
+      --navy-2:#8FA3C9;
+      --gold:#D8B364;
+      --gold-ink:#F2DDA6;
+      --good:#7FCBA5;
+      --good-bg:#1D3128;
+      --bad:#E29585;
+      --bad-bg:#33201C;
+      color-scheme: dark;
+    }
+    *{box-sizing:border-box;}
+    html,body{margin:0;padding:0;}
+    body{
+      background:var(--bg);
+      color:var(--ink);
+      font-family:'Source Sans 3', 'Segoe UI', Tahoma, sans-serif;
+      padding:32px 16px;
+      display:flex;
+      justify-content:center;
+      min-height:100vh;
+    }
+    .wrap{width:100%; max-width:640px;}
+    h1,h2,h3{
+      font-family:'Fraunces', Georgia, serif;
+      font-weight:600;
+      margin:0 0 .4em 0;
+      color:var(--navy);
+    }
+    p{line-height:1.6; color:var(--ink-dim); margin:.3em 0 0;}
+    .eyebrow{
+      text-transform:uppercase;
+      letter-spacing:.11em;
+      font-size:.72rem;
+      font-weight:700;
+      color:var(--gold-ink);
+      background:var(--surface-2);
+      display:inline-block;
+      padding:.3em .7em;
+      border-radius:999px;
+      margin-bottom:14px;
+    }
+    .card{
+      background:var(--surface);
+      border:1px solid var(--line);
+      border-radius:14px;
+      padding:28px;
+      box-shadow:0 2px 8px rgba(0,0,0,.2);
+    }
+    .card + .card{margin-top:16px;}
+    label{display:block; font-size:.85rem; font-weight:600; margin:16px 0 6px; color:var(--ink);}
+    label:first-of-type{margin-top:18px;}
+    input[type=text],input[type=email]{
+      width:100%;
+      font-size:1rem;
+      padding:8px 12px;
+      border:1px solid var(--line);
+      border-radius:8px;
+      background:var(--surface-2);
+      color:var(--ink);
+    }
+    input[type=text]:focus,input[type=email]:focus{
+      outline:none;
+      border-color:var(--gold);
+      box-shadow:0 0 0 2px rgba(216,179,100,.2);
+    }
+    button{
+      font:inherit;
+      font-weight:600;
+      cursor:pointer;
+      border-radius:8px;
+      border:none;
+      padding:10px 20px;
+      font-size:.95rem;
+      transition:all .18s ease;
+    }
+    .btn-primary{
+      background:var(--gold);
+      color:#241906;
+    }
+    .btn-primary:hover{opacity:.92;}
+    .btn-primary:disabled{opacity:.5; cursor:not-allowed;}
+    .btn-secondary{
+      background:transparent;
+      color:var(--gold);
+      border:1px solid var(--gold);
+    }
+    .btn-secondary:hover{background:rgba(216,179,100,.1);}
+    .option{
+      display:block;
+      width:100%;
+      text-align:left;
+      padding:12px 14px;
+      margin-top:8px;
+      border:1px solid var(--line);
+      border-radius:8px;
+      background:var(--surface);
+      color:var(--ink);
+      cursor:pointer;
+      transition:all .12s ease;
+    }
+    .option:hover{border-color:var(--gold); background:rgba(216,179,100,.06);}
+    .option[data-selected="true"]{
+      border-color:var(--gold);
+      background:rgba(216,179,100,.15);
+      color:var(--gold);
+    }
+    .option[data-correct="true"]{border-color:var(--good); background:rgba(127,203,165,.1);}
+    .option[data-wrong="true"]{border-color:var(--bad); background:rgba(226,149,133,.1);}
+    .hidden{display:none;}
+    .progress{
+      background:var(--surface-2);
+      height:6px;
+      border-radius:3px;
+      overflow:hidden;
+      margin-bottom:20px;
+    }
+    .progress-bar{
+      height:100%;
+      background:var(--gold);
+      width:0%;
+      transition:width .3s ease;
+    }
+    .result-score{
+      font-size:3rem;
+      font-weight:700;
+      color:var(--gold);
+      text-align:center;
+      margin:20px 0;
+    }
+    .result-summary{
+      background:var(--surface-2);
+      padding:16px;
+      border-radius:8px;
+      margin:16px 0;
+      font-size:.95rem;
+    }
+    .review-item{
+      margin-top:20px;
+      padding-top:20px;
+      border-top:1px solid var(--line);
+    }
+    .review-q{font-weight:600; margin-bottom:8px; color:var(--navy);}
+    .review-options{margin:10px 0; font-size:.9rem;}
+    .review-opt-correct{color:var(--good); margin:6px 0;}
+    .review-opt-wrong{color:var(--bad); margin:6px 0;}
+    .review-explanation{
+      margin-top:10px;
+      padding:10px 12px;
+      background:rgba(216,179,100,.08);
+      border-left:3px solid var(--gold);
+      font-style:italic;
+      font-size:.9rem;
+    }
+    .loading{
+      text-align:center;
+      padding:40px 20px;
+      color:var(--ink-dim);
+    }
+    .spinner{
+      display:inline-block;
+      width:30px;
+      height:30px;
+      border:3px solid var(--line);
+      border-top-color:var(--gold);
+      border-radius:50%;
+      animation:spin .8s linear infinite;
+    }
+    @keyframes spin{to{transform:rotate(360deg);}}
+  </style>
+</head>
+<body>
+  <div class="wrap">
+
+    <!-- GATE: Email Entry -->
+    <div id="gateSection" class="card">
+      <div class="eyebrow">Free · No cost to try</div>
+      <h1>Legal English Practice Exam</h1>
+      <p>Test your legal English vocabulary. This is a free, no-enrollment-required assessment.</p>
+
+      <label for="gateCategory">Select a category:</label>
+      <select id="gateCategory" style="width:100%; padding:8px 12px; border:1px solid var(--line); border-radius:8px; background:var(--surface-2); color:var(--ink); font-size:.95rem;">
+        <option value="">-- Choose a category --</option>
+        <option value="general_legal_english">General Legal English (Sections 1-4)</option>
+        <option value="translation">Translation (EN ↔ ES)</option>
+        <option value="common_expressions">Most Common Legal Expressions</option>
+        <option value="civil_law">Civil Law</option>
+        <option value="contract_law">Contract Law</option>
+        <option value="criminal_law">Criminal Law</option>
+        <option value="immigration_law">Immigration Law</option>
+        <option value="personal_injury">Personal Injury</option>
+        <option value="family_law">Family Law</option>
+        <option value="labor_law">Labor Law</option>
+        <option value="commercial_law">Commercial Law</option>
+        <option value="other_branches">Other Branches</option>
+      </select>
+
+      <label for="gateVariant" style="margin-top:16px;">Select length:</label>
+      <select id="gateVariant" style="width:100%; padding:8px 12px; border:1px solid var(--line); border-radius:8px; background:var(--surface-2); color:var(--ink); font-size:.95rem;">
+        <option value="">-- Choose length --</option>
+        <option value="half">Half Exam (~25 questions)</option>
+        <option value="full">Full Exam (~50 questions)</option>
+      </select>
+
+      <label for="gateName" style="margin-top:16px;">Your name (optional):</label>
+      <input type="text" id="gateName" placeholder="Enter your name">
+
+      <label for="gateEmail">Your email (optional):</label>
+      <input type="email" id="gateEmail" placeholder="Enter your email">
+
+      <button class="btn-primary" onclick="app.startExam()" style="width:100%; margin-top:20px;">Start Exam</button>
+    </div>
+
+    <!-- QUIZ: Question Display -->
+    <div id="quizSection" class="hidden">
+      <div class="progress">
+        <div class="progress-bar" id="progressBar"></div>
+      </div>
+
+      <div class="card">
+        <div style="display:flex; justify-content:space-between; align-items:baseline; margin-bottom:16px;">
+          <div style="font-size:.85rem; color:var(--ink-dim); text-transform:uppercase; letter-spacing:.05em; font-weight:600;">
+            Question <span id="questionNumber">1</span> of <span id="totalQuestions">0</span>
+          </div>
+          <div style="font-size:.75rem; color:var(--gold); font-weight:600;" id="categoryLabel"></div>
+        </div>
+
+        <h2 id="questionPrompt" style="margin-top:0;"></h2>
+
+        <div id="optionsContainer"></div>
+
+        <div style="display:flex; gap:12px; margin-top:24px;">
+          <button class="btn-secondary" onclick="app.previousQuestion()" id="btnPrevious">← Previous</button>
+          <button class="btn-primary" onclick="app.nextQuestion()" id="btnNext" style="flex:1;">Next →</button>
+        </div>
+      </div>
+    </div>
+
+    <!-- RESULTS: Score & Review -->
+    <div id="resultSection" class="hidden">
+      <div class="card">
+        <div class="eyebrow">Exam Complete</div>
+        <h1>Your Result</h1>
+
+        <div class="result-score" id="scoreDisplay">0%</div>
+
+        <div class="result-summary">
+          <strong>You answered:</strong><br>
+          <span id="correctCount">0</span> correct out of <span id="totalCount">0</span> questions
+          <br><br>
+          <strong>Category:</strong> <span id="resultCategory"></span><br>
+          <strong>Length:</strong> <span id="resultVariant"></span>
+        </div>
+
+        <h3>Answer Review</h3>
+        <div id="reviewContainer"></div>
+
+        <button class="btn-primary" onclick="app.reset()" style="width:100%; margin-top:20px;">Take Another Exam</button>
+      </div>
+    </div>
+
+    <!-- LOADING -->
+    <div id="loadingSection" class="loading">
+      <div class="spinner"></div>
+      <p style="margin-top:16px;">Loading question bank...</p>
+    </div>
+
+  </div>
+
+  <script>
+    const app = {
+      allQuestions: [],
+      filteredQuestions: [],
+      currentIndex: 0,
+      answers: {},
+      name: '',
+      email: '',
+      category: '',
+      variant: '',
+
+      async init() {
+        try {
+          const response = await fetch('./master.json');
+          if (!response.ok) throw new Error('Failed to load question bank');
+          this.allQuestions = await response.json();
+          console.log(`Loaded ${this.allQuestions.length} questions`);
+          document.getElementById('loadingSection').classList.add('hidden');
+          document.getElementById('gateSection').classList.remove('hidden');
+        } catch (err) {
+          alert('Error loading questions: ' + err.message);
+          console.error(err);
+        }
+      },
+
+      startExam() {
+        const category = document.getElementById('gateCategory').value;
+        const variant = document.getElementById('gateVariant').value;
+        const name = document.getElementById('gateName').value.trim();
+        const email = document.getElementById('gateEmail').value.trim();
+
+        if (!category || !variant) {
+          alert('Please select a category and length');
+          return;
+        }
+
+        this.category = category;
+        this.variant = variant;
+        this.name = name;
+        this.email = email;
+
+        // Store in browser (soft opt-in)
+        if (name || email) {
+          sessionStorage.setItem('examUser', JSON.stringify({ name, email, category, timestamp: new Date().toISOString() }));
+        }
+
+        this.loadQuestions();
+        this.currentIndex = 0;
+        this.answers = {};
+        document.getElementById('gateSection').classList.add('hidden');
+        document.getElementById('quizSection').classList.remove('hidden');
+        this.showQuestion();
+      },
+
+      loadQuestions() {
+        // Filter by category
+        let filtered = this.allQuestions.filter(q => q.category === this.category);
+
+        // For general_legal_english, split into quarters
+        if (this.category === 'general_legal_english') {
+          const quarter = parseInt(this.variant) || 1;
+          const qSize = Math.ceil(filtered.length / 4);
+          const start = (quarter - 1) * qSize;
+          const end = quarter * qSize;
+          filtered = filtered.slice(start, end);
+        } else {
+          // For other categories, select half or full
+          const halfSize = Math.ceil(filtered.length / 2);
+          if (this.variant === 'half') {
+            filtered = filtered.slice(0, halfSize);
+          }
+        }
+
+        // Shuffle
+        this.filteredQuestions = filtered.sort(() => Math.random() - 0.5);
+        document.getElementById('totalQuestions').textContent = this.filteredQuestions.length;
+      },
+
+      showQuestion() {
+        if (this.currentIndex < 0 || this.currentIndex >= this.filteredQuestions.length) return;
+
+        const q = this.filteredQuestions[this.currentIndex];
+        const progress = ((this.currentIndex + 1) / this.filteredQuestions.length) * 100;
+        document.getElementById('progressBar').style.width = progress + '%';
+        document.getElementById('questionNumber').textContent = this.currentIndex + 1;
+        document.getElementById('categoryLabel').textContent = this.category.replace(/_/g, ' ').toUpperCase();
+        document.getElementById('questionPrompt').textContent = q.prompt;
+
+        const container = document.getElementById('optionsContainer');
+        container.innerHTML = '';
+
+        q.options.forEach((opt, idx) => {
+          const isSelected = this.answers[this.currentIndex] === idx;
+          const btn = document.createElement('button');
+          btn.className = 'option';
+          btn.textContent = opt;
+          btn.setAttribute('data-selected', isSelected);
+          btn.onclick = () => this.selectAnswer(idx);
+          container.appendChild(btn);
+        });
+
+        // Update button states
+        document.getElementById('btnPrevious').disabled = this.currentIndex === 0;
+        document.getElementById('btnNext').textContent = this.currentIndex === this.filteredQuestions.length - 1 ? 'Submit →' : 'Next →';
+      },
+
+      selectAnswer(idx) {
+        this.answers[this.currentIndex] = idx;
+        this.showQuestion();
+      },
+
+      nextQuestion() {
+        if (this.currentIndex === this.filteredQuestions.length - 1) {
+          this.finishExam();
+        } else {
+          this.currentIndex++;
+          this.showQuestion();
+        }
+      },
+
+      previousQuestion() {
+        if (this.currentIndex > 0) {
+          this.currentIndex--;
+          this.showQuestion();
+        }
+      },
+
+      finishExam() {
+        let correct = 0;
+        this.filteredQuestions.forEach((q, idx) => {
+          if (this.answers[idx] === q.answer_index) correct++;
+        });
+
+        const score = Math.round((correct / this.filteredQuestions.length) * 100);
+
+        document.getElementById('quizSection').classList.add('hidden');
+        document.getElementById('resultSection').classList.remove('hidden');
+        document.getElementById('scoreDisplay').textContent = score + '%';
+        document.getElementById('correctCount').textContent = correct;
+        document.getElementById('totalCount').textContent = this.filteredQuestions.length;
+        document.getElementById('resultCategory').textContent = this.category.replace(/_/g, ' ');
+        document.getElementById('resultVariant').textContent = this.variant === 'half' ? 'Half Exam' : this.variant.includes('full') ? 'Full Exam' : `Section ${this.variant}`;
+
+        this.buildReview();
+      },
+
+      buildReview() {
+        const container = document.getElementById('reviewContainer');
+        container.innerHTML = '';
+
+        this.filteredQuestions.forEach((q, idx) => {
+          const userAnswerIdx = this.answers[idx];
+          const isCorrect = userAnswerIdx === q.answer_index;
+
+          const div = document.createElement('div');
+          div.className = 'review-item';
+
+          const qDiv = document.createElement('div');
+          qDiv.className = 'review-q';
+          qDiv.textContent = `Q${idx + 1}: ${q.prompt}`;
+          div.appendChild(qDiv);
+
+          const optsDiv = document.createElement('div');
+          optsDiv.className = 'review-options';
+
+          if (userAnswerIdx !== undefined) {
+            const userOpt = document.createElement('div');
+            userOpt.className = isCorrect ? 'review-opt-correct' : 'review-opt-wrong';
+            userOpt.innerHTML = `<strong>Your answer:</strong> ${q.options[userAnswerIdx]}`;
+            optsDiv.appendChild(userOpt);
+          }
+
+          if (!isCorrect) {
+            const correctOpt = document.createElement('div');
+            correctOpt.className = 'review-opt-correct';
+            correctOpt.innerHTML = `<strong>Correct answer:</strong> ${q.options[q.answer_index]}`;
+            optsDiv.appendChild(correctOpt);
+          }
+
+          div.appendChild(optsDiv);
+
+          if (q.explanation) {
+            const expDiv = document.createElement('div');
+            expDiv.className = 'review-explanation';
+            expDiv.textContent = q.explanation;
+            div.appendChild(expDiv);
+          }
+
+          container.appendChild(div);
+        });
+      },
+
+      reset() {
+        this.currentIndex = 0;
+        this.answers = {};
+        document.getElementById('resultSection').classList.add('hidden');
+        document.getElementById('gateSection').classList.remove('hidden');
+        document.getElementById('gateCategory').value = '';
+        document.getElementById('gateVariant').value = '';
+        document.getElementById('gateName').value = '';
+        document.getElementById('gateEmail').value = '';
+      }
+    };
+
+    // Initialize on load
+    document.addEventListener('DOMContentLoaded', () => app.init());
+  </script>
+</body>
+</html>
