@@ -192,25 +192,25 @@
   <div class="wrap">
     <!-- LOGO -->
     <div style="text-align:center; margin-bottom:32px;">
-      <svg width="380" height="90" viewBox="0 0 380 90" fill="none" xmlns="http://www.w3.org/2000/svg" style="display:inline-block;">
-        <!-- Radio wave arcs - getting progressively larger and brighter -->
-        <!-- Arc 1 (dimmed purple) -->
-        <path d="M 28 25 Q 18 45 28 65" stroke="#6E5A79" stroke-width="2.5" fill="none" stroke-linecap="round" stroke-linejoin="round"/>
-        <!-- Arc 2 (bronze) -->
-        <path d="M 42 18 Q 28 45 42 72" stroke="#A9713F" stroke-width="2.5" fill="none" stroke-linecap="round" stroke-linejoin="round"/>
-        <!-- Arc 3 (gold) -->
-        <path d="M 56 12 Q 38 45 56 78" stroke="#C9A96E" stroke-width="2.5" fill="none" stroke-linecap="round" stroke-linejoin="round"/>
-        <!-- White dot -->
-        <circle cx="70" cy="45" r="4" fill="#F1EBDE"/>
-        <!-- Text: "ingles" in gold + "legal" in cream, combined -->
-        <text x="85" y="58" font-family="'Segoe UI', sans-serif" font-size="44" font-weight="700" fill="#C9A96E" letter-spacing="-1.5">ingles</text><text x="265" y="58" font-family="'Segoe UI', sans-serif" font-size="44" font-weight="600" fill="#F1EBDE" letter-spacing="-1.5">legal</text>
+      <svg width="280" height="70" viewBox="0 0 280 70" fill="none" xmlns="http://www.w3.org/2000/svg" style="display:inline-block;">
+        <!-- Left curved parenthesis -->
+        <path d="M 30 15 Q 15 35 30 55" stroke="#C9A96E" stroke-width="3" fill="none" stroke-linecap="round"/>
+        <!-- Dot -->
+        <circle cx="45" cy="35" r="3" fill="#C9A96E"/>
+        <!-- Right curved parenthesis -->
+        <path d="M 60 15 Q 75 35 60 55" stroke="#C9A96E" stroke-width="3" fill="none" stroke-linecap="round"/>
+        <!-- Text: "ingles" in gold -->
+        <text x="85" y="47" font-family="'Segoe UI', sans-serif" font-size="32" font-weight="700" fill="#C9A96E" letter-spacing="-0.5">ingles</text>
+        <!-- Text: "legal" in cream -->
+        <text x="195" y="47" font-family="'Segoe UI', sans-serif" font-size="32" font-weight="600" fill="#F1EBDE" letter-spacing="-0.5">legal</text>
       </svg>
     </div>
 
     <!-- GATE: Email Entry -->
     <div id="gateSection" class="card">
       <div class="eyebrow">Free · No cost to try</div>
-      <h1>Legal English Practice Exam</h1>
+      <h1 style="color:#C9A96E;">Legal English Practice Exam</h1>
+      <h3 style="color:#C9A96E; font-size:1.1rem; margin-top:-8px;">General & Specific Vocabulary Tests</h3>
       <p>Test your legal English vocabulary. This is a free, no-enrollment-required assessment.</p>
 
       <label for="gateCategory">Select a category:</label>
@@ -237,11 +237,11 @@
         <option value="full">Full Exam (~50 questions)</option>
       </select>
 
-      <label for="gateName" style="margin-top:16px;">Your name (optional):</label>
-      <input type="text" id="gateName" placeholder="Enter your name">
+      <label for="gateName" style="margin-top:16px;">Your name:</label>
+      <input type="text" id="gateName" placeholder="Enter your name" required>
 
-      <label for="gateEmail">Your email (optional):</label>
-      <input type="email" id="gateEmail" placeholder="Enter your email">
+      <label for="gateEmail">Your email:</label>
+      <input type="email" id="gateEmail" placeholder="Enter your email" required>
 
       <button class="btn-primary" onclick="app.startExam()" style="width:100%; margin-top:20px; background:#C9A96E; color:#2A1B33;">Start Exam</button>
     </div>
@@ -335,6 +335,11 @@
 
         if (!category || !variant) {
           alert('Please select a category and length');
+          return;
+        }
+
+        if (!name || !email) {
+          alert('Please enter your name and email');
           return;
         }
 
