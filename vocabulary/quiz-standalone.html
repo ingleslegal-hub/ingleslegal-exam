@@ -43,15 +43,15 @@
       font-family:'Fraunces', Georgia, serif;
       font-weight:600;
       margin:0 0 .4em 0;
-      color:var(--navy);
+      color:var(--cream);
     }
-    p{line-height:1.6; color:var(--ink-dim); margin:.3em 0 0;}
+    p{line-height:1.6; color:var(--cream); margin:.3em 0 0;}
     .eyebrow{
       text-transform:uppercase;
       letter-spacing:.11em;
       font-size:.72rem;
       font-weight:700;
-      color:var(--gold-ink);
+      color:var(--gold);
       background:var(--surface-2);
       display:inline-block;
       padding:.3em .7em;
@@ -159,7 +159,7 @@
       padding-top:20px;
       border-top:1px solid var(--line);
     }
-    .review-q{font-weight:600; margin-bottom:8px; color:var(--navy);}
+    .review-q{font-weight:600; margin-bottom:8px; color:var(--cream);}
     .review-options{margin:10px 0; font-size:.9rem;}
     .review-opt-correct{color:var(--good); margin:6px 0;}
     .review-opt-wrong{color:var(--bad); margin:6px 0;}
@@ -192,15 +192,18 @@
   <div class="wrap">
     <!-- LOGO -->
     <div style="text-align:center; margin-bottom:32px;">
-      <svg width="180" height="48" viewBox="0 0 180 48" fill="none" xmlns="http://www.w3.org/2000/svg" style="display:inline-block;">
-        <!-- Radio wave arcs -->
-        <circle cx="24" cy="24" r="2" fill="#C9A96E"/>
-        <path d="M 24 32 Q 16 24 24 16" stroke="#A9713F" stroke-width="1.5" fill="none" stroke-linecap="round"/>
-        <path d="M 24 34 Q 14 24 24 14" stroke="#6E5A79" stroke-width="1.5" fill="none" stroke-linecap="round"/>
+      <svg width="280" height="60" viewBox="0 0 280 60" fill="none" xmlns="http://www.w3.org/2000/svg" style="display:inline-block;">
+        <!-- Wave arcs background -->
+        <g opacity="0.6">
+          <path d="M 20 30 Q 10 20 20 10" stroke="#6E5A79" stroke-width="2" fill="none" stroke-linecap="round"/>
+          <path d="M 30 30 Q 22 18 30 6" stroke="#A9713F" stroke-width="2" fill="none" stroke-linecap="round"/>
+        </g>
+        <!-- Center dot -->
+        <circle cx="20" cy="30" r="2.5" fill="#C9A96E"/>
         <!-- Text: "ingles" in gold -->
-        <text x="38" y="28" font-family="Archivo, sans-serif" font-size="22" font-weight="600" fill="#C9A96E">ingles</text>
+        <text x="50" y="40" font-family="'Segoe UI', sans-serif" font-size="28" font-weight="700" fill="#C9A96E" letter-spacing="-0.5">ingles</text>
         <!-- Text: "legal" in cream -->
-        <text x="110" y="28" font-family="Archivo, sans-serif" font-size="22" font-weight="600" fill="#F1EBDE">legal</text>
+        <text x="170" y="40" font-family="'Segoe UI', sans-serif" font-size="28" font-weight="600" fill="#F1EBDE" letter-spacing="-0.5">legal</text>
       </svg>
     </div>
 
