@@ -6,21 +6,26 @@
   <title>Legal English Practice Exam</title>
   <style>
     :root{
-      --bg:#14171D;
-      --surface:#1C2029;
-      --surface-2:#252A35;
-      --ink:#ECE9E0;
-      --ink-dim:#A2A6B3;
-      --line:#333947;
-      --navy:#C7D2E8;
-      --navy-2:#8FA3C9;
-      --gold:#D8B364;
-      --gold-ink:#F2DDA6;
+      --aubergine:#2A1B33;
+      --aubergine-light:#3D2A47;
+      --cream:#F1EBDE;
+      --gold:#C9A96E;
+      --bronze:#A9713F;
+      --panel-line:#6E5A79;
       --good:#7FCBA5;
       --good-bg:#1D3128;
       --bad:#E29585;
       --bad-bg:#33201C;
       color-scheme: dark;
+    }
+    :root {
+      --bg: var(--aubergine);
+      --surface: var(--aubergine-light);
+      --surface-2: var(--aubergine);
+      --ink: var(--cream);
+      --ink-dim: var(--bronze);
+      --line: var(--panel-line);
+      --gold: var(--gold);
     }
     *{box-sizing:border-box;}
     html,body{margin:0;padding:0;}
@@ -89,7 +94,8 @@
     }
     .btn-primary{
       background:var(--gold);
-      color:#241906;
+      color:var(--aubergine);
+      font-weight:700;
     }
     .btn-primary:hover{opacity:.92;}
     .btn-primary:disabled{opacity:.5; cursor:not-allowed;}
@@ -184,6 +190,19 @@
 </head>
 <body>
   <div class="wrap">
+    <!-- LOGO -->
+    <div style="text-align:center; margin-bottom:32px;">
+      <svg width="180" height="48" viewBox="0 0 180 48" fill="none" xmlns="http://www.w3.org/2000/svg" style="display:inline-block;">
+        <!-- Radio wave arcs -->
+        <circle cx="24" cy="24" r="2" fill="#C9A96E"/>
+        <path d="M 24 32 Q 16 24 24 16" stroke="#A9713F" stroke-width="1.5" fill="none" stroke-linecap="round"/>
+        <path d="M 24 34 Q 14 24 24 14" stroke="#6E5A79" stroke-width="1.5" fill="none" stroke-linecap="round"/>
+        <!-- Text: "ingles" in gold -->
+        <text x="38" y="28" font-family="Archivo, sans-serif" font-size="22" font-weight="600" fill="#C9A96E">ingles</text>
+        <!-- Text: "legal" in cream -->
+        <text x="110" y="28" font-family="Archivo, sans-serif" font-size="22" font-weight="600" fill="#F1EBDE">legal</text>
+      </svg>
+    </div>
 
     <!-- GATE: Email Entry -->
     <div id="gateSection" class="card">
