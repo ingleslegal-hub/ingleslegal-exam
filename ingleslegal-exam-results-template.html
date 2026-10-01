@@ -1,0 +1,883 @@
+<title>Certification Results</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700;800&family=Source+Serif+4:ital,wght@0,400;0,600;1,400&display=swap">
+<style>
+  /* Layout concept: a fixed brand hero band (the certificate's seal) stacked on a
+     theme-aware report body, single column, centered — read like a verified transcript. */
+  :root{
+    --page-bg:        #f5f1e8;
+    --card-bg:        #ffffff;
+    --card-bg-raised: #fbf8f2;
+    --ink:            #241626;
+    --ink-secondary:  #5b4f63;
+    --ink-muted:      #7d7084;
+    --line:           #e6ddd0;
+    --brand-deep:     #2a1b33;
+    --brand-deep-2:   #3a2644;
+    --brand-gold:     #b8935e;
+    --chart-mark:     #9c7a46;
+    --gold-text:      #8f6e3e;
+    --status-good:    #0ca30c;
+    --status-good-bg: rgba(12,163,12,0.12);
+    --status-crit:    #d03b3b;
+    --status-crit-bg: rgba(208,59,59,0.12);
+  }
+  @media (prefers-color-scheme: dark){
+    :root:not([data-theme="light"]){
+      color-scheme: dark;
+      --page-bg:        #15101a;
+      --card-bg:        #201723;
+      --card-bg-raised: #281d2c;
+      --ink:            #f2ece4;
+      --ink-secondary:  #c6b6cc;
+      --ink-muted:      #8d7f94;
+      --line:           #3a2b3f;
+      --chart-mark:     #b8935e;
+      --gold-text:      #c9a96e;
+    }
+  }
+  :root[data-theme="dark"]{
+    color-scheme: dark;
+    --page-bg:        #15101a;
+    --card-bg:        #201723;
+    --card-bg-raised: #281d2c;
+    --ink:            #f2ece4;
+    --ink-secondary:  #c6b6cc;
+    --ink-muted:      #8d7f94;
+    --line:           #3a2b3f;
+    --chart-mark:     #b8935e;
+    --gold-text:      #c9a96e;
+  }
+
+  *{ box-sizing:border-box; }
+  body{
+    background:var(--page-bg);
+    color:var(--ink);
+    margin:0;
+    padding-inline:16px;
+    padding-block:40px;
+    font-family:"Source Serif 4", Georgia, "Times New Roman", serif;
+    font-size:16px;
+    line-height:1.55;
+  }
+  h1,h2,h3,.eyebrow,.hero-score,.btn,.label,.pill,.logo-word{
+    font-family:"Poppins", "Segoe UI", -apple-system, sans-serif;
+  }
+  h2{ text-wrap:balance; }
+
+  .sample-banner{
+    max-width:680px;
+    margin:0 auto 14px;
+    background:var(--brand-gold);
+    color:#2a1b33;
+    font-family:"Poppins", sans-serif;
+    font-weight:700;
+    font-size:12px;
+    letter-spacing:0.08em;
+    text-transform:uppercase;
+    text-align:center;
+    padding:8px 12px;
+    border-radius:8px;
+  }
+
+  .report{
+    max-width:680px;
+    margin:0 auto;
+    border-radius:20px;
+    overflow:hidden;
+    box-shadow:0 1px 2px rgba(0,0,0,0.06), 0 12px 32px rgba(20,10,25,0.12);
+  }
+
+  /* ---- Hero band: fixed brand colors, same in both themes ---- */
+  .hero{
+    background:linear-gradient(165deg, var(--brand-deep) 0%, var(--brand-deep-2) 100%);
+    color:#ffffff;
+    padding:32px 32px 28px;
+  }
+  .hero-top{
+    display:flex;
+    align-items:center;
+    justify-content:space-between;
+    gap:12px;
+    flex-wrap:wrap;
+    margin-bottom:26px;
+  }
+  .brand{
+    display:flex;
+    align-items:center;
+    gap:8px;
+  }
+  .brand svg{ flex:none; }
+  .logo-word{
+    font-weight:700;
+    font-size:17px;
+    letter-spacing:0.01em;
+  }
+  .logo-word b{ color:var(--brand-gold); font-weight:700; }
+  .eyebrow{
+    font-size:11px;
+    font-weight:600;
+    letter-spacing:0.12em;
+    text-transform:uppercase;
+    color:rgba(255,255,255,0.65);
+  }
+  .hero h1{
+    font-size:23px;
+    font-weight:700;
+    margin:0 0 4px;
+    color:#ffffff;
+  }
+  .hero .sub{
+    font-family:"Poppins", sans-serif;
+    font-size:13.5px;
+    color:rgba(255,255,255,0.72);
+    margin:0 0 24px;
+  }
+  .hero .sub b{ color:#ffffff; font-weight:600; }
+
+  .score-row{
+    display:flex;
+    align-items:flex-end;
+    gap:20px;
+    flex-wrap:wrap;
+    margin-bottom:18px;
+  }
+  .hero-score{
+    font-size:64px;
+    font-weight:800;
+    line-height:1;
+    color:var(--brand-gold);
+    font-variant-numeric:tabular-nums;
+  }
+  .score-meta{ padding-bottom:6px; }
+  .pill{
+    display:inline-flex;
+    align-items:center;
+    gap:6px;
+    font-size:12px;
+    font-weight:700;
+    letter-spacing:0.04em;
+    text-transform:uppercase;
+    padding:5px 12px 5px 9px;
+    border-radius:999px;
+    margin-bottom:6px;
+  }
+  .pill.good{ background:var(--status-good-bg); color:#4fe84f; }
+  .pill.good .dot{ background:#4fe84f; }
+  .pill .dot{ width:7px; height:7px; border-radius:50%; flex:none; }
+  .score-detail{
+    font-family:"Poppins", sans-serif;
+    font-size:12.5px;
+    color:rgba(255,255,255,0.68);
+  }
+
+  .hero-foot{
+    display:flex;
+    justify-content:space-between;
+    align-items:baseline;
+    gap:12px;
+    flex-wrap:wrap;
+    padding-top:18px;
+    border-top:1px solid rgba(255,255,255,0.14);
+    font-family:"Poppins", sans-serif;
+    font-size:12px;
+    color:rgba(255,255,255,0.6);
+  }
+  .hero-foot .rid b{
+    color:rgba(255,255,255,0.92);
+    font-variant-numeric:tabular-nums;
+    letter-spacing:0.02em;
+  }
+
+  /* ---- Body ---- */
+  .body{
+    background:var(--card-bg);
+    padding:30px 32px 10px;
+  }
+  .section{ margin-bottom:30px; }
+  .section h2{
+    font-size:16px;
+    font-weight:700;
+    margin:0 0 3px;
+    color:var(--ink);
+  }
+  .section .section-note{
+    font-family:"Poppins", sans-serif;
+    font-size:12.5px;
+    color:var(--ink-muted);
+    margin:0 0 18px;
+  }
+
+  .chart{ position:relative; padding-top:4px; }
+  .chart-track{
+    position:relative;
+    margin-bottom:16px;
+  }
+  .chart-row{
+    display:grid;
+    grid-template-columns:150px 1fr 48px;
+    align-items:center;
+    gap:12px;
+    margin-bottom:12px;
+  }
+  .chart-row .cat{
+    font-family:"Poppins", sans-serif;
+    font-size:12.5px;
+    font-weight:600;
+    color:var(--ink-secondary);
+    min-width:0;
+    overflow-wrap:break-word;
+  }
+  .bar-track{
+    position:relative;
+    height:10px;
+    background:var(--card-bg-raised);
+    border-radius:6px;
+    min-width:0;
+  }
+  .bar-fill{
+    position:absolute; inset:0 auto 0 0;
+    height:100%;
+    border-radius:6px;
+    background:var(--chart-mark);
+  }
+  .chart-row .val{
+    font-family:"Poppins", sans-serif;
+    font-variant-numeric:tabular-nums;
+    font-size:13px;
+    font-weight:600;
+    color:var(--ink);
+    text-align:right;
+  }
+  .threshold{
+    position:absolute;
+    top:-6px; bottom:-6px;
+    width:0;
+    border-left:2px dashed var(--ink-muted);
+    opacity:0.55;
+  }
+  .threshold-wrap{ position:relative; grid-column:2; }
+  .chart-legend{
+    display:flex;
+    align-items:center;
+    gap:8px;
+    font-family:"Poppins", sans-serif;
+    font-size:11.5px;
+    color:var(--ink-muted);
+    margin-top:2px;
+  }
+  .chart-legend .swatch{
+    width:14px; height:0; border-top:2px dashed var(--ink-muted);
+  }
+
+  details.table-toggle{ margin-top:4px; }
+  details.table-toggle summary{
+    cursor:pointer;
+    font-family:"Poppins", sans-serif;
+    font-size:12.5px;
+    font-weight:600;
+    color:var(--gold-text);
+    list-style:none;
+    display:inline-flex;
+    align-items:center;
+    gap:6px;
+  }
+  details.table-toggle summary::-webkit-details-marker{ display:none; }
+  details.table-toggle summary::before{
+    content:"▸";
+    font-size:10px;
+    transition:transform .15s ease;
+  }
+  details.table-toggle[open] summary::before{ transform:rotate(90deg); }
+  .data-table-wrap{ overflow-x:auto; margin-top:12px; }
+  table.data-table{
+    width:100%;
+    border-collapse:collapse;
+    font-family:"Poppins", sans-serif;
+    font-size:12.5px;
+  }
+  table.data-table th, table.data-table td{
+    text-align:left;
+    padding:8px 10px;
+    border-bottom:1px solid var(--line);
+  }
+  table.data-table th{
+    color:var(--ink-muted);
+    font-weight:600;
+    text-transform:uppercase;
+    font-size:10.5px;
+    letter-spacing:0.05em;
+  }
+  table.data-table td.num{ text-align:right; font-variant-numeric:tabular-nums; }
+
+  .callouts{
+    display:grid;
+    grid-template-columns:1fr 1fr;
+    gap:14px;
+  }
+  @media (max-width:480px){ .callouts{ grid-template-columns:1fr; } }
+  .callout{
+    background:var(--card-bg-raised);
+    border:1px solid var(--line);
+    border-radius:12px;
+    padding:14px 16px;
+  }
+  .callout .ctag{
+    font-family:"Poppins", sans-serif;
+    font-size:10.5px;
+    font-weight:700;
+    letter-spacing:0.07em;
+    text-transform:uppercase;
+    margin-bottom:6px;
+  }
+  .callout.strength .ctag{ color:var(--status-good); }
+  .callout.growth .ctag{ color:var(--gold-text); }
+  .callout .cname{
+    font-family:"Poppins", sans-serif;
+    font-weight:700;
+    font-size:14.5px;
+    margin-bottom:2px;
+  }
+  .callout .cscore{
+    font-family:"Poppins", sans-serif;
+    font-size:12px;
+    color:var(--ink-muted);
+  }
+
+  .meaning p{
+    margin:0;
+    color:var(--ink-secondary);
+    font-size:14.5px;
+  }
+  .meaning em{ color:var(--ink); font-style:italic; }
+
+  .footer{
+    border-top:1px solid var(--line);
+    padding:18px 32px 24px;
+    background:var(--card-bg);
+    display:flex;
+    justify-content:space-between;
+    align-items:center;
+    gap:12px;
+    flex-wrap:wrap;
+    font-family:"Poppins", sans-serif;
+  }
+  .footer .fnote{
+    font-size:11.5px;
+    color:var(--ink-muted);
+    max-width:360px;
+  }
+  .footer .fbrand{
+    font-size:12px;
+    font-weight:700;
+    color:var(--ink);
+    text-align:right;
+  }
+  .footer .fbrand span{
+    display:block;
+    font-weight:400;
+    color:var(--ink-muted);
+    font-size:11px;
+  }
+  .footer .pagenum{
+    font-size:11px;
+    color:var(--ink-muted);
+    font-variant-numeric:tabular-nums;
+  }
+
+  .page-gap{
+    max-width:680px;
+    margin:22px auto;
+    display:flex;
+    align-items:center;
+    gap:10px;
+    font-family:"Poppins", sans-serif;
+    font-size:11px;
+    font-weight:600;
+    letter-spacing:0.08em;
+    text-transform:uppercase;
+    color:var(--ink-muted);
+  }
+  .page-gap::before, .page-gap::after{
+    content:"";
+    flex:1;
+    height:1px;
+    background:var(--line);
+  }
+
+  /* ---- Page 2 mini header ---- */
+  .mini-head{
+    background:var(--brand-deep);
+    color:rgba(255,255,255,0.85);
+    padding:16px 32px;
+    display:flex;
+    justify-content:space-between;
+    align-items:center;
+    gap:12px;
+    flex-wrap:wrap;
+    font-family:"Poppins", sans-serif;
+  }
+  .mini-head .brand{ gap:7px; }
+  .mini-head .logo-word{ font-size:14px; }
+  .mini-head .mh-sub{
+    font-size:11.5px;
+    color:rgba(255,255,255,0.6);
+    text-align:right;
+  }
+  .mini-head .mh-sub b{ color:rgba(255,255,255,0.9); font-weight:600; }
+
+  /* ---- Category narrative ---- */
+  .narrative{ display:flex; flex-direction:column; gap:14px; }
+  .narrative .nrow{
+    display:flex;
+    gap:12px;
+    align-items:flex-start;
+  }
+  .narrative .nscore{
+    flex:none;
+    width:44px;
+    font-family:"Poppins", sans-serif;
+    font-weight:700;
+    font-size:14px;
+    color:var(--gold-text);
+    font-variant-numeric:tabular-nums;
+    padding-top:1px;
+  }
+  .narrative .nscore.below{ color:var(--status-crit); }
+  .narrative .ntext b{
+    display:block;
+    font-family:"Poppins", sans-serif;
+    font-size:13.5px;
+    color:var(--ink);
+    margin-bottom:2px;
+  }
+  .narrative .ntext p{
+    margin:0;
+    font-size:14px;
+    color:var(--ink-secondary);
+  }
+
+  /* ---- Offer + upsell cards ---- */
+  .offer-card, .upsell-card{
+    border:1px solid var(--line);
+    border-radius:14px;
+    padding:18px 20px;
+    background:var(--card-bg-raised);
+  }
+  .offer-card{
+    display:flex;
+    justify-content:space-between;
+    align-items:center;
+    gap:16px;
+    flex-wrap:wrap;
+  }
+  .offer-card .otext h3, .upsell-card h3{
+    font-size:14.5px;
+    margin:0 0 3px;
+    color:var(--ink);
+  }
+  .offer-card .otext p, .upsell-card .utext p{
+    margin:0;
+    font-size:13px;
+    color:var(--ink-secondary);
+    max-width:360px;
+  }
+  .code-row{
+    display:flex;
+    align-items:center;
+    gap:8px;
+    flex:none;
+  }
+  .code-chip{
+    font-family:"Poppins", sans-serif;
+    font-weight:700;
+    letter-spacing:0.06em;
+    font-size:15px;
+    color:var(--brand-deep);
+    background:var(--brand-gold);
+    padding:9px 14px;
+    border-radius:8px;
+  }
+  .copy-btn{
+    font-family:"Poppins", sans-serif;
+    font-size:12px;
+    font-weight:600;
+    color:var(--ink);
+    background:transparent;
+    border:1px solid var(--line);
+    border-radius:8px;
+    padding:9px 12px;
+    cursor:pointer;
+  }
+  .copy-btn:hover{ border-color:var(--chart-mark); }
+  .copy-btn.copied{ color:var(--status-good); border-color:var(--status-good); }
+
+  .upsell-card{ margin-top:14px; }
+  .upsell-top{
+    display:flex;
+    justify-content:space-between;
+    gap:16px;
+    margin-bottom:12px;
+  }
+  .upsell-price{
+    flex:none;
+    font-family:"Poppins", sans-serif;
+    font-weight:800;
+    font-size:22px;
+    color:var(--ink);
+  }
+  .upsell-price span{
+    display:block;
+    font-weight:500;
+    font-size:10.5px;
+    color:var(--ink-muted);
+    text-transform:uppercase;
+    letter-spacing:0.06em;
+  }
+  .check-row{
+    display:flex;
+    align-items:flex-start;
+    gap:10px;
+    padding-top:12px;
+    border-top:1px dashed var(--line);
+  }
+  .check-row input[type="checkbox"]{
+    width:18px; height:18px;
+    margin-top:1px;
+    accent-color:var(--chart-mark);
+    flex:none;
+  }
+  .check-row label{
+    font-family:"Poppins", sans-serif;
+    font-size:13px;
+    color:var(--ink);
+    cursor:pointer;
+  }
+  .payment-cta{
+    margin-top:12px;
+    display:flex;
+    align-items:center;
+    gap:10px;
+    flex-wrap:wrap;
+  }
+  .payment-cta a{
+    display:inline-flex;
+    align-items:center;
+    gap:6px;
+    font-family:"Poppins", sans-serif;
+    font-weight:700;
+    font-size:13px;
+    color:#ffffff;
+    background:var(--brand-deep);
+    padding:10px 16px;
+    border-radius:9px;
+    text-decoration:none;
+  }
+  .payment-cta .hint{
+    font-family:"Poppins", sans-serif;
+    font-size:11.5px;
+    color:var(--ink-muted);
+    font-style:italic;
+  }
+
+  @media (max-width:480px){
+    .hero{ padding:24px 20px 22px; }
+    .body{ padding:24px 20px 6px; }
+    .footer{ padding:16px 20px 20px; }
+    .hero-score{ font-size:52px; }
+    .chart-row{ grid-template-columns:110px 1fr 40px; gap:8px; }
+    .mini-head{ padding:14px 20px; }
+    .offer-card{ flex-direction:column; align-items:flex-start; }
+    .upsell-top{ flex-direction:column; }
+  }
+</style>
+
+<div class="sample-banner">Sample result · template preview, not a real candidate</div>
+
+<div class="report">
+
+  <div class="hero">
+    <div class="hero-top">
+      <div class="brand">
+        <svg width="26" height="26" viewBox="0 0 26 26" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+          <path d="M8 4 C4 7, 4 19, 8 22" stroke="#f1ebde" stroke-width="1.3" stroke-linecap="round" opacity="0.4"/>
+          <path d="M10.3 6 C7.3 8.5, 7.3 17.5, 10.3 20" stroke="#f1ebde" stroke-width="1.3" stroke-linecap="round" opacity="0.65"/>
+          <path d="M12.6 8 C10.8 10, 10.8 16, 12.6 18" stroke="#f1ebde" stroke-width="1.3" stroke-linecap="round" opacity="0.9"/>
+          <circle cx="16.5" cy="13" r="3" fill="#c9a96e"/>
+        </svg>
+        <span class="logo-word">Ingles<b>legal</b></span>
+      </div>
+      <span class="eyebrow">Legal English Certification</span>
+    </div>
+
+    <h1>Tier 2 — Advanced Certification Exam</h1>
+    <p class="sub"><b>Mariana Castillo</b> · completed September 28, 2026</p>
+
+    <div class="score-row">
+      <div class="hero-score">86%</div>
+      <div class="score-meta">
+        <div class="pill good"><span class="dot"></span>Passed</div>
+        <div class="score-detail">112 of 130 questions correct</div>
+      </div>
+    </div>
+
+    <div class="hero-foot">
+      <span class="rid">Result ID <b>IL-T2-7F2A94</b></span>
+      <span>Passing threshold: 80%</span>
+    </div>
+  </div>
+
+  <div class="body">
+
+    <div class="section">
+      <h2>Score by category</h2>
+      <p class="section-note">Percentage of questions answered correctly in each area, against the Tier 2 passing threshold.</p>
+
+      <div class="chart">
+        <div class="chart-track">
+
+          <div class="chart-row">
+            <div class="cat">Legal Technology &amp; Software</div>
+            <div class="threshold-wrap">
+              <div class="bar-track"><div class="bar-fill" style="width:95%"></div></div>
+              <div class="threshold" style="left:80%"></div>
+            </div>
+            <div class="val">95%</div>
+          </div>
+
+          <div class="chart-row">
+            <div class="cat">Contract Law</div>
+            <div class="threshold-wrap">
+              <div class="bar-track"><div class="bar-fill" style="width:92%"></div></div>
+              <div class="threshold" style="left:80%"></div>
+            </div>
+            <div class="val">92%</div>
+          </div>
+
+          <div class="chart-row">
+            <div class="cat">Legal Writing &amp; Drafting</div>
+            <div class="threshold-wrap">
+              <div class="bar-track"><div class="bar-fill" style="width:90%"></div></div>
+              <div class="threshold" style="left:80%"></div>
+            </div>
+            <div class="val">90%</div>
+          </div>
+
+          <div class="chart-row">
+            <div class="cat">Immigration Law</div>
+            <div class="threshold-wrap">
+              <div class="bar-track"><div class="bar-fill" style="width:88%"></div></div>
+              <div class="threshold" style="left:80%"></div>
+            </div>
+            <div class="val">88%</div>
+          </div>
+
+          <div class="chart-row">
+            <div class="cat">Labor &amp; Employment</div>
+            <div class="threshold-wrap">
+              <div class="bar-track"><div class="bar-fill" style="width:84%"></div></div>
+              <div class="threshold" style="left:80%"></div>
+            </div>
+            <div class="val">84%</div>
+          </div>
+
+          <div class="chart-row">
+            <div class="cat">Litigation Procedure</div>
+            <div class="threshold-wrap">
+              <div class="bar-track"><div class="bar-fill" style="width:68%"></div></div>
+              <div class="threshold" style="left:80%"></div>
+            </div>
+            <div class="val">68%</div>
+          </div>
+
+        </div>
+
+        <div class="chart-legend"><span class="swatch"></span> Passing threshold (80%)</div>
+      </div>
+
+      <details class="table-toggle">
+        <summary>View full breakdown as a table</summary>
+        <div class="data-table-wrap">
+          <table class="data-table">
+            <thead>
+              <tr><th>Category</th><th class="num">Correct</th><th class="num">Score</th></tr>
+            </thead>
+            <tbody>
+              <tr><td>Legal Technology &amp; Software</td><td class="num">19 / 20</td><td class="num">95%</td></tr>
+              <tr><td>Contract Law</td><td class="num">23 / 25</td><td class="num">92%</td></tr>
+              <tr><td>Legal Writing &amp; Drafting</td><td class="num">18 / 20</td><td class="num">90%</td></tr>
+              <tr><td>Immigration Law</td><td class="num">22 / 25</td><td class="num">88%</td></tr>
+              <tr><td>Labor &amp; Employment</td><td class="num">21 / 25</td><td class="num">84%</td></tr>
+              <tr><td>Litigation Procedure</td><td class="num">17 / 25</td><td class="num">68%</td></tr>
+              <tr><td><b>Overall</b></td><td class="num"><b>112 / 130</b></td><td class="num"><b>86%</b></td></tr>
+            </tbody>
+          </table>
+        </div>
+      </details>
+    </div>
+
+    <div class="section">
+      <div class="callouts">
+        <div class="callout strength">
+          <div class="ctag">Strongest area</div>
+          <div class="cname">Legal Technology &amp; Software</div>
+          <div class="cscore">95% correct</div>
+        </div>
+        <div class="callout growth">
+          <div class="ctag">Growth area</div>
+          <div class="cname">Litigation Procedure</div>
+          <div class="cscore">68% correct</div>
+        </div>
+      </div>
+    </div>
+
+  </div>
+
+  <div class="footer">
+    <div class="fnote">To verify this result, contact verify@ingleslegal.com with the Result ID above.</div>
+    <div class="pagenum">Page 1 of 2</div>
+  </div>
+
+</div>
+
+<div class="page-gap">Page 2</div>
+
+<div class="report">
+
+  <div class="mini-head">
+    <div class="brand">
+      <svg width="20" height="20" viewBox="0 0 26 26" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+        <path d="M8 4 C4 7, 4 19, 8 22" stroke="#f1ebde" stroke-width="1.3" stroke-linecap="round" opacity="0.4"/>
+        <path d="M10.3 6 C7.3 8.5, 7.3 17.5, 10.3 20" stroke="#f1ebde" stroke-width="1.3" stroke-linecap="round" opacity="0.65"/>
+        <path d="M12.6 8 C10.8 10, 10.8 16, 12.6 18" stroke="#f1ebde" stroke-width="1.3" stroke-linecap="round" opacity="0.9"/>
+        <circle cx="16.5" cy="13" r="3" fill="#c9a96e"/>
+      </svg>
+      <span class="logo-word">Ingles<b>legal</b></span>
+    </div>
+    <div class="mh-sub"><b>Mariana Castillo</b> · Tier 2 · Result IL-T2-7F2A94</div>
+  </div>
+
+  <div class="body">
+
+    <div class="section">
+      <h2>Category detail</h2>
+      <p class="section-note">What each score reflects, question by question.</p>
+
+      <div class="narrative">
+        <div class="nrow">
+          <div class="nscore">95%</div>
+          <div class="ntext"><b>Legal Technology &amp; Software</b><p>Moved fluently between case-management and e-filing terminology, with no errors on software-workflow questions.</p></div>
+        </div>
+        <div class="nrow">
+          <div class="nscore">92%</div>
+          <div class="ntext"><b>Contract Law</b><p>Strong command of formation, breach, and remedies language; minor gaps in boilerplate clause terminology.</p></div>
+        </div>
+        <div class="nrow">
+          <div class="nscore">90%</div>
+          <div class="ntext"><b>Legal Writing &amp; Drafting</b><p>Clear, precise drafting instincts; correctly identified ambiguous clause structures throughout.</p></div>
+        </div>
+        <div class="nrow">
+          <div class="nscore">88%</div>
+          <div class="ntext"><b>Immigration Law</b><p>Solid grasp of filing terminology and procedural deadlines, with small gaps around waiver language.</p></div>
+        </div>
+        <div class="nrow">
+          <div class="nscore">84%</div>
+          <div class="ntext"><b>Labor &amp; Employment</b><p>Comfortable with core employment-dispute vocabulary; some uncertainty around leave and accommodation terms.</p></div>
+        </div>
+        <div class="nrow">
+          <div class="nscore below">68%</div>
+          <div class="ntext"><b>Litigation Procedure</b><p>The area to prioritize: discovery and motion-practice vocabulary should be reinforced before client-facing litigation work.</p></div>
+        </div>
+      </div>
+    </div>
+
+    <div class="section meaning">
+      <h2>What this certification means</h2>
+      <p>Tier 2 confirms the candidate can read and draft at an <em>advanced professional</em> level across core US legal practice areas, and can operate day-to-day legal software without supervision. A Tier 2 pass is Ingles Legal's recommended bar for mid-level legal support hires; Tier 3 adds complex litigation and cross-border contract work.</p>
+    </div>
+
+    <div class="section">
+      <h2>Next steps</h2>
+
+      <div class="offer-card">
+        <div class="otext">
+          <h3>Keep building — 20% off any Ingles Legal course</h3>
+          <p>Use this code at checkout within 30 days of this result.</p>
+        </div>
+        <div class="code-row">
+          <span class="code-chip" id="promoCode">RESULT20</span>
+          <button class="copy-btn" id="copyBtn" type="button">Copy</button>
+        </div>
+      </div>
+
+      <div class="upsell-card">
+        <div class="upsell-top">
+          <div class="utext">
+            <h3>Add a recorded interview assessment</h3>
+            <p>A 15-minute recorded interview, reviewed and scored alongside this exam — gives employers a fuller picture of spoken fluency and professional communication.</p>
+          </div>
+          <div class="upsell-price">$10<span>one time</span></div>
+        </div>
+        <div class="check-row">
+          <input type="checkbox" id="addInterview">
+          <label for="addInterview">Add the recorded interview assessment to my evaluation ($10)</label>
+        </div>
+        <div class="payment-cta" id="paymentCta" hidden>
+          <a href="#payment-platform-placeholder" id="paymentLink">Continue to payment →</a>
+          <span class="hint">Payment platform link goes here once it's connected.</span>
+        </div>
+      </div>
+    </div>
+
+  </div>
+
+  <div class="footer">
+    <div class="fnote">Ingles Legal · Legal English Certification · ingleslegal.com</div>
+    <div class="pagenum">Page 2 of 2</div>
+  </div>
+
+</div>
+
+<script>
+  (function(){
+    try{
+      var copyBtn = document.getElementById('copyBtn');
+      var codeEl = document.getElementById('promoCode');
+      if (copyBtn && codeEl){
+        copyBtn.addEventListener('click', function(){
+          var text = codeEl.textContent;
+          function markCopied(){
+            copyBtn.textContent = 'Copied';
+            copyBtn.classList.add('copied');
+            setTimeout(function(){
+              copyBtn.textContent = 'Copy';
+              copyBtn.classList.remove('copied');
+            }, 1800);
+          }
+          if (navigator.clipboard && navigator.clipboard.writeText){
+            navigator.clipboard.writeText(text).then(markCopied, function(){
+              var range = document.createRange();
+              range.selectNodeContents(codeEl);
+              var sel = window.getSelection();
+              sel.removeAllRanges();
+              sel.addRange(range);
+            });
+          }
+        });
+      }
+      var checkbox = document.getElementById('addInterview');
+      var cta = document.getElementById('paymentCta');
+      if (checkbox && cta){
+        checkbox.addEventListener('change', function(){
+          cta.hidden = !checkbox.checked;
+        });
+      }
+      var paymentLink = document.getElementById('paymentLink');
+      if (paymentLink){
+        paymentLink.addEventListener('click', function(e){
+          e.preventDefault();
+        });
+      }
+    } catch(e){}
+  })();
+</script>
