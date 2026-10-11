@@ -291,6 +291,8 @@
   </div>
 
   <script>
+    const RESULTS_WEBHOOK_URL = "https://script.google.com/macros/s/AKfycbwYCnCr75l6BUDyPIxPD2sbl5NvgENQWT5JFpMreAlQmg5dI85SEeecneWUVzknyzxr/exec"; // same results/email webhook used by the tier exams; leave blank to skip auto-submit
+
     const app = {
       allQuestions: [],
       filteredQuestions: [],
@@ -300,6 +302,7 @@
       email: '',
       category: '',
       variant: '',
+      startedAt: '',
 
       async init() {
         try {
@@ -344,6 +347,7 @@
         this.loadQuestions();
         this.currentIndex = 0;
         this.answers = {};
+        this.startedAt = new Date().toISOString();
         document.getElementById('gateSection').classList.add('hidden');
         document.getElementById('quizSection').classList.remove('hidden');
         this.showQuestion();
@@ -439,6 +443,29 @@
         document.getElementById('resultVariant').textContent = this.variant === 'half' ? 'Half Exam' : this.variant.includes('full') ? 'Full Exam' : `Section ${this.variant}`;
 
         this.buildReview();
+        this.submitResults(correct, score);
+      },
+
+      submitResults(correct, score) {
+        if (!RESULTS_WEBHOOK_URL) return;
+        const payload = {
+          type: 'vocab',
+          name: this.name,
+          email: this.email,
+          category: this.category,
+          variant: this.variant,
+          score: score,
+          correct: correct,
+          total: this.filteredQuestions.length,
+          percent: score,
+          startedAt: this.startedAt,
+          completedAt: new Date().toISOString()
+        };
+        fetch(RESULTS_WEBHOOK_URL, {
+          method: 'POST',
+          headers: { 'Content-Type': 'text/plain' },
+          body: JSON.stringify(payload)
+        }).catch(() => {});
       },
 
       buildReview() {
