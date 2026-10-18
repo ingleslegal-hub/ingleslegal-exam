@@ -1,6 +1,6 @@
 # Ingles Legal Examination System
 
-Free practice exams for legal English learners. Two systems:
+Free practice exams for legal English learners. Three systems:
 
 ## 1. Tier Exams (Certification)
 
@@ -14,7 +14,23 @@ These are published on www.ingleslegal.com/cert-exams/ as Claude Artifacts.
 
 ---
 
-## 2. Vocabulary Exams (Free Public Practice)
+## 2. Branch Pathway Exams (100 questions each)
+
+One exam per bilingual branch learning pathway. Each has 100 questions mapped to the 8 courses of its pathway (about 13 per course, plus integrated file-audit scenarios for the capstone), and uses the same engine, look and results as the tier exams: 2 batches of 50, instant rationale, provisional results after batch 1, download, and the results webhook (emailed report with score by category = score by course). The results screen also shows a score for each course and the recommended courses to start with. Pass mark: 75%.
+
+| Pathway | File | Courses |
+|---|---|---|
+| Immigration Support Specialist | `pathways/immigration-exam.html` | IL-IMM-01 to 08 |
+| Personal Injury Case Specialist | `pathways/personal-injury-exam.html` | IL-PI-01 to 08 |
+| Workers' Compensation Case Manager | `pathways/workers-comp-exam.html` | IL-WC-01 to 08 |
+| Family Law Paralegal | `pathways/family-law-exam.html` | IL-FAM-01 to 08 |
+| Criminal Defense Legal Assistant | `pathways/criminal-defense-exam.html` | IL-CRIM-01 to 08 |
+
+Live at `https://ingleslegal-hub.github.io/ingleslegal-exam/pathways/<file>`.
+
+---
+
+## 3. Vocabulary Exams (Free Public Practice)
 
 A **completely standalone, self-hosted vocabulary practice system** with **1,220 questions** across 12 legal categories. No Claude login required.
 
@@ -64,6 +80,7 @@ ingleslegal-exam/
 ├── tier-1-exam.html           (Tier 1 certification exam)
 ├── tier-2-exam.html           (Tier 2 certification exam)
 ├── tier-3-exam.html           (Tier 3 certification exam)
+├── pathways/                  (Branch pathway exams, 5 × 100 questions)
 ├── vocabulary/                (Free public vocabulary exams)
 │   ├── quiz-standalone.html   (Quiz engine)
 │   ├── master.json            (1,220 question bank)
@@ -173,5 +190,5 @@ For questions about the system, contact Felipe (felipe.toro.e@gmail.com).
 
 ---
 
-**Last Updated:** September 29, 2026  
+**Last Updated:** October 18, 2026  
 **Status:** Ready for production

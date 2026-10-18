@@ -1,0 +1,453 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Ingleslegal — Family Law Pathway Exam</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Archivo:ital,wght@0,400;0,500;0,600;1,400&family=Spectral:ital,wght@0,400;0,600;1,400&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --aubergine:#2A1B33; --gold:#C9A96E; --cream:#F1EBDE; --bronze:#A9713F;
+    --panel-line:#6E5A79; --lifted-aubergine:#503A5C; --light-section:#FBF8F1;
+    --body-on-light:#6B5F62; --ok:#2f6f4f; --bad:#a3402f;
+  }
+  *{box-sizing:border-box;}
+  body{ margin:0; background:var(--light-section); color:var(--body-on-light); font-family:"Spectral", Georgia, serif; -webkit-font-smoothing:antialiased; }
+  .topbar{ background:var(--aubergine); color:var(--cream); padding:16px 24px; display:flex; align-items:center; justify-content:space-between; }
+  .brandmark{ display:flex; align-items:center; gap:10px; }
+  .wordmark{ font-family:"Archivo", Arial, sans-serif; font-weight:600; letter-spacing:-0.01em; font-size:19px; }
+  .wordmark .ingles{ color:var(--gold); } .wordmark .legal{ color:var(--cream); }
+  .tag{ font-size:11px; color:var(--panel-line); font-family:"Archivo", Arial, sans-serif; letter-spacing:.5px; text-transform:uppercase;}
+  .wrap{ max-width:740px; margin:0 auto; padding:28px 20px 60px; }
+  .card{ background:#fff; border:1px solid rgba(110,90,121,.18); border-radius:3px; padding:32px 30px; box-shadow:0 1px 3px rgba(42,27,51,.06); }
+  h1{ font-family:"Archivo", Arial, sans-serif; font-weight:600; font-size:26px; margin:0 0 6px; color:var(--lifted-aubergine); letter-spacing:-0.01em;}
+  h2{ font-family:"Archivo", Arial, sans-serif; font-weight:600; font-size:19px; margin:0 0 14px; color:var(--lifted-aubergine); }
+  .sub{ font-family:"Archivo", Arial, sans-serif; color:var(--body-on-light); font-size:14px; margin-bottom:22px; line-height:1.5;}
+  .progress-shell{ max-width:740px; margin:0 auto; padding:14px 20px 0; font-family:"Archivo", Arial, sans-serif; }
+  .tabs{ display:flex; gap:4px; margin-bottom:6px; }
+  .tab{ flex:1; text-align:center; font-size:11px; padding:6px 2px; border-radius:2px 2px 0 0; color:var(--panel-line); background:#efe9db; letter-spacing:.4px; font-weight:600; }
+  .tab.active{ background:var(--aubergine); color:var(--cream); }
+  .tab.done{ background:var(--gold); color:var(--aubergine); }
+  .bar-outer{ height:6px; background:#efe9db; border-radius:4px; overflow:hidden; }
+  .bar-inner{ height:100%; background:linear-gradient(90deg, var(--aubergine), var(--gold)); width:0%; transition:width .25s ease; }
+  .qmeta{ font-family:"Archivo", Arial, sans-serif; font-weight:500; font-size:12px; color:var(--bronze); margin-bottom:8px; letter-spacing:.3px; text-transform:uppercase;}
+  .stem{ font-family:"Spectral", Georgia, serif; font-size:18px; line-height:1.55; margin-bottom:22px; color:var(--lifted-aubergine); white-space:pre-wrap; }
+  .opt{ display:block; width:100%; text-align:left; background:#fffdf9; border:1.5px solid rgba(110,90,121,.25); border-radius:3px; padding:14px 16px; margin-bottom:10px; font-family:"Archivo", Arial, sans-serif; font-size:15px; cursor:pointer; transition:.12s; color:var(--body-on-light); }
+  .opt:hover:not(:disabled){ border-color:var(--gold); background:#fff; }
+  .opt:disabled{ cursor:default; }
+  .opt.correct{ border-color:var(--ok); background:#eef6f1; color:#1f4d38; }
+  .opt.incorrect{ border-color:var(--bad); background:#f9eeec; color:#7a2c1e; }
+  .opt .letter{ display:inline-block; width:22px; font-weight:600; color:var(--bronze); }
+  .navrow{ display:flex; justify-content:space-between; align-items:center; margin-top:18px; font-family:"Archivo", Arial, sans-serif;}
+  .btn{ background:var(--aubergine); color:var(--cream); border:none; padding:12px 22px; border-radius:3px; font-family:"Archivo", Arial, sans-serif; font-weight:500; font-size:14px; cursor:pointer; letter-spacing:.3px; }
+  .btn:hover{ background:var(--lifted-aubergine); }
+  .btn.gold{ background:var(--gold); color:var(--aubergine); }
+  .btn.gold:hover{ background:#d9bd8a; }
+  .btn:disabled{ background:#d8d2c8; color:#8a8a8a; cursor:not-allowed; }
+  .btn.ghost{ background:transparent; color:var(--aubergine); border:1.5px solid var(--aubergine); }
+  .field{ margin-bottom:14px; font-family:"Archivo", Arial, sans-serif; }
+  .field label{ display:block; font-size:13px; color:var(--body-on-light); margin-bottom:5px; }
+  .field input{ width:100%; padding:11px 12px; border:1.5px solid rgba(110,90,121,.3); border-radius:3px; font-size:15px; font-family:"Archivo", Arial, sans-serif; }
+  .banner{ background:var(--aubergine); color:var(--cream); padding:16px 20px; border-radius:3px; margin-bottom:20px; font-family:"Archivo", Arial, sans-serif; font-size:14px; line-height:1.5; }
+  .rationale{ background:var(--light-section); border-left:3px solid var(--gold); border-radius:3px; padding:14px 16px; margin:16px 0; font-family:"Archivo", Arial, sans-serif; font-size:13.5px; line-height:1.55; color:var(--lifted-aubergine); }
+  .rationale strong{ color:var(--bronze); }
+  .scorebox{ display:flex; gap:14px; margin:18px 0; font-family:"Archivo", Arial, sans-serif; }
+  .scorebox .cell{ flex:1; background:var(--light-section); border:1px solid rgba(110,90,121,.2); border-radius:3px; padding:14px; text-align:center; }
+  .scorebox .num{ font-family:"Archivo", Arial, sans-serif; font-size:26px; font-weight:600; color:var(--lifted-aubergine); }
+  .scorebox .lbl{ font-size:11px; color:var(--bronze); text-transform:uppercase; letter-spacing:.4px; margin-top:2px;}
+  table.results{ width:100%; border-collapse:collapse; font-family:"Archivo", Arial, sans-serif; font-size:13px; margin:16px 0; }
+  table.results th, table.results td{ border:1px solid rgba(110,90,121,.2); padding:8px 10px; text-align:left; }
+  table.results th{ background:var(--aubergine); color:var(--cream); font-size:11px; text-transform:uppercase; font-weight:500; }
+  table.results tr:nth-child(even) td{ background:var(--light-section); }
+  .placement{ background:var(--aubergine); color:var(--cream); border-left:3px solid var(--gold); border-radius:3px; padding:18px 20px; margin:18px 0; font-family:"Archivo", Arial, sans-serif; }
+  .placement .headline{ font-weight:600; color:var(--gold); font-size:16px; margin-bottom:4px; }
+  .footer-note{ font-family:"Archivo", Arial, sans-serif; font-size:12px; color:var(--body-on-light); margin-top:18px; line-height:1.5; }
+  .synctag{ font-family:"Archivo", Arial, sans-serif; font-size:11px; color:var(--panel-line); margin-top:8px; }
+  table.results td.below{ color:var(--bad); font-weight:600; }
+  .coursecode{ color:var(--bronze); font-weight:600; margin-right:6px; }
+  .section-label{ font-family:"Archivo", Arial, sans-serif; font-weight:600; font-size:15px; color:var(--lifted-aubergine); margin:22px 0 4px; }
+  .section-note{ font-family:"Archivo", Arial, sans-serif; font-size:12.5px; color:var(--body-on-light); margin:0 0 4px; line-height:1.5; }
+  @media (max-width:600px){ .wrap{ padding:16px 12px 40px; } .card{ padding:22px 18px; } h1{ font-size:22px; } .stem{font-size:16px;} }
+</style>
+</head>
+<body>
+<div class="topbar">
+  <div class="brandmark">
+    <svg width="32" height="32" viewBox="0 0 40 40" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+      <path d="M18,4 A16,16 0 0 0 18,36" fill="none" stroke="#6E5A79" stroke-width="1.5"/>
+      <path d="M18,9 A11,11 0 0 0 18,31" fill="none" stroke="#A9713F" stroke-width="2"/>
+      <path d="M18,14 A6,6 0 0 0 18,26" fill="none" stroke="#C9A96E" stroke-width="3"/>
+      <circle cx="25" cy="20" r="3" fill="#F1EBDE"/>
+    </svg>
+    <div class="wordmark"><span class="ingles">Ingles</span><span class="legal">legal</span></div>
+  </div>
+  <div class="tag">Family Law Pathway Exam</div>
+</div>
+<div class="progress-shell" id="progressShell" style="display:none;">
+  <div class="tabs" id="tabs"></div>
+  <div class="bar-outer"><div class="bar-inner" id="barInner"></div></div>
+</div>
+<div class="wrap"><div class="card" id="card"></div></div>
+
+<script>
+// ============================================================
+// Family Law Pathway — 100 questions covering the 8 courses of the
+// Family Law Paralegal pathway (IL-FAM-01 to IL-FAM-08).
+// ============================================================
+const TIER_LABEL = "Family Law Pathway";
+const PATHWAY_NAME = "Family Law Paralegal";
+const PASS_THRESHOLD = 0.75; // fraction, e.g. 0.75
+const RESULTS_WEBHOOK_URL = "https://script.google.com/macros/s/AKfycbwYCnCr75l6BUDyPIxPD2sbl5NvgENQWT5JFpMreAlQmg5dI85SEeecneWUVzknyzxr/exec"; // set once the Apps Script webhook is deployed; leave blank to skip auto-submit
+
+const QUESTIONS = [{"cat": "Family Law English Foundations", "stem": "In California and several other states, \"dissolution of marriage\" is the legal term for:", "opts": ["an annulment that declares the marriage never legally existed", "a legal separation that keeps the spouses married for tax and insurance purposes", "divorce", "a prenuptial agreement signed before the wedding ceremony"], "a": 2, "fb": "Key term: Court forms may say \"dissolution\" where clients say \"divorce.\" Staff must recognize both."}, {"cat": "Family Law English Foundations", "stem": "What is a legal separation?", "opts": ["A temporary restraining order that requires one spouse to leave the home", "A case in which the court makes orders on support, custody and property while the spouses stay married", "An informal agreement between spouses that is never filed with any court, used only for tax and insurance purposes", "A divorce that becomes final automatically after the spouses have lived apart for one year, without any court hearing"], "a": 1, "fb": "Key term: Some clients choose legal separation for religious, insurance or immigration reasons. The attorney explains the options."}, {"cat": "Family Law English Foundations", "stem": "Legal custody refers to:", "opts": ["the amount of child support one parent pays to the other each month", "the schedule of weekends and holidays the child spends with each parent", "the right to make major decisions about the child, such as education and health care", "the parent with whom the child lives most of the time during the school year and on most weekends"], "a": 2, "fb": "Key term: Legal custody is about decisions; physical custody is about where the child lives. Both can be joint or sole."}, {"cat": "Family Law English Foundations", "stem": "Physical custody refers to:", "opts": ["the court's power to decide the case under the UCCJEA", "the right to make decisions about the child's religion and schooling", "the duty to pay for the child's medical insurance and expenses", "where the child lives and who provides day-to-day care"], "a": 3, "fb": "Key term: Clients often say \"custody\" meaning only physical custody. Staff clarify which one the client means."}, {"cat": "Family Law English Foundations", "stem": "In a divorce case, the spouse who files the first paper is usually called the:", "opts": ["respondent", "defendant", "claimant", "petitioner"], "a": 3, "fb": "Key term: The spouse who files is the petitioner (in some states, the plaintiff); the other spouse is the respondent."}, {"cat": "Family Law English Foundations", "stem": "Child support is:", "opts": ["money the court pays to parents with low incomes to raise their children", "a fee the court charges to process a custody case", "money one spouse pays to the other spouse for his or her own needs", "money one parent pays to help cover the child's living expenses"], "a": 3, "fb": "Key term: Child support belongs to the child's needs. Spousal support is a separate concept."}, {"cat": "Family Law English Foundations", "stem": "Spousal support (also called alimony or maintenance) is:", "opts": ["the division of the couple's bank accounts at the end of the case", "payments from the state to a spouse who loses a job during the divorce", "payments from one spouse or former spouse to the other", "payments from parents to cover the cost of the child's school"], "a": 2, "fb": "Key term: States use different names (alimony, maintenance, spousal support) for similar concepts."}, {"cat": "Family Law English Foundations", "stem": "A parenting plan is:", "opts": ["the child support worksheet that calculates the monthly amount owed by each parent", "a list of the property each parent will keep after the divorce is final", "a schedule and set of rules for each parent's time with the child and decision-making", "a counseling program that parents must complete before they can file for divorce"], "a": 2, "fb": "Key term: Parenting plans cover weekdays, weekends, holidays, exchanges and how decisions are made."}, {"cat": "Family Law English Foundations", "stem": "A client says: \"My husband is a monster who hides money.\" What is the best neutral intake note?", "opts": ["Client's husband is a monster who hides money from the family accounts.", "Client is angry and probably exaggerating about the money.", "Client's husband committed financial fraud and must be reported.", "Client states she believes her husband is concealing assets."], "a": 3, "fb": "Neutral register: Record the client's statement as hers, without adopting labels or adding your own opinion."}, {"cat": "Family Law English Foundations", "stem": "Which response to a distressed family law client uses the right register?", "opts": ["\"Calm down. Everyone gets divorced these days, it's not a big deal.\"", "\"Don't worry, you'll definitely get full custody of the children.\"", "\"I understand this is very hard. I'll make sure the attorney sees this today.\"", "\"Your husband sounds terrible. You should take the kids and leave tonight.\""], "a": 2, "fb": "Client communication: Show empathy, stay neutral, and never predict outcomes or give legal advice."}, {"cat": "Family Law English Foundations", "stem": "\"Visitation\" or \"parenting time\" refers to:", "opts": ["the hours during which the courthouse is open to the public", "the visits a social worker makes to inspect the family home before the custody hearing", "the time a spouse spends meeting with the attorney about the case", "the time a parent spends with the child under a court order or agreement"], "a": 3, "fb": "Key term: Many courts now prefer \"parenting time\" to \"visitation.\""}, {"cat": "Family Law English Foundations", "stem": "An annulment (or nullity) is:", "opts": ["a short separation ordered by the court before a divorce", "a cancellation of a child support order after the child turns 18", "a divorce in which both spouses agree on every issue", "a court declaration that the marriage was invalid from the start"], "a": 3, "fb": "Key term: Grounds for annulment are limited and vary by state."}, {"cat": "Family Law English Foundations", "stem": "In family law, the \"opposing party\" is:", "opts": ["the mediator assigned by the court to help the parties settle", "the other spouse or parent in the case, whom the firm does not represent", "the child whose custody is being decided by the court", "the judge who will decide the custody, support and property issues at the final hearing"], "a": 1, "fb": "Within role: Staff never give the opposing party advice. If that person has an attorney, communication goes through that attorney."}, {"cat": "Derecho de Familia to U.S. Courts", "stem": "How does \"patria potestad\" compare with U.S. custody concepts?", "opts": ["It is the U.S. term for a father's right to see his children on weekends", "It means exactly the same as sole physical custody in every U.S. state, so it can be translated as \"custody\" without any note", "A broader civil-law concept of parental authority, closest to legal custody but not the same as physical custody", "It refers only to the duty to pay child support, not to decision-making"], "a": 2, "fb": "The Bridge: Translating patria potestad as \"custody\" without explanation can mislead the attorney and the court."}, {"cat": "Derecho de Familia to U.S. Courts", "stem": "The Spanish term \"alimentos\" in a family case usually corresponds to:", "opts": ["support, which may be child support or spousal support depending on the context", "food stamps or government food assistance received by the household", "only the cost of groceries, which is separate from housing and school expenses", "a one-time payment for the child's birth expenses"], "a": 0, "fb": "False friend: \"Alimentos\" covers broad support (food, housing, education, health). The English term depends on who receives it."}, {"cat": "Derecho de Familia to U.S. Courts", "stem": "In a community property state, property acquired during the marriage is generally:", "opts": ["owned by the spouse who earned more money during the marriage", "owned by the spouse whose name is on the title or account", "owned equally by both spouses", "divided by the judge according to what seems fair, not necessarily equally"], "a": 2, "fb": "Key concept: Community property states include California and Texas, among others. Separate property remains with its owner."}, {"cat": "Derecho de Familia to U.S. Courts", "stem": "What is equitable distribution?", "opts": ["A system in which property goes to the spouse who keeps custody of the children", "A system in which each spouse keeps exactly half of every asset and every debt acquired during the marriage", "A system in which only real estate is divided and bank accounts stay separate", "A system in which the court divides marital property fairly, not necessarily 50/50"], "a": 3, "fb": "Key concept: Most states use equitable distribution. The court considers factors such as income and contributions."}, {"cat": "Derecho de Familia to U.S. Courts", "stem": "Separate property generally includes:", "opts": ["property owned before the marriage, or received by one spouse as a gift or inheritance", "all property held in either spouse's individual name, no matter when or how it was acquired during the marriage", "any property bought with money from a joint bank account opened by both spouses during the marriage", "salaries earned by each spouse during the marriage"], "a": 0, "fb": "Key concept: Separate property can become mixed with community or marital property (commingling), which the attorney analyzes."}, {"cat": "Derecho de Familia to U.S. Courts", "stem": "A client married in Colombia under \"separación de bienes.\" What is the right approach in the U.S. file?", "opts": ["Assume the U.S. court will apply Colombian law automatically and close the property issue without further analysis", "Translate the regime accurately and flag it for the attorney, who will analyze how the U.S. court treats it", "Change the translation to \"community property,\" because it is the closest U.S. concept", "Treat it as irrelevant, because foreign marital regimes are never considered by U.S. courts"], "a": 1, "fb": "The Bridge: Foreign marital regimes and agreements may be relevant. Accurate translation and attorney analysis are required."}, {"cat": "Derecho de Familia to U.S. Courts", "stem": "Which of these states is a community property state?", "opts": ["Florida", "Texas", "New York", "Illinois"], "a": 1, "fb": "Key concept: Community property states include Arizona, California, Idaho, Louisiana, Nevada, New Mexico, Texas, Washington and Wisconsin."}, {"cat": "Derecho de Familia to U.S. Courts", "stem": "What is the main purpose of the Hague Convention on the Civil Aspects of International Child Abduction?", "opts": ["The enforcement of child support orders between U.S. states", "The recognition and enforcement of foreign divorce decrees and property orders in every country that signed the convention", "The prompt return of children wrongfully removed or kept across borders to their country of habitual residence", "The approval of international adoptions of children by U.S. citizens, handled by the U.S. Department of State"], "a": 2, "fb": "Key concept: Hague cases are urgent and specialized. Staff flag any cross-border removal or retention immediately."}, {"cat": "Derecho de Familia to U.S. Courts", "stem": "Under the Hague Convention, a child's \"habitual residence\" is:", "opts": ["the country where the child usually lived before the removal or retention", "the country where the parents were married", "the country of the child's citizenship, regardless of where the child lived", "the country where the child's father was born"], "a": 0, "fb": "Key term: Habitual residence is a factual question about the child's life, not about passports."}, {"cat": "Derecho de Familia to U.S. Courts", "stem": "The Hague Child Abduction Convention applies to children under the age of:", "opts": ["12", "18", "21", "16"], "a": 3, "fb": "Rule anchor: The Convention stops applying when the child turns 16."}, {"cat": "Derecho de Familia to U.S. Courts", "stem": "A client was divorced in Mexico and now has a U.S. case. How are valid foreign divorces generally treated?", "opts": ["U.S. courts never recognize foreign divorces, so the client must always divorce again in a U.S. court before remarrying", "Generally recognized under comity if there was proper jurisdiction and due process; the attorney evaluates it", "U.S. courts recognize foreign divorces only if both spouses are U.S. citizens", "U.S. courts automatically recognize any foreign document that has an apostille"], "a": 1, "fb": "The Bridge: Recognition depends on the circumstances of the foreign case. Staff obtain the decree and a certified translation."}, {"cat": "Derecho de Familia to U.S. Courts", "stem": "In U.S. family law, \"guideline support\" is:", "opts": ["the support amount calculated under the state's formula", "a voluntary payment suggested by the mediator", "the maximum support any parent can be ordered to pay", "support paid only during the first year after divorce"], "a": 0, "fb": "Key term: Courts usually start from the guideline amount and may deviate for specific reasons."}, {"cat": "Family Intake & Safety Screening", "stem": "Why must a conflict check include both spouses before the client shares confidential details?", "opts": ["The other spouse must give written permission before the firm can talk to the client", "The court requires a signed conflict report from the firm to be filed together with the divorce petition", "The firm cannot represent both spouses and may already represent or have consulted with the other spouse", "Conflict checks are only needed if the spouses have children together"], "a": 2, "fb": "Ethics: Checking names (including aliases and maiden names) first protects both the client and the firm."}, {"cat": "Family Intake & Safety Screening", "stem": "Information a prospective client shares in a consultation is:", "opts": ["confidential only if the prospective client paid a consultation fee", "generally confidential even if the firm does not take the case", "public once the consultation ends without a signed retainer", "available to the other spouse if the firm later represents them"], "a": 1, "fb": "Ethics: ABA Model Rule 1.18 protects prospective clients' information. This is why conflict checks come first."}, {"cat": "Family Intake & Safety Screening", "stem": "Where should domestic violence screening questions be asked?", "opts": ["Privately, away from the other spouse, after confirming it is safe to talk", "On a joint call with both spouses, to hear both versions at once", "In the waiting room, so the receptionist can hear the answers and take notes for the attorney", "Only in writing, by email to the family's shared address"], "a": 0, "fb": "Safety: The screening itself can create danger if the abuser hears it."}, {"cat": "Family Intake & Safety Screening", "stem": "A client reports domestic violence. How should staff arrange future contact?", "opts": ["Use the family's home phone number and mailing address, because they are the official contacts on file", "Send all documents to the shared email account so both spouses stay informed", "Leave detailed voicemails so she does not miss anything important", "Ask how and when it is safe to contact her, and avoid shared email accounts, phones or mail"], "a": 3, "fb": "Safety: Communications seen by the abuser can put the client at risk."}, {"cat": "Family Intake & Safety Screening", "stem": "During a call, a client says she is in immediate danger. What should staff do first?", "opts": ["Help her contact emergency services (911), then notify the attorney", "Advise her to confront the other spouse and ask him to leave", "Finish the intake questionnaire before discussing the danger", "Tell her to call back during office hours to speak with the attorney"], "a": 0, "fb": "Safety: Immediate danger comes before any paperwork."}, {"cat": "Family Intake & Safety Screening", "stem": "For safety planning, which referral is appropriate from a support role?", "opts": ["A general social media group where other survivors share advice", "The other spouse's employer, so they can monitor his behavior at work", "No referral; staff should create the safety plan themselves", "A domestic violence hotline or local advocacy organization"], "a": 3, "fb": "Within role: Trained advocates help with safety plans. Staff provide referrals and alert the attorney."}, {"cat": "Family Intake & Safety Screening", "stem": "Why do intakes record the date of separation?", "opts": ["It determines which judge will be assigned to the case", "It is the date the divorce becomes final", "In some states it can affect property division and support", "It replaces the date of marriage on all court forms"], "a": 2, "fb": "Key term: Date of marriage and date of separation are core intake facts."}, {"cat": "Family Intake & Safety Screening", "stem": "Which set of facts is essential in a family law intake?", "opts": ["The client's opinions of the other spouse's family, friends and new partner, and the reasons the marriage failed", "The wedding guest list and the cost of the ceremony", "Only the client's name, phone number and preferred appointment time, because the attorney prefers to collect everything else personally", "Marriage date and place, children's names and birthdates, where they lived recently, incomes, assets, debts and prior orders"], "a": 3, "fb": "Intake skill: These facts drive jurisdiction, property, support and custody issues."}, {"cat": "Family Intake & Safety Screening", "stem": "Which intake summary sentence is neutral and factual?", "opts": ["\"Client deserves full custody because she is the better parent.\"", "\"Client will win the house, because she paid more of the mortgage.\"", "\"Client's husband abandoned the family without warning and is obviously an unfit father who should not see the children.\"", "\"Client reports that the parties separated on March 2, 2026, and that the children have lived with her since then.\""], "a": 3, "fb": "Neutral register: State what the client reports, with dates. Leave conclusions to the attorney."}, {"cat": "Family Intake & Safety Screening", "stem": "A client says: \"Mi esposo me pega cuando toma.\" What is the accurate English intake note?", "opts": ["Client reports that her husband drinks every day.", "Client reports that her husband yells at her when he is tired.", "Client reports that her husband hits her when he drinks.", "Client reports that she hits her husband when he drinks."], "a": 2, "fb": "Translation accuracy: Who did what to whom must be exact. \"Pegar\" means to hit; \"tomar\" here means to drink alcohol."}, {"cat": "Family Intake & Safety Screening", "stem": "The opposing spouse, who has no attorney, calls the office asking what the client plans to do. What should staff do?", "opts": ["Give no information or advice, take a message for the attorney, and note the call", "Tell the spouse the client will agree to everything if he signs today", "Give the spouse general legal advice about divorce, to be helpful", "Explain the client's strategy so the spouse can prepare a response and the case settles faster"], "a": 0, "fb": "Ethics: Under ABA Model Rule 4.3, the firm must not give legal advice to an unrepresented opposing party."}, {"cat": "Family Intake & Safety Screening", "stem": "Why does the intake ask where the children have lived over the past several years?", "opts": ["Because the court wants to know which schools charge the highest fees in each city where the child lived", "Because child support is calculated based on the cost of housing in each city", "Because custody jurisdiction often depends on the child's home state under the UCCJEA", "Because the parent who moved most often automatically loses custody"], "a": 2, "fb": "Key concept: The child's residence history decides which state can hear the custody case."}, {"cat": "Family Intake & Safety Screening", "stem": "Why should staff ask about any existing custody, support or protective orders from any state or country?", "opts": ["Because foreign orders must be destroyed before filing in the U.S.", "Because existing orders affect jurisdiction and what the court can do, so copies must be obtained", "Because only orders from the last six months are relevant", "Because older orders from other states or countries are automatically cancelled when a new case is filed here"], "a": 1, "fb": "Intake skill: Prior orders may control or limit the new case."}, {"cat": "Divorce, Service & Disclosures", "stem": "What is the purpose of the summons in a divorce case?", "opts": ["It confirms that the divorce is final and the parties are single", "It sets the final amount of child support and spousal support", "It orders the respondent to leave the family home immediately", "It notifies the respondent of the case and the deadline to respond"], "a": 3, "fb": "Key document: In many states, the summons also includes standard restraining orders on both parties."}, {"cat": "Divorce, Service & Disclosures", "stem": "Service of process is:", "opts": ["the mediation session required before filing", "the formal delivery of court papers to the respondent by an authorized person", "the e-filing of the petition with the clerk through the court's online filing portal", "the court's internal process for assigning a judge and a courtroom to a new divorce case"], "a": 1, "fb": "Key term: Proper service gives the court power over the respondent and starts the response deadline."}, {"cat": "Divorce, Service & Disclosures", "stem": "What is a proof of service?", "opts": ["A letter from the respondent agreeing to the divorce", "A form filed with the court showing who served the papers, when and how", "A receipt from the clerk showing that the filing fee was paid in full on the day of filing", "The judge's signature on the final judgment, showing the case is closed"], "a": 1, "fb": "Key document: Without a valid proof of service, the case cannot move forward to default or judgment."}, {"cat": "Divorce, Service & Disclosures", "stem": "What is a default in a divorce case?", "opts": ["When the respondent does not respond in time, so the petitioner may ask to proceed without them", "When the judge orders the parties to attend mediation because they cannot agree on custody or property", "When both spouses agree to every issue and sign a written settlement agreement in the attorney's office", "When the court dismisses the case because the petitioner moved"], "a": 0, "fb": "Key term: Defaults depend on valid service. Defective service can undo a default."}, {"cat": "Divorce, Service & Disclosures", "stem": "In California, after being served with a divorce petition, the respondent generally has how long to file a response?", "opts": ["10 days", "60 days", "6 months", "30 days"], "a": 3, "fb": "Rule anchor: California gives 30 days to respond. Other states set different deadlines, so the state rule must be checked."}, {"cat": "Divorce, Service & Disclosures", "stem": "In Texas, how long after filing must the parties wait before a divorce can generally be granted?", "opts": ["60 days", "one year", "30 days", "six months"], "a": 0, "fb": "Rule anchor: Texas has a 60-day waiting period from filing, with limited exceptions."}, {"cat": "Divorce, Service & Disclosures", "stem": "In California, the earliest date a divorce can end the marital status is:", "opts": ["six months after the respondent is served or appears", "60 days after the petition is filed", "the day the judge signs the judgment, with no waiting period", "one year after the date of separation"], "a": 0, "fb": "Rule anchor: California's six-month period runs from service or appearance, not from filing."}, {"cat": "Divorce, Service & Disclosures", "stem": "Financial disclosure in a divorce case means:", "opts": ["a public announcement of the couple's finances in a local newspaper before the hearing", "a voluntary list each spouse may share if they choose", "sworn disclosure of income, expenses, assets and debts by each spouse", "a report the bank sends directly to the judge"], "a": 2, "fb": "Key concept: Disclosure duties are mandatory in many states, and incomplete disclosures can lead to sanctions or a judgment being set aside."}, {"cat": "Divorce, Service & Disclosures", "stem": "In California, the Income and Expense Declaration (form FL-150) is used to:", "opts": ["list the property each party wants to keep after the divorce", "ask the court to change the children's school", "disclose a party's income and expenses, which are used for support", "request a domestic violence restraining order"], "a": 2, "fb": "Key document: Support calculations depend on accurate income information."}, {"cat": "Divorce, Service & Disclosures", "stem": "Which documents are typically gathered for financial disclosures?", "opts": ["Tax returns, pay stubs, bank and retirement statements, and debt statements", "Only the most recent pay stub, because older income does not matter for support or property", "The children's report cards and medical records", "Wedding photos and social media posts showing the couple's lifestyle"], "a": 0, "fb": "Document collection: Staff give clients a clear checklist and track what is missing."}, {"cat": "Divorce, Service & Disclosures", "stem": "A schedule of assets and debts lists:", "opts": ["the dates and times of each parent's time with the children during the school year and the holidays", "the attorney's fees and costs incurred in the case", "each asset and debt, its value or balance, and whether it is community, marital or separate", "the names and addresses of every witness in the case"], "a": 2, "fb": "Key document: Accurate schedules are the basis for the property division."}, {"cat": "Divorce, Service & Disclosures", "stem": "Who may serve divorce papers on the respondent?", "opts": ["The couple's child, if he or she is over 14", "An adult who is not a party to the case, such as a process server", "The petitioner personally, to make sure the papers are delivered correctly and on time", "The judge's clerk, by phone call or text message to the respondent"], "a": 1, "fb": "Service rule: Rules vary by state, but the petitioner generally cannot serve the papers personally."}, {"cat": "Divorce, Service & Disclosures", "stem": "A client mentions that her husband has a bank account in another country that he has not disclosed. What should staff do?", "opts": ["Tell the client to transfer money out of the account first", "Record the information and any details she knows, and escalate to the attorney", "Ignore it, because foreign bank accounts are never part of U.S. divorce cases or disclosures", "Contact the foreign bank directly to request the account statements"], "a": 1, "fb": "Risk control: Disclosure duties apply to all assets. The attorney decides how to pursue the information."}, {"cat": "Custody & Child Support", "stem": "What standard do U.S. courts use to decide custody?", "opts": ["The mother automatically receives custody of young children", "The best interests of the child", "The parent with the higher income automatically receives custody", "The parent who files first receives custody"], "a": 1, "fb": "Key concept: Courts weigh factors such as the child's health, safety, stability and relationship with each parent."}, {"cat": "Custody & Child Support", "stem": "Under the UCCJEA, a child's \"home state\" is generally:", "opts": ["the state where the child lived with a parent for six consecutive months immediately before filing", "the state where the parents were married, even if they moved away", "the state where the child spent the most recent summer vacation", "the state where the child was born, regardless of where the child has lived since birth or lives now"], "a": 0, "fb": "Rule anchor: The home state usually has priority to decide custody, which prevents competing cases in different states."}, {"cat": "Custody & Child Support", "stem": "For a child younger than six months, the UCCJEA home state is generally:", "opts": ["the state where the child has lived with a parent since birth", "the state where the father lives, if he has acknowledged paternity", "any state the petitioner chooses", "the state where the mother lived during most of the pregnancy, even if the child was born elsewhere"], "a": 0, "fb": "Rule anchor: For infants, the home state is where the child has lived since birth, with temporary absences counted as part of that period."}, {"cat": "Custody & Child Support", "stem": "Which elements belong in a parenting plan?", "opts": ["The division of the couple's retirement accounts, the family home and the family car", "The amount of spousal support and how long it will be paid", "Weekday and weekend schedules, holidays, exchanges and decision-making", "The list of the parents' assets and debts"], "a": 2, "fb": "Drafting skill: Clear, specific plans reduce future disputes."}, {"cat": "Custody & Child Support", "stem": "A common way to divide holidays in a parenting plan is:", "opts": ["alternating them each year between the parents", "letting the child decide every holiday at the last minute", "giving all holidays to the parent who filed the case", "giving all holidays to the parent with the higher income"], "a": 0, "fb": "Drafting skill: Alternating years and splitting holidays are common patterns. The plan must be specific about times and exchanges."}, {"cat": "Custody & Child Support", "stem": "How is guideline child support generally calculated?", "opts": ["By the higher-earning parent, who decides what is fair", "Using the state's formula, based on income and factors such as parenting time and number of children", "Using a fixed national amount set by federal law, which is the same in every state for every child", "By the judge's personal opinion, without any formula"], "a": 1, "fb": "Key concept: Formulas differ by state; staff use the state's official tools with accurate data."}, {"cat": "Custody & Child Support", "stem": "Under Texas guidelines, the basic child support percentage for one child is:", "opts": ["50% of the paying parent's gross income, with no cap", "a fixed $500 per month for each child, adjusted for inflation", "10% of both parents' combined income", "20% of the paying parent's net resources, up to a cap"], "a": 3, "fb": "Rule anchor: Texas uses percentages of net resources (20% for one child, increasing with more children), subject to a cap."}, {"cat": "Custody & Child Support", "stem": "To modify a custody or support order, a party generally must show:", "opts": ["that at least five years have passed since the order", "a material or substantial change in circumstances", "that the other parent agrees to the change in writing", "that the child has changed schools"], "a": 1, "fb": "Key concept: Modification standards vary by state, but a significant change is generally required."}, {"cat": "Custody & Child Support", "stem": "In child support, \"arrears\" means:", "opts": ["unpaid, past-due support", "support payments made in advance", "the support amount for the current month", "the interest the court charges on the filing fee"], "a": 0, "fb": "Key term: Arrears can be enforced with several tools and may accrue interest under state law."}, {"cat": "Custody & Child Support", "stem": "Which is a common tool for enforcing child support?", "opts": ["A change of the child's last name to match the custodial parent's last name", "A new custody evaluation of both parents by a court-appointed psychologist", "A request that the child testify in court", "An income withholding order sent to the paying parent's employer"], "a": 3, "fb": "Enforcement map: Other tools include contempt, license suspension and tax refund intercepts."}, {"cat": "Custody & Child Support", "stem": "How should staff run a guideline child support calculation?", "opts": ["Use the state's approved calculator with accurate income and parenting-time data, and have the attorney review it", "Let the client choose the numbers that produce the result they want", "Use an online calculator from any state, because the formulas are similar enough, and send the result to the client", "Estimate the income if the client is unsure, without telling the attorney"], "a": 0, "fb": "Data quality: Wrong inputs produce wrong orders. Every number should come from a document."}, {"cat": "Custody & Child Support", "stem": "Which law governs the establishment and enforcement of child support between different U.S. states?", "opts": ["The Hague Convention on the Civil Aspects of International Child Abduction", "The Uniform Interstate Family Support Act (UIFSA)", "The Uniform Commercial Code (UCC)", "The Violence Against Women Act (VAWA)"], "a": 1, "fb": "Key concept: UIFSA governs support across states; the UCCJEA governs custody jurisdiction."}, {"cat": "Custody & Child Support", "stem": "A parent wants to move with the child to another state. What should staff do?", "opts": ["Tell the parent that moving has no legal effect on custody", "Flag it for the attorney; the existing order or state law may require notice or court permission", "Tell the parent to move first and inform the court later, because moving within the U.S. never needs permission", "Advise the parent not to tell the other parent about the move until the new school year has started"], "a": 1, "fb": "Within role: Relocation can change custody. The attorney must advise before any move."}, {"cat": "Protective Orders & Judgments", "stem": "What is a domestic violence protective (or restraining) order?", "opts": ["A private agreement between the spouses to avoid each other, signed in front of a notary and filed with the police", "A court order that can prohibit abuse and contact and require the restrained person to stay away", "A police report that the victim files with the prosecutor", "An order that grants a divorce immediately when there is violence, without waiting for the usual waiting period"], "a": 1, "fb": "Key term: Violating the order can lead to arrest. Terms and names vary by state."}, {"cat": "Protective Orders & Judgments", "stem": "What is a temporary (ex parte) protective order?", "opts": ["An emergency order issued without the other party present, lasting until a hearing", "An order that applies only to the children, not to the spouse", "A permanent order issued after a full trial at which both parties testify and present witnesses", "An order the police issue at the scene without a judge"], "a": 0, "fb": "Key term: The hearing on a longer order is usually set soon after; staff calendar it and arrange service."}, {"cat": "Protective Orders & Judgments", "stem": "What should a declaration supporting a protective order include?", "opts": ["General statements that the other spouse is a bad person, written by the attorney in formal legal language", "The attorney's legal arguments written as if they were the client's", "Only the most recent incident, without any history", "Specific incidents with dates, what happened, injuries and threats, in the client's words"], "a": 3, "fb": "Drafting skill: Judges need specific, dated facts. The client must review and confirm the declaration."}, {"cat": "Protective Orders & Judgments", "stem": "In family mediation, the mediator:", "opts": ["reports each party's private statements to the judge before the custody hearing", "represents the party who pays for the mediation", "helps the parties reach their own agreement but does not decide the case", "decides the custody schedule after hearing both parties and sends the decision to the judge for signature"], "a": 2, "fb": "Key concept: Agreements reached in mediation must usually be written and approved by the court to become orders."}, {"cat": "Protective Orders & Judgments", "stem": "How does domestic violence affect mediation?", "opts": ["Courts may exempt the case from mediation or use separate sessions, so DV must be flagged", "The victim must mediate in the same room to show good faith", "The mediator decides whether violence occurred and issues an order", "Domestic violence has no effect on mediation; joint sessions in the same room are always required by law"], "a": 0, "fb": "Safety: Joint sessions can be unsafe and unbalanced when there is abuse."}, {"cat": "Protective Orders & Judgments", "stem": "What is a marital settlement agreement?", "opts": ["An agreement between the attorneys about how their fees will be divided between the spouses", "A court order requiring the parties to attend counseling", "A written agreement between the spouses resolving property, support and other issues", "An agreement signed before the marriage about how future property will be divided in a divorce"], "a": 2, "fb": "Key document: The agreement is usually incorporated into the final judgment."}, {"cat": "Protective Orders & Judgments", "stem": "What is a stipulated judgment?", "opts": ["A judgment based on the parties' agreement and entered by the court", "A judgment issued after a contested trial in which both parties testified", "A temporary order that expires after 30 days", "A judgment that both parties may ignore"], "a": 0, "fb": "Key term: Once entered, a stipulated judgment is enforceable like any other court order."}, {"cat": "Protective Orders & Judgments", "stem": "\"Entry of judgment\" means:", "opts": ["the court officially records the final judgment, and certain deadlines run from that date", "the petitioner files the first papers to open the case", "the parties sign the settlement agreement in the attorney's office in front of a notary public and two witnesses", "the judge schedules the trial date after the parties fail to reach an agreement in mediation"], "a": 0, "fb": "Key term: Staff calendar post-judgment deadlines (for example, appeals or retirement division orders) from the entry date."}, {"cat": "Protective Orders & Judgments", "stem": "When closing a family law file, what should staff confirm?", "opts": ["That the file was deleted from the system", "That the other spouse and his attorney agreed in writing that the firm may now close its file and destroy the documents", "Only that the client paid the final invoice and returned the firm's original documents and exhibits", "The judgment was entered, orders served as needed, remaining deadlines calendared, and a closing letter sent"], "a": 3, "fb": "File closing: Unfinished post-judgment tasks, such as transferring retirement funds, often cause problems later."}, {"cat": "Protective Orders & Judgments", "stem": "A client says the restrained person violated her protective order. What should staff do?", "opts": ["Contact the restrained person to warn him", "Record the details, remind her the police can enforce the order, and notify the attorney", "Tell her the order is only advice and has no real effect unless the judge holds a new hearing", "Wait for the next court hearing to mention it"], "a": 1, "fb": "Within role: Police enforce protective orders. Staff support safety and keep the attorney informed."}, {"cat": "Protective Orders & Judgments", "stem": "How should staff help a client prepare for mediation?", "opts": ["Gather the financial disclosures and documents, and help the client list priorities and questions", "Contact the other spouse to negotiate in advance", "Write a speech that tells the client exactly what to agree to, and send a copy to the other spouse in advance", "Tell the client to bring no documents so nothing can be used against her"], "a": 0, "fb": "Preparation: Organized documents and clear priorities make mediation productive."}, {"cat": "Protective Orders & Judgments", "stem": "\"Temporary orders\" in a family case are:", "opts": ["orders that become void if either party disagrees with them in writing within ten days", "orders that the parties may change without the court", "orders on issues such as custody and support that apply while the case is pending", "orders that apply only during school vacations and holidays, until the next school year begins"], "a": 2, "fb": "Key term: Temporary orders often shape the final result, so they matter greatly to clients."}, {"cat": "Protective Orders & Judgments", "stem": "A QDRO (qualified domestic relations order) is used to:", "opts": ["order a parent to attend parenting classes", "divide a retirement plan between spouses after divorce", "transfer the family car to one spouse", "change the children's school district after one parent moves"], "a": 1, "fb": "Key term: QDROs are often a forgotten post-judgment step, so they belong on the closing checklist."}, {"cat": "Family Court E-Filing & Software", "stem": "In court e-filing, an \"envelope\" is:", "opts": ["the paper envelope used to mail a copy of every filing to the opposing party or the opposing attorney", "the clerk's internal folder for closed cases", "the electronic submission package containing one or more documents for a case", "the confirmation email the court sends with the hearing date and courtroom number"], "a": 2, "fb": "E-filing vocabulary: Systems such as eFileTexas use \"envelopes\" to group documents in a single submission."}, {"cat": "Family Court E-Filing & Software", "stem": "A filing comes back with a rejection notice. What should staff do?", "opts": ["Read the reason, correct the problem and resubmit quickly, checking whether a deadline is affected", "Mail the same document to the court on paper without changes", "Ignore it, because rejected filings are accepted automatically by the clerk after one week", "Wait for the client to ask about it"], "a": 0, "fb": "E-filing skill: A rejected filing is generally not filed. Missing a deadline because of a rejection can harm the client."}, {"cat": "Family Court E-Filing & Software", "stem": "A conformed copy is:", "opts": ["a translated copy of a foreign document, certified by a court-approved translator", "a copy of a document stamped or marked by the court to show it was filed", "a draft prepared for the client's review", "a copy signed by both parties and their attorneys to show that everyone agrees with it"], "a": 1, "fb": "Key term: Conformed copies prove filing and are often needed for service and for the client's records."}, {"cat": "Family Court E-Filing & Software", "stem": "When a hearing notice arrives, what should staff do?", "opts": ["Wait until the week of the hearing to calendar it, in case the court changes the date", "Calendar the hearing and related deadlines, and notify the client", "Tell the client to check the court website for updates", "Calendar only the hearing date, not the deadlines before it"], "a": 1, "fb": "Deadline control: Many filings must be made a set number of days before a hearing."}, {"cat": "Family Court E-Filing & Software", "stem": "In California, \"Judicial Council forms\" are:", "opts": ["forms that only judges and court clerks may fill out, sign and stamp", "federal immigration forms used in family cases", "forms created by each attorney for their own clients, approved by the local bar association", "statewide court forms, many of them mandatory, used in family cases"], "a": 3, "fb": "Key term: California family cases use Judicial Council forms such as the FL series."}, {"cat": "Family Court E-Filing & Software", "stem": "In California, form FL-100 is the:", "opts": ["Request for domestic violence restraining order", "Final judgment of dissolution", "Income and Expense Declaration used for support", "Petition for dissolution, legal separation or nullity"], "a": 3, "fb": "Form map: FL-100 opens the case; FL-150 is the Income and Expense Declaration."}, {"cat": "Family Court E-Filing & Software", "stem": "How should a family law case folder be organized?", "opts": ["Only by the name of the person who sent each document", "By the color of the paper the client used, so the attorney can recognize each document quickly", "In consistent sections such as pleadings, disclosures, custody documents and correspondence", "In one folder, sorted by the date each document was scanned, with no sections or labels"], "a": 2, "fb": "Case management: Consistent structure lets anyone find documents quickly before hearings."}, {"cat": "Family Court E-Filing & Software", "stem": "Which bilingual hearing reminder is appropriate for a paralegal?", "opts": ["\"Reminder: don't go to court if you're nervous. / Recordatorio: no vaya a la corte si está nervioso.\"", "\"Reminder: the judge will give you custody of the children on June 9, so please bring a car seat. / Recordatorio: el juez le dará la custodia.\"", "\"Reminder: tell your ex-husband he will lose. / Recordatorio: dígale a su exesposo que va a perder.\"", "\"Reminder: your hearing is June 9 at 8:30 a.m., Department 12. Please arrive early with your ID. / Recordatorio: su audiencia es el 9 de junio.\""], "a": 3, "fb": "Within role: Reminders give facts and logistics, never predictions or legal advice."}, {"cat": "Family Court E-Filing & Software", "stem": "What is the main risk of form-filling software?", "opts": ["Wrong data in one field can spread to several forms, so every field must be checked", "The software automatically translates the forms into Spanish", "The software files forms with the court automatically, without anyone's review or approval", "Forms created with software are never accepted by courts"], "a": 0, "fb": "Data quality: Automation saves time but multiplies errors."}, {"cat": "Family Court E-Filing & Software", "stem": "How should a response deadline be calendared?", "opts": ["Calendar it only after the client asks about it", "Always add exactly 30 days to the date of the document, whatever the state, court or document type", "Count it under the court rules, have the attorney confirm it, and set reminders", "Ask the court clerk to call the firm a few days before the deadline as a courtesy reminder"], "a": 2, "fb": "Deadline control: Counting rules (calendar days, court days, service method) vary."}, {"cat": "Family Court E-Filing & Software", "stem": "After a petition is filed, has the other spouse been served?", "opts": ["No; service happens only after the judgment is entered.", "Yes; e-filing sends the papers to the other spouse's email.", "Yes; the court automatically serves the other spouse when the petition is filed.", "No; filing with the court and service on the other party are separate steps."], "a": 3, "fb": "Key concept: Filing does not equal service. The case cannot proceed until proper service is completed and proved."}, {"cat": "Family Court E-Filing & Software", "stem": "How should sensitive numbers such as Social Security and financial account numbers be handled in family court filings?", "opts": ["Redact them or use the court's confidential forms, as the rules require", "Include them in full so the court can verify them, since family court files are always confidential", "Write them in Spanish so the public cannot read them", "Send them to the opposing party by text message instead"], "a": 0, "fb": "Privacy: Court rules limit sensitive data in public filings."}, {"cat": "Capstone: Family File Audit", "stem": "File audit: the proof of service shows that the petitioner personally handed the papers to the respondent. What is the problem?", "opts": ["The problem is only that the proof of service was not notarized", "There is no problem, because personal service by the petitioner is the preferred and most reliable method", "The problem is only that the petitioner did not keep a copy", "Service is defective: the petitioner generally cannot serve the papers, so a qualified non-party must redo it"], "a": 3, "fb": "Audit skill: Defective service can invalidate a default or judgment."}, {"cat": "Capstone: Family File Audit", "stem": "File audit: the client's financial disclosures are three months late. What is the risk?", "opts": ["The other spouse automatically receives all the property", "Delays in the case and possible sanctions; flag it so the attorney can address it", "The case is automatically dismissed the next day", "No risk, because financial disclosures are optional when the spouses have few assets"], "a": 1, "fb": "Audit skill: Disclosure problems can also allow a judgment to be challenged later."}, {"cat": "Capstone: Family File Audit", "stem": "File audit: a child moved from Mexico to Texas four months ago, and the client wants to file for custody in Texas now. What should staff flag?", "opts": ["Only that the filing fee in Texas is higher than in Mexico", "Only that the child needs a U.S. passport before the case is filed", "Nothing, because any parent can file for custody in the state where he or she lives, as soon as they arrive", "Texas may not yet be the home state under the UCCJEA, and Hague issues may apply; escalate"], "a": 3, "fb": "Audit skill: Jurisdiction errors waste time and can lead to orders that are not valid or enforceable."}, {"cat": "Capstone: Family File Audit", "stem": "File audit: a protective order request is ready to file, but there is no supporting declaration. What is the problem?", "opts": ["The police report alone always replaces the declaration", "The court needs specific facts under oath; prepare the client's declaration before filing", "The attorney's cover letter can replace the declaration", "There is no problem, because protective orders are granted automatically when a request is filed"], "a": 1, "fb": "Audit skill: Without facts, the judge cannot issue the order."}, {"cat": "Capstone: Family File Audit", "stem": "File audit: a Texas child support calculation used the paying parent's gross income instead of net resources. What should staff do?", "opts": ["Average the two results and use that number, since the guideline allows either method", "Ask the other parent which number they prefer", "Recalculate using net resources as the guideline requires, and flag the error", "Leave it, because gross and net income always produce the same support amount in Texas"], "a": 2, "fb": "Audit skill: Using the wrong base produces the wrong support amount."}, {"cat": "Capstone: Family File Audit", "stem": "File audit: the firm previously had a consultation with the opposing spouse, which was missed in the conflict check. What should staff do?", "opts": ["Stop work on the file and escalate the conflict to the attorney immediately", "Delete the old consultation record, since no retainer was signed and no fee was paid", "Ask the opposing spouse for permission by phone", "Continue, because a consultation that did not result in a retainer never creates any conflict"], "a": 0, "fb": "Ethics: Prior consultations can create conflicts under the prospective client rules."}, {"cat": "Capstone: Family File Audit", "stem": "Which is the best one-sentence oral briefing to the attorney?", "opts": ["\"Mrs. Morales cried a lot on the phone today.\"", "\"I told Mrs. Morales she will keep the house for sure, because the judge likes mothers.\"", "\"The Morales case is kind of complicated, so maybe we can talk about it sometime next week.\"", "\"Morales: response due Friday; respondent served May 3; we still need her signed FL-150.\""], "a": 3, "fb": "Briefing skill: File, deadline, key facts, what is missing."}, {"cat": "Capstone: Family File Audit", "stem": "Three items arrive together: a client reports a threat from her ex-partner today, a filing rejected for formatting, and a request for copies. What comes first?", "opts": ["All three have equal priority", "The client's safety: support emergency steps and alert the attorney", "The request for copies, because the client needs them for a meeting tomorrow", "The filing rejection, because a rejected filing can affect a court deadline"], "a": 1, "fb": "Prioritization: Safety comes before every procedural task."}, {"cat": "Capstone: Family File Audit", "stem": "File audit: the response to a divorce petition is due tomorrow and has not been filed. What should staff do?", "opts": ["Call the opposing party and ask for more time without telling the attorney", "File a blank response form today to stop the deadline, and complete it later when the client is ready", "Alert the attorney immediately; missing the deadline can lead to a default", "Wait until next week, because courts give automatic extensions"], "a": 2, "fb": "Deadline control: Extensions and filings are the attorney's decisions."}, {"cat": "Capstone: Family File Audit", "stem": "File audit: a Guatemalan marriage certificate was filed in Spanish without a translation. What is the issue?", "opts": ["The court interpreter will translate it at the hearing", "There is no issue, because judges in border states read Spanish and accept documents in either language", "The court will generally require a certified English translation; prepare one and correct the filing", "The marriage certificate is irrelevant to a divorce case"], "a": 2, "fb": "Audit skill: Foreign-language documents need accurate, certified translations."}, {"cat": "Capstone: Family File Audit", "stem": "File audit: the parties signed a settlement agreement in mediation three months ago, but no judgment has been entered. What is the risk?", "opts": ["The mediator will file the judgment for the parties, because mediators are required to do so within 90 days", "The case is not finished until the court enters a judgment; prepare and submit the stipulated judgment", "The agreement expires and the parties must start again", "There is no risk, because a signed mediation agreement ends the case automatically and replaces the judgment"], "a": 1, "fb": "Audit skill: Agreements must be turned into court orders to be fully enforceable as judgments."}];
+const COURSES = [{"code": "IL-FAM-01", "name": "Family Law English Foundations"}, {"code": "IL-FAM-02", "name": "Derecho de Familia to U.S. Courts"}, {"code": "IL-FAM-03", "name": "Family Intake & Safety Screening"}, {"code": "IL-FAM-04", "name": "Divorce, Service & Disclosures"}, {"code": "IL-FAM-05", "name": "Custody & Child Support"}, {"code": "IL-FAM-06", "name": "Protective Orders & Judgments"}, {"code": "IL-FAM-07", "name": "Family Court E-Filing & Software"}, {"code": "IL-FAM-08", "name": "Capstone: Family File Audit"}];
+
+const TOTAL = QUESTIONS.length;
+const BATCH_SIZE = 50;
+const NUM_BATCHES = Math.ceil(TOTAL / BATCH_SIZE);
+
+let state = {
+  screen: "start",
+  candidate: { name: "", email: "" },
+  answers: new Array(TOTAL).fill(null),
+  qIndex: 0,
+  startedAt: null,
+  awaitingNext: false,
+  completedCount: 0,
+  stoppedEarly: false,
+};
+
+function batchBounds(batchNum){
+  const start = (batchNum - 1) * BATCH_SIZE;
+  return [start, Math.min(start + BATCH_SIZE, TOTAL)];
+}
+function batchOfIndex(i){ return Math.floor(i / BATCH_SIZE) + 1; }
+function scoreBetween(start, end){
+  let c = 0;
+  for(let i=start;i<end;i++){ if(state.answers[i] !== null && state.answers[i] === QUESTIONS[i].a) c++; }
+  return c;
+}
+function totalScore(){ return scoreBetween(0, TOTAL); }
+
+function render(){
+  if(state.screen === "question" || state.screen === "batchEnd") saveProgress();
+  if(state.screen === "final") clearProgress();
+  const card = document.getElementById("card");
+  const progressShell = document.getElementById("progressShell");
+
+  if(state.screen === "start"){
+    progressShell.style.display = "none";
+    card.innerHTML = `
+      <h1>${TIER_LABEL} Certification Exam</h1>
+      <div class="sub">This exam covers the core content of the ${COURSES.length}-course ${PATHWAY_NAME} pathway. Your results include a score for each course. ${TOTAL} questions across ${NUM_BATCHES} batches of ${BATCH_SIZE}. You'll see the correct answer and rationale right after each question, and a score check after every batch. After any batch except the last, you can stop and get a provisional result based on what you've completed so far, or continue for a complete, non-provisional result.</div>
+      <div class="field"><label>Full name</label><input id="inName" type="text" placeholder="Jane Candidate"></div>
+      <div class="field"><label>Email</label><input id="inEmail" type="email" placeholder="jane@example.com"></div>
+      <div class="navrow"><span></span><button class="btn gold" onclick="beginExam()">Begin Exam</button></div>
+      <div class="footer-note">Your email is used only to send you your results and feedback.</div>
+    `;
+    return;
+  }
+
+  if(state.screen === "question"){
+    progressShell.style.display = "block";
+    renderTabs();
+    const i = state.qIndex;
+    const q = QUESTIONS[i];
+    const pct = Math.round((i/TOTAL)*100);
+    document.getElementById("barInner").style.width = pct + "%";
+    const given = state.answers[i];
+    const answered = given !== null || state.awaitingNext;
+
+    card.innerHTML = `
+      <div class="qmeta">${q.cat} &middot; Question ${i+1} of ${TOTAL} &middot; Batch ${batchOfIndex(i)} of ${NUM_BATCHES}</div>
+      <div class="stem">${q.stem}</div>
+      <div id="optsHolder"></div>
+      <div id="rationaleHolder"></div>
+      <div class="navrow"><span></span><span></span></div>
+    `;
+    const holder = document.getElementById("optsHolder");
+    q.opts.forEach((opt, idx) => {
+      const btn = document.createElement("button");
+      let cls = "opt";
+      if(answered){
+        if(idx === q.a) cls += " correct";
+        else if(idx === given) cls += " incorrect";
+      }
+      btn.className = cls;
+      btn.disabled = answered;
+      btn.innerHTML = `<span class="letter">${String.fromCharCode(65+idx)}.</span> ${opt}`;
+      btn.onclick = () => selectAnswer(idx);
+      holder.appendChild(btn);
+    });
+    if(answered){
+      const wasRight = given === q.a;
+      document.getElementById("rationaleHolder").innerHTML = `
+        <div class="rationale"><strong>${wasRight ? "Correct." : "Not quite."}</strong> ${q.fb}</div>
+        <div class="navrow"><span></span><button class="btn gold" onclick="advance()">${(i+1)%BATCH_SIZE===0 || i+1===TOTAL ? "Continue" : "Next question"}</button></div>
+      `;
+    }
+    return;
+  }
+
+  if(state.screen === "batchEnd"){
+    progressShell.style.display = "block";
+    renderTabs();
+    const bn = state._justFinishedBatch;
+    const [bs, be] = batchBounds(bn);
+    document.getElementById("barInner").style.width = Math.round((be/TOTAL)*100) + "%";
+    const bScore = scoreBetween(bs, be);
+    const bMax = be - bs;
+    const bPct = Math.round((bScore/bMax)*100);
+    card.innerHTML = `
+      <h2>Batch ${bn} of ${NUM_BATCHES} complete</h2>
+      <div class="scorebox">
+        <div class="cell"><div class="num">${bScore}/${bMax}</div><div class="lbl">This batch</div></div>
+        <div class="cell"><div class="num">${bPct}%</div><div class="lbl">Batch score</div></div>
+      </div>
+      <div class="navrow">
+        ${bn < NUM_BATCHES ? '<button class="btn ghost" onclick="stopNow()">Stop here and see my results</button>' : '<span></span>'}
+        <button class="btn gold" onclick="continueAfterBatch()">${bn < NUM_BATCHES ? "Continue to next batch" : "See final results"}</button>
+      </div>
+    `;
+    return;
+  }
+
+  if(state.screen === "final"){
+    progressShell.style.display = "none";
+    const completed = state.completedCount || TOTAL;
+    const partial = completed < TOTAL;
+    const score = scoreBetween(0, completed);
+    const pct = score / completed;
+    const passed = pct >= PASS_THRESHOLD;
+    const rows = [];
+    const fullBatches = Math.floor(completed / BATCH_SIZE);
+    for(let bn=1; bn<=fullBatches; bn++){
+      const [bs,be] = batchBounds(bn);
+      const s = scoreBetween(bs,be);
+      rows.push(`<tr><td>Batch ${bn} (Q${bs+1}&ndash;${be})</td><td>${s} / ${be-bs}</td><td>${Math.round((s/(be-bs))*100)}%</td></tr>`);
+    }
+    card.innerHTML = `
+      <h1>${partial ? "Exam Stopped Early — Provisional Results" : "Exam Complete"}</h1>
+      <div class="sub">${state.candidate.name || "Candidate"}${state.candidate.email ? " &middot; " + state.candidate.email : ""} &middot; ${completed} of ${TOTAL} questions completed</div>
+      <table class="results"><tr><th>Section</th><th>Score</th><th>%</th></tr>${rows.join("")}
+        <tr><td><strong>${partial ? "Overall so far" : "Overall"}</strong></td><td>${score} / ${completed}</td><td>${Math.round(pct*100)}%</td></tr>
+      </table>
+      ${courseTableHtml(completed)}
+      <div class="placement">
+        <div class="headline">${TIER_LABEL} — ${passed ? "PASSED" : "Not yet passing"}${partial ? " (provisional)" : ""}</div>
+        <div>Passing threshold is ${Math.round(PASS_THRESHOLD*100)}%. You scored ${Math.round(pct*100)}%${partial ? " based on " + completed + " of " + TOTAL + " questions." : "."}</div>
+      </div>
+      <div class="navrow">
+        <button class="btn ghost" onclick="downloadResults()">Download my results</button>
+        ${partial ? '<button class="btn gold" onclick="resumeExam()">Keep going</button>' : '<span></span>'}
+      </div>
+      <div class="synctag" id="syncTag">${RESULTS_WEBHOOK_URL ? "Submitting your results..." : ""}</div>
+      <div class="footer-note">${RESULTS_WEBHOOK_URL ? "Results and feedback will also be emailed to you shortly." : "Please use Download my results to keep a copy for your records."}</div>
+    `;
+    if(RESULTS_WEBHOOK_URL){ submitResults(score, pct, passed); }
+    return;
+  }
+}
+
+function courseBreakdown(completed){
+  const rows = COURSES.map(c => ({ code: c.code, name: c.name, correct: 0, total: 0 }));
+  QUESTIONS.slice(0, completed).forEach((q, i) => {
+    const r = rows.find(x => x.name === q.cat);
+    if(!r) return;
+    r.total++;
+    if(state.answers[i] !== null && state.answers[i] === q.a) r.correct++;
+  });
+  return rows.filter(r => r.total > 0).map(r => ({ ...r, percent: Math.round((r.correct / r.total) * 100) }));
+}
+function courseTableHtml(completed){
+  const rows = courseBreakdown(completed);
+  if(!rows.length) return "";
+  const limit = Math.round(PASS_THRESHOLD * 100);
+  const below = rows.filter(r => r.percent < limit);
+  return `
+      <div class="section-label">Score by course</div>
+      <div class="section-note">Each question maps to one of the ${COURSES.length} courses in the ${PATHWAY_NAME} pathway. Courses below ${limit}% are where the pathway will add the most for you.</div>
+      <table class="results"><tr><th>Course</th><th>Score</th><th>%</th></tr>${rows.map(r =>
+        `<tr><td><span class="coursecode">${r.code}</span>${r.name}</td><td>${r.correct} / ${r.total}</td><td class="${r.percent < limit ? "below" : ""}">${r.percent}%</td></tr>`).join("")}
+      </table>
+      ${below.length ? `<div class="footer-note"><strong>Recommended starting points:</strong> ${below.map(r => r.code).join(", ")}.</div>` : `<div class="footer-note">You scored at or above ${limit}% in every course you completed.</div>`}`;
+}
+
+function renderTabs(){
+  const tabs = document.getElementById("tabs");
+  const currentBatch = state.screen === "batchEnd" ? state._justFinishedBatch : batchOfIndex(state.qIndex);
+  let html = "";
+  for(let b=1; b<=NUM_BATCHES; b++){
+    let cls = "tab";
+    if(b < currentBatch || (state.screen === "batchEnd" && b <= currentBatch)) cls += " done";
+    else if(b === currentBatch && state.screen !== "batchEnd") cls += " active";
+    html += `<div class="${cls}">Batch ${b}</div>`;
+  }
+  tabs.innerHTML = html;
+}
+
+function beginExam(){
+  state.candidate.name = document.getElementById("inName").value.trim();
+  state.candidate.email = document.getElementById("inEmail").value.trim();
+  state.startedAt = new Date().toISOString();
+  state.screen = "question";
+  state.qIndex = 0;
+  render();
+}
+function selectAnswer(idx){
+  if(state.answers[state.qIndex] !== null) return;
+  state.answers[state.qIndex] = idx;
+  render();
+}
+function advance(){
+  const finishedIndex = state.qIndex;
+  const isLastInBatch = (finishedIndex + 1) % BATCH_SIZE === 0 || finishedIndex + 1 === TOTAL;
+  if(isLastInBatch){
+    state._justFinishedBatch = batchOfIndex(finishedIndex);
+    sendBatch(state._justFinishedBatch);
+    state.screen = "batchEnd";
+  } else {
+    state.qIndex = finishedIndex + 1;
+    state.screen = "question";
+  }
+  render();
+}
+function continueAfterBatch(){
+  if(state._justFinishedBatch >= NUM_BATCHES){
+    state.completedCount = TOTAL;
+    state.stoppedEarly = false;
+    state.screen = "final";
+  }
+  else { state.qIndex = state._justFinishedBatch * BATCH_SIZE; state.screen = "question"; }
+  render();
+}
+
+function stopNow(){
+  state.completedCount = batchBounds(state._justFinishedBatch)[1];
+  state.stoppedEarly = true;
+  state.screen = "final";
+  render();
+}
+
+function resumeExam(){
+  state.qIndex = Math.min(state.completedCount, TOTAL - 1);
+  state.screen = "question";
+  render();
+}
+
+function batchSummary(){
+  const out = [];
+  for(let bn = 1; bn <= NUM_BATCHES; bn++){
+    const [bs, be] = batchBounds(bn);
+    if(state.answers[be - 1] === null) break;
+    const s = scoreBetween(bs, be);
+    out.push({ batch: bn, score: s, total: be - bs, percent: Math.round((s / (be - bs)) * 100) });
+  }
+  return out;
+}
+
+function sendBatch(bn){
+  if(!RESULTS_WEBHOOK_URL) return;
+  const b = batchSummary().find(x => x.batch === bn);
+  if(!b) return;
+  fetch(RESULTS_WEBHOOK_URL, {
+    method: "POST",
+    headers: { "Content-Type": "text/plain" },
+    body: JSON.stringify({
+      type: "batch", tier: TIER_LABEL,
+      name: state.candidate.name, email: state.candidate.email,
+      ...b, startedAt: state.startedAt, completedAt: new Date().toISOString()
+    })
+  }).catch(() => {});
+}
+
+async function submitResults(score, pct, passed){
+  try{
+    const payload = {
+      type: "final", tier: TIER_LABEL, name: state.candidate.name, email: state.candidate.email,
+      batches: batchSummary(),
+      startedAt: state.startedAt, completedAt: new Date().toISOString(),
+      score, total: TOTAL, percent: Math.round(pct*1000)/10, passed,
+      answers: QUESTIONS.map((q,i) => ({ cat: q.cat, given: state.answers[i], correct: q.a }))
+    };
+    const res = await fetch(RESULTS_WEBHOOK_URL, {
+      method: "POST", headers: {"Content-Type":"text/plain"}, body: JSON.stringify(payload)
+    });
+    document.getElementById("syncTag").textContent = res.ok ? "Results submitted." : "Could not submit automatically — please use Download and send manually.";
+  } catch(e){
+    const tag = document.getElementById("syncTag");
+    if(tag) tag.textContent = "Could not submit automatically — please use Download and send manually.";
+  }
+}
+
+function downloadResults(){
+  const completed = state.completedCount || TOTAL;
+  const partial = completed < TOTAL;
+  const score = scoreBetween(0, completed); const pct = score/completed;
+  let lines = [];
+  lines.push(`INGLESLEGAL ${TIER_LABEL.toUpperCase()} EXAM — RESULTS` + (partial ? " (PARTIAL — STOPPED EARLY)" : ""));
+  lines.push("==========================================");
+  lines.push("Candidate: " + (state.candidate.name || "(not provided)"));
+  lines.push("Email: " + (state.candidate.email || "(not provided)"));
+  lines.push("Started: " + state.startedAt);
+  lines.push("Completed: " + new Date().toISOString());
+  lines.push("Questions completed: " + completed + " of " + TOTAL);
+  lines.push("");
+  const fullBatches = Math.floor(completed / BATCH_SIZE);
+  for(let bn=1; bn<=fullBatches; bn++){
+    const [bs,be] = batchBounds(bn);
+    const s = scoreBetween(bs,be);
+    lines.push(`Batch ${bn} (Q${bs+1}-${be}): ${s}/${be-bs} (${Math.round((s/(be-bs))*100)}%)`);
+  }
+  lines.push("");
+  lines.push("SCORE BY COURSE");
+  courseBreakdown(completed).forEach(r => lines.push(`${r.code} ${r.name}: ${r.correct}/${r.total} (${r.percent}%)`));
+  lines.push("");
+  lines.push(`OVERALL: ${score}/${completed} (${Math.round(pct*100)}%) — ${pct>=PASS_THRESHOLD ? "PASSED" : "Not yet passing"}${partial ? " (provisional)" : ""} (threshold ${Math.round(PASS_THRESHOLD*100)}%)`);
+  lines.push("");
+  lines.push("DETAILED ANSWERS");
+  QUESTIONS.slice(0, completed).forEach((q,i) => {
+    const given = state.answers[i];
+    const givenLetter = given === null ? "SKIPPED" : String.fromCharCode(65+given);
+    const correctLetter = String.fromCharCode(65+q.a);
+    lines.push(`Q${i+1} [${q.cat}] — Given: ${givenLetter} | Correct: ${correctLetter} | ${given===q.a?"CORRECT":"INCORRECT"}`);
+  });
+  const blob = new Blob([lines.join("\n")], {type:"text/plain"});
+  const url = URL.createObjectURL(blob);
+  const a = document.createElement("a");
+  const safeName = (state.candidate.name || "candidate").replace(/[^a-z0-9]+/gi, "_");
+  a.href = url; a.download = `Ingleslegal_${TIER_LABEL.replace(/\s+/g,"_")}_${safeName}.txt`;
+  document.body.appendChild(a); a.click(); document.body.removeChild(a);
+  URL.revokeObjectURL(url);
+}
+
+// ---- Progress saving + leave warning ----
+const SAVE_KEY = "ingleslegal_" + TIER_LABEL.replace(/\s+/g, "_");
+function saveProgress(){ try{ localStorage.setItem(SAVE_KEY, JSON.stringify(state)); }catch(e){} }
+function clearProgress(){ try{ localStorage.removeItem(SAVE_KEY); }catch(e){} }
+function loadProgress(){
+  try{
+    const s = JSON.parse(localStorage.getItem(SAVE_KEY));
+    if(s && (s.screen === "question" || s.screen === "batchEnd") && Array.isArray(s.answers) && s.answers.length === TOTAL) return s;
+  }catch(e){}
+  return null;
+}
+
+window.addEventListener("beforeunload", e => {
+  if(state.screen === "question" || state.screen === "batchEnd"){
+    e.preventDefault(); e.returnValue = "";
+  }
+});
+
+const saved = loadProgress();
+if(saved && confirm("You have an exam in progress (question " + (saved.qIndex + 1) + " of " + TOTAL + "). Resume where you left off?")){
+  state = saved;
+} else {
+  clearProgress();
+}
+render();
+</script>
+</body>
+</html>

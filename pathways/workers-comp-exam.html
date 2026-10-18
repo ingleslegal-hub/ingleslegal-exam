@@ -1,0 +1,453 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Ingleslegal — Workers' Compensation Pathway Exam</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Archivo:ital,wght@0,400;0,500;0,600;1,400&family=Spectral:ital,wght@0,400;0,600;1,400&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --aubergine:#2A1B33; --gold:#C9A96E; --cream:#F1EBDE; --bronze:#A9713F;
+    --panel-line:#6E5A79; --lifted-aubergine:#503A5C; --light-section:#FBF8F1;
+    --body-on-light:#6B5F62; --ok:#2f6f4f; --bad:#a3402f;
+  }
+  *{box-sizing:border-box;}
+  body{ margin:0; background:var(--light-section); color:var(--body-on-light); font-family:"Spectral", Georgia, serif; -webkit-font-smoothing:antialiased; }
+  .topbar{ background:var(--aubergine); color:var(--cream); padding:16px 24px; display:flex; align-items:center; justify-content:space-between; }
+  .brandmark{ display:flex; align-items:center; gap:10px; }
+  .wordmark{ font-family:"Archivo", Arial, sans-serif; font-weight:600; letter-spacing:-0.01em; font-size:19px; }
+  .wordmark .ingles{ color:var(--gold); } .wordmark .legal{ color:var(--cream); }
+  .tag{ font-size:11px; color:var(--panel-line); font-family:"Archivo", Arial, sans-serif; letter-spacing:.5px; text-transform:uppercase;}
+  .wrap{ max-width:740px; margin:0 auto; padding:28px 20px 60px; }
+  .card{ background:#fff; border:1px solid rgba(110,90,121,.18); border-radius:3px; padding:32px 30px; box-shadow:0 1px 3px rgba(42,27,51,.06); }
+  h1{ font-family:"Archivo", Arial, sans-serif; font-weight:600; font-size:26px; margin:0 0 6px; color:var(--lifted-aubergine); letter-spacing:-0.01em;}
+  h2{ font-family:"Archivo", Arial, sans-serif; font-weight:600; font-size:19px; margin:0 0 14px; color:var(--lifted-aubergine); }
+  .sub{ font-family:"Archivo", Arial, sans-serif; color:var(--body-on-light); font-size:14px; margin-bottom:22px; line-height:1.5;}
+  .progress-shell{ max-width:740px; margin:0 auto; padding:14px 20px 0; font-family:"Archivo", Arial, sans-serif; }
+  .tabs{ display:flex; gap:4px; margin-bottom:6px; }
+  .tab{ flex:1; text-align:center; font-size:11px; padding:6px 2px; border-radius:2px 2px 0 0; color:var(--panel-line); background:#efe9db; letter-spacing:.4px; font-weight:600; }
+  .tab.active{ background:var(--aubergine); color:var(--cream); }
+  .tab.done{ background:var(--gold); color:var(--aubergine); }
+  .bar-outer{ height:6px; background:#efe9db; border-radius:4px; overflow:hidden; }
+  .bar-inner{ height:100%; background:linear-gradient(90deg, var(--aubergine), var(--gold)); width:0%; transition:width .25s ease; }
+  .qmeta{ font-family:"Archivo", Arial, sans-serif; font-weight:500; font-size:12px; color:var(--bronze); margin-bottom:8px; letter-spacing:.3px; text-transform:uppercase;}
+  .stem{ font-family:"Spectral", Georgia, serif; font-size:18px; line-height:1.55; margin-bottom:22px; color:var(--lifted-aubergine); white-space:pre-wrap; }
+  .opt{ display:block; width:100%; text-align:left; background:#fffdf9; border:1.5px solid rgba(110,90,121,.25); border-radius:3px; padding:14px 16px; margin-bottom:10px; font-family:"Archivo", Arial, sans-serif; font-size:15px; cursor:pointer; transition:.12s; color:var(--body-on-light); }
+  .opt:hover:not(:disabled){ border-color:var(--gold); background:#fff; }
+  .opt:disabled{ cursor:default; }
+  .opt.correct{ border-color:var(--ok); background:#eef6f1; color:#1f4d38; }
+  .opt.incorrect{ border-color:var(--bad); background:#f9eeec; color:#7a2c1e; }
+  .opt .letter{ display:inline-block; width:22px; font-weight:600; color:var(--bronze); }
+  .navrow{ display:flex; justify-content:space-between; align-items:center; margin-top:18px; font-family:"Archivo", Arial, sans-serif;}
+  .btn{ background:var(--aubergine); color:var(--cream); border:none; padding:12px 22px; border-radius:3px; font-family:"Archivo", Arial, sans-serif; font-weight:500; font-size:14px; cursor:pointer; letter-spacing:.3px; }
+  .btn:hover{ background:var(--lifted-aubergine); }
+  .btn.gold{ background:var(--gold); color:var(--aubergine); }
+  .btn.gold:hover{ background:#d9bd8a; }
+  .btn:disabled{ background:#d8d2c8; color:#8a8a8a; cursor:not-allowed; }
+  .btn.ghost{ background:transparent; color:var(--aubergine); border:1.5px solid var(--aubergine); }
+  .field{ margin-bottom:14px; font-family:"Archivo", Arial, sans-serif; }
+  .field label{ display:block; font-size:13px; color:var(--body-on-light); margin-bottom:5px; }
+  .field input{ width:100%; padding:11px 12px; border:1.5px solid rgba(110,90,121,.3); border-radius:3px; font-size:15px; font-family:"Archivo", Arial, sans-serif; }
+  .banner{ background:var(--aubergine); color:var(--cream); padding:16px 20px; border-radius:3px; margin-bottom:20px; font-family:"Archivo", Arial, sans-serif; font-size:14px; line-height:1.5; }
+  .rationale{ background:var(--light-section); border-left:3px solid var(--gold); border-radius:3px; padding:14px 16px; margin:16px 0; font-family:"Archivo", Arial, sans-serif; font-size:13.5px; line-height:1.55; color:var(--lifted-aubergine); }
+  .rationale strong{ color:var(--bronze); }
+  .scorebox{ display:flex; gap:14px; margin:18px 0; font-family:"Archivo", Arial, sans-serif; }
+  .scorebox .cell{ flex:1; background:var(--light-section); border:1px solid rgba(110,90,121,.2); border-radius:3px; padding:14px; text-align:center; }
+  .scorebox .num{ font-family:"Archivo", Arial, sans-serif; font-size:26px; font-weight:600; color:var(--lifted-aubergine); }
+  .scorebox .lbl{ font-size:11px; color:var(--bronze); text-transform:uppercase; letter-spacing:.4px; margin-top:2px;}
+  table.results{ width:100%; border-collapse:collapse; font-family:"Archivo", Arial, sans-serif; font-size:13px; margin:16px 0; }
+  table.results th, table.results td{ border:1px solid rgba(110,90,121,.2); padding:8px 10px; text-align:left; }
+  table.results th{ background:var(--aubergine); color:var(--cream); font-size:11px; text-transform:uppercase; font-weight:500; }
+  table.results tr:nth-child(even) td{ background:var(--light-section); }
+  .placement{ background:var(--aubergine); color:var(--cream); border-left:3px solid var(--gold); border-radius:3px; padding:18px 20px; margin:18px 0; font-family:"Archivo", Arial, sans-serif; }
+  .placement .headline{ font-weight:600; color:var(--gold); font-size:16px; margin-bottom:4px; }
+  .footer-note{ font-family:"Archivo", Arial, sans-serif; font-size:12px; color:var(--body-on-light); margin-top:18px; line-height:1.5; }
+  .synctag{ font-family:"Archivo", Arial, sans-serif; font-size:11px; color:var(--panel-line); margin-top:8px; }
+  table.results td.below{ color:var(--bad); font-weight:600; }
+  .coursecode{ color:var(--bronze); font-weight:600; margin-right:6px; }
+  .section-label{ font-family:"Archivo", Arial, sans-serif; font-weight:600; font-size:15px; color:var(--lifted-aubergine); margin:22px 0 4px; }
+  .section-note{ font-family:"Archivo", Arial, sans-serif; font-size:12.5px; color:var(--body-on-light); margin:0 0 4px; line-height:1.5; }
+  @media (max-width:600px){ .wrap{ padding:16px 12px 40px; } .card{ padding:22px 18px; } h1{ font-size:22px; } .stem{font-size:16px;} }
+</style>
+</head>
+<body>
+<div class="topbar">
+  <div class="brandmark">
+    <svg width="32" height="32" viewBox="0 0 40 40" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+      <path d="M18,4 A16,16 0 0 0 18,36" fill="none" stroke="#6E5A79" stroke-width="1.5"/>
+      <path d="M18,9 A11,11 0 0 0 18,31" fill="none" stroke="#A9713F" stroke-width="2"/>
+      <path d="M18,14 A6,6 0 0 0 18,26" fill="none" stroke="#C9A96E" stroke-width="3"/>
+      <circle cx="25" cy="20" r="3" fill="#F1EBDE"/>
+    </svg>
+    <div class="wordmark"><span class="ingles">Ingles</span><span class="legal">legal</span></div>
+  </div>
+  <div class="tag">Workers' Compensation Pathway Exam</div>
+</div>
+<div class="progress-shell" id="progressShell" style="display:none;">
+  <div class="tabs" id="tabs"></div>
+  <div class="bar-outer"><div class="bar-inner" id="barInner"></div></div>
+</div>
+<div class="wrap"><div class="card" id="card"></div></div>
+
+<script>
+// ============================================================
+// Workers' Compensation Pathway — 100 questions covering the 8 courses of the
+// Workers' Compensation Case Manager pathway (IL-WC-01 to IL-WC-08).
+// ============================================================
+const TIER_LABEL = "Workers' Compensation Pathway";
+const PATHWAY_NAME = "Workers' Compensation Case Manager";
+const PASS_THRESHOLD = 0.75; // fraction, e.g. 0.75
+const RESULTS_WEBHOOK_URL = "https://script.google.com/macros/s/AKfycbwYCnCr75l6BUDyPIxPD2sbl5NvgENQWT5JFpMreAlQmg5dI85SEeecneWUVzknyzxr/exec"; // set once the Apps Script webhook is deployed; leave blank to skip auto-submit
+
+const QUESTIONS = [{"cat": "Workers' Comp English Foundations", "stem": "What does it mean that workers' compensation is a \"no-fault\" system?", "opts": ["The worker must prove the injury was not his own fault before benefits start.", "The worker generally receives benefits for a work injury regardless of who caused it.", "The worker receives benefits only if a state inspector proves that the employer was negligent and broke a safety rule.", "Neither the worker nor the employer may ever be blamed in any report."], "a": 1, "fb": "Key concept: Fault is generally irrelevant to eligibility. Instead, the question is whether the injury arose out of and in the course of employment."}, {"cat": "Workers' Comp English Foundations", "stem": "What is the \"exclusive remedy\" rule?", "opts": ["Workers' comp is generally the worker's only remedy against the employer; the worker usually cannot sue the employer in tort.", "The worker may choose only one doctor for the entire claim and can never change providers, even if the treatment is not working.", "Only the employer, not the worker, may file the claim with the state agency.", "The worker may receive either medical care or wage-loss benefits, but never both."], "a": 0, "fb": "Key concept: This is the \"grand bargain\": no-fault benefits for the worker, protection from tort suits for the employer. Claims against third parties remain possible."}, {"cat": "Workers' Comp English Foundations", "stem": "What is a third-party administrator (TPA)?", "opts": ["A neutral judge who decides disputes between the worker and the carrier", "A government agency that pays benefits when employers have no insurance", "A doctor chosen by both sides to evaluate the injury", "A company that handles claims for a self-insured employer or an insurer"], "a": 3, "fb": "Key term: Many large employers are self-insured and use a TPA. Staff address correspondence to the TPA's adjuster on the claim."}, {"cat": "Workers' Comp English Foundations", "stem": "What does TTD stand for, and when is it paid?", "opts": ["Total treatment duration, paid once the medical treatment plan is completed", "Temporary training deduction, paid while the worker attends a retraining program", "Temporary total disability, paid while the worker temporarily cannot work at all", "Total time disabled, paid in a single lump sum when the worker returns to work"], "a": 2, "fb": "Benefits vocabulary: TTD replaces part of lost wages during recovery when the doctor says the worker cannot work."}, {"cat": "Workers' Comp English Foundations", "stem": "Temporary partial disability (TPD) is paid when the worker:", "opts": ["has returned to full duty and full wages with no restrictions", "can do some work during recovery but earns less than before the injury", "has reached maximum improvement and has a permanent impairment rating", "cannot work at all for a temporary period, according to the doctor"], "a": 1, "fb": "Benefits vocabulary: TPD makes up part of the wage difference, for example during light duty at reduced hours."}, {"cat": "Workers' Comp English Foundations", "stem": "Permanent disability benefits generally compensate:", "opts": ["wages lost during the first weeks after the injury, before any treatment begins", "the cost of all medical treatment received during the claim", "lasting impairment that remains after maximum medical improvement", "the worker's pain and suffering, as in a personal injury case"], "a": 2, "fb": "Benefits vocabulary: Permanent disability is usually based on an impairment rating and state formulas. Pain and suffering is not paid in workers' comp."}, {"cat": "Workers' Comp English Foundations", "stem": "Which is an example of an occupational disease?", "opts": ["A concussion suffered in a forklift collision last Tuesday", "A broken ankle from a fall off a ladder on the first day of work", "A cut hand from a box cutter during a warehouse shift", "Lung disease developed after years of silica dust exposure at a quarry"], "a": 3, "fb": "Key term: Occupational diseases develop from exposure or conditions over time, which makes the date of injury and causation more complex."}, {"cat": "Workers' Comp English Foundations", "stem": "What is vocational rehabilitation?", "opts": ["A training course that employers must give before a worker starts the job", "Services or benefits that help an injured worker return to work, sometimes in a new job", "A penalty the employer pays for failing to report the injury on time", "Physical therapy prescribed immediately after surgery to restore movement and strength in the injured body part"], "a": 1, "fb": "Benefits vocabulary: Vocational benefits vary by state (California, for example, uses a supplemental job displacement voucher)."}, {"cat": "Workers' Comp English Foundations", "stem": "In many states, who decides a contested workers' comp case?", "opts": ["The treating doctor, who rules on both medical and legal disputes", "A workers' compensation judge or administrative law judge in the state system", "The carrier's adjuster, whose decision is final and cannot be reviewed", "A jury of twelve citizens selected in the county where the injury happened"], "a": 1, "fb": "Process map: Workers' comp disputes are heard in administrative systems, usually without juries."}, {"cat": "Workers' Comp English Foundations", "stem": "For an injury to be covered, it generally must:", "opts": ["arise out of and occur in the course of employment", "happen only inside the employer's building during scheduled hours", "be caused by the negligence of a supervisor or coworker", "be reported to the police within 24 hours of the accident"], "a": 0, "fb": "Key concept: \"Arising out of and in the course of employment\" (often AOE/COE) is the core coverage test."}, {"cat": "Workers' Comp English Foundations", "stem": "Which plain-English explanation to a new client is accurate?", "opts": ["\"Workers' comp will pay your full salary for as long as you want to stay home, and your employer cannot stop it.\"", "\"Workers' comp can pay for your medical care and part of your lost wages, even if no one was at fault.\"", "\"Workers' comp lets you sue your boss for pain and suffering if the injury was serious.\"", "\"Workers' comp only pays if we can prove that your employer was careless or broke a safety rule.\""], "a": 1, "fb": "Client communication: Explain benefits in general terms without promising amounts or results."}, {"cat": "Workers' Comp English Foundations", "stem": "Medical benefits in a workers' comp claim generally cover:", "opts": ["only treatment the worker pays for first and submits later", "reasonable and necessary treatment for the work injury", "only emergency room care on the day of the injury", "any treatment the worker needs, for any condition, during the claim"], "a": 1, "fb": "Benefits vocabulary: Treatment must be related to the work injury and is often subject to authorization and review."}, {"cat": "Workers' Comp English Foundations", "stem": "Death benefits in workers' comp are paid to:", "opts": ["the dependents of a worker who dies from a work-related injury or illness", "the employer, to cover the cost of hiring and training a replacement worker after the death", "the carrier, to reimburse the medical bills already paid", "any coworker who witnessed the fatal accident"], "a": 0, "fb": "Benefits vocabulary: Dependency rules and amounts vary by state; burial expenses are often included."}, {"cat": "Riesgos Laborales to U.S. Comp", "stem": "In Colombia, what is an ARL?", "opts": ["A labor court that decides disputes between workers and employers about wages, dismissals and workplace injuries", "A government inspector who visits workplaces after serious accidents", "A private law firm that represents injured workers on contingency", "Administradora de Riesgos Laborales, the entity that insures work risks in the social-security system"], "a": 3, "fb": "The Bridge: ARLs operate within Colombia's social-security system. U.S. coverage instead comes from state law, private carriers and self-insured employers."}, {"cat": "Riesgos Laborales to U.S. Comp", "stem": "What is the key structural difference between many Latin American systems and U.S. workers' comp?", "opts": ["Latin American systems cover only office workers; U.S. systems cover only construction and farm workers.", "There is no real difference: both are run by one federal agency with the same rules in every country.", "Latin American systems use juries to decide every claim, while U.S. systems leave every decision about benefits to the employer's human resources department.", "Many Latin American systems are part of national social insurance; U.S. workers' comp is set by each state and paid by private carriers or self-insured employers."], "a": 3, "fb": "The Bridge: Institutions such as Mexico's IMSS or Colombia's ARLs do not have a single U.S. equivalent. Each state has its own act and agency."}, {"cat": "Riesgos Laborales to U.S. Comp", "stem": "Why do workers' comp rules change from state to state?", "opts": ["Federal law sets all the rules, but states may translate them into different languages.", "Each state has its own act, agency and benefit rates; there is no single federal law for most private workers.", "Each county writes its own workers' comp rules and benefit tables, and the state only collects the insurance premiums.", "The rules depend on the carrier, which can choose any benefit level it prefers."], "a": 1, "fb": "Key concept: Federal programs exist for specific groups (for example, federal employees and longshore workers), but most private workers are covered by state law."}, {"cat": "Riesgos Laborales to U.S. Comp", "stem": "The Spanish term \"incapacidad temporal\" is best expressed in U.S. workers' comp English as:", "opts": ["permanent impairment rating", "temporary disability", "temporary unemployment", "temporary incapacity to sign contracts"], "a": 1, "fb": "False friend: \"Incapacity\" in English often suggests legal incapacity. The benefit concept is temporary disability (TTD or TPD)."}, {"cat": "Riesgos Laborales to U.S. Comp", "stem": "\"Invalidez\" in a Latin American disability file usually corresponds to:", "opts": ["invalidity, meaning the claim is legally void", "an impairment rating of less than 5%", "permanent disability, often total, rather than \"invalidity\"", "temporary disability during the first weeks of treatment"], "a": 2, "fb": "False friend: In English, \"invalidity\" means a legal defect. \"Invalidez\" describes a severe, lasting loss of work capacity."}, {"cat": "Riesgos Laborales to U.S. Comp", "stem": "\"Accidente de trabajo\" is best translated as:", "opts": ["labor accident lawsuit filed against the employer", "work injury (or workplace accident)", "employment termination", "workplace inspection report"], "a": 1, "fb": "Translation point: U.S. files usually speak of a \"work injury\" or \"industrial injury,\" with a date of injury."}, {"cat": "Riesgos Laborales to U.S. Comp", "stem": "How are independent contractors generally treated in workers' comp?", "opts": ["They are always covered, because anyone who performs work for a business is an employee under every state's workers' comp law.", "They are covered automatically if they are paid in cash rather than by check.", "They are covered only if they have their own commercial insurance policy.", "They are generally not covered as employees, but misclassification is common, so the attorney reviews the real relationship."], "a": 3, "fb": "Risk control: A client labeled a \"contractor\" may legally be an employee. Staff collect facts about control, pay and tools for the attorney."}, {"cat": "Riesgos Laborales to U.S. Comp", "stem": "How are undocumented workers generally treated in U.S. workers' comp?", "opts": ["In most states they are covered like other employees, but some benefit rules vary, so the state law must be checked.", "They are never covered in any state, regardless of the injury, the employer or how long they have worked for the company.", "They are covered only if the employer agrees in writing to accept the claim.", "They are covered only by federal law, never by state workers' comp acts."], "a": 0, "fb": "The Bridge: Many states expressly cover workers regardless of immigration status, but rules on some benefits, such as vocational benefits, can differ."}, {"cat": "Riesgos Laborales to U.S. Comp", "stem": "What should staff remember about farmworkers and day laborers?", "opts": ["They are always covered under a single national farmworker insurance fund.", "Coverage rules for agricultural workers and day laborers differ by state, so the state's exemptions must be checked.", "They are covered only if they worked more than five years for the same employer.", "They are always excluded from workers' comp in every state, because they are considered temporary or seasonal workers."], "a": 1, "fb": "Special populations: Some states exempt certain agricultural or casual labor; others cover them fully. Never assume."}, {"cat": "Riesgos Laborales to U.S. Comp", "stem": "A Colombian document rates a client's \"pérdida de capacidad laboral\" at 30%. How should staff present it in a U.S. file?", "opts": ["As proof that the client cannot work in any job in the United States", "As a U.S. permanent disability rating of 30%, to be used directly in the settlement calculation without further review", "As irrelevant information that should be removed from the file entirely", "As a Colombian loss-of-capacity rating that does not automatically equal a U.S. impairment rating"], "a": 3, "fb": "The Bridge: Ratings are system-specific. The translation should be accurate and the attorney decides its relevance."}, {"cat": "Riesgos Laborales to U.S. Comp", "stem": "Under the \"going and coming\" rule, an injury during a normal commute to work is:", "opts": ["usually not covered, with exceptions such as employer-provided transport or work errands", "covered only if the accident happened within one mile of the workplace", "covered only if the worker was driving a company vehicle at any time that week", "always covered, because the worker would not be traveling at all if he did not have the job"], "a": 0, "fb": "Key concept: Course and scope of employment usually starts when work starts. Exceptions are fact-specific and state-specific."}, {"cat": "Riesgos Laborales to U.S. Comp", "stem": "Federal civilian employees injured on the job are generally covered by:", "opts": ["private health insurance only, because they have no workers' comp", "Social Security disability from the first day of the injury", "the workers' comp act of the state where they were hired, administered by the state agency", "a federal program, the Federal Employees' Compensation Act (FECA)"], "a": 3, "fb": "System map: Knowing which system applies (state or federal) is the first question at intake."}, {"cat": "Injured Worker Intake", "stem": "In Texas, an injured employee generally must notify the employer of the injury within:", "opts": ["2 years", "6 months", "7 days", "30 days"], "a": 3, "fb": "Deadline anchor: Texas generally requires notice to the employer within 30 days and a claim with the Texas Division of Workers' Compensation within one year. Exceptions exist; the attorney evaluates them."}, {"cat": "Injured Worker Intake", "stem": "In Texas, the employee's claim for compensation must generally be filed with the state agency within:", "opts": ["30 days of the date of injury", "one year of the date of injury", "five years of the date of injury", "90 days after returning to work"], "a": 1, "fb": "Deadline anchor: Notice to the employer and the claim with the agency are two different deadlines. Both must be calendared."}, {"cat": "Injured Worker Intake", "stem": "What is a \"first report of injury\"?", "opts": ["The attorney's first letter to the adjuster", "The doctor's final report at maximum medical improvement", "The worker's first visit to the emergency room, recorded on the hospital's intake form", "The employer's report of the injury to its carrier or the state agency"], "a": 3, "fb": "Key term: Employers must report injuries within state deadlines. Staff request a copy because it records how the injury was first described."}, {"cat": "Injured Worker Intake", "stem": "When collecting wage data at intake, what is most useful?", "opts": ["The worker's own estimate of yearly income, given from memory, without any pay stubs or tax documents", "Pay stubs for the weeks before the injury, showing regular pay, overtime and any second job", "Only the hourly rate printed in the job offer letter", "The employer's total payroll for the whole year, divided by the number of employees on staff"], "a": 1, "fb": "Intake skill: Average weekly wage drives every wage-loss benefit. Missing overtime or a second job (where the state counts it) underpays the client."}, {"cat": "Injured Worker Intake", "stem": "A \"cumulative trauma\" injury is:", "opts": ["a series of different injuries from separate accidents on one day", "an emotional injury caused by a supervisor's comment", "an injury caused by repetitive activity over time, such as carpal tunnel syndrome", "an injury caused by a single sudden event, such as a fall from a ladder or a forklift collision"], "a": 2, "fb": "Key term: Cumulative trauma claims need careful dates: when symptoms started and when the worker linked them to work."}, {"cat": "Injured Worker Intake", "stem": "How is the date of injury usually set for a cumulative trauma claim?", "opts": ["By the state's rule, often tied to when the worker knew or should have known it was work-related", "By the date the attorney signs up the case, in every state", "By the date of the last paycheck the worker received from the employer before he stopped working", "By the date the worker was hired, because the repetitive exposure started on the first day of the job"], "a": 0, "fb": "Deadline point: Several deadlines run from the date of injury, so the facts behind it must be recorded precisely."}, {"cat": "Injured Worker Intake", "stem": "A client's claim was denied. What should staff document?", "opts": ["Only the client's feelings about the denial and what he plans to tell his employer", "Only the adjuster's phone number and email address, so the client can call directly", "The denial letter, its date, the reason, and the deadline to dispute it", "Nothing, because denied claims cannot be challenged"], "a": 2, "fb": "Intake skill: Denials have dispute procedures and deadlines. The reason for denial guides the attorney's strategy."}, {"cat": "Injured Worker Intake", "stem": "Which facts should the intake capture about how the injury was reported?", "opts": ["The name of the company's insurance broker only", "Only whether the client likes the supervisor and how long they have worked together", "The color of the uniform and safety equipment the client was wearing at the time of the accident", "The supervisor told, the date and method of the report, and coworkers who saw it"], "a": 3, "fb": "Intake skill: Proof of timely notice and witnesses often decides whether a claim is accepted."}, {"cat": "Injured Worker Intake", "stem": "A client says: \"Me lastimé la espalda cargando cajas en la bodega.\" What is the accurate English intake note?", "opts": ["Client hurt his back while loading boxes into his own car.", "Client was hit in the back by falling boxes in the cellar.", "Client injured his back while lifting boxes at the warehouse.", "Client injured his shoulder while unloading a truck at the store."], "a": 2, "fb": "Translation accuracy: \"Cargando\" means lifting or carrying, and \"bodega\" here is a warehouse. Body part, activity and place must be exact."}, {"cat": "Injured Worker Intake", "stem": "In California, the employee claim form (DWC-1) must be given to the worker by the employer:", "opts": ["only after the first doctor's visit", "only if the worker hires an attorney", "within 90 days, after the investigation ends", "within one working day of learning of the injury"], "a": 3, "fb": "Rule anchor: California Labor Code 5401 requires the employer to provide the claim form within one working day of knowledge of the injury."}, {"cat": "Injured Worker Intake", "stem": "When a firm takes a workers' comp case, what is one of the first letters sent?", "opts": ["A demand letter to the employer asking for pain and suffering damages and lost wages", "A complaint filed in the county civil court against the supervisor", "A letter of representation to the carrier or TPA, with the claim number", "A letter to the client's bank requesting account statements"], "a": 2, "fb": "Workflow: The letter of representation opens communication and lets the firm obtain the claim file."}, {"cat": "Injured Worker Intake", "stem": "A Texas client was injured three weeks ago and has not told his employer. What should staff do?", "opts": ["Tell the client that notice is optional if the injury is obvious.", "Send the employer a demand letter for pain and suffering damages instead of a notice of injury.", "Treat it as urgent: the 30-day notice deadline is close, so escalate to the attorney today.", "Wait until the client finishes all his medical treatment and then tell the employer about the injury."], "a": 2, "fb": "Deadline control: Late notice can bar a claim. Staff escalate the same day so the attorney can act."}, {"cat": "Injured Worker Intake", "stem": "During intake, the client mentions a second part-time job. What should staff do?", "opts": ["Tell the client to quit the second job to protect the claim", "Record the second job and its wages; some states include concurrent employment in the AWW", "Report the second job to the carrier as possible fraud, without telling the attorney", "Ignore it, because only the main employer's wages ever count toward benefits"], "a": 1, "fb": "Intake skill: Concurrent wages can raise the benefit rate where state law counts them."}, {"cat": "Benefits Management", "stem": "What is the average weekly wage (AWW)?", "opts": ["The worker's average weekly earnings before the injury, used to calculate benefits", "The amount the carrier pays the doctor each week", "The minimum wage set by the state for all workers in the same industry and county", "The worker's expected wages after returning to work"], "a": 0, "fb": "Benefits vocabulary: The AWW calculation method (which weeks, overtime, other jobs) is set by state law."}, {"cat": "Benefits Management", "stem": "In a state that pays TTD at two-thirds of the AWW, a worker with an AWW of $900 receives:", "opts": ["$600 per week", "$900 per week", "$675 per week", "$450 per week"], "a": 0, "fb": "Calculation: $900 × 2/3 = $600, subject to the state's maximum and minimum weekly rates."}, {"cat": "Benefits Management", "stem": "Why might a high earner receive less than two-thirds of the AWW?", "opts": ["Because two-thirds applies only to workers paid by the hour", "Because carriers may reduce benefits for any worker they choose", "Because high earners are taxed on their workers' comp checks", "Because benefits are capped at the state's maximum weekly rate"], "a": 3, "fb": "Benefits vocabulary: Each state sets a maximum (and usually a minimum) weekly compensation rate, often updated yearly."}, {"cat": "Benefits Management", "stem": "What is a waiting period in workers' comp?", "opts": ["The time the employer has to decide whether to fire the worker", "The time the worker must wait before seeing any doctor after the injury, set by the employer's insurance policy", "The time between the hearing and the judge's written decision, which the law limits to thirty days in every state", "A short period at the start of disability for which wage loss is not paid unless the disability lasts long enough"], "a": 3, "fb": "Benefits vocabulary: Waiting periods and the retroactive rule vary by state."}, {"cat": "Benefits Management", "stem": "A TTD payment is two weeks late. What should staff do?", "opts": ["Record the missed dates, notify the attorney and follow up with the adjuster; many states penalize late payment", "Ask the client to call the employer and demand the money personally", "Tell the client late payments are normal and nothing can be done until the case settles", "Wait three months before taking any action on the payment"], "a": 0, "fb": "Benefits management: A ledger with exact payment dates is the evidence for penalties and demands."}, {"cat": "Benefits Management", "stem": "What is utilization review (UR)?", "opts": ["The worker's written review of the doctor's bedside manner, filed with the state medical board each year", "The process carriers use to approve, modify or deny treatment requests under medical guidelines", "The employer's review of the worker's attendance and performance records before the injury", "The judge's review of the attorney's fee at settlement"], "a": 1, "fb": "Key term: UR decisions have dispute procedures and deadlines that staff must calendar."}, {"cat": "Benefits Management", "stem": "What is a request for authorization (RFA)?", "opts": ["The attorney's request to the court for a hearing date", "The carrier's request to the worker for a recorded statement", "The doctor's formal request to the carrier for approval of specific treatment", "The worker's written request to the employer for vacation time while he recovers"], "a": 2, "fb": "Key term: Tracking each RFA and its response date shows when treatment is being delayed."}, {"cat": "Benefits Management", "stem": "What is a medical provider network (MPN)?", "opts": ["A list of doctors the worker's private health plan covers, which also applies to every workers' comp claim", "A website run by the state where injured workers rate their doctors and can choose a new one at any time without approval", "A group of providers the employer or carrier uses; in some states the worker generally treats within it", "A government hospital system for uninsured workers"], "a": 2, "fb": "Key term: Treating outside the network without authorization can create unpaid bills."}, {"cat": "Benefits Management", "stem": "What records support a mileage reimbursement request?", "opts": ["The dates and addresses of medical appointments and the miles traveled to each", "The client's monthly fuel credit card statement only", "The make, model and year of the client's car, and the name of the insurance company that covers it", "A letter from the client's neighbor about the trips"], "a": 0, "fb": "Benefits management: Many states reimburse medical travel at a set rate per mile. Accurate logs get paid."}, {"cat": "Benefits Management", "stem": "What is a benefits ledger used for?", "opts": ["Listing the employer's other injured workers", "Listing every doctor the client has ever seen, including doctors from before the injury", "Listing the attorney's billable hours on the case, so the fee can be approved by the judge", "Listing each benefit period owed and each payment received, to spot unpaid periods"], "a": 3, "fb": "Benefits management: The ledger turns a client's complaint (\"they stopped paying\") into a precise demand."}, {"cat": "Benefits Management", "stem": "The carrier denies a treatment request. What should staff record?", "opts": ["Only the name of the doctor who requested the treatment", "The client's opinion of whether the treatment is needed", "The denial date, the reason and the dispute deadline, and then inform the attorney", "Nothing, because treatment denials are final and cannot be challenged by the worker"], "a": 2, "fb": "Benefits management: Dispute deadlines for treatment denials can be short."}, {"cat": "Benefits Management", "stem": "In a state that pays TPD at two-thirds of the wage difference, a worker with an AWW of $900 now earns $600 a week on light duty. What is the weekly TPD?", "opts": ["$600", "$200", "$400", "$300"], "a": 1, "fb": "Calculation: The difference is $900 − $600 = $300; two-thirds of $300 is $200. Some states use different TPD formulas, so the state rule controls."}, {"cat": "Benefits Management", "stem": "A client paid $45 out of pocket for a work-injury prescription. What should staff do?", "opts": ["Ask the employer's supervisor to pay the client back in cash from the store's petty cash", "Add the $45 to the attorney's fee", "Tell the client prescriptions are never reimbursed in workers' comp claims", "Collect the receipt and submit it to the adjuster with a reimbursement request"], "a": 3, "fb": "Benefits management: Small reimbursements matter to clients and must be tracked like any other benefit."}, {"cat": "Medical-Legal Process", "stem": "Who is the primary treating physician (PTP)?", "opts": ["The doctor who reviews treatment requests for the carrier", "The doctor hired by the carrier for a one-time evaluation of the disputed medical issues", "The emergency room doctor who saw the worker on the day of injury", "The doctor who manages the worker's treatment and reports on work status"], "a": 3, "fb": "Key term: The PTP's reports drive temporary disability, restrictions and treatment."}, {"cat": "Medical-Legal Process", "stem": "An independent medical examination (IME) is usually:", "opts": ["an evaluation the worker requests from his own family doctor", "a free clinic visit offered by the state agency", "an evaluation by a doctor requested by the carrier or defense", "a hearing where the judge examines the worker"], "a": 2, "fb": "Key term: Despite the name, an IME doctor is often selected by the carrier. Clients should be prepared before attending."}, {"cat": "Medical-Legal Process", "stem": "In California, a Qualified Medical Evaluator (QME) is:", "opts": ["a doctor certified by the state to evaluate disputed medical issues", "the worker's primary care doctor under his private health insurance plan", "a nurse who schedules all appointments for the carrier", "a judge who specializes in medical questions"], "a": 0, "fb": "Key term: QMEs (and AMEs in represented cases) resolve disputes about issues such as causation, disability and future care."}, {"cat": "Medical-Legal Process", "stem": "In California, an Agreed Medical Evaluator (AME) is:", "opts": ["a doctor who only reviews records and never sees the worker", "a doctor who treats the worker for the rest of the claim", "a doctor both sides agree on in a represented case", "a doctor assigned by the employer without the worker's input"], "a": 2, "fb": "Key term: Because both sides chose the AME, the AME's opinion often carries significant weight."}, {"cat": "Medical-Legal Process", "stem": "What does MMI (maximum medical improvement) mean?", "opts": ["The carrier has paid the maximum medical benefits allowed by law.", "The condition has stabilized and is not expected to improve significantly.", "The worker has seen the maximum number of doctors permitted.", "The worker has fully recovered and has no remaining impairment or restrictions of any kind."], "a": 1, "fb": "Key term: Reaching MMI often ends temporary disability and leads to a permanent disability rating."}, {"cat": "Medical-Legal Process", "stem": "What is an impairment rating?", "opts": ["The carrier's rating of how cooperative and honest the worker has been during the claim", "A percentage that measures permanent loss of function, often based on the AMA Guides", "The judge's rating of the attorney's work on the case, used to set the attorney's fee at settlement", "The employer's performance evaluation before the injury"], "a": 1, "fb": "Key term: The rating, combined with state formulas, drives permanent disability benefits."}, {"cat": "Medical-Legal Process", "stem": "In a medical-legal report, \"apportionment\" means:", "opts": ["dividing permanent disability between the work injury and other causes", "dividing temporary disability payments into weekly checks", "dividing the settlement money between the attorney and the client according to the fee agreement", "dividing medical appointments between two doctors"], "a": 0, "fb": "Key term: Apportionment can significantly reduce a permanent disability award, so it must be highlighted in summaries."}, {"cat": "Medical-Legal Process", "stem": "A doctor writes: \"Modified duty: no lifting over 20 lbs, no overhead work.\" These are:", "opts": ["work restrictions that affect return to work and temporary disability", "instructions for the worker's home exercises only", "a final impairment rating of 20%", "suggestions that the employer may ignore if there is no light-duty work available"], "a": 0, "fb": "Key term: If the employer cannot accommodate restrictions, temporary disability may continue. Staff send restrictions to the attorney and track the employer's response."}, {"cat": "Medical-Legal Process", "stem": "The employer offers modified duty within the doctor's restrictions. What should staff do?", "opts": ["Tell the client to accept any job the employer offers, even outside restrictions", "Notify the attorney promptly, because the offer can change temporary disability benefits", "Ignore it, because modified duty never affects benefits", "Tell the client to refuse any modified duty offer"], "a": 1, "fb": "Within role: The attorney advises the client on the offer. Staff record the date and the terms."}, {"cat": "Medical-Legal Process", "stem": "How should a client be prepared for a medical evaluation?", "opts": ["Bring a family member to answer all the doctor's questions for the client, so nothing is misunderstood", "Exaggerate the pain and limitations so the doctor gives a higher rating and the case is worth more money", "Arrive on time with ID, answer honestly, describe symptoms accurately, and request an interpreter if needed", "Say as little as possible and refuse to answer about prior injuries"], "a": 2, "fb": "Client preparation: Credibility is essential. Inconsistencies in a history can damage the report."}, {"cat": "Medical-Legal Process", "stem": "A one-page summary of a medical-legal report for the attorney should include:", "opts": ["The client's comments about the doctor's personality", "Diagnosis, causation, MMI status, impairment rating, apportionment, restrictions and future medical care", "The doctor's biography, office address, parking instructions and the length of the appointment", "Only the doctor's final sentence, copied without context"], "a": 1, "fb": "Summarizing skill: These elements determine the value of the case and the next steps."}, {"cat": "Medical-Legal Process", "stem": "A client missed a scheduled evaluation. Why is this a problem?", "opts": ["It can lead to suspended benefits or delays, so it must be rescheduled and explained.", "It automatically closes the claim and ends medical care.", "It is not a problem, because evaluations are optional and the doctor can write the report from the records.", "It means the carrier must pay double benefits for that week as a penalty to the worker."], "a": 0, "fb": "Risk control: Confirm appointments in advance and arrange transportation and interpreters."}, {"cat": "Medical-Legal Process", "stem": "In California files, \"permanent and stationary\" (P&amp;S) refers to:", "opts": ["a condition that has stabilized, similar to MMI", "a settlement that can never be reopened", "a worker who cannot leave home because of the injury", "a permanent job offer from the employer"], "a": 0, "fb": "Key term: California reports often use \"P&amp;S\" alongside or instead of MMI."}, {"cat": "Hearings, Settlements & Third Parties", "stem": "What is an exhibit list for a hearing?", "opts": ["A list of the judge's prior decisions", "A numbered list of the documents a party will offer as evidence", "A list of settlement offers made so far by the carrier and the worker", "A list of the witnesses' phone numbers and addresses for the judge's clerk"], "a": 1, "fb": "Hearing preparation: Exhibits must be organized, numbered and served according to the agency's rules."}, {"cat": "Hearings, Settlements & Third Parties", "stem": "In California, a Compromise and Release (C&amp;R) is generally:", "opts": ["an agreement to postpone the hearing", "a denial of the claim by the carrier", "a settlement paid over time that keeps future medical open", "a lump-sum settlement that usually closes future medical care"], "a": 3, "fb": "Settlement types: C&amp;Rs end most of the claim in exchange for a lump sum."}, {"cat": "Hearings, Settlements & Third Parties", "stem": "In California, a Stipulated Award (Stips) generally:", "opts": ["is a penalty the judge imposes on the carrier for repeated late payment of temporary disability benefits", "pays permanent disability over time and usually leaves future medical care open", "pays one lump sum and closes all future medical care, so the worker pays for any treatment later", "is an order dismissing the case"], "a": 1, "fb": "Settlement types: The choice between settlement types depends on the client's medical needs and is the attorney's decision with the client."}, {"cat": "Hearings, Settlements & Third Parties", "stem": "What is a Medicare set-aside (MSA)?", "opts": ["Part of a settlement reserved for future injury-related care that Medicare would otherwise pay", "A fee Medicare charges the attorney for reviewing the case before the settlement can be approved", "A government grant that replaces workers' comp benefits", "A penalty the employer pays to Medicare for not having workers' compensation insurance at the time of injury"], "a": 0, "fb": "Key term: MSAs matter when the worker is on Medicare or reasonably expects to be. Staff flag these cases early."}, {"cat": "Hearings, Settlements & Third Parties", "stem": "In workers' comp, a \"third-party claim\" is:", "opts": ["a separate claim against someone other than the employer, such as a negligent driver", "a complaint against the TPA for poor customer service, filed with the state insurance department", "a claim filed by a coworker on the injured worker's behalf when the worker cannot file it himself", "a claim the carrier files against the worker for overpayment"], "a": 0, "fb": "Key concept: Exclusive remedy protects the employer, not outside parties. Third-party claims can add significant value."}, {"cat": "Hearings, Settlements & Third Parties", "stem": "Which situation suggests a third-party claim that should be referred?", "opts": ["A delivery driver is rear-ended by another company's truck while on his route.", "A cashier strains her back lifting a heavy box of merchandise at her own store during a shift.", "An office worker develops wrist pain from typing.", "A warehouse worker trips over his own untied shoelace."], "a": 0, "fb": "Referral skill: When someone outside the employer may be at fault, staff prepare a referral memo for the PI team."}, {"cat": "Hearings, Settlements & Third Parties", "stem": "If an injured worker recovers money from a third party, the workers' comp carrier usually:", "opts": ["loses all rights to be repaid", "becomes the defendant in the third-party case", "has a lien or credit for benefits it has paid", "must pay the worker double benefits"], "a": 2, "fb": "Key concept: Lien and credit rights affect settlement planning in both cases."}, {"cat": "Hearings, Settlements & Third Parties", "stem": "What does hearing preparation usually involve for staff?", "opts": ["Writing the judge's decision in advance and filing it for the judge to sign before the hearing begins", "Preparing only the client's travel arrangements and reminding him to bring a photo ID and the hearing notice", "Organizing medical reports, wage records and correspondence, and serving exhibits as the rules require", "Contacting the judge privately to explain the client's situation"], "a": 2, "fb": "Hearing preparation: Ex parte contact with the judge is improper; everything goes through proper filings."}, {"cat": "Hearings, Settlements & Third Parties", "stem": "A client must sign settlement documents written in English. What is the right practice?", "opts": ["The client signs quickly so the settlement is not delayed, and staff explain the documents afterward in Spanish.", "A staff member signs for the client to save time.", "The attorney explains the terms, an interpreter or translation is provided, and the client signs once he understands.", "The client signs only the last page, without reviewing the rest."], "a": 2, "fb": "Client communication: Informed consent requires understanding. Staff support with accurate interpretation, not legal advice."}, {"cat": "Hearings, Settlements & Third Parties", "stem": "How would you describe the difference between a lump-sum settlement and an ongoing award in general terms?", "opts": ["A lump sum is paid only to the employer for its costs; an ongoing award is paid only to the treating doctor for future care.", "A lump sum is always larger; an ongoing award is always smaller.", "There is no difference other than the paperwork, because both pay the same amount and close the claim in the same way.", "A lump sum pays one amount and usually closes most of the claim; an award pays over time and may keep benefits open."], "a": 3, "fb": "Client communication: Staff explain the concepts in general terms; the attorney advises on which is better for the client."}, {"cat": "Hearings, Settlements & Third Parties", "stem": "In some states, such as California, medical providers or state disability programs may file:", "opts": ["new claims for the worker's lost wages", "requests to replace the judge", "liens to be paid from the workers' comp case", "criminal complaints against the injured worker"], "a": 2, "fb": "Key term: Liens must be identified and resolved as part of settlement."}, {"cat": "Hearings, Settlements & Third Parties", "stem": "In California, what is a mandatory settlement conference (MSC)?", "opts": ["A pre-trial conference where the parties try to settle and list the issues, witnesses and exhibits", "The final hearing where the judge issues the award", "A meeting between the employer and the carrier only, held to decide whether to accept or deny the claim", "The first meeting between the client and the firm, where the retainer is signed and the intake is completed"], "a": 0, "fb": "Process map: Exhibits and witnesses not listed at the MSC can be excluded later, so preparation is critical."}, {"cat": "Hearings, Settlements & Third Parties", "stem": "In many states, including California, workers' comp settlements:", "opts": ["must be approved by the employer's board of directors", "never need any review by anyone", "must be approved by a judge or the state agency to be valid", "are valid as soon as the adjuster sends an email confirming the amount to the attorney"], "a": 2, "fb": "Process point: Approval protects the worker. Staff prepare the settlement documents for the approval process."}, {"cat": "State Filing & Case Software", "stem": "In California workers' comp, EAMS is:", "opts": ["a federal database of workplace accidents", "an insurance carrier that covers most California employers and their injured workers", "a medical network for injured workers", "the Electronic Adjudication Management System for filings and case information"], "a": 3, "fb": "System map: EAMS is the model e-filing system used in this pathway."}, {"cat": "State Filing & Case Software", "stem": "California EAMS case numbers typically begin with:", "opts": ["A0", "IOE", "ADJ", "WC-CA"], "a": 2, "fb": "System knowledge: Copying the ADJ case number exactly is essential for filings and correspondence. (IOE is a USCIS receipt prefix.)"}, {"cat": "State Filing & Case Software", "stem": "In case management, a \"diary\" entry is:", "opts": ["a scheduled follow-up or reminder for a file", "the employer's attendance record", "the judge's notes from the hearing", "the client's personal journal about pain"], "a": 0, "fb": "Workflow: With 150+ files, diaries ensure that every file is touched before its deadlines."}, {"cat": "State Filing & Case Software", "stem": "What is a caseload dashboard used for?", "opts": ["Sending the client's information to the employer", "Seeing status, next actions and overdue items across many files", "Storing the client's medical images", "Calculating the client's permanent disability rating from the medical reports"], "a": 1, "fb": "Workflow: Dashboards help case managers prioritize large caseloads."}, {"cat": "State Filing & Case Software", "stem": "What should a contact log record?", "opts": ["Only calls that lasted more than 30 minutes, because short calls are not important", "Only contacts with the client, not with the carrier", "Every call, email and letter, with the date, the person and a summary", "The case manager's opinions about the adjuster"], "a": 2, "fb": "Case management: Complete logs prove follow-up and help anyone pick up the file."}, {"cat": "State Filing & Case Software", "stem": "In a workers' comp filing, a proof of service shows:", "opts": ["that the doctor approved the filing", "that the judge has read and accepted the document for the hearing", "who was served with the document, when and how", "that the client paid the filing fee"], "a": 2, "fb": "Filing rule: Missing or defective proof of service can invalidate a filing."}, {"cat": "State Filing & Case Software", "stem": "What belongs in a weekly caseload report?", "opts": ["Upcoming hearings and deadlines, pending authorizations, overdue benefits and next actions", "The firm's monthly revenue, marketing statistics and the number of new clients signed that week", "A copy of every medical report received that week", "Personal notes about each client's family life, hobbies and weekend plans, for building rapport"], "a": 0, "fb": "Workflow: A good report shows the supervisor where action is needed."}, {"cat": "State Filing & Case Software", "stem": "Why should staff save the confirmation after an electronic filing?", "opts": ["It records the filing date and time and proves the document was filed.", "It replaces the need for proof of service on the other parties in the case.", "It means the judge has approved the filing.", "It is only needed for filings made on weekends."], "a": 0, "fb": "Filing rule: Confirmations are the evidence if a filing is later disputed."}, {"cat": "State Filing & Case Software", "stem": "The date of injury in the case system is wrong. What should staff do?", "opts": ["Leave it, because only the claim number matters for filings and letters", "Correct it only in the next letter and leave old documents alone", "Ask the client which date they prefer", "Correct it and check every generated document and filing that used the wrong date"], "a": 3, "fb": "Data quality: The date of injury drives deadlines and benefit calculations. Errors spread through templates."}, {"cat": "State Filing & Case Software", "stem": "Which bilingual client update is appropriate for a case manager?", "opts": ["\"The judge already decided in your favor. / El juez ya decidió a su favor.\"", "\"Good news: you will get at least 40% disability, so start planning how to use the money. / Usted va a recibir por lo menos 40%.\"", "\"Don't go to the appointment if you are busy; we can always reschedule it later without any problem. / No vaya a la cita si está ocupado.\"", "\"Your QME appointment is May 4 at 10:00 a.m. Please bring your ID. / Su cita con el QME es el 4 de mayo a las 10:00 a.m.\""], "a": 3, "fb": "Within role: Report facts and next steps. Never predict ratings or outcomes."}, {"cat": "State Filing & Case Software", "stem": "With 150+ open files, how should a case manager prioritize the day?", "opts": ["Sort by the nearest deadlines and most serious consequences, using the dashboard", "Work on the newest files first, always", "Work only on files where the client called that day", "Work on files alphabetically by client name, regardless of hearings or deadlines"], "a": 0, "fb": "Workflow: Deadline-driven prioritization prevents missed hearings and filings."}, {"cat": "State Filing & Case Software", "stem": "Which fields are essential in a workers' comp case record?", "opts": ["Only the client's name and phone number", "Claim number, carrier or TPA, adjuster, employer, date of injury, body parts, AWW and disability status", "The employer's stock price and annual revenue", "The client's favorite restaurant, hobbies, and the names of his children's schools and teachers"], "a": 1, "fb": "Data quality: These fields drive letters, deadlines, calculations and reports."}, {"cat": "Capstone: Caseload Audit", "stem": "File audit: a Texas claim was denied because the worker gave notice 40 days after the injury. What should staff do?", "opts": ["Tell the client to say the notice was given on day 20", "Close the file, because late notice can never be excused in Texas under any circumstances", "File a new claim with a later date of injury so that the notice falls within the 30-day period", "Flag the notice issue for the attorney, who will evaluate exceptions such as good cause or actual knowledge"], "a": 3, "fb": "Audit skill: Notice problems can sometimes be overcome, but only with accurate facts and the attorney's analysis."}, {"cat": "Capstone: Caseload Audit", "stem": "File audit: the ledger shows no TTD payments for six weeks while the doctor kept the worker on TTD status. What is the issue?", "opts": ["The worker probably returned to work, so close the benefit", "Unpaid temporary disability; prepare a demand with dates and amounts and escalate, since penalties may apply", "The doctor's reports must be wrong, so ignore them and wait for the next one", "No issue, because TTD is paid only at settlement as part of the lump sum"], "a": 1, "fb": "Audit skill: The ledger reveals the gap; the demand recovers it."}, {"cat": "Capstone: Caseload Audit", "stem": "File audit: the worker was injured when another company's truck hit him, but no third-party referral was made. What is the flaw?", "opts": ["The truck driver must file a workers' comp claim instead", "There is no flaw, because workers' comp is the only remedy for any injury that happens while working", "The carrier is responsible for suing the truck company on the worker's behalf", "The missed third-party claim, which has its own limitation period; escalate and prepare a referral"], "a": 3, "fb": "Audit skill: Always ask whether someone outside the employer contributed to the injury."}, {"cat": "Capstone: Caseload Audit", "stem": "File audit: the only medical-legal report is two years old, and the case is about to settle. What is the concern?", "opts": ["The report may be stale; flag it so the attorney can consider a supplemental report or re-evaluation", "The client should write an update in place of the doctor, describing how he feels today and what he can no longer do", "Medical-legal reports are not needed for settlement", "Older reports are always more reliable than new ones, because the doctor saw the injury closer to the accident"], "a": 0, "fb": "Audit skill: Settlement value depends on current medical evidence."}, {"cat": "Capstone: Caseload Audit", "stem": "Calculation check: AWW $1,050; TTD rate two-thirds; the carrier paid $600 a week for 8 weeks. How much is underpaid?", "opts": ["$600", "$400", "$1,050", "$800"], "a": 3, "fb": "Calculation: Correct rate = $700 (below the state maximum, assumed). $700 − $600 = $100 per week × 8 weeks = $800."}, {"cat": "Capstone: Caseload Audit", "stem": "File audit: a worker who receives Medicare is about to settle, and there is no Medicare set-aside analysis in the file. What should staff do?", "opts": ["Proceed, because Medicare has no interest in workers' comp settlements of any size", "Ask the employer to decide about Medicare", "Flag the missing MSA analysis for the attorney before the settlement is finalized", "Tell the client to stop using Medicare"], "a": 2, "fb": "Audit skill: Ignoring Medicare's interests can put the client's future medical coverage at risk."}, {"cat": "Capstone: Caseload Audit", "stem": "Which is the best one-sentence oral briefing to the attorney?", "opts": ["\"Hernández has some things, maybe, that we could look at later.\"", "\"Hernández: hearing Thursday; the latest PTP report and wage statement are missing, both requested twice.\"", "\"I told Hernández the hearing will definitely go well, so he does not need to prepare or bring anything on Thursday.\"", "\"The Hernández file is a lot of work and the client calls every day, so maybe someone else should take it.\""], "a": 1, "fb": "Briefing skill: File, event, date, what is missing and what has been done. Clear English, no filler."}, {"cat": "Capstone: Caseload Audit", "stem": "Three items arrive at once: a hearing in three days with missing exhibits, a mileage reimbursement request, and a new client call. What comes first?", "opts": ["The mileage reimbursement request, because the client is waiting for the money", "The new client call, because a new case must be signed before another firm contacts the client", "The hearing exhibits: alert the attorney and finish exhibit preparation immediately", "All three have equal priority"], "a": 2, "fb": "Prioritization: The nearest, most serious consequence comes first."}, {"cat": "Capstone: Caseload Audit", "stem": "A client receiving TTD tells staff he has been working cash jobs on weekends and asks you not to tell anyone. What should staff do?", "opts": ["Keep the secret, because the client asked and staff must protect the client's confidence", "Tell the client to stop answering the carrier's calls", "Report the client directly to the carrier's fraud unit", "Explain that staff cannot hide information from the attorney, and inform the attorney promptly"], "a": 3, "fb": "Ethics: Earnings during TTD can affect benefits and create fraud risk. The attorney must know and will advise the client."}, {"cat": "Capstone: Caseload Audit", "stem": "File audit: a treatment denial from utilization review is in the file, and the deadline to dispute it passes in two days. What should staff do?", "opts": ["Escalate to the attorney immediately so the dispute is filed on time", "Wait for the doctor to resubmit the treatment request next month, which restarts the deadline", "Ignore it, because denials are final", "Tell the client to pay for the treatment himself"], "a": 0, "fb": "Deadline control: Missing a dispute deadline can leave the client without needed treatment."}, {"cat": "Capstone: Caseload Audit", "stem": "File audit: the case system lists the wrong carrier, so the letter of representation went to the wrong company. What is the right action?", "opts": ["Wait for the right carrier to call the firm after it receives the employer's first report of injury", "Send the letter to every carrier in the state", "Correct the carrier in the system, resend the letter to the right carrier, and confirm receipt", "Leave it, because carriers share information with each other and will forward the letter"], "a": 2, "fb": "Audit skill: Data errors become real-world errors. Fix the source and every output."}];
+const COURSES = [{"code": "IL-WC-01", "name": "Workers' Comp English Foundations"}, {"code": "IL-WC-02", "name": "Riesgos Laborales to U.S. Comp"}, {"code": "IL-WC-03", "name": "Injured Worker Intake"}, {"code": "IL-WC-04", "name": "Benefits Management"}, {"code": "IL-WC-05", "name": "Medical-Legal Process"}, {"code": "IL-WC-06", "name": "Hearings, Settlements & Third Parties"}, {"code": "IL-WC-07", "name": "State Filing & Case Software"}, {"code": "IL-WC-08", "name": "Capstone: Caseload Audit"}];
+
+const TOTAL = QUESTIONS.length;
+const BATCH_SIZE = 50;
+const NUM_BATCHES = Math.ceil(TOTAL / BATCH_SIZE);
+
+let state = {
+  screen: "start",
+  candidate: { name: "", email: "" },
+  answers: new Array(TOTAL).fill(null),
+  qIndex: 0,
+  startedAt: null,
+  awaitingNext: false,
+  completedCount: 0,
+  stoppedEarly: false,
+};
+
+function batchBounds(batchNum){
+  const start = (batchNum - 1) * BATCH_SIZE;
+  return [start, Math.min(start + BATCH_SIZE, TOTAL)];
+}
+function batchOfIndex(i){ return Math.floor(i / BATCH_SIZE) + 1; }
+function scoreBetween(start, end){
+  let c = 0;
+  for(let i=start;i<end;i++){ if(state.answers[i] !== null && state.answers[i] === QUESTIONS[i].a) c++; }
+  return c;
+}
+function totalScore(){ return scoreBetween(0, TOTAL); }
+
+function render(){
+  if(state.screen === "question" || state.screen === "batchEnd") saveProgress();
+  if(state.screen === "final") clearProgress();
+  const card = document.getElementById("card");
+  const progressShell = document.getElementById("progressShell");
+
+  if(state.screen === "start"){
+    progressShell.style.display = "none";
+    card.innerHTML = `
+      <h1>${TIER_LABEL} Certification Exam</h1>
+      <div class="sub">This exam covers the core content of the ${COURSES.length}-course ${PATHWAY_NAME} pathway. Your results include a score for each course. ${TOTAL} questions across ${NUM_BATCHES} batches of ${BATCH_SIZE}. You'll see the correct answer and rationale right after each question, and a score check after every batch. After any batch except the last, you can stop and get a provisional result based on what you've completed so far, or continue for a complete, non-provisional result.</div>
+      <div class="field"><label>Full name</label><input id="inName" type="text" placeholder="Jane Candidate"></div>
+      <div class="field"><label>Email</label><input id="inEmail" type="email" placeholder="jane@example.com"></div>
+      <div class="navrow"><span></span><button class="btn gold" onclick="beginExam()">Begin Exam</button></div>
+      <div class="footer-note">Your email is used only to send you your results and feedback.</div>
+    `;
+    return;
+  }
+
+  if(state.screen === "question"){
+    progressShell.style.display = "block";
+    renderTabs();
+    const i = state.qIndex;
+    const q = QUESTIONS[i];
+    const pct = Math.round((i/TOTAL)*100);
+    document.getElementById("barInner").style.width = pct + "%";
+    const given = state.answers[i];
+    const answered = given !== null || state.awaitingNext;
+
+    card.innerHTML = `
+      <div class="qmeta">${q.cat} &middot; Question ${i+1} of ${TOTAL} &middot; Batch ${batchOfIndex(i)} of ${NUM_BATCHES}</div>
+      <div class="stem">${q.stem}</div>
+      <div id="optsHolder"></div>
+      <div id="rationaleHolder"></div>
+      <div class="navrow"><span></span><span></span></div>
+    `;
+    const holder = document.getElementById("optsHolder");
+    q.opts.forEach((opt, idx) => {
+      const btn = document.createElement("button");
+      let cls = "opt";
+      if(answered){
+        if(idx === q.a) cls += " correct";
+        else if(idx === given) cls += " incorrect";
+      }
+      btn.className = cls;
+      btn.disabled = answered;
+      btn.innerHTML = `<span class="letter">${String.fromCharCode(65+idx)}.</span> ${opt}`;
+      btn.onclick = () => selectAnswer(idx);
+      holder.appendChild(btn);
+    });
+    if(answered){
+      const wasRight = given === q.a;
+      document.getElementById("rationaleHolder").innerHTML = `
+        <div class="rationale"><strong>${wasRight ? "Correct." : "Not quite."}</strong> ${q.fb}</div>
+        <div class="navrow"><span></span><button class="btn gold" onclick="advance()">${(i+1)%BATCH_SIZE===0 || i+1===TOTAL ? "Continue" : "Next question"}</button></div>
+      `;
+    }
+    return;
+  }
+
+  if(state.screen === "batchEnd"){
+    progressShell.style.display = "block";
+    renderTabs();
+    const bn = state._justFinishedBatch;
+    const [bs, be] = batchBounds(bn);
+    document.getElementById("barInner").style.width = Math.round((be/TOTAL)*100) + "%";
+    const bScore = scoreBetween(bs, be);
+    const bMax = be - bs;
+    const bPct = Math.round((bScore/bMax)*100);
+    card.innerHTML = `
+      <h2>Batch ${bn} of ${NUM_BATCHES} complete</h2>
+      <div class="scorebox">
+        <div class="cell"><div class="num">${bScore}/${bMax}</div><div class="lbl">This batch</div></div>
+        <div class="cell"><div class="num">${bPct}%</div><div class="lbl">Batch score</div></div>
+      </div>
+      <div class="navrow">
+        ${bn < NUM_BATCHES ? '<button class="btn ghost" onclick="stopNow()">Stop here and see my results</button>' : '<span></span>'}
+        <button class="btn gold" onclick="continueAfterBatch()">${bn < NUM_BATCHES ? "Continue to next batch" : "See final results"}</button>
+      </div>
+    `;
+    return;
+  }
+
+  if(state.screen === "final"){
+    progressShell.style.display = "none";
+    const completed = state.completedCount || TOTAL;
+    const partial = completed < TOTAL;
+    const score = scoreBetween(0, completed);
+    const pct = score / completed;
+    const passed = pct >= PASS_THRESHOLD;
+    const rows = [];
+    const fullBatches = Math.floor(completed / BATCH_SIZE);
+    for(let bn=1; bn<=fullBatches; bn++){
+      const [bs,be] = batchBounds(bn);
+      const s = scoreBetween(bs,be);
+      rows.push(`<tr><td>Batch ${bn} (Q${bs+1}&ndash;${be})</td><td>${s} / ${be-bs}</td><td>${Math.round((s/(be-bs))*100)}%</td></tr>`);
+    }
+    card.innerHTML = `
+      <h1>${partial ? "Exam Stopped Early — Provisional Results" : "Exam Complete"}</h1>
+      <div class="sub">${state.candidate.name || "Candidate"}${state.candidate.email ? " &middot; " + state.candidate.email : ""} &middot; ${completed} of ${TOTAL} questions completed</div>
+      <table class="results"><tr><th>Section</th><th>Score</th><th>%</th></tr>${rows.join("")}
+        <tr><td><strong>${partial ? "Overall so far" : "Overall"}</strong></td><td>${score} / ${completed}</td><td>${Math.round(pct*100)}%</td></tr>
+      </table>
+      ${courseTableHtml(completed)}
+      <div class="placement">
+        <div class="headline">${TIER_LABEL} — ${passed ? "PASSED" : "Not yet passing"}${partial ? " (provisional)" : ""}</div>
+        <div>Passing threshold is ${Math.round(PASS_THRESHOLD*100)}%. You scored ${Math.round(pct*100)}%${partial ? " based on " + completed + " of " + TOTAL + " questions." : "."}</div>
+      </div>
+      <div class="navrow">
+        <button class="btn ghost" onclick="downloadResults()">Download my results</button>
+        ${partial ? '<button class="btn gold" onclick="resumeExam()">Keep going</button>' : '<span></span>'}
+      </div>
+      <div class="synctag" id="syncTag">${RESULTS_WEBHOOK_URL ? "Submitting your results..." : ""}</div>
+      <div class="footer-note">${RESULTS_WEBHOOK_URL ? "Results and feedback will also be emailed to you shortly." : "Please use Download my results to keep a copy for your records."}</div>
+    `;
+    if(RESULTS_WEBHOOK_URL){ submitResults(score, pct, passed); }
+    return;
+  }
+}
+
+function courseBreakdown(completed){
+  const rows = COURSES.map(c => ({ code: c.code, name: c.name, correct: 0, total: 0 }));
+  QUESTIONS.slice(0, completed).forEach((q, i) => {
+    const r = rows.find(x => x.name === q.cat);
+    if(!r) return;
+    r.total++;
+    if(state.answers[i] !== null && state.answers[i] === q.a) r.correct++;
+  });
+  return rows.filter(r => r.total > 0).map(r => ({ ...r, percent: Math.round((r.correct / r.total) * 100) }));
+}
+function courseTableHtml(completed){
+  const rows = courseBreakdown(completed);
+  if(!rows.length) return "";
+  const limit = Math.round(PASS_THRESHOLD * 100);
+  const below = rows.filter(r => r.percent < limit);
+  return `
+      <div class="section-label">Score by course</div>
+      <div class="section-note">Each question maps to one of the ${COURSES.length} courses in the ${PATHWAY_NAME} pathway. Courses below ${limit}% are where the pathway will add the most for you.</div>
+      <table class="results"><tr><th>Course</th><th>Score</th><th>%</th></tr>${rows.map(r =>
+        `<tr><td><span class="coursecode">${r.code}</span>${r.name}</td><td>${r.correct} / ${r.total}</td><td class="${r.percent < limit ? "below" : ""}">${r.percent}%</td></tr>`).join("")}
+      </table>
+      ${below.length ? `<div class="footer-note"><strong>Recommended starting points:</strong> ${below.map(r => r.code).join(", ")}.</div>` : `<div class="footer-note">You scored at or above ${limit}% in every course you completed.</div>`}`;
+}
+
+function renderTabs(){
+  const tabs = document.getElementById("tabs");
+  const currentBatch = state.screen === "batchEnd" ? state._justFinishedBatch : batchOfIndex(state.qIndex);
+  let html = "";
+  for(let b=1; b<=NUM_BATCHES; b++){
+    let cls = "tab";
+    if(b < currentBatch || (state.screen === "batchEnd" && b <= currentBatch)) cls += " done";
+    else if(b === currentBatch && state.screen !== "batchEnd") cls += " active";
+    html += `<div class="${cls}">Batch ${b}</div>`;
+  }
+  tabs.innerHTML = html;
+}
+
+function beginExam(){
+  state.candidate.name = document.getElementById("inName").value.trim();
+  state.candidate.email = document.getElementById("inEmail").value.trim();
+  state.startedAt = new Date().toISOString();
+  state.screen = "question";
+  state.qIndex = 0;
+  render();
+}
+function selectAnswer(idx){
+  if(state.answers[state.qIndex] !== null) return;
+  state.answers[state.qIndex] = idx;
+  render();
+}
+function advance(){
+  const finishedIndex = state.qIndex;
+  const isLastInBatch = (finishedIndex + 1) % BATCH_SIZE === 0 || finishedIndex + 1 === TOTAL;
+  if(isLastInBatch){
+    state._justFinishedBatch = batchOfIndex(finishedIndex);
+    sendBatch(state._justFinishedBatch);
+    state.screen = "batchEnd";
+  } else {
+    state.qIndex = finishedIndex + 1;
+    state.screen = "question";
+  }
+  render();
+}
+function continueAfterBatch(){
+  if(state._justFinishedBatch >= NUM_BATCHES){
+    state.completedCount = TOTAL;
+    state.stoppedEarly = false;
+    state.screen = "final";
+  }
+  else { state.qIndex = state._justFinishedBatch * BATCH_SIZE; state.screen = "question"; }
+  render();
+}
+
+function stopNow(){
+  state.completedCount = batchBounds(state._justFinishedBatch)[1];
+  state.stoppedEarly = true;
+  state.screen = "final";
+  render();
+}
+
+function resumeExam(){
+  state.qIndex = Math.min(state.completedCount, TOTAL - 1);
+  state.screen = "question";
+  render();
+}
+
+function batchSummary(){
+  const out = [];
+  for(let bn = 1; bn <= NUM_BATCHES; bn++){
+    const [bs, be] = batchBounds(bn);
+    if(state.answers[be - 1] === null) break;
+    const s = scoreBetween(bs, be);
+    out.push({ batch: bn, score: s, total: be - bs, percent: Math.round((s / (be - bs)) * 100) });
+  }
+  return out;
+}
+
+function sendBatch(bn){
+  if(!RESULTS_WEBHOOK_URL) return;
+  const b = batchSummary().find(x => x.batch === bn);
+  if(!b) return;
+  fetch(RESULTS_WEBHOOK_URL, {
+    method: "POST",
+    headers: { "Content-Type": "text/plain" },
+    body: JSON.stringify({
+      type: "batch", tier: TIER_LABEL,
+      name: state.candidate.name, email: state.candidate.email,
+      ...b, startedAt: state.startedAt, completedAt: new Date().toISOString()
+    })
+  }).catch(() => {});
+}
+
+async function submitResults(score, pct, passed){
+  try{
+    const payload = {
+      type: "final", tier: TIER_LABEL, name: state.candidate.name, email: state.candidate.email,
+      batches: batchSummary(),
+      startedAt: state.startedAt, completedAt: new Date().toISOString(),
+      score, total: TOTAL, percent: Math.round(pct*1000)/10, passed,
+      answers: QUESTIONS.map((q,i) => ({ cat: q.cat, given: state.answers[i], correct: q.a }))
+    };
+    const res = await fetch(RESULTS_WEBHOOK_URL, {
+      method: "POST", headers: {"Content-Type":"text/plain"}, body: JSON.stringify(payload)
+    });
+    document.getElementById("syncTag").textContent = res.ok ? "Results submitted." : "Could not submit automatically — please use Download and send manually.";
+  } catch(e){
+    const tag = document.getElementById("syncTag");
+    if(tag) tag.textContent = "Could not submit automatically — please use Download and send manually.";
+  }
+}
+
+function downloadResults(){
+  const completed = state.completedCount || TOTAL;
+  const partial = completed < TOTAL;
+  const score = scoreBetween(0, completed); const pct = score/completed;
+  let lines = [];
+  lines.push(`INGLESLEGAL ${TIER_LABEL.toUpperCase()} EXAM — RESULTS` + (partial ? " (PARTIAL — STOPPED EARLY)" : ""));
+  lines.push("==========================================");
+  lines.push("Candidate: " + (state.candidate.name || "(not provided)"));
+  lines.push("Email: " + (state.candidate.email || "(not provided)"));
+  lines.push("Started: " + state.startedAt);
+  lines.push("Completed: " + new Date().toISOString());
+  lines.push("Questions completed: " + completed + " of " + TOTAL);
+  lines.push("");
+  const fullBatches = Math.floor(completed / BATCH_SIZE);
+  for(let bn=1; bn<=fullBatches; bn++){
+    const [bs,be] = batchBounds(bn);
+    const s = scoreBetween(bs,be);
+    lines.push(`Batch ${bn} (Q${bs+1}-${be}): ${s}/${be-bs} (${Math.round((s/(be-bs))*100)}%)`);
+  }
+  lines.push("");
+  lines.push("SCORE BY COURSE");
+  courseBreakdown(completed).forEach(r => lines.push(`${r.code} ${r.name}: ${r.correct}/${r.total} (${r.percent}%)`));
+  lines.push("");
+  lines.push(`OVERALL: ${score}/${completed} (${Math.round(pct*100)}%) — ${pct>=PASS_THRESHOLD ? "PASSED" : "Not yet passing"}${partial ? " (provisional)" : ""} (threshold ${Math.round(PASS_THRESHOLD*100)}%)`);
+  lines.push("");
+  lines.push("DETAILED ANSWERS");
+  QUESTIONS.slice(0, completed).forEach((q,i) => {
+    const given = state.answers[i];
+    const givenLetter = given === null ? "SKIPPED" : String.fromCharCode(65+given);
+    const correctLetter = String.fromCharCode(65+q.a);
+    lines.push(`Q${i+1} [${q.cat}] — Given: ${givenLetter} | Correct: ${correctLetter} | ${given===q.a?"CORRECT":"INCORRECT"}`);
+  });
+  const blob = new Blob([lines.join("\n")], {type:"text/plain"});
+  const url = URL.createObjectURL(blob);
+  const a = document.createElement("a");
+  const safeName = (state.candidate.name || "candidate").replace(/[^a-z0-9]+/gi, "_");
+  a.href = url; a.download = `Ingleslegal_${TIER_LABEL.replace(/\s+/g,"_")}_${safeName}.txt`;
+  document.body.appendChild(a); a.click(); document.body.removeChild(a);
+  URL.revokeObjectURL(url);
+}
+
+// ---- Progress saving + leave warning ----
+const SAVE_KEY = "ingleslegal_" + TIER_LABEL.replace(/\s+/g, "_");
+function saveProgress(){ try{ localStorage.setItem(SAVE_KEY, JSON.stringify(state)); }catch(e){} }
+function clearProgress(){ try{ localStorage.removeItem(SAVE_KEY); }catch(e){} }
+function loadProgress(){
+  try{
+    const s = JSON.parse(localStorage.getItem(SAVE_KEY));
+    if(s && (s.screen === "question" || s.screen === "batchEnd") && Array.isArray(s.answers) && s.answers.length === TOTAL) return s;
+  }catch(e){}
+  return null;
+}
+
+window.addEventListener("beforeunload", e => {
+  if(state.screen === "question" || state.screen === "batchEnd"){
+    e.preventDefault(); e.returnValue = "";
+  }
+});
+
+const saved = loadProgress();
+if(saved && confirm("You have an exam in progress (question " + (saved.qIndex + 1) + " of " + TOTAL + "). Resume where you left off?")){
+  state = saved;
+} else {
+  clearProgress();
+}
+render();
+</script>
+</body>
+</html>
