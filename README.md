@@ -165,11 +165,17 @@ See `/vocabulary/DEPLOYMENT.md` for full instructions on:
   - Intermediate (~33%)
   - Advanced (~33%)
 
+- **Question formats** (rebuilt Oct 2026): term → definition, definition → term,
+  fill-in-the-blank sentences, and English ↔ Spanish equivalents
 - **Quality Checks**:
-  - No length bias (correct answer isn't always longer/shorter)
-  - No position bias (correct answer random in options 1-4)
-  - Distractors from actual exam bank, not invented
-  - Explanations for every answer
+  - Distractors are look-alike terms from the same sub-topic (e.g. void / voidable / unenforceable),
+    with true synonyms excluded so only one option is correct
+  - No length bias (correct option is the longest only ~20–30% of the time)
+  - No position bias (answers balanced across options A–D)
+  - No giveaway wording (definitions avoid repeating the term being tested)
+  - Every explanation gives the definition, a Spanish equivalent, and the difference
+    from the most likely wrong answer
+  - Half exams draw a random half of the category across all difficulty tiers
 
 ---
 

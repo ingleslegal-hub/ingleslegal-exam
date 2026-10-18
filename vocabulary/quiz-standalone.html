@@ -368,12 +368,23 @@
           // For other categories, select half or full
           const halfSize = Math.ceil(filtered.length / 2);
           if (this.variant === 'half') {
-            filtered = filtered.slice(0, halfSize);
+            // Random half drawn from the whole category (all difficulty tiers), not just the first half
+            const pool = filtered.slice();
+            for (let i = pool.length - 1; i > 0; i--) {
+              const j = Math.floor(Math.random() * (i + 1));
+              [pool[i], pool[j]] = [pool[j], pool[i]];
+            }
+            filtered = pool.slice(0, halfSize);
           }
         }
 
         // Shuffle
-        this.filteredQuestions = filtered.sort(() => Math.random() - 0.5);
+        const shuffled = filtered.slice();
+        for (let i = shuffled.length - 1; i > 0; i--) {
+          const j = Math.floor(Math.random() * (i + 1));
+          [shuffled[i], shuffled[j]] = [shuffled[j], shuffled[i]];
+        }
+        this.filteredQuestions = shuffled;
         document.getElementById('totalQuestions').textContent = this.filteredQuestions.length;
       },
 
