@@ -59,7 +59,8 @@
   .btn.ghost{ background:transparent; color:var(--aubergine); border:1.5px solid var(--aubergine); }
   .field{ margin-bottom:14px; font-family:"Archivo", Arial, sans-serif; }
   .field label{ display:block; font-size:13px; color:var(--body-on-light); margin-bottom:5px; }
-  .field input{ width:100%; padding:11px 12px; border:1.5px solid rgba(110,90,121,.3); border-radius:3px; font-size:15px; font-family:"Archivo", Arial, sans-serif; }
+  .field input, .field select{ width:100%; padding:11px 12px; border:1.5px solid rgba(110,90,121,.3); border-radius:3px; font-size:15px; font-family:"Archivo", Arial, sans-serif; background:#fff; color:var(--body-on-light); }
+  .field .err{ color:var(--bad); font-size:12.5px; margin-top:6px; display:none; }
   .banner{ background:var(--aubergine); color:var(--cream); padding:16px 20px; border-radius:3px; margin-bottom:20px; font-family:"Archivo", Arial, sans-serif; font-size:14px; line-height:1.5; }
   .rationale{ background:var(--light-section); border-left:3px solid var(--gold); border-radius:3px; padding:14px 16px; margin:16px 0; font-family:"Archivo", Arial, sans-serif; font-size:13.5px; line-height:1.55; color:var(--lifted-aubergine); }
   .rationale strong{ color:var(--bronze); }
@@ -114,7 +115,7 @@ const NUM_BATCHES = Math.ceil(TOTAL / BATCH_SIZE);
 
 let state = {
   screen: "start",
-  candidate: { name: "", email: "" },
+  candidate: { name: "", email: "", branch: "", level: "", usage: "" },
   answers: new Array(TOTAL).fill(null),
   qIndex: 0,
   startedAt: null,
@@ -148,6 +149,42 @@ function render(){
       <div class="sub">${TOTAL} questions across ${NUM_BATCHES} batches of ${BATCH_SIZE}. Correct answers and explanations are included in your final report, and you'll see a score check after every batch. After any batch except the last, you can stop and get a provisional result based on what you've completed so far, or continue for a complete, non-provisional result.</div>
       <div class="field"><label>Full name</label><input id="inName" type="text" placeholder="Jane Candidate"></div>
       <div class="field"><label>Email</label><input id="inEmail" type="email" placeholder="jane@example.com"></div>
+      <div class="field"><label>What branch of law are you interested in?</label>
+        <select id="inBranch">
+          <option value="" selected disabled>Choose a branch</option>
+          <option>Corporate &amp; Commercial Law</option>
+          <option>Contract Law</option>
+          <option>Litigation &amp; Dispute Resolution</option>
+          <option>Intellectual Property</option>
+          <option>Labor &amp; Employment Law</option>
+          <option>International Trade Law</option>
+          <option>Tax Law</option>
+          <option>Real Estate Law</option>
+          <option>Criminal Law</option>
+          <option>Immigration Law</option>
+          <option>Other</option>
+        </select>
+      </div>
+      <div class="field"><label>What is your current level of English?</label>
+        <select id="inLevel">
+          <option value="" selected disabled>Choose a level</option>
+          <option>A1 &ndash; Beginner</option>
+          <option>A2 &ndash; Elementary</option>
+          <option>B1 &ndash; Intermediate</option>
+          <option>B2 &ndash; Upper Intermediate</option>
+          <option>C1 &ndash; Advanced</option>
+          <option>C2 &ndash; Proficient / Native</option>
+          <option>Not sure</option>
+        </select>
+      </div>
+      <div class="field"><label>How much legal English do you use at your job?</label>
+        <select id="inUsage">
+          <option value="" selected disabled>Choose a percentage</option>
+          <option>10%</option><option>20%</option><option>30%</option><option>40%</option><option>50%</option>
+          <option>60%</option><option>70%</option><option>80%</option><option>90%</option><option>100%</option>
+        </select>
+      </div>
+      <div class="err" id="startErr">Please complete every field above before beginning the exam.</div>
       <div class="navrow"><span></span><button class="btn gold" onclick="beginExam()">Begin Exam</button></div>
       <div class="footer-note">Your email is used only to send you your results and feedback.</div>
     `;
@@ -283,8 +320,22 @@ function renderTabs(){
 }
 
 function beginExam(){
-  state.candidate.name = document.getElementById("inName").value.trim();
-  state.candidate.email = document.getElementById("inEmail").value.trim();
+  const name = document.getElementById("inName").value.trim();
+  const email = document.getElementById("inEmail").value.trim();
+  const branch = document.getElementById("inBranch").value;
+  const level = document.getElementById("inLevel").value;
+  const usage = document.getElementById("inUsage").value;
+  const err = document.getElementById("startErr");
+  if(!name || !email || !branch || !level || !usage){
+    if(err) err.style.display = "block";
+    return;
+  }
+  if(err) err.style.display = "none";
+  state.candidate.name = name;
+  state.candidate.email = email;
+  state.candidate.branch = branch;
+  state.candidate.level = level;
+  state.candidate.usage = usage;
   state.startedAt = new Date().toISOString();
   state.screen = "question";
   state.qIndex = 0;
@@ -352,6 +403,7 @@ function sendBatch(bn){
     body: JSON.stringify({
       type: "batch", tier: TIER_LABEL,
       name: state.candidate.name, email: state.candidate.email,
+      branch: state.candidate.branch, level: state.candidate.level, legalEnglishUsage: state.candidate.usage,
       ...b, startedAt: state.startedAt, completedAt: new Date().toISOString()
     })
   }).catch(() => {});
@@ -361,6 +413,7 @@ async function submitResults(score, pct, passed){
   try{
     const payload = {
       type: "final", tier: TIER_LABEL, name: state.candidate.name, email: state.candidate.email,
+      branch: state.candidate.branch, level: state.candidate.level, legalEnglishUsage: state.candidate.usage,
       batches: batchSummary(),
       startedAt: state.startedAt, completedAt: new Date().toISOString(),
       score, total: TOTAL, percent: Math.round(pct*1000)/10, passed,
@@ -385,6 +438,9 @@ function downloadResults(){
   lines.push("==========================================");
   lines.push("Candidate: " + (state.candidate.name || "(not provided)"));
   lines.push("Email: " + (state.candidate.email || "(not provided)"));
+  lines.push("Branch of law: " + (state.candidate.branch || "(not provided)"));
+  lines.push("Current English level: " + (state.candidate.level || "(not provided)"));
+  lines.push("Legal English used at job: " + (state.candidate.usage || "(not provided)"));
   lines.push("Started: " + state.startedAt);
   lines.push("Completed: " + new Date().toISOString());
   lines.push("Questions completed: " + completed + " of " + TOTAL);
