@@ -19,7 +19,7 @@
   .brandmark{ display:flex; align-items:center; gap:10px; }
   .wordmark{ font-family:"Archivo", Arial, sans-serif; font-weight:600; letter-spacing:-0.01em; font-size:19px; }
   .wordmark .ingles{ color:var(--gold); } .wordmark .legal{ color:var(--cream); }
-  .tag{ font-size:11px; color:var(--panel-line); font-family:"Archivo", Arial, sans-serif; letter-spacing:.5px; text-transform:uppercase;}
+  .tag{ font-size:11px; color:#B9AAC4; font-family:"Archivo", Arial, sans-serif; letter-spacing:.5px; text-transform:uppercase;}
   .wrap{ max-width:740px; margin:0 auto; padding:28px 20px 60px; }
   .card{ background:#fff; border:1px solid rgba(110,90,121,.18); border-radius:3px; padding:32px 30px; box-shadow:0 1px 3px rgba(42,27,51,.06); }
   h1{ font-family:"Archivo", Arial, sans-serif; font-weight:600; font-size:26px; margin:0 0 6px; color:var(--lifted-aubergine); letter-spacing:-0.01em;}
@@ -39,6 +39,16 @@
   .opt:disabled{ cursor:default; }
   .opt.correct{ border-color:var(--ok); background:#eef6f1; color:#1f4d38; }
   .opt.incorrect{ border-color:var(--bad); background:#f9eeec; color:#7a2c1e; }
+  .opt.selected{ border-color:var(--gold); background:#faf3e4; color:var(--lifted-aubergine); box-shadow:0 0 0 1px var(--gold) inset; }
+  .review h2{ margin-top:26px; }
+  .rv{ border:1px solid rgba(110,90,121,.2); border-left:4px solid var(--bad); border-radius:3px; padding:14px 16px; margin:0 0 12px; font-family:"Archivo", Arial, sans-serif; background:#fff; }
+  .rv.ok{ border-left-color:var(--ok); }
+  .rv .rq{ font-size:12px; color:var(--bronze); text-transform:uppercase; letter-spacing:.4px; margin-bottom:6px; }
+  .rv .rs{ font-family:"Spectral", Georgia, serif; font-size:16px; line-height:1.5; color:var(--lifted-aubergine); margin-bottom:10px; white-space:pre-wrap; }
+  .rv .ra{ font-size:14px; line-height:1.5; margin:3px 0; }
+  .rv .ra.bad{ color:#7a2c1e; } .rv .ra.good{ color:#1f4d38; }
+  .rv .rationale{ margin:10px 0 0; }
+  details.rvgroup > summary{ cursor:pointer; font-family:"Archivo", Arial, sans-serif; font-weight:600; color:var(--lifted-aubergine); margin:8px 0 12px; }
   .opt .letter{ display:inline-block; width:22px; font-weight:600; color:var(--bronze); }
   .navrow{ display:flex; justify-content:space-between; align-items:center; margin-top:18px; font-family:"Archivo", Arial, sans-serif;}
   .btn{ background:var(--aubergine); color:var(--cream); border:none; padding:12px 22px; border-radius:3px; font-family:"Archivo", Arial, sans-serif; font-weight:500; font-size:14px; cursor:pointer; letter-spacing:.3px; }
@@ -69,6 +79,60 @@
   .coursecode{ color:var(--bronze); font-weight:600; margin-right:6px; }
   .section-label{ font-family:"Archivo", Arial, sans-serif; font-weight:600; font-size:15px; color:var(--lifted-aubergine); margin:22px 0 4px; }
   .section-note{ font-family:"Archivo", Arial, sans-serif; font-size:12.5px; color:var(--body-on-light); margin:0 0 4px; line-height:1.5; }
+  .topics td.bartd{ width:34%; }
+  .bar{ height:8px; background:#efe9db; border-radius:4px; overflow:hidden; }
+  .bar span{ display:block; height:100%; background:var(--gold); }
+  .bar.low span{ background:var(--bad); }
+  .nextstep{ border:1px solid rgba(110,90,121,.3); border-left:3px solid var(--gold); border-radius:3px; padding:18px 20px; margin:18px 0; font-family:"Archivo", Arial, sans-serif; background:var(--light-section); }
+  .nextstep .headline{ font-weight:600; font-size:16px; margin-bottom:6px; color:var(--lifted-aubergine); }
+  .nextstep p{ margin:0 0 12px; font-size:14px; line-height:1.55; }
+  .nextstep a.btn{ display:inline-block; text-decoration:none; }
+  .filterrow{ font-family:"Archivo", Arial, sans-serif; font-size:13px; margin:0 0 14px; }
+  .filterrow select{ margin-left:8px; padding:7px 10px; border-radius:3px; border:1.5px solid rgba(110,90,121,.3); font-family:inherit; font-size:13px; }
+  body.results-dark{ background:#1E1226; }
+  body.results-dark .card{ background:var(--aubergine); border-color:var(--panel-line); box-shadow:0 2px 12px rgba(0,0,0,.4); }
+  body.results-dark h1, body.results-dark h2{ color:var(--gold); }
+  body.results-dark .sub, body.results-dark .footer-note, body.results-dark .nextstep p, body.results-dark .filterrow{ color:var(--cream); }
+  body.results-dark .synctag{ color:#B9AAC4; }
+  body.results-dark table.results th{ background:#1E1226; color:var(--gold); }
+  body.results-dark table.results td{ border-color:rgba(110,90,121,.55); color:var(--cream); background:transparent; }
+  body.results-dark table.results tr:nth-child(even) td{ background:rgba(255,255,255,.04); }
+  body.results-dark .bar{ background:rgba(255,255,255,.12); }
+  body.results-dark .placement{ background:#1E1226; }
+  body.results-dark .nextstep{ background:#1E1226; border-color:rgba(110,90,121,.55); border-left-color:var(--gold); }
+  body.results-dark .nextstep .headline{ color:var(--gold); }
+  body.results-dark .rv{ background:#33213D; border-color:rgba(110,90,121,.55); border-left-color:var(--bad); }
+  body.results-dark .rv.ok{ border-left-color:var(--ok); }
+  body.results-dark .rv .rq{ color:var(--gold); }
+  body.results-dark .rv .rs{ color:var(--cream); }
+  body.results-dark .rv .ra.bad{ color:#E29585; }
+  body.results-dark .rv .ra.good{ color:#7FCBA5; }
+  body.results-dark .rationale{ background:rgba(201,169,110,.1); color:var(--cream); }
+  body.results-dark .rationale strong{ color:var(--gold); }
+  body.results-dark details.rvgroup > summary{ color:var(--cream); }
+  body.results-dark .btn.ghost{ color:var(--gold); border-color:var(--gold); }
+  body.results-dark .btn.ghost:hover{ background:rgba(201,169,110,.12); }
+  body.results-dark .filterrow select{ background:#1E1226; color:var(--cream); border-color:var(--panel-line); }
+  .offer{ border:1.5px solid var(--gold); border-radius:3px; padding:18px 20px; margin:18px 0; font-family:"Archivo", Arial, sans-serif; background:linear-gradient(135deg, rgba(201,169,110,.16), rgba(201,169,110,.04)); }
+  .offer .tagline{ font-size:11px; letter-spacing:.8px; text-transform:uppercase; color:var(--gold); font-weight:600; margin-bottom:4px; }
+  .offer .headline{ font-size:20px; font-weight:600; color:var(--cream); margin-bottom:6px; }
+  .offer p{ margin:0 0 12px; font-size:14px; line-height:1.55; color:var(--cream); }
+  .offer .coderow{ display:flex; gap:10px; align-items:center; flex-wrap:wrap; }
+  .offer code{ font-family:"Courier New", monospace; font-size:20px; letter-spacing:2px; font-weight:700; color:var(--gold); border:1.5px dashed var(--gold); padding:8px 16px; border-radius:3px; background:#1E1226; }
+  .sharebox{ border:1px solid rgba(110,90,121,.55); border-radius:3px; padding:18px 20px; margin:18px 0; font-family:"Archivo", Arial, sans-serif; background:#1E1226; }
+  .sharebox .headline{ font-weight:600; font-size:16px; color:var(--gold); margin-bottom:6px; }
+  .sharebox p{ margin:0 0 12px; font-size:14px; line-height:1.55; color:var(--cream); }
+  .sharerow{ display:flex; gap:10px; flex-wrap:wrap; }
+  .sharerow a.btn{ display:inline-block; text-decoration:none; }
+  .rec{ border-top:1px solid rgba(110,90,121,.55); padding-top:12px; margin-top:12px; }
+  .rec .recname{ font-weight:600; color:var(--cream); font-size:15px; }
+  .rec .recwhy{ font-size:13px; color:#B9AAC4; margin:2px 0 8px; }
+  .rec p{ margin:0 0 10px; }
+  .rec .pill{ display:inline-block; font-size:10px; letter-spacing:.6px; text-transform:uppercase; background:var(--gold); color:var(--aubergine); padding:2px 8px; border-radius:10px; margin-right:8px; font-weight:700; vertical-align:middle; }
+  body.results-dark .section-label{ color:var(--gold); }
+  body.results-dark .section-note{ color:var(--cream); }
+  body.results-dark .coursecode{ color:var(--gold); }
+  body.results-dark table.results td.below{ color:#E29585; }
   @media (max-width:600px){ .wrap{ padding:16px 12px 40px; } .card{ padding:22px 18px; } h1{ font-size:22px; } .stem{font-size:16px;} }
 </style>
 </head>
@@ -129,9 +193,15 @@ function scoreBetween(start, end){
   for(let i=start;i<end;i++){ if(state.answers[i] !== null && state.answers[i] === QUESTIONS[i].a) c++; }
   return c;
 }
+function fmtPct(x){
+  let v = Math.round(x*1000)/10;
+  if(x < PASS_THRESHOLD && v >= PASS_THRESHOLD*100) v = Math.round(PASS_THRESHOLD*1000 - 1)/10;
+  return (Number.isInteger(v) ? v : v.toFixed(1)) + "%";
+}
 function totalScore(){ return scoreBetween(0, TOTAL); }
 
 function render(){
+  document.body.classList.toggle("results-dark", state.screen === "final");
   if(state.screen === "question" || state.screen === "batchEnd") saveProgress();
   if(state.screen === "final") clearProgress();
   const card = document.getElementById("card");
@@ -141,7 +211,7 @@ function render(){
     progressShell.style.display = "none";
     card.innerHTML = `
       <h1>${TIER_LABEL} Certification Exam</h1>
-      <div class="sub">This exam covers the core content of the ${COURSES.length}-course ${PATHWAY_NAME} pathway. Your results include a score for each course. ${TOTAL} questions across ${NUM_BATCHES} batches of ${BATCH_SIZE}. You'll see the correct answer and rationale right after each question, and a score check after every batch. After any batch except the last, you can stop and get a provisional result based on what you've completed so far, or continue for a complete, non-provisional result.</div>
+      <div class="sub">This exam covers the core content of the ${COURSES.length}-course ${PATHWAY_NAME} pathway. Your results include a score for each course. ${TOTAL} questions across ${NUM_BATCHES} batches of ${BATCH_SIZE}. Correct answers and explanations are included in your final report, and you'll see a score check after every batch. After any batch except the last, you can stop and get a provisional result based on what you've completed so far, or continue for a complete, non-provisional result.</div>
       <div class="field"><label>Full name</label><input id="inName" type="text" placeholder="Jane Candidate"></div>
       <div class="field"><label>Email</label><input id="inEmail" type="email" placeholder="jane@example.com"></div>
       <div class="navrow"><span></span><button class="btn gold" onclick="beginExam()">Begin Exam</button></div>
@@ -158,36 +228,23 @@ function render(){
     const pct = Math.round((i/TOTAL)*100);
     document.getElementById("barInner").style.width = pct + "%";
     const given = state.answers[i];
-    const answered = given !== null || state.awaitingNext;
 
     card.innerHTML = `
       <div class="qmeta">${q.cat} &middot; Question ${i+1} of ${TOTAL} &middot; Batch ${batchOfIndex(i)} of ${NUM_BATCHES}</div>
       <div class="stem">${q.stem}</div>
       <div id="optsHolder"></div>
-      <div id="rationaleHolder"></div>
-      <div class="navrow"><span></span><span></span></div>
+      <div class="navrow"><span></span><button class="btn gold" id="nextBtn" onclick="advance()" ${given === null ? "disabled" : ""}>${(i+1)%BATCH_SIZE===0 || i+1===TOTAL ? "Continue" : "Next question"}</button></div>
     `;
     const holder = document.getElementById("optsHolder");
     q.opts.forEach((opt, idx) => {
       const btn = document.createElement("button");
       let cls = "opt";
-      if(answered){
-        if(idx === q.a) cls += " correct";
-        else if(idx === given) cls += " incorrect";
-      }
+      if(idx === given) cls += " selected";
       btn.className = cls;
-      btn.disabled = answered;
       btn.innerHTML = `<span class="letter">${String.fromCharCode(65+idx)}.</span> ${opt}`;
       btn.onclick = () => selectAnswer(idx);
       holder.appendChild(btn);
     });
-    if(answered){
-      const wasRight = given === q.a;
-      document.getElementById("rationaleHolder").innerHTML = `
-        <div class="rationale"><strong>${wasRight ? "Correct." : "Not quite."}</strong> ${q.fb}</div>
-        <div class="navrow"><span></span><button class="btn gold" onclick="advance()">${(i+1)%BATCH_SIZE===0 || i+1===TOTAL ? "Continue" : "Next question"}</button></div>
-      `;
-    }
     return;
   }
 
@@ -226,19 +283,23 @@ function render(){
     for(let bn=1; bn<=fullBatches; bn++){
       const [bs,be] = batchBounds(bn);
       const s = scoreBetween(bs,be);
-      rows.push(`<tr><td>Batch ${bn} (Q${bs+1}&ndash;${be})</td><td>${s} / ${be-bs}</td><td>${Math.round((s/(be-bs))*100)}%</td></tr>`);
+      rows.push(`<tr><td>Batch ${bn} (Q${bs+1}&ndash;${be})</td><td>${s} / ${be-bs}</td><td>${fmtPct(s/(be-bs))}</td></tr>`);
     }
     card.innerHTML = `
       <h1>${partial ? "Exam Stopped Early — Provisional Results" : "Exam Complete"}</h1>
       <div class="sub">${state.candidate.name || "Candidate"}${state.candidate.email ? " &middot; " + state.candidate.email : ""} &middot; ${completed} of ${TOTAL} questions completed</div>
       <table class="results"><tr><th>Section</th><th>Score</th><th>%</th></tr>${rows.join("")}
-        <tr><td><strong>${partial ? "Overall so far" : "Overall"}</strong></td><td>${score} / ${completed}</td><td>${Math.round(pct*100)}%</td></tr>
+        <tr><td><strong>${partial ? "Overall so far" : "Overall"}</strong></td><td>${score} / ${completed}</td><td>${fmtPct(pct)}</td></tr>
       </table>
       ${courseTableHtml(completed)}
       <div class="placement">
         <div class="headline">${TIER_LABEL} — ${passed ? "PASSED" : "Not yet passing"}${partial ? " (provisional)" : ""}</div>
-        <div>Passing threshold is ${Math.round(PASS_THRESHOLD*100)}%. You scored ${Math.round(pct*100)}%${partial ? " based on " + completed + " of " + TOTAL + " questions." : "."}</div>
+        <div>Passing threshold is ${Math.round(PASS_THRESHOLD*100)}%. You scored ${fmtPct(pct)}${partial ? " based on " + completed + " of " + TOTAL + " questions." : "."}${passed ? "" : " " + shortBy(score, completed)}</div>
       </div>
+      ${nextStepHTML(completed, passed)}
+      ${discountHTML()}
+      ${shareHTML(fmtPct(pct))}
+      ${reviewHTML(completed)}
       <div class="navrow">
         <button class="btn ghost" onclick="downloadResults()">Download my results</button>
         ${partial ? '<button class="btn gold" onclick="resumeExam()">Keep going</button>' : '<span></span>'}
@@ -275,6 +336,113 @@ function courseTableHtml(completed){
       ${below.length ? `<div class="footer-note"><strong>Recommended starting points:</strong> ${below.map(r => r.code).join(", ")}.</div>` : `<div class="footer-note">You scored at or above ${limit}% in every course you completed.</div>`}`;
 }
 
+function shortBy(score, completed){
+  const need = Math.ceil(PASS_THRESHOLD*completed - 1e-9) - score;
+  return need > 0 ? "You were " + need + " correct answer" + (need === 1 ? "" : "s") + " short of passing." : "";
+}
+function topicStats(completed){
+  const map = {}; const order = [];
+  for(let i=0;i<completed;i++){
+    const c = QUESTIONS[i].cat;
+    if(!map[c]){ map[c] = {cat:c, right:0, total:0}; order.push(c); }
+    map[c].total++; if(state.answers[i] === QUESTIONS[i].a) map[c].right++;
+  }
+  return order.map(c => map[c]);
+}
+const DISCOUNT_CODE = "EXAM10";
+const DISCOUNT_PCT = 10;
+const DISCOUNT_DAYS = 7;
+const COURSES_URL = "https://www.ingleslegal.com/courses";
+const EXAM_URL = "https://ingleslegal-hub.github.io/ingleslegal-exam/pathways/immigration-exam.html";
+const EXAM_NAME = TIER_LABEL + " exam";
+function copyText(text, btn, label){
+  const done = () => { if(!btn) return; btn.textContent = "Copied"; setTimeout(() => { btn.textContent = label; }, 1800); };
+  const fallback = () => {
+    const t = document.createElement("textarea"); t.value = text; document.body.appendChild(t); t.select();
+    try{ document.execCommand("copy"); }catch(e){}
+    document.body.removeChild(t); done();
+  };
+  if(navigator.clipboard && navigator.clipboard.writeText){ navigator.clipboard.writeText(text).then(done, fallback); } else { fallback(); }
+}
+function discountHTML(){
+  const until = new Date(Date.now() + DISCOUNT_DAYS*24*60*60*1000);
+  const d = until.toLocaleDateString("en-US", {month:"long", day:"numeric", year:"numeric"});
+  return `<div class="offer">
+    <div class="tagline">Exam taker offer</div>
+    <div class="headline">${DISCOUNT_PCT}% off any Ingles Legal course</div>
+    <p>Use this code at checkout within the next ${DISCOUNT_DAYS} days, until <strong>${d}</strong>.</p>
+    <div class="coderow"><code>${DISCOUNT_CODE}</code><button type="button" class="btn gold" onclick="copyText(DISCOUNT_CODE, this, 'Copy code')">Copy code</button></div>
+  </div>`;
+}
+function shareText(pctText){ return "I scored " + pctText + " on the " + EXAM_NAME + " at Ingles Legal. Try it free: " + EXAM_URL; }
+function inviteText(){ return "I just took the free " + EXAM_NAME + " from Ingles Legal and thought you might want to try it: " + EXAM_URL; }
+let _sharePct = "";
+function doShare(btn){
+  const text = shareText(_sharePct);
+  if(navigator.share){ navigator.share({ title: "Ingles Legal - " + EXAM_NAME, text: text, url: EXAM_URL }).catch(() => {}); }
+  else { copyText(text, btn, "Share"); }
+}
+function shareHTML(pctText){
+  _sharePct = pctText;
+  const wa = "https://wa.me/?text=" + encodeURIComponent(shareText(pctText));
+  const mail = "mailto:?subject=" + encodeURIComponent("Free legal English exam from Ingles Legal") + "&body=" + encodeURIComponent(inviteText());
+  return `<div class="sharebox">
+    <div class="headline">Share your result</div>
+    <p>Know a colleague learning legal English? Invite them to take the exam.</p>
+    <div class="sharerow">
+      <button type="button" class="btn gold" onclick="doShare(this)">Share</button>
+      <a class="btn ghost" href="${wa}" target="_blank" rel="noopener">WhatsApp</a>
+      <a class="btn ghost" href="${mail}">Email a colleague</a>
+    </div>
+  </div>`;
+}
+function nextStepHTML(completed, passed){
+  const limit = Math.round(PASS_THRESHOLD * 100);
+  const weak = courseBreakdown(completed).filter(r => r.percent < limit).sort((a,b) => a.percent - b.percent).slice(0,3);
+  let body;
+  if(passed){
+    body = "Great work. You are ready to apply the " + PATHWAY_NAME + " skills in real case work. Explore our courses to keep growing.";
+  } else if(weak.length){
+    body = "Start with: <strong>" + weak.map(r => r.code + " " + r.name).join(", ") + "</strong>. Review the answers below, then retake this exam to measure your progress.";
+  } else {
+    body = "Review the answers below, then retake this exam to measure your progress.";
+  }
+  return `<div class="nextstep"><div class="headline">Your next step</div><p>${body}</p><a class="btn gold" href="${COURSES_URL}" target="_blank" rel="noopener">Explore Ingles Legal courses</a></div>`;
+}
+function filterReview(v){
+  document.querySelectorAll(".review .rv").forEach(el => { el.style.display = (!v || el.dataset.cat === v) ? "" : "none"; });
+}
+function reviewItem(q, i){
+  const given = state.answers[i];
+  const ok = given === q.a;
+  const L = n => String.fromCharCode(65+n);
+  return `<div class="rv ${ok ? "ok" : ""}" data-cat="${q.cat}">
+    <div class="rq">Question ${i+1} &middot; ${q.cat}</div>
+    <div class="rs">${q.stem}</div>
+    ${ok ? "" : `<div class="ra bad"><strong>Your answer:</strong> ${given === null ? "Skipped" : L(given) + ". " + q.opts[given]}</div>`}
+    <div class="ra good"><strong>${ok ? "Your answer (correct):" : "Correct answer:"}</strong> ${L(q.a)}. ${q.opts[q.a]}</div>
+    <div class="rationale">${q.fb}</div>
+  </div>`;
+}
+function reviewHTML(completed){
+  const missed = [], right = [];
+  for(let i=0;i<completed;i++){ (state.answers[i] === QUESTIONS[i].a ? right : missed).push(i); }
+  const cats = topicStats(completed).map(t => t.cat);
+  let html = '<div class="review"><h2>Answer review</h2>';
+  if(cats.length > 1){
+    html += '<div class="filterrow">Filter by topic:<select onchange="filterReview(this.value)"><option value="">All topics</option>' + cats.map(c => '<option value="' + c.replace(/"/g,"&quot;") + '">' + c + '</option>').join("") + '</select></div>';
+  }
+  if(missed.length){
+    html += `<p class="sub">Questions to review (${missed.length})</p>` + missed.map(i => reviewItem(QUESTIONS[i], i)).join("");
+  } else {
+    html += '<p class="sub">You answered every question correctly.</p>';
+  }
+  if(right.length){
+    html += `<details class="rvgroup"><summary>Questions you answered correctly (${right.length})</summary>` + right.map(i => reviewItem(QUESTIONS[i], i)).join("") + "</details>";
+  }
+  return html + "</div>";
+}
+
 function renderTabs(){
   const tabs = document.getElementById("tabs");
   const currentBatch = state.screen === "batchEnd" ? state._justFinishedBatch : batchOfIndex(state.qIndex);
@@ -297,11 +465,11 @@ function beginExam(){
   render();
 }
 function selectAnswer(idx){
-  if(state.answers[state.qIndex] !== null) return;
   state.answers[state.qIndex] = idx;
   render();
 }
 function advance(){
+  if(state.answers[state.qIndex] === null) return;
   const finishedIndex = state.qIndex;
   const isLastInBatch = (finishedIndex + 1) % BATCH_SIZE === 0 || finishedIndex + 1 === TOTAL;
   if(isLastInBatch){
@@ -399,13 +567,13 @@ function downloadResults(){
   for(let bn=1; bn<=fullBatches; bn++){
     const [bs,be] = batchBounds(bn);
     const s = scoreBetween(bs,be);
-    lines.push(`Batch ${bn} (Q${bs+1}-${be}): ${s}/${be-bs} (${Math.round((s/(be-bs))*100)}%)`);
+    lines.push(`Batch ${bn} (Q${bs+1}-${be}): ${s}/${be-bs} (${fmtPct(s/(be-bs))})`);
   }
   lines.push("");
   lines.push("SCORE BY COURSE");
   courseBreakdown(completed).forEach(r => lines.push(`${r.code} ${r.name}: ${r.correct}/${r.total} (${r.percent}%)`));
   lines.push("");
-  lines.push(`OVERALL: ${score}/${completed} (${Math.round(pct*100)}%) — ${pct>=PASS_THRESHOLD ? "PASSED" : "Not yet passing"}${partial ? " (provisional)" : ""} (threshold ${Math.round(PASS_THRESHOLD*100)}%)`);
+  lines.push(`OVERALL: ${score}/${completed} (${fmtPct(pct)}) — ${pct>=PASS_THRESHOLD ? "PASSED" : "Not yet passing"}${partial ? " (provisional)" : ""} (threshold ${Math.round(PASS_THRESHOLD*100)}%)`);
   lines.push("");
   lines.push("DETAILED ANSWERS");
   QUESTIONS.slice(0, completed).forEach((q,i) => {
@@ -413,6 +581,11 @@ function downloadResults(){
     const givenLetter = given === null ? "SKIPPED" : String.fromCharCode(65+given);
     const correctLetter = String.fromCharCode(65+q.a);
     lines.push(`Q${i+1} [${q.cat}] — Given: ${givenLetter} | Correct: ${correctLetter} | ${given===q.a?"CORRECT":"INCORRECT"}`);
+    if(given !== q.a){
+      lines.push("   " + q.stem.replace(/\s+/g," "));
+      lines.push("   Correct answer: " + correctLetter + ". " + q.opts[q.a]);
+      lines.push("   Explanation: " + q.fb);
+    }
   });
   const blob = new Blob([lines.join("\n")], {type:"text/plain"});
   const url = URL.createObjectURL(blob);

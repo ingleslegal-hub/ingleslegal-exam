@@ -109,6 +109,26 @@
   body.results-dark .btn.ghost{ color:var(--gold); border-color:var(--gold); }
   body.results-dark .btn.ghost:hover{ background:rgba(201,169,110,.12); }
   body.results-dark .filterrow select{ background:#1E1226; color:var(--cream); border-color:var(--panel-line); }
+  .offer{ border:1.5px solid var(--gold); border-radius:3px; padding:18px 20px; margin:18px 0; font-family:"Archivo", Arial, sans-serif; background:linear-gradient(135deg, rgba(201,169,110,.16), rgba(201,169,110,.04)); }
+  .offer .tagline{ font-size:11px; letter-spacing:.8px; text-transform:uppercase; color:var(--gold); font-weight:600; margin-bottom:4px; }
+  .offer .headline{ font-size:20px; font-weight:600; color:var(--cream); margin-bottom:6px; }
+  .offer p{ margin:0 0 12px; font-size:14px; line-height:1.55; color:var(--cream); }
+  .offer .coderow{ display:flex; gap:10px; align-items:center; flex-wrap:wrap; }
+  .offer code{ font-family:"Courier New", monospace; font-size:20px; letter-spacing:2px; font-weight:700; color:var(--gold); border:1.5px dashed var(--gold); padding:8px 16px; border-radius:3px; background:#1E1226; }
+  .sharebox{ border:1px solid rgba(110,90,121,.55); border-radius:3px; padding:18px 20px; margin:18px 0; font-family:"Archivo", Arial, sans-serif; background:#1E1226; }
+  .sharebox .headline{ font-weight:600; font-size:16px; color:var(--gold); margin-bottom:6px; }
+  .sharebox p{ margin:0 0 12px; font-size:14px; line-height:1.55; color:var(--cream); }
+  .sharerow{ display:flex; gap:10px; flex-wrap:wrap; }
+  .sharerow a.btn{ display:inline-block; text-decoration:none; }
+  .rec{ border-top:1px solid rgba(110,90,121,.55); padding-top:12px; margin-top:12px; }
+  .rec .recname{ font-weight:600; color:var(--cream); font-size:15px; }
+  .rec .recwhy{ font-size:13px; color:#B9AAC4; margin:2px 0 8px; }
+  .rec p{ margin:0 0 10px; }
+  .rec .pill{ display:inline-block; font-size:10px; letter-spacing:.6px; text-transform:uppercase; background:var(--gold); color:var(--aubergine); padding:2px 8px; border-radius:10px; margin-right:8px; font-weight:700; vertical-align:middle; }
+  body.results-dark .section-label{ color:var(--gold); }
+  body.results-dark .section-note{ color:var(--cream); }
+  body.results-dark .coursecode{ color:var(--gold); }
+  body.results-dark table.results td.below{ color:#E29585; }
   @media (max-width:600px){ .wrap{ padding:16px 12px 40px; } .card{ padding:22px 18px; } h1{ font-size:22px; } .stem{font-size:16px;} }
 </style>
 </head>
@@ -271,6 +291,8 @@ function render(){
       </div>
       ${topicHTML(completed)}
       ${nextStepHTML(completed, passed)}
+      ${discountHTML()}
+      ${shareHTML(fmtPct(pct))}
       ${reviewHTML(completed)}
       <div class="navrow">
         <button class="btn ghost" onclick="downloadResults()">Download my results</button>
@@ -304,18 +326,98 @@ function topicHTML(completed){
   }).join("");
   return `<h2 style="margin-top:26px">Score by topic</h2><table class="results topics"><tr><th>Topic</th><th>Score</th><th>%</th><th></th></tr>${rows}</table>`;
 }
+const DISCOUNT_CODE = "EXAM10";
+const DISCOUNT_PCT = 10;
+const DISCOUNT_DAYS = 7;
+const COURSES_URL = "https://www.ingleslegal.com/courses";
+const EXAM_URL = "https://ingleslegal-hub.github.io/ingleslegal-exam/tier-2-exam.html";
+const EXAM_NAME = TIER_LABEL + " certification exam";
+function copyText(text, btn, label){
+  const done = () => { if(!btn) return; btn.textContent = "Copied"; setTimeout(() => { btn.textContent = label; }, 1800); };
+  const fallback = () => {
+    const t = document.createElement("textarea"); t.value = text; document.body.appendChild(t); t.select();
+    try{ document.execCommand("copy"); }catch(e){}
+    document.body.removeChild(t); done();
+  };
+  if(navigator.clipboard && navigator.clipboard.writeText){ navigator.clipboard.writeText(text).then(done, fallback); } else { fallback(); }
+}
+function discountHTML(){
+  const until = new Date(Date.now() + DISCOUNT_DAYS*24*60*60*1000);
+  const d = until.toLocaleDateString("en-US", {month:"long", day:"numeric", year:"numeric"});
+  return `<div class="offer">
+    <div class="tagline">Exam taker offer</div>
+    <div class="headline">${DISCOUNT_PCT}% off any Ingles Legal course</div>
+    <p>Use this code at checkout within the next ${DISCOUNT_DAYS} days, until <strong>${d}</strong>.</p>
+    <div class="coderow"><code>${DISCOUNT_CODE}</code><button type="button" class="btn gold" onclick="copyText(DISCOUNT_CODE, this, 'Copy code')">Copy code</button></div>
+  </div>`;
+}
+function shareText(pctText){ return "I scored " + pctText + " on the " + EXAM_NAME + " at Ingles Legal. Try it free: " + EXAM_URL; }
+function inviteText(){ return "I just took the free " + EXAM_NAME + " from Ingles Legal and thought you might want to try it: " + EXAM_URL; }
+let _sharePct = "";
+function doShare(btn){
+  const text = shareText(_sharePct);
+  if(navigator.share){ navigator.share({ title: "Ingles Legal - " + EXAM_NAME, text: text, url: EXAM_URL }).catch(() => {}); }
+  else { copyText(text, btn, "Share"); }
+}
+function shareHTML(pctText){
+  _sharePct = pctText;
+  const wa = "https://wa.me/?text=" + encodeURIComponent(shareText(pctText));
+  const mail = "mailto:?subject=" + encodeURIComponent("Free legal English exam from Ingles Legal") + "&body=" + encodeURIComponent(inviteText());
+  return `<div class="sharebox">
+    <div class="headline">Share your result</div>
+    <p>Know a colleague learning legal English? Invite them to take the exam.</p>
+    <div class="sharerow">
+      <button type="button" class="btn gold" onclick="doShare(this)">Share</button>
+      <a class="btn ghost" href="${wa}" target="_blank" rel="noopener">WhatsApp</a>
+      <a class="btn ghost" href="${mail}">Email a colleague</a>
+    </div>
+  </div>`;
+}
+const PATHWAYS = {
+  intake: { name: "Intake & Support", blurb: "Legal English for first client contact, case screening and file setup in practice-management software." },
+  lit: { name: "Litigation & Management", blurb: "Procedural vocabulary, evidence processing and day-to-day case management in Personal Injury, Labor Law and Immigration." },
+  trial: { name: "Trial & Strategy", blurb: "Advanced legal English, U.S. common-law structures, trial preparation and case analysis." }
+};
+const CAT_PATHWAY = {
+  "Legal Foundations & Courts":"intake", "Register & Translation":"intake", "Legal Software & Practice":"intake",
+  "Client Narrative to Legal English":"intake", "Legal Technology & Operations":"intake",
+  "Civil Procedure":"lit", "Torts & Personal Injury":"lit", "Employment Law":"lit", "Immigration":"lit",
+  "Damages, Insurance & Settlement":"lit", "Discovery & Evidence":"lit", "Legal Operations & E-Discovery":"lit",
+  "Restrictive Covenants & Employment":"lit", "Settlement, Liens & Tax":"lit",
+  "Contracts":"trial", "Motions, Trial & Appeals":"trial", "Torts, Contracts & Business Claims":"trial",
+  "Complex Litigation & Evidence":"trial", "Contract Drafting & Boilerplate":"trial", "Contract Interpretation & Remedies":"trial",
+  "Cross-Border Translation":"trial", "Legal Writing & Advocacy":"trial"
+};
+const TIER_DEFAULT = { 1:"intake", 2:"lit", 3:"trial" };
+function recommendPathways(completed){
+  const n = parseInt((TIER_LABEL.match(/\d+/) || ["1"])[0], 10);
+  const w = {}, why = {};
+  topicStats(completed).forEach(t => {
+    const p = t.right / t.total;
+    if(p < PASS_THRESHOLD){
+      const k = CAT_PATHWAY[t.cat] || TIER_DEFAULT[n];
+      w[k] = (w[k] || 0) + (PASS_THRESHOLD - p) * t.total;
+      (why[k] = why[k] || []).push(t.cat);
+    }
+  });
+  const keys = Object.keys(w).sort((a,b) => w[b] - w[a]).slice(0,2);
+  if(!keys.length) return [{ key: TIER_DEFAULT[n], reason: "It matches your " + TIER_LABEL + " level." }];
+  return keys.map(k => ({ key: k, reason: "Based on your results in " + why[k].join(", ") + "." }));
+}
 function nextStepHTML(completed, passed){
   const n = parseInt((TIER_LABEL.match(/\d+/) || ["1"])[0], 10);
-  const weak = topicStats(completed).filter(t => t.right / t.total < PASS_THRESHOLD).sort((a,b) => a.right/a.total - b.right/b.total).slice(0,3).map(t => t.cat);
-  let head, body;
+  const recs = recommendPathways(completed);
+  let body;
   if(passed){
-    head = "Your next step";
-    body = n < 3 ? "Great work. You are ready to take the Tier " + (n+1) + " exam. Browse our courses to keep building your legal English." : "Great work. You have reached the top tier. Choose a specialty pathway to put your legal English to work.";
+    body = n < 3 ? "Great work. You are ready to take the Tier " + (n+1) + " exam. These pathways will keep building your legal English." : "Great work. You have reached the top tier. These pathways will put your legal English to work.";
   } else {
-    head = "Your next step";
-    body = (weak.length ? "Focus first on: <strong>" + weak.join(", ") + "</strong>. " : "") + "Review the answers below, then retake this exam. Our courses cover each of these topics step by step.";
+    body = "Review the answers below, then retake this exam. These pathways cover the topics where you can gain the most.";
   }
-  return `<div class="nextstep"><div class="headline">${head}</div><p>${body}</p><a class="btn gold" href="https://www.ingleslegal.com" target="_blank" rel="noopener">Explore Ingles Legal courses</a></div>`;
+  const cards = recs.map((r, i) => {
+    const p = PATHWAYS[r.key];
+    return `<div class="rec"><div class="recname">${i === 0 ? '<span class="pill">Best match</span>' : '<span class="pill">Also consider</span>'}${p.name}</div><div class="recwhy">${r.reason}</div><p>${p.blurb}</p><a class="btn ${i === 0 ? "gold" : "ghost"}" href="${COURSES_URL}" target="_blank" rel="noopener">Explore ${p.name}</a></div>`;
+  }).join("");
+  return `<div class="nextstep"><div class="headline">Your next step</div><p>${body}</p>${cards}</div>`;
 }
 function filterReview(v){
   document.querySelectorAll(".review .rv").forEach(el => { el.style.display = (!v || el.dataset.cat === v) ? "" : "none"; });

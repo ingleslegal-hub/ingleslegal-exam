@@ -188,6 +188,26 @@
       font-weight:700; border-radius:8px; padding:10px 20px; font-size:.95rem;
     }
     a.btn-link:hover{opacity:.92;}
+    .offer{
+      border:1.5px solid var(--gold); border-radius:10px; padding:18px 20px; margin:18px 0;
+      background:linear-gradient(135deg, rgba(201,169,110,.16), rgba(201,169,110,.04));
+    }
+    .offer .tagline{font-size:.7rem; letter-spacing:.1em; text-transform:uppercase; color:var(--gold); font-weight:700; margin-bottom:4px;}
+    .offer .headline{font-family:'Fraunces', Georgia, serif; font-size:1.35rem; font-weight:600; color:var(--cream); margin-bottom:6px;}
+    .offer p{margin:0 0 12px;}
+    .offer .coderow{display:flex; gap:10px; align-items:center; flex-wrap:wrap;}
+    .offer code{
+      font-family:'Courier New', monospace; font-size:1.3rem; letter-spacing:.15em; font-weight:700; color:var(--gold);
+      border:1.5px dashed var(--gold); padding:8px 16px; border-radius:8px; background:#1E1226;
+    }
+    .sharebox{border:1px solid var(--line); border-radius:10px; padding:18px 20px; margin:18px 0; background:var(--aubergine);}
+    .sharebox .headline{font-weight:700; color:var(--gold); margin-bottom:6px; font-size:1.05rem;}
+    .sharebox p{margin:0 0 12px;}
+    .sharerow{display:flex; gap:10px; flex-wrap:wrap;}
+    .sharerow a.btn-link.ghost{background:transparent; color:var(--gold); border:1px solid var(--gold);}
+    .rec-name{font-weight:700; color:var(--cream); margin:4px 0 2px;}
+    .rec-why{font-size:.85rem; color:#B9AAC4; margin:0 0 6px;}
+    .pill{display:inline-block; font-size:.62rem; letter-spacing:.08em; text-transform:uppercase; background:var(--gold); color:var(--aubergine); padding:2px 8px; border-radius:10px; margin-right:8px; font-weight:700; vertical-align:middle;}
     .review-group > summary{cursor:pointer; font-weight:600; color:var(--cream); margin:18px 0 0;}
     .review-head{font-weight:700; color:var(--cream); margin:18px 0 0;}
     .loading{
@@ -299,8 +319,11 @@
         <div class="next-step">
           <div class="ns-head">Your next step</div>
           <p id="nextStepText"></p>
-          <a class="btn-link" href="https://www.ingleslegal.com" target="_blank" rel="noopener">Explore Ingles Legal courses</a>
+          <div id="recContainer"></div>
         </div>
+
+        <div id="offerContainer"></div>
+        <div id="shareContainer"></div>
 
         <h3>Answer Review</h3>
         <div id="reviewContainer"></div>
@@ -488,12 +511,76 @@
         document.getElementById('levelBadge').textContent = 'Level: ' + lv.name;
         document.getElementById('levelText').textContent = lv.text;
         document.getElementById('nextStepText').textContent = lv.next;
+        const rec = this.recommendFor(lv.name);
+        document.getElementById('recContainer').innerHTML = rec;
+        document.getElementById('offerContainer').innerHTML = this.offerHTML();
+        document.getElementById('shareContainer').innerHTML = this.shareHTML(score + '%');
         document.body.classList.add('results-dark');
         window.scrollTo(0, 0);
         document.getElementById('resultVariant').textContent = this.variant === 'half' ? 'Half Exam' : this.variant.includes('full') ? 'Full Exam' : `Section ${this.variant}`;
 
         this.buildReview();
         this.submitResults(correct, score);
+      },
+
+      PATHWAYS: {
+        intake: { name: 'Intake & Support', blurb: 'Legal English for first client contact, case screening and file setup in practice-management software.' },
+        lit: { name: 'Litigation & Management', blurb: 'Procedural vocabulary, evidence processing and day-to-day case management in Personal Injury, Labor Law and Immigration.' },
+        trial: { name: 'Trial & Strategy', blurb: 'Advanced legal English, U.S. common-law structures, trial preparation and case analysis.' }
+      },
+      CAT_PATHWAY: {
+        general_legal_english: 'intake', translation: 'intake', common_expressions: 'intake',
+        civil_law: 'lit', immigration_law: 'lit', personal_injury: 'lit', family_law: 'lit', labor_law: 'lit', other_branches: 'lit',
+        contract_law: 'trial', criminal_law: 'trial', commercial_law: 'trial'
+      },
+      DISCOUNT_CODE: 'EXAM10', DISCOUNT_PCT: 10, DISCOUNT_DAYS: 7,
+      COURSES_URL: 'https://www.ingleslegal.com/courses',
+      EXAM_URL: 'https://ingleslegal-hub.github.io/ingleslegal-exam/vocabulary/quiz-standalone.html',
+      EXAM_NAME: 'Legal English Vocabulary Test',
+
+      recommendFor(levelName) {
+        // Beginners start with Intake & Support (foundations); stronger candidates follow their category.
+        const early = levelName === 'Foundation' || levelName === 'Developing';
+        const catKey = this.CAT_PATHWAY[this.category] || 'intake';
+        const first = early ? 'intake' : catKey;
+        const reason1 = early ? 'It builds the foundations first, based on your ' + levelName + ' level.' : 'It matches the topic you just tested: ' + this.categoryLabel + '.';
+        const picks = [{ key: first, reason: reason1 }];
+        if (early && catKey !== 'intake') picks.push({ key: catKey, reason: 'Next, it covers the topic you tested: ' + this.categoryLabel + '.' });
+        return picks.map((r, i) => {
+          const p = this.PATHWAYS[r.key];
+          return `<div style="border-top:1px solid var(--line); padding-top:12px; margin-top:12px;"><div class="rec-name"><span class="pill">${i === 0 ? 'Best match' : 'Also consider'}</span>${p.name}</div><div class="rec-why">${r.reason}</div><p>${p.blurb}</p><a class="btn-link ${i === 0 ? '' : 'ghost'}" style="${i === 0 ? '' : 'background:transparent;color:var(--gold);border:1px solid var(--gold);'}" href="${this.COURSES_URL}" target="_blank" rel="noopener">Explore ${p.name}</a></div>`;
+        }).join('');
+      },
+
+      offerHTML() {
+        const until = new Date(Date.now() + this.DISCOUNT_DAYS * 24 * 60 * 60 * 1000);
+        const d = until.toLocaleDateString('en-US', { month: 'long', day: 'numeric', year: 'numeric' });
+        return `<div class="offer"><div class="tagline">Exam taker offer</div><div class="headline">${this.DISCOUNT_PCT}% off any Ingles Legal course</div><p>Use this code at checkout within the next ${this.DISCOUNT_DAYS} days, until <strong>${d}</strong>.</p><div class="coderow"><code>${this.DISCOUNT_CODE}</code><button type="button" class="btn-primary" onclick="app.copyText(app.DISCOUNT_CODE, this, 'Copy code')">Copy code</button></div></div>`;
+      },
+
+      copyText(text, btn, label) {
+        const done = () => { if (!btn) return; btn.textContent = 'Copied'; setTimeout(() => { btn.textContent = label; }, 1800); };
+        const fallback = () => {
+          const t = document.createElement('textarea'); t.value = text; document.body.appendChild(t); t.select();
+          try { document.execCommand('copy'); } catch (e) {}
+          document.body.removeChild(t); done();
+        };
+        if (navigator.clipboard && navigator.clipboard.writeText) { navigator.clipboard.writeText(text).then(done, fallback); } else { fallback(); }
+      },
+
+      shareText() { return 'I scored ' + this.sharePct + ' on the ' + this.EXAM_NAME + ' at Ingles Legal. Try it free: ' + this.EXAM_URL; },
+
+      doShare(btn) {
+        const text = this.shareText();
+        if (navigator.share) { navigator.share({ title: 'Ingles Legal - ' + this.EXAM_NAME, text: text, url: this.EXAM_URL }).catch(() => {}); }
+        else { this.copyText(text, btn, 'Share'); }
+      },
+
+      shareHTML(pctText) {
+        this.sharePct = pctText;
+        const wa = 'https://wa.me/?text=' + encodeURIComponent(this.shareText());
+        const mail = 'mailto:?subject=' + encodeURIComponent('Free legal English test from Ingles Legal') + '&body=' + encodeURIComponent('I just took the free ' + this.EXAM_NAME + ' from Ingles Legal and thought you might want to try it: ' + this.EXAM_URL);
+        return `<div class="sharebox"><div class="headline">Share your result</div><p>Know a colleague learning legal English? Invite them to take the test.</p><div class="sharerow"><button type="button" class="btn-primary" onclick="app.doShare(this)">Share</button><a class="btn-link ghost" href="${wa}" target="_blank" rel="noopener">WhatsApp</a><a class="btn-link ghost" href="${mail}">Email a colleague</a></div></div>`;
       },
 
       levelFor(score) {

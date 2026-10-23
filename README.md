@@ -16,7 +16,7 @@ These are published on www.ingleslegal.com/cert-exams/ as Claude Artifacts.
 
 ## 2. Branch Pathway Exams (100 questions each)
 
-One exam per bilingual branch learning pathway. Each has 100 questions mapped to the 8 courses of its pathway (about 13 per course, plus integrated file-audit scenarios for the capstone), and uses the same engine, look and results as the tier exams: 2 batches of 50, instant rationale, provisional results after batch 1, download, and the results webhook (emailed report with score by category = score by course). The results screen also shows a score for each course and the recommended courses to start with. Pass mark: 75%.
+One exam per bilingual branch learning pathway. Each has 100 questions mapped to the 8 courses of its pathway (about 13 per course, plus integrated file-audit scenarios for the capstone), and uses the same engine, look and results as the tier exams: 2 batches of 50, answers and rationale in the final report (not after each question), provisional results after batch 1, EXAM10 offer and share options on the results screen, download, and the results webhook (emailed report with score by category = score by course). The results screen also shows a score for each course and the recommended courses to start with. Pass mark: 75%.
 
 | Pathway | File | Courses |
 |---|---|---|
