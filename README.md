@@ -16,7 +16,7 @@ These are published on www.ingleslegal.com/cert-exams/ as Claude Artifacts.
 
 ## 2. Branch Pathway Exams (100 questions each)
 
-One exam per bilingual branch learning pathway. Each has 100 questions mapped to the 8 courses of its pathway (about 13 per course, plus integrated file-audit scenarios for the capstone), and uses the same engine, look and results as the tier exams: 2 batches of 50, answers and rationale in the final report (not after each question), provisional results after batch 1, EXAM10 offer and share options on the results screen, download, and the results webhook (emailed report with score by category = score by course). The results screen also shows a score for each course and the recommended courses to start with. Pass mark: 75%.
+One exam per bilingual branch learning pathway. Each has 100 questions mapped to the 8 courses of its pathway (about 13 per course, plus integrated file-audit scenarios for the capstone), and uses the same engine, look and results as the tier exams: 2 batches of 50, answers and rationale in the final report (not after each question), provisional results after batch 1, EXAM15 (15%, one use, 180 days) offer and share options on the results screen, download, and the results webhook (emailed report with score by category = score by course). The results screen also shows a score for each course and the recommended courses to start with. Pass mark: 75%.
 
 | Pathway | File | Courses |
 |---|---|---|
@@ -211,8 +211,8 @@ Every exam awards a vertical **Certificate of Passing / Skills Report** when the
 | Pathway exams (5) | Completed exam at 75% or higher |
 | Vocabulary | **Full Exam only**, 75% or higher (Half Exam shows a prompt to take the Full Exam) |
 
-The report shows the strongest skills (golden ribbon), a skills snapshot, windows of opportunity with a recommended pathway, the EXAM10 offer, a certificate ID and a QR code. Candidates can view it, save it as PDF (print dialog) or download it as a file.
+The report shows the strongest skills (golden ribbon), a skills snapshot, windows of opportunity with a recommended pathway, the EXAM15 (15%, one use, 180 days) offer, a certificate ID and a QR code. Candidates can view it, save it as PDF (print dialog) or download it as a file.
 
-**Verification.** Each certificate gets an ID like `IL-T2-XXXXXXXX`. The exam posts it (type `certificate`) to the same Apps Script webhook as the results, which stores it in a `Certificates` sheet. `verify.html` looks the ID up and shows the masked name, exam, score and date. Setup steps are in `apps-script/certificates.gs` (paste into the existing Apps Script project and redeploy).
+**Verification.** Each certificate gets an ID like `IL-T2-XXXXXXXX`. The exam posts it (type `certificate`) to the same Apps Script webhook as the results, which stores it in a `Certificates` sheet. `verify.html` looks the ID up and shows the full name, exam, score and date. Setup steps are in `apps-script/certificates.gs` (paste into the existing Apps Script project and redeploy).
 
 The certificate module is embedded in each exam file (it must work as a standalone file). To change the design, edit it in one exam file and copy the block between the two `<script>` tags at the end of the page into the others.

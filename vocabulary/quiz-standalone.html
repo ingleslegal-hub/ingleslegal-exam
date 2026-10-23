@@ -537,7 +537,7 @@
         civil_law: 'lit', immigration_law: 'lit', personal_injury: 'lit', family_law: 'lit', labor_law: 'lit', other_branches: 'lit',
         contract_law: 'trial', criminal_law: 'trial', commercial_law: 'trial'
       },
-      DISCOUNT_CODE: 'EXAM10', DISCOUNT_PCT: 10, DISCOUNT_DAYS: 7,
+      DISCOUNT_CODE: 'EXAM15', DISCOUNT_PCT: 15, DISCOUNT_DAYS: 180,
       COURSES_URL: 'https://www.ingleslegal.com/courses',
       EXAM_URL: 'https://ingleslegal-hub.github.io/ingleslegal-exam/vocabulary/quiz-standalone.html',
       EXAM_NAME: 'Legal English Vocabulary Test',
@@ -600,7 +600,7 @@
       offerHTML() {
         const until = new Date(Date.now() + this.DISCOUNT_DAYS * 24 * 60 * 60 * 1000);
         const d = until.toLocaleDateString('en-US', { month: 'long', day: 'numeric', year: 'numeric' });
-        return `<div class="offer"><div class="tagline">Exam taker offer</div><div class="headline">${this.DISCOUNT_PCT}% off any Ingles Legal course</div><p>Use this code at checkout within the next ${this.DISCOUNT_DAYS} days, until <strong>${d}</strong>.</p><div class="coderow"><code>${this.DISCOUNT_CODE}</code><button type="button" class="btn-primary" onclick="app.copyText(app.DISCOUNT_CODE, this, 'Copy code')">Copy code</button></div></div>`;
+        return `<div class="offer"><div class="tagline">Exam taker offer</div><div class="headline">${this.DISCOUNT_PCT}% off any pathway or course</div><p>One use on any learning pathway or course. Valid for ${this.DISCOUNT_DAYS} days, until <strong>${d}</strong>.</p><div class="coderow"><code>${this.DISCOUNT_CODE}</code><button type="button" class="btn-primary" onclick="app.copyText(app.DISCOUNT_CODE, this, 'Copy code')">Copy code</button></div></div>`;
       },
 
       copyText(text, btn, label) {
@@ -668,6 +668,7 @@
           correct: correct,
           total: this.filteredQuestions.length,
           percent: score,
+          certId: (this.variant === 'full' && this.certId) ? this.certId : '',
           startedAt: this.startedAt,
           completedAt: new Date().toISOString()
         };
@@ -2671,7 +2672,7 @@ function certReportHTML(D){
    <div class="il-legend">Dark marker = ${PM}% pass mark</div></div>
    <div class="il-win"><div class="il-sec">Windows of opportunity</div><div class="il-ttl">Where your next gains are</div>
     <div class="il-wgrid">${low.map(s => `<div class="il-w"><div class="il-a">Next to strengthen</div><div class="il-b">${certEsc(s.n)}</div><div class="il-c">${certWindowText(s.p, PM)}</div></div>`).join("")}</div>
-    <div class="il-pw"><div class="il-l"><b>Recommended pathway:</b> ${certEsc(D.pathway)}<br>${certEsc(D.pathwayWhy)}</div><div class="il-off"><code>EXAM10</code><span>10% off any course until ${certEsc(D.offerUntil)}</span></div></div></div>
+    <div class="il-pw"><div class="il-l"><b>Recommended pathway:</b> ${certEsc(D.pathway)}<br>${certEsc(D.pathwayWhy)}</div><div class="il-off"><code>EXAM15</code><span>15% off any course or pathway, one use, until ${certEsc(D.offerUntil)}</span></div></div></div>
   </div>
   <div class="il-ft"><div class="il-qr">${certQrSvg(verify, 92)}</div>
    <div class="il-m"><b>VERIFY THIS CERTIFICATE</b><div class="il-id">${D.id}</div>Scan the code or visit<br><span class="il-url">${CERT_VERIFY.replace("https://","")}</span> and enter the ID.</div><div class="il-seal"><span>Ingles<br>Legal<br>Certified</span></div></div>

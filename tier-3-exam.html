@@ -327,9 +327,9 @@ function topicHTML(completed){
   }).join("");
   return `<h2 style="margin-top:26px">Score by topic</h2><table class="results topics"><tr><th>Topic</th><th>Score</th><th>%</th><th></th></tr>${rows}</table>`;
 }
-const DISCOUNT_CODE = "EXAM10";
-const DISCOUNT_PCT = 10;
-const DISCOUNT_DAYS = 7;
+const DISCOUNT_CODE = "EXAM15";
+const DISCOUNT_PCT = 15;
+const DISCOUNT_DAYS = 180;
 const COURSES_URL = "https://www.ingleslegal.com/courses";
 const EXAM_URL = "https://ingleslegal-hub.github.io/ingleslegal-exam/tier-3-exam.html";
 const EXAM_NAME = TIER_LABEL + " certification exam";
@@ -347,8 +347,8 @@ function discountHTML(){
   const d = until.toLocaleDateString("en-US", {month:"long", day:"numeric", year:"numeric"});
   return `<div class="offer">
     <div class="tagline">Exam taker offer</div>
-    <div class="headline">${DISCOUNT_PCT}% off any Ingles Legal course</div>
-    <p>Use this code at checkout within the next ${DISCOUNT_DAYS} days, until <strong>${d}</strong>.</p>
+    <div class="headline">${DISCOUNT_PCT}% off any pathway or course</div>
+    <p>One use on any learning pathway or course. Valid for ${DISCOUNT_DAYS} days, until <strong>${d}</strong>.</p>
     <div class="coderow"><code>${DISCOUNT_CODE}</code><button type="button" class="btn gold" onclick="copyText(DISCOUNT_CODE, this, 'Copy code')">Copy code</button></div>
   </div>`;
 }
@@ -548,7 +548,7 @@ async function submitResults(score, pct, passed){
       type: "final", tier: TIER_LABEL, name: state.candidate.name, email: state.candidate.email,
       batches: batchSummary(),
       startedAt: state.startedAt, completedAt: new Date().toISOString(),
-      score, total: TOTAL, percent: Math.round(pct*1000)/10, passed,
+      score, total: TOTAL, percent: Math.round(pct*1000)/10, passed, certId: (passed && state._certId) ? state._certId : "",
       answers: QUESTIONS.map((q,i) => ({ cat: q.cat, given: state.answers[i], correct: q.a }))
     };
     const res = await fetch(RESULTS_WEBHOOK_URL, {
@@ -2556,7 +2556,7 @@ function certReportHTML(D){
    <div class="il-legend">Dark marker = ${PM}% pass mark</div></div>
    <div class="il-win"><div class="il-sec">Windows of opportunity</div><div class="il-ttl">Where your next gains are</div>
     <div class="il-wgrid">${low.map(s => `<div class="il-w"><div class="il-a">Next to strengthen</div><div class="il-b">${certEsc(s.n)}</div><div class="il-c">${certWindowText(s.p, PM)}</div></div>`).join("")}</div>
-    <div class="il-pw"><div class="il-l"><b>Recommended pathway:</b> ${certEsc(D.pathway)}<br>${certEsc(D.pathwayWhy)}</div><div class="il-off"><code>EXAM10</code><span>10% off any course until ${certEsc(D.offerUntil)}</span></div></div></div>
+    <div class="il-pw"><div class="il-l"><b>Recommended pathway:</b> ${certEsc(D.pathway)}<br>${certEsc(D.pathwayWhy)}</div><div class="il-off"><code>EXAM15</code><span>15% off any course or pathway, one use, until ${certEsc(D.offerUntil)}</span></div></div></div>
   </div>
   <div class="il-ft"><div class="il-qr">${certQrSvg(verify, 92)}</div>
    <div class="il-m"><b>VERIFY THIS CERTIFICATE</b><div class="il-id">${D.id}</div>Scan the code or visit<br><span class="il-url">${CERT_VERIFY.replace("https://","")}</span> and enter the ID.</div><div class="il-seal"><span>Ingles<br>Legal<br>Certified</span></div></div>
@@ -2658,7 +2658,7 @@ function certBuildExamData(completed, score, pct){
     topLabel: isPath ? "Strongest courses" : "Strongest skills",
     snapLabel: isPath ? "Score by course" : "Skills snapshot",
     skills: skills, pathway: pathway, pathwayWhy: why,
-    offerUntil: certDate(new Date(Date.now() + 7 * 24 * 60 * 60 * 1000)),
+    offerUntil: certDate(new Date(Date.now() + 180 * 24 * 60 * 60 * 1000)),
     btn: { gold: "btn gold", ghost: "btn ghost" }
   };
 }

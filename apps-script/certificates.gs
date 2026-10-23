@@ -85,7 +85,7 @@ function verifyCertificate_(e) {
       if (hit) {
         var row = sh.getRange(hit.getRow(), 1, 1, CERT_HEADERS.length).getValues()[0];
         out = {
-          found: true, id: row[0], issuedAt: new Date(row[1]).toISOString(), name: maskName_(row[2]),
+          found: true, id: row[0], issuedAt: new Date(row[1]).toISOString(), name: row[2],
           exam: row[4], level: row[5], percent: row[7], correct: row[8], total: row[9]
         };
       }
