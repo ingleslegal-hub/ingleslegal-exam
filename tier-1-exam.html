@@ -2527,17 +2527,18 @@ function certQrSvg(text, size){
 const CERT_MARK = '<svg width="40" height="40" viewBox="0 0 40 40"><path d="M18,4 A16,16 0 0 0 18,36" fill="none" stroke="#6E5A79" stroke-width="1.5"/><path d="M18,9 A11,11 0 0 0 18,31" fill="none" stroke="#A9713F" stroke-width="2"/><path d="M18,14 A6,6 0 0 0 18,26" fill="none" stroke="#C9A96E" stroke-width="3"/><circle cx="25" cy="20" r="3" fill="#F1EBDE"/></svg>';
 const CERT_DISC = "Ingles Legal exams are self-assessments of legal English. This report is not a license, bar admission or an official credential. Verification confirms that this ID was issued by the Ingles Legal exam system.";
 
-function certWindowText(p){
-  if(p < CERT_PASS) return p + "% &middot; below the pass mark, your biggest opportunity.";
-  if(p <= CERT_PASS + 5) return p + "% &middot; just above the pass mark, a small push makes it a strength.";
+function certWindowText(p, pm){
+  if(p < pm) return p + "% &middot; below the pass mark, your biggest opportunity.";
+  if(p <= pm + 5) return p + "% &middot; just above the pass mark, a small push makes it a strength.";
   return p + "% &middot; already solid, polishing it completes your profile.";
 }
 function certReportHTML(D){
   const sorted = D.skills.slice().sort((a,b) => b.p - a.p);
   const top = sorted.slice(0,3), low = sorted.slice(-2).reverse();
+  const PM = D.passMark || CERT_PASS;
   const circ = 2*Math.PI*52, dash = circ*D.pct/100;
   const verify = CERT_VERIFY + "?id=" + D.id;
-  const diff = Math.round((D.pct - CERT_PASS)*10)/10;
+  const diff = Math.round((D.pct - PM)*10)/10;
   return `<div class="il-rep">
   <div class="il-hd"><svg class="il-arcs" viewBox="0 0 400 400"><g fill="none" stroke="#C9A96E"><circle cx="200" cy="200" r="190" stroke-width="1" opacity=".35"/><circle cx="200" cy="200" r="140" stroke-width="2" opacity=".5"/><circle cx="200" cy="200" r="90" stroke-width="4" opacity=".7"/></g></svg>
    <div class="il-brand">${CERT_MARK}<div class="il-wm"><b>Ingles</b>legal</div></div>
@@ -2545,16 +2546,16 @@ function certReportHTML(D){
    <div class="il-who"><div><div class="il-lbl">Awarded to</div><div class="il-nm">${certEsc(D.name)}</div><div class="il-ex">${certEsc(D.exam)}</div><span class="il-pill">${certEsc(D.level)}</span></div>
    <div class="il-dt"><div class="il-lbl">Date issued</div><div class="il-v">${certEsc(D.date)}</div></div></div></div>
   <div class="il-sc"><div class="il-ring"><svg width="118" height="118" viewBox="0 0 118 118"><circle cx="59" cy="59" r="52" fill="none" stroke="#ebe4d6" stroke-width="9"/><circle cx="59" cy="59" r="52" fill="none" stroke="#C9A96E" stroke-width="9" stroke-linecap="round" stroke-dasharray="${dash} ${circ}" transform="rotate(-90 59 59)"/></svg><div class="il-t"><b>${D.pct}%</b><span>Score</span></div></div>
-   <div class="il-stats"><div class="il-stat"><div class="il-n">${D.correct} / ${D.total}</div><div class="il-l">Correct answers</div></div><div class="il-stat"><div class="il-n">${CERT_PASS}%</div><div class="il-l">Pass mark</div></div><div class="il-stat"><div class="il-n">${diff >= 0 ? "+" : ""}${diff}</div><div class="il-l">Points above pass mark</div></div></div>
+   <div class="il-stats"><div class="il-stat"><div class="il-n">${D.correct} / ${D.total}</div><div class="il-l">Correct answers</div></div><div class="il-stat"><div class="il-n">${PM}%</div><div class="il-l">Pass mark</div></div><div class="il-stat"><div class="il-n">${diff >= 0 ? "+" : ""}${diff}</div><div class="il-l">Points above pass mark</div></div></div>
    <div class="il-passed">Passed</div></div>
   <div class="il-bd">
    <div class="il-ribbon">${certEsc(D.topLabel)}</div>
    <div class="il-top3">${top.map((s,i) => `<div class="il-card"><div class="il-rk">${i+1}</div><div class="il-nm">${certEsc(s.n)}</div><div class="il-pc">${s.p}%</div><div class="il-mini"><i style="width:${s.p}%"></i></div><div class="il-sb">${s.c} of ${s.t} correct</div></div>`).join("")}</div>
    <div class="il-snap"><div class="il-sec">${certEsc(D.snapLabel)}</div>
-   ${sorted.map(s => `<div class="il-row"><div class="il-tn">${certEsc(s.n)}</div><div class="il-track"><div class="il-fill" style="width:${s.p}%"></div><div class="il-mk" style="left:${CERT_PASS}%"></div></div><div class="il-pv">${s.p}%</div></div>`).join("")}
-   <div class="il-legend">Dark marker = ${CERT_PASS}% pass mark</div></div>
+   ${sorted.map(s => `<div class="il-row"><div class="il-tn">${certEsc(s.n)}</div><div class="il-track"><div class="il-fill" style="width:${s.p}%"></div><div class="il-mk" style="left:${PM}%"></div></div><div class="il-pv">${s.p}%</div></div>`).join("")}
+   <div class="il-legend">Dark marker = ${PM}% pass mark</div></div>
    <div class="il-win"><div class="il-sec">Windows of opportunity</div><div class="il-ttl">Where your next gains are</div>
-    <div class="il-wgrid">${low.map(s => `<div class="il-w"><div class="il-a">Next to strengthen</div><div class="il-b">${certEsc(s.n)}</div><div class="il-c">${certWindowText(s.p)}</div></div>`).join("")}</div>
+    <div class="il-wgrid">${low.map(s => `<div class="il-w"><div class="il-a">Next to strengthen</div><div class="il-b">${certEsc(s.n)}</div><div class="il-c">${certWindowText(s.p, PM)}</div></div>`).join("")}</div>
     <div class="il-pw"><div class="il-l"><b>Recommended pathway:</b> ${certEsc(D.pathway)}<br>${certEsc(D.pathwayWhy)}</div><div class="il-off"><code>EXAM10</code><span>10% off any course until ${certEsc(D.offerUntil)}</span></div></div></div>
   </div>
   <div class="il-ft"><div class="il-qr">${certQrSvg(verify, 92)}</div>
@@ -2608,7 +2609,7 @@ function certRegister(D, webhookUrl){
   if(!webhookUrl) return;
   fetch(webhookUrl, { method:"POST", headers:{"Content-Type":"text/plain"}, body: JSON.stringify({
     type:"certificate", id:D.id, kind:D.kind, name:D.name, email:D.email, exam:D.exam, level:D.level,
-    percent:D.pct, correct:D.correct, total:D.total, issuedAt:new Date().toISOString()
+    percent:D.pct, passMark:D.passMark, correct:D.correct, total:D.total, issuedAt:new Date().toISOString()
   })}).catch(() => {});
 }
 /* Shows the results-screen card and registers the certificate once. D must be complete. */
@@ -2653,7 +2654,7 @@ function certBuildExamData(completed, score, pct){
     id: state._certId, kind: isPath ? "pathway" : "tier",
     name: state.candidate.name || "Candidate", email: state.candidate.email || "",
     exam: exam, level: level, date: certDate(),
-    pct: Math.round(pct * 1000) / 10, correct: score, total: completed,
+    pct: Math.round(pct * 1000) / 10, passMark: Math.round(PASS_THRESHOLD * 100), correct: score, total: completed,
     topLabel: isPath ? "Strongest courses" : "Strongest skills",
     snapLabel: isPath ? "Score by course" : "Skills snapshot",
     skills: skills, pathway: pathway, pathwayWhy: why,

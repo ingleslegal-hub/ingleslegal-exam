@@ -7,10 +7,10 @@
  *
  * HOW TO ADD IT (about 5 minutes)
  *  1. Open the Apps Script project that already receives the exam results (the one behind RESULTS_WEBHOOK_URL).
- *  2. Add a new file (File > New > Script) and paste this whole file into it.
- *  3. In your EXISTING doPost(e), add these lines right after the JSON is parsed into `data`:
+ *  2. Add a new file (+ next to Files > Script) and paste this whole file into it.
+ *  3. In your EXISTING doPost(e), extend the type check so it also handles certificates:
  *
- *        if (data.type === 'certificate') { return saveCertificate_(data); }
+ *        ... else if (data.type === 'vocab') { handleVocab(data); } else if (data.type === 'certificate') { return saveCertificate_(data); }
  *
  *     If your project has no doGet(e) yet, nothing else is needed: this file defines one.
  *     If it already has a doGet(e), add this at its top instead and delete the doGet below:
@@ -28,11 +28,14 @@
  */
 
 var CERT_SHEET_NAME = 'Certificates';
-var CERT_PASS_PERCENT = 75;
+// Pass mark is 75% for every exam (TIER_THRESHOLDS in Code.gs is also 75 for all tiers).
+function certPassMark_(data) {
+  return 75;
+}
 var CERT_HEADERS = ['id', 'issuedAt', 'name', 'email', 'exam', 'level', 'kind', 'percent', 'correct', 'total'];
 
 function certSheet_() {
-  var ss = SpreadsheetApp.getActiveSpreadsheet();
+  var ss = getSheets().ss; // same results spreadsheet the other exam data goes to
   var sh = ss.getSheetByName(CERT_SHEET_NAME);
   if (!sh) {
     sh = ss.insertSheet(CERT_SHEET_NAME);
@@ -50,7 +53,7 @@ function saveCertificate_(data) {
     // Basic validation: well-formed ID, a passing score, and no duplicates.
     if (!/^IL-[A-Z0-9]{1,5}-[A-Z2-9]{8}$/.test(id)) return json_({ ok: false, error: 'bad id' });
     var percent = Number(data.percent);
-    if (!(percent >= CERT_PASS_PERCENT && percent <= 100)) return json_({ ok: false, error: 'not passing' });
+    if (!(percent >= certPassMark_(data) && percent <= 100)) return json_({ ok: false, error: 'not passing' });
     var sh = certSheet_();
     var found = sh.getRange(2, 1, Math.max(sh.getLastRow() - 1, 1), 1).createTextFinder(id).matchEntireCell(true).findNext();
     if (found && sh.getLastRow() > 1) return json_({ ok: false, error: 'duplicate' });
