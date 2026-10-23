@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Verify a Certificate | Ingles Legal</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Archivo:wght@400;500;600;700&family=Spectral:ital,wght@0,400;0,500;1,400&display=swap" rel="stylesheet">
+<style>
+  :root{ --aub:#2A1B33; --deep:#1E1226; --lift:#503A5C; --gold:#C9A96E; --cream:#F1EBDE; --line:#6E5A79; --ok:#7FCBA5; --bad:#E29585; }
+  *{ box-sizing:border-box; }
+  body{ margin:0; min-height:100vh; background:var(--deep); color:var(--cream); font-family:"Archivo", Arial, sans-serif; display:flex; flex-direction:column; align-items:center; padding:32px 16px; }
+  .brand{ display:flex; align-items:center; gap:10px; margin-bottom:28px; }
+  .brand .wm{ font-weight:600; font-size:26px; } .brand .wm b{ color:var(--gold); font-weight:600; }
+  .card{ width:100%; max-width:560px; background:var(--aub); border:1px solid var(--line); border-radius:8px; padding:30px 28px; box-shadow:0 4px 18px rgba(0,0,0,.4); }
+  h1{ font-family:"Spectral", Georgia, serif; font-weight:500; font-size:30px; margin:0 0 6px; color:var(--gold); }
+  p{ line-height:1.55; margin:0 0 14px; color:var(--cream); }
+  form{ display:flex; gap:10px; flex-wrap:wrap; margin-top:10px; }
+  input{ flex:1; min-width:200px; padding:12px 14px; border-radius:5px; border:1.5px solid var(--line); background:var(--deep); color:var(--cream); font:inherit; font-family:"Courier New", monospace; letter-spacing:.08em; text-transform:uppercase; }
+  input:focus{ outline:none; border-color:var(--gold); }
+  button{ padding:12px 22px; border:0; border-radius:5px; background:var(--gold); color:var(--aub); font:inherit; font-weight:700; cursor:pointer; }
+  button:disabled{ opacity:.6; cursor:wait; }
+  .res{ margin-top:22px; border-radius:6px; padding:18px 20px; display:none; }
+  .res.ok{ display:block; background:rgba(127,203,165,.1); border:1.5px solid var(--ok); }
+  .res.bad{ display:block; background:rgba(226,149,133,.1); border:1.5px solid var(--bad); }
+  .res .st{ font-weight:700; letter-spacing:.12em; text-transform:uppercase; font-size:12px; margin-bottom:8px; }
+  .res.ok .st{ color:var(--ok); } .res.bad .st{ color:var(--bad); }
+  dl{ margin:0; display:grid; grid-template-columns:120px 1fr; gap:8px 14px; font-size:15px; }
+  dt{ color:#b9aac4; font-size:12px; letter-spacing:.14em; text-transform:uppercase; padding-top:3px; }
+  dd{ margin:0; font-weight:600; }
+  .note{ font-size:12px; color:#9d8eab; margin-top:18px; line-height:1.55; }
+  a{ color:var(--gold); }
+</style>
+</head>
+<body>
+  <div class="brand">
+    <svg width="40" height="40" viewBox="0 0 40 40" aria-hidden="true"><path d="M18,4 A16,16 0 0 0 18,36" fill="none" stroke="#6E5A79" stroke-width="1.5"/><path d="M18,9 A11,11 0 0 0 18,31" fill="none" stroke="#A9713F" stroke-width="2"/><path d="M18,14 A6,6 0 0 0 18,26" fill="none" stroke="#C9A96E" stroke-width="3"/><circle cx="25" cy="20" r="3" fill="#F1EBDE"/></svg>
+    <div class="wm"><b>Ingles</b>legal</div>
+  </div>
+  <div class="card">
+    <h1>Verify a certificate</h1>
+    <p>Enter the certificate ID printed on the report, or scan its QR code.</p>
+    <form id="f"><input id="id" placeholder="IL-T2-XXXXXXXX" maxlength="24" autocomplete="off" spellcheck="false"><button id="go" type="submit">Verify</button></form>
+    <div class="res" id="res"></div>
+    <div class="note">Verification confirms that this ID was issued by the Ingles Legal exam system, and shows the details recorded at that time. Ingles Legal exams are self-assessments of legal English and are not an official credential.</div>
+  </div>
+<script>
+  var WEBHOOK = "https://script.google.com/macros/s/AKfycbwYCnCr75l6BUDyPIxPD2sbl5NvgENQWT5JFpMreAlQmg5dI85SEeecneWUVzknyzxr/exec";
+  var ID_RE = /^IL-[A-Z0-9]{1,5}-[A-Z2-9]{8}$/;
+  var res = document.getElementById("res"), btn = document.getElementById("go"), input = document.getElementById("id");
+  function esc(s){ return String(s).replace(/[&<>"]/g, function(c){ return {"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;"}[c]; }); }
+  function show(cls, html){ res.className = "res " + cls; res.innerHTML = html; }
+  function lookup(id){
+    id = id.trim().toUpperCase(); input.value = id;
+    if(!ID_RE.test(id)){ show("bad", '<div class="st">Not valid</div>That does not look like an Ingles Legal certificate ID. It should look like IL-T2-XXXXXXXX.'); return; }
+    btn.disabled = true; show("", "");
+    var cb = "ilv" + Date.now(), s = document.createElement("script"), done = false;
+    function finish(){ done = true; btn.disabled = false; if(s.parentNode) s.parentNode.removeChild(s); try{ delete window[cb]; }catch(e){ window[cb] = undefined; } }
+    window[cb] = function(d){
+      if(done) return; finish();
+      if(d && d.found){
+        var date = new Date(d.issuedAt).toLocaleDateString("en-US", {year:"numeric", month:"long", day:"numeric"});
+        show("ok", '<div class="st">Verified</div><dl><dt>Awarded to</dt><dd>' + esc(d.name) + '</dd><dt>Exam</dt><dd>' + esc(d.exam) + '</dd><dt>Level</dt><dd>' + esc(d.level) + '</dd><dt>Score</dt><dd>' + esc(d.percent) + '% (' + esc(d.correct) + ' / ' + esc(d.total) + ')</dd><dt>Issued</dt><dd>' + esc(date) + '</dd><dt>ID</dt><dd>' + esc(d.id) + '</dd></dl>');
+      } else {
+        show("bad", '<div class="st">Not found</div>No certificate with this ID is on record. Check the ID and try again.');
+      }
+    };
+    s.onerror = function(){ if(done) return; finish(); show("bad", '<div class="st">Could not check</div>The verification service could not be reached. Please try again in a moment.'); };
+    s.src = WEBHOOK + "?verify=" + encodeURIComponent(id) + "&callback=" + cb;
+    document.head.appendChild(s);
+    setTimeout(function(){ if(!done){ finish(); show("bad", '<div class="st">Could not check</div>The verification service did not respond. Please try again in a moment.'); } }, 15000);
+  }
+  document.getElementById("f").addEventListener("submit", function(e){ e.preventDefault(); lookup(input.value); });
+  var q = new URLSearchParams(location.search).get("id");
+  if(q){ lookup(q); }
+</script>
+</body>
+</html>

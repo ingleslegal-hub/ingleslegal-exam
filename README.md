@@ -198,3 +198,21 @@ For questions about the system, contact Felipe (felipe.toro.e@gmail.com).
 
 **Last Updated:** October 18, 2026  
 **Status:** Ready for production
+
+---
+
+## Certificates and verification
+
+Every exam awards a vertical **Certificate of Passing / Skills Report** when the candidate passes:
+
+| Exam | When it appears |
+|---|---|
+| Tier 1, 2, 3 | Completed exam (not stopped early) at 75% or higher |
+| Pathway exams (5) | Completed exam at 75% or higher |
+| Vocabulary | **Full Exam only**, 75% or higher (Half Exam shows a prompt to take the Full Exam) |
+
+The report shows the strongest skills (golden ribbon), a skills snapshot, windows of opportunity with a recommended pathway, the EXAM10 offer, a certificate ID and a QR code. Candidates can view it, save it as PDF (print dialog) or download it as a file.
+
+**Verification.** Each certificate gets an ID like `IL-T2-XXXXXXXX`. The exam posts it (type `certificate`) to the same Apps Script webhook as the results, which stores it in a `Certificates` sheet. `verify.html` looks the ID up and shows the masked name, exam, score and date. Setup steps are in `apps-script/certificates.gs` (paste into the existing Apps Script project and redeploy).
+
+The certificate module is embedded in each exam file (it must work as a standalone file). To change the design, edit it in one exam file and copy the block between the two `<script>` tags at the end of the page into the others.
