@@ -171,6 +171,25 @@
       font-style:italic;
       font-size:.9rem;
     }
+    body.results-dark #resultSection .card{background:#1E1226; box-shadow:0 2px 12px rgba(0,0,0,.4);}
+    body.results-dark .result-summary{background:var(--aubergine);}
+    .level-badge{
+      text-align:center; font-family:'Fraunces', Georgia, serif; font-size:1.25rem; font-weight:600; color:var(--cream); margin:-8px 0 4px;
+    }
+    .level-text{text-align:center; margin:0 0 8px;}
+    .next-step{
+      background:var(--aubergine); border:1px solid var(--line); border-left:3px solid var(--gold);
+      border-radius:8px; padding:18px 20px; margin:18px 0;
+    }
+    .next-step .ns-head{font-weight:700; color:var(--gold); margin-bottom:6px; font-size:1.05rem;}
+    .next-step p{margin:0 0 14px;}
+    a.btn-link{
+      display:inline-block; text-decoration:none; background:var(--gold); color:var(--aubergine);
+      font-weight:700; border-radius:8px; padding:10px 20px; font-size:.95rem;
+    }
+    a.btn-link:hover{opacity:.92;}
+    .review-group > summary{cursor:pointer; font-weight:600; color:var(--cream); margin:18px 0 0;}
+    .review-head{font-weight:700; color:var(--cream); margin:18px 0 0;}
     .loading{
       text-align:center;
       padding:40px 20px;
@@ -266,6 +285,8 @@
         <h1>Your Result</h1>
 
         <div class="result-score" id="scoreDisplay">0%</div>
+        <div class="level-badge" id="levelBadge"></div>
+        <p class="level-text" id="levelText"></p>
 
         <div class="result-summary">
           <strong>You answered:</strong><br>
@@ -275,10 +296,19 @@
           <strong>Length:</strong> <span id="resultVariant"></span>
         </div>
 
+        <div class="next-step">
+          <div class="ns-head">Your next step</div>
+          <p id="nextStepText"></p>
+          <a class="btn-link" href="https://www.ingleslegal.com" target="_blank" rel="noopener">Explore Ingles Legal courses</a>
+        </div>
+
         <h3>Answer Review</h3>
         <div id="reviewContainer"></div>
 
-        <button class="btn-primary" onclick="app.reset()" style="width:100%; margin-top:20px;">Take Another Exam</button>
+        <div style="display:flex; gap:12px; margin-top:24px; flex-wrap:wrap;">
+          <button class="btn-secondary" onclick="app.downloadResults()" style="flex:1; min-width:160px;">Download my results</button>
+          <button class="btn-primary" onclick="app.reset()" style="flex:1; min-width:160px;">Take Another Exam</button>
+        </div>
       </div>
     </div>
 
@@ -450,11 +480,48 @@
         document.getElementById('scoreDisplay').textContent = score + '%';
         document.getElementById('correctCount').textContent = correct;
         document.getElementById('totalCount').textContent = this.filteredQuestions.length;
-        document.getElementById('resultCategory').textContent = this.category.replace(/_/g, ' ');
+        const catSel = document.getElementById('gateCategory');
+        this.categoryLabel = catSel.selectedOptions[0] ? catSel.selectedOptions[0].textContent : this.category.replace(/_/g, ' ');
+        document.getElementById('resultCategory').textContent = this.categoryLabel;
+        const lv = this.levelFor(score);
+        this.lastResult = { correct, score, level: lv.name };
+        document.getElementById('levelBadge').textContent = 'Level: ' + lv.name;
+        document.getElementById('levelText').textContent = lv.text;
+        document.getElementById('nextStepText').textContent = lv.next;
+        document.body.classList.add('results-dark');
+        window.scrollTo(0, 0);
         document.getElementById('resultVariant').textContent = this.variant === 'half' ? 'Half Exam' : this.variant.includes('full') ? 'Full Exam' : `Section ${this.variant}`;
 
         this.buildReview();
         this.submitResults(correct, score);
+      },
+
+      levelFor(score) {
+        if (score >= 90) return { name: 'Advanced', text: 'Excellent command of this vocabulary.', next: 'You are ready for advanced legal English. Explore our specialty pathways to apply it in real case work.' };
+        if (score >= 75) return { name: 'Proficient', text: 'Solid command, with a few gaps to close.', next: 'Review the questions you missed below, then try the full exam or another category to confirm your level.' };
+        if (score >= 60) return { name: 'Developing', text: 'You know the basics, and there is room to grow.', next: 'Study the explanations below, then retake this exam. Our courses build this vocabulary step by step.' };
+        return { name: 'Foundation', text: 'This is a good starting point.', next: 'Start with the explanations below and our beginner-friendly courses, then retake this exam to measure your progress.' };
+      },
+
+      downloadResults() {
+        const r = this.lastResult || {};
+        const L = ['INGLESLEGAL VOCABULARY EXAM - RESULTS', '=====================================',
+          'Candidate: ' + (this.name || '(not provided)'), 'Email: ' + (this.email || '(not provided)'),
+          'Category: ' + (this.categoryLabel || this.category), 'Length: ' + (this.variant === 'half' ? 'Half Exam' : this.variant === 'full' ? 'Full Exam' : this.variant),
+          'Score: ' + r.correct + '/' + this.filteredQuestions.length + ' (' + r.score + '%) - Level: ' + r.level, '', 'QUESTIONS TO REVIEW'];
+        this.filteredQuestions.forEach((q, i) => {
+          const a = this.answers[i];
+          if (a === q.answer_index) return;
+          L.push('Q' + (i + 1) + ': ' + q.prompt);
+          L.push('   Your answer: ' + (a === undefined ? 'Skipped' : q.options[a]));
+          L.push('   Correct answer: ' + q.options[q.answer_index]);
+          if (q.explanation) L.push('   Explanation: ' + q.explanation);
+        });
+        const blob = new Blob([L.join('\n')], { type: 'text/plain' });
+        const url = URL.createObjectURL(blob);
+        const a = document.createElement('a');
+        a.href = url; a.download = 'Ingleslegal_Vocabulary_' + (this.name || 'candidate').replace(/[^a-z0-9]+/gi, '_') + '.txt';
+        document.body.appendChild(a); a.click(); document.body.removeChild(a); URL.revokeObjectURL(url);
       },
 
       submitResults(correct, score) {
@@ -479,56 +546,65 @@
         }).catch(() => {});
       },
 
+      reviewItem(q, idx) {
+        const userAnswerIdx = this.answers[idx];
+        const isCorrect = userAnswerIdx === q.answer_index;
+        const div = document.createElement('div');
+        div.className = 'review-item';
+        const qDiv = document.createElement('div');
+        qDiv.className = 'review-q';
+        qDiv.textContent = `Q${idx + 1}: ${q.prompt}`;
+        div.appendChild(qDiv);
+        const optsDiv = document.createElement('div');
+        optsDiv.className = 'review-options';
+        if (userAnswerIdx !== undefined) {
+          const userOpt = document.createElement('div');
+          userOpt.className = isCorrect ? 'review-opt-correct' : 'review-opt-wrong';
+          userOpt.innerHTML = `<strong>Your answer:</strong> ${q.options[userAnswerIdx]}`;
+          optsDiv.appendChild(userOpt);
+        }
+        if (!isCorrect) {
+          const correctOpt = document.createElement('div');
+          correctOpt.className = 'review-opt-correct';
+          correctOpt.innerHTML = `<strong>Correct answer:</strong> ${q.options[q.answer_index]}`;
+          optsDiv.appendChild(correctOpt);
+        }
+        div.appendChild(optsDiv);
+        if (q.explanation) {
+          const expDiv = document.createElement('div');
+          expDiv.className = 'review-explanation';
+          expDiv.textContent = q.explanation;
+          div.appendChild(expDiv);
+        }
+        return div;
+      },
+
       buildReview() {
         const container = document.getElementById('reviewContainer');
         container.innerHTML = '';
-
-        this.filteredQuestions.forEach((q, idx) => {
-          const userAnswerIdx = this.answers[idx];
-          const isCorrect = userAnswerIdx === q.answer_index;
-
-          const div = document.createElement('div');
-          div.className = 'review-item';
-
-          const qDiv = document.createElement('div');
-          qDiv.className = 'review-q';
-          qDiv.textContent = `Q${idx + 1}: ${q.prompt}`;
-          div.appendChild(qDiv);
-
-          const optsDiv = document.createElement('div');
-          optsDiv.className = 'review-options';
-
-          if (userAnswerIdx !== undefined) {
-            const userOpt = document.createElement('div');
-            userOpt.className = isCorrect ? 'review-opt-correct' : 'review-opt-wrong';
-            userOpt.innerHTML = `<strong>Your answer:</strong> ${q.options[userAnswerIdx]}`;
-            optsDiv.appendChild(userOpt);
-          }
-
-          if (!isCorrect) {
-            const correctOpt = document.createElement('div');
-            correctOpt.className = 'review-opt-correct';
-            correctOpt.innerHTML = `<strong>Correct answer:</strong> ${q.options[q.answer_index]}`;
-            optsDiv.appendChild(correctOpt);
-          }
-
-          div.appendChild(optsDiv);
-
-          if (q.explanation) {
-            const expDiv = document.createElement('div');
-            expDiv.className = 'review-explanation';
-            expDiv.textContent = q.explanation;
-            div.appendChild(expDiv);
-          }
-
-          container.appendChild(div);
-        });
+        const missed = [], right = [];
+        this.filteredQuestions.forEach((q, idx) => { (this.answers[idx] === q.answer_index ? right : missed).push(idx); });
+        const head = document.createElement('div');
+        head.className = 'review-head';
+        head.textContent = missed.length ? `Questions to review (${missed.length})` : 'You answered every question correctly.';
+        container.appendChild(head);
+        missed.forEach(idx => container.appendChild(this.reviewItem(this.filteredQuestions[idx], idx)));
+        if (right.length) {
+          const d = document.createElement('details');
+          d.className = 'review-group';
+          const sm = document.createElement('summary');
+          sm.textContent = `Questions you answered correctly (${right.length})`;
+          d.appendChild(sm);
+          right.forEach(idx => d.appendChild(this.reviewItem(this.filteredQuestions[idx], idx)));
+          container.appendChild(d);
+        }
       },
 
       reset() {
         this.currentIndex = 0;
         this.answers = {};
         document.getElementById('resultSection').classList.add('hidden');
+        document.body.classList.remove('results-dark');
         document.getElementById('gateSection').classList.remove('hidden');
         document.getElementById('gateCategory').value = '';
         document.getElementById('gateVariant').value = '';

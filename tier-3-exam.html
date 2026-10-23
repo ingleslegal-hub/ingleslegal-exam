@@ -19,7 +19,7 @@
   .brandmark{ display:flex; align-items:center; gap:10px; }
   .wordmark{ font-family:"Archivo", Arial, sans-serif; font-weight:600; letter-spacing:-0.01em; font-size:19px; }
   .wordmark .ingles{ color:var(--gold); } .wordmark .legal{ color:var(--cream); }
-  .tag{ font-size:11px; color:var(--panel-line); font-family:"Archivo", Arial, sans-serif; letter-spacing:.5px; text-transform:uppercase;}
+  .tag{ font-size:11px; color:#B9AAC4; font-family:"Archivo", Arial, sans-serif; letter-spacing:.5px; text-transform:uppercase;}
   .wrap{ max-width:740px; margin:0 auto; padding:28px 20px 60px; }
   .card{ background:#fff; border:1px solid rgba(110,90,121,.18); border-radius:3px; padding:32px 30px; box-shadow:0 1px 3px rgba(42,27,51,.06); }
   h1{ font-family:"Archivo", Arial, sans-serif; font-weight:600; font-size:26px; margin:0 0 6px; color:var(--lifted-aubergine); letter-spacing:-0.01em;}
@@ -75,6 +75,40 @@
   .placement .headline{ font-weight:600; color:var(--gold); font-size:16px; margin-bottom:4px; }
   .footer-note{ font-family:"Archivo", Arial, sans-serif; font-size:12px; color:var(--body-on-light); margin-top:18px; line-height:1.5; }
   .synctag{ font-family:"Archivo", Arial, sans-serif; font-size:11px; color:var(--panel-line); margin-top:8px; }
+  .topics td.bartd{ width:34%; }
+  .bar{ height:8px; background:#efe9db; border-radius:4px; overflow:hidden; }
+  .bar span{ display:block; height:100%; background:var(--gold); }
+  .bar.low span{ background:var(--bad); }
+  .nextstep{ border:1px solid rgba(110,90,121,.3); border-left:3px solid var(--gold); border-radius:3px; padding:18px 20px; margin:18px 0; font-family:"Archivo", Arial, sans-serif; background:var(--light-section); }
+  .nextstep .headline{ font-weight:600; font-size:16px; margin-bottom:6px; color:var(--lifted-aubergine); }
+  .nextstep p{ margin:0 0 12px; font-size:14px; line-height:1.55; }
+  .nextstep a.btn{ display:inline-block; text-decoration:none; }
+  .filterrow{ font-family:"Archivo", Arial, sans-serif; font-size:13px; margin:0 0 14px; }
+  .filterrow select{ margin-left:8px; padding:7px 10px; border-radius:3px; border:1.5px solid rgba(110,90,121,.3); font-family:inherit; font-size:13px; }
+  body.results-dark{ background:#1E1226; }
+  body.results-dark .card{ background:var(--aubergine); border-color:var(--panel-line); box-shadow:0 2px 12px rgba(0,0,0,.4); }
+  body.results-dark h1, body.results-dark h2{ color:var(--gold); }
+  body.results-dark .sub, body.results-dark .footer-note, body.results-dark .nextstep p, body.results-dark .filterrow{ color:var(--cream); }
+  body.results-dark .synctag{ color:#B9AAC4; }
+  body.results-dark table.results th{ background:#1E1226; color:var(--gold); }
+  body.results-dark table.results td{ border-color:rgba(110,90,121,.55); color:var(--cream); background:transparent; }
+  body.results-dark table.results tr:nth-child(even) td{ background:rgba(255,255,255,.04); }
+  body.results-dark .bar{ background:rgba(255,255,255,.12); }
+  body.results-dark .placement{ background:#1E1226; }
+  body.results-dark .nextstep{ background:#1E1226; border-color:rgba(110,90,121,.55); border-left-color:var(--gold); }
+  body.results-dark .nextstep .headline{ color:var(--gold); }
+  body.results-dark .rv{ background:#33213D; border-color:rgba(110,90,121,.55); border-left-color:var(--bad); }
+  body.results-dark .rv.ok{ border-left-color:var(--ok); }
+  body.results-dark .rv .rq{ color:var(--gold); }
+  body.results-dark .rv .rs{ color:var(--cream); }
+  body.results-dark .rv .ra.bad{ color:#E29585; }
+  body.results-dark .rv .ra.good{ color:#7FCBA5; }
+  body.results-dark .rationale{ background:rgba(201,169,110,.1); color:var(--cream); }
+  body.results-dark .rationale strong{ color:var(--gold); }
+  body.results-dark details.rvgroup > summary{ color:var(--cream); }
+  body.results-dark .btn.ghost{ color:var(--gold); border-color:var(--gold); }
+  body.results-dark .btn.ghost:hover{ background:rgba(201,169,110,.12); }
+  body.results-dark .filterrow select{ background:#1E1226; color:var(--cream); border-color:var(--panel-line); }
   @media (max-width:600px){ .wrap{ padding:16px 12px 40px; } .card{ padding:22px 18px; } h1{ font-size:22px; } .stem{font-size:16px;} }
 </style>
 </head>
@@ -133,9 +167,15 @@ function scoreBetween(start, end){
   for(let i=start;i<end;i++){ if(state.answers[i] !== null && state.answers[i] === QUESTIONS[i].a) c++; }
   return c;
 }
+function fmtPct(x){
+  let v = Math.round(x*1000)/10;
+  if(x < PASS_THRESHOLD && v >= PASS_THRESHOLD*100) v = Math.round(PASS_THRESHOLD*1000 - 1)/10;
+  return (Number.isInteger(v) ? v : v.toFixed(1)) + "%";
+}
 function totalScore(){ return scoreBetween(0, TOTAL); }
 
 function render(){
+  document.body.classList.toggle("results-dark", state.screen === "final");
   if(state.screen === "question" || state.screen === "batchEnd") saveProgress();
   if(state.screen === "final") clearProgress();
   const card = document.getElementById("card");
@@ -217,18 +257,20 @@ function render(){
     for(let bn=1; bn<=fullBatches; bn++){
       const [bs,be] = batchBounds(bn);
       const s = scoreBetween(bs,be);
-      rows.push(`<tr><td>Batch ${bn} (Q${bs+1}&ndash;${be})</td><td>${s} / ${be-bs}</td><td>${Math.round((s/(be-bs))*100)}%</td></tr>`);
+      rows.push(`<tr><td>Batch ${bn} (Q${bs+1}&ndash;${be})</td><td>${s} / ${be-bs}</td><td>${fmtPct(s/(be-bs))}</td></tr>`);
     }
     card.innerHTML = `
       <h1>${partial ? "Exam Stopped Early — Provisional Results" : "Exam Complete"}</h1>
       <div class="sub">${state.candidate.name || "Candidate"}${state.candidate.email ? " &middot; " + state.candidate.email : ""} &middot; ${completed} of ${TOTAL} questions completed</div>
       <table class="results"><tr><th>Section</th><th>Score</th><th>%</th></tr>${rows.join("")}
-        <tr><td><strong>${partial ? "Overall so far" : "Overall"}</strong></td><td>${score} / ${completed}</td><td>${Math.round(pct*100)}%</td></tr>
+        <tr><td><strong>${partial ? "Overall so far" : "Overall"}</strong></td><td>${score} / ${completed}</td><td>${fmtPct(pct)}</td></tr>
       </table>
       <div class="placement">
         <div class="headline">${TIER_LABEL} — ${passed ? "PASSED" : "Not yet passing"}${partial ? " (provisional)" : ""}</div>
-        <div>Passing threshold is ${Math.round(PASS_THRESHOLD*100)}%. You scored ${Math.round(pct*100)}%${partial ? " based on " + completed + " of " + TOTAL + " questions." : "."}</div>
+        <div>Passing threshold is ${Math.round(PASS_THRESHOLD*100)}%. You scored ${fmtPct(pct)}${partial ? " based on " + completed + " of " + TOTAL + " questions." : "."}${passed ? "" : " " + shortBy(score, completed)}</div>
       </div>
+      ${topicHTML(completed)}
+      ${nextStepHTML(completed, passed)}
       ${reviewHTML(completed)}
       <div class="navrow">
         <button class="btn ghost" onclick="downloadResults()">Download my results</button>
@@ -242,11 +284,47 @@ function render(){
   }
 }
 
+function shortBy(score, completed){
+  const need = Math.ceil(PASS_THRESHOLD*completed - 1e-9) - score;
+  return need > 0 ? "You were " + need + " correct answer" + (need === 1 ? "" : "s") + " short of passing." : "";
+}
+function topicStats(completed){
+  const map = {}; const order = [];
+  for(let i=0;i<completed;i++){
+    const c = QUESTIONS[i].cat;
+    if(!map[c]){ map[c] = {cat:c, right:0, total:0}; order.push(c); }
+    map[c].total++; if(state.answers[i] === QUESTIONS[i].a) map[c].right++;
+  }
+  return order.map(c => map[c]);
+}
+function topicHTML(completed){
+  const rows = topicStats(completed).map(t => {
+    const p = t.right / t.total;
+    return `<tr><td>${t.cat}</td><td>${t.right} / ${t.total}</td><td>${fmtPct(p)}</td><td class="bartd"><div class="bar ${p < PASS_THRESHOLD ? "low" : ""}"><span style="width:${Math.round(p*100)}%"></span></div></td></tr>`;
+  }).join("");
+  return `<h2 style="margin-top:26px">Score by topic</h2><table class="results topics"><tr><th>Topic</th><th>Score</th><th>%</th><th></th></tr>${rows}</table>`;
+}
+function nextStepHTML(completed, passed){
+  const n = parseInt((TIER_LABEL.match(/\d+/) || ["1"])[0], 10);
+  const weak = topicStats(completed).filter(t => t.right / t.total < PASS_THRESHOLD).sort((a,b) => a.right/a.total - b.right/b.total).slice(0,3).map(t => t.cat);
+  let head, body;
+  if(passed){
+    head = "Your next step";
+    body = n < 3 ? "Great work. You are ready to take the Tier " + (n+1) + " exam. Browse our courses to keep building your legal English." : "Great work. You have reached the top tier. Choose a specialty pathway to put your legal English to work.";
+  } else {
+    head = "Your next step";
+    body = (weak.length ? "Focus first on: <strong>" + weak.join(", ") + "</strong>. " : "") + "Review the answers below, then retake this exam. Our courses cover each of these topics step by step.";
+  }
+  return `<div class="nextstep"><div class="headline">${head}</div><p>${body}</p><a class="btn gold" href="https://www.ingleslegal.com" target="_blank" rel="noopener">Explore Ingles Legal courses</a></div>`;
+}
+function filterReview(v){
+  document.querySelectorAll(".review .rv").forEach(el => { el.style.display = (!v || el.dataset.cat === v) ? "" : "none"; });
+}
 function reviewItem(q, i){
   const given = state.answers[i];
   const ok = given === q.a;
   const L = n => String.fromCharCode(65+n);
-  return `<div class="rv ${ok ? "ok" : ""}">
+  return `<div class="rv ${ok ? "ok" : ""}" data-cat="${q.cat}">
     <div class="rq">Question ${i+1} &middot; ${q.cat}</div>
     <div class="rs">${q.stem}</div>
     ${ok ? "" : `<div class="ra bad"><strong>Your answer:</strong> ${given === null ? "Skipped" : L(given) + ". " + q.opts[given]}</div>`}
@@ -257,7 +335,11 @@ function reviewItem(q, i){
 function reviewHTML(completed){
   const missed = [], right = [];
   for(let i=0;i<completed;i++){ (state.answers[i] === QUESTIONS[i].a ? right : missed).push(i); }
+  const cats = topicStats(completed).map(t => t.cat);
   let html = '<div class="review"><h2>Answer review</h2>';
+  if(cats.length > 1){
+    html += '<div class="filterrow">Filter by topic:<select onchange="filterReview(this.value)"><option value="">All topics</option>' + cats.map(c => '<option value="' + c.replace(/"/g,"&quot;") + '">' + c + '</option>').join("") + '</select></div>';
+  }
   if(missed.length){
     html += `<p class="sub">Questions to review (${missed.length})</p>` + missed.map(i => reviewItem(QUESTIONS[i], i)).join("");
   } else {
@@ -393,10 +475,13 @@ function downloadResults(){
   for(let bn=1; bn<=fullBatches; bn++){
     const [bs,be] = batchBounds(bn);
     const s = scoreBetween(bs,be);
-    lines.push(`Batch ${bn} (Q${bs+1}-${be}): ${s}/${be-bs} (${Math.round((s/(be-bs))*100)}%)`);
+    lines.push(`Batch ${bn} (Q${bs+1}-${be}): ${s}/${be-bs} (${fmtPct(s/(be-bs))})`);
   }
   lines.push("");
-  lines.push(`OVERALL: ${score}/${completed} (${Math.round(pct*100)}%) — ${pct>=PASS_THRESHOLD ? "PASSED" : "Not yet passing"}${partial ? " (provisional)" : ""} (threshold ${Math.round(PASS_THRESHOLD*100)}%)`);
+  lines.push(`OVERALL: ${score}/${completed} (${fmtPct(pct)}) — ${pct>=PASS_THRESHOLD ? "PASSED" : "Not yet passing"}${partial ? " (provisional)" : ""} (threshold ${Math.round(PASS_THRESHOLD*100)}%)`);
+  lines.push("");
+  lines.push("SCORE BY TOPIC");
+  topicStats(completed).forEach(t => lines.push(`${t.cat}: ${t.right}/${t.total} (${fmtPct(t.right/t.total)})`));
   lines.push("");
   lines.push("DETAILED ANSWERS");
   QUESTIONS.slice(0, completed).forEach((q,i) => {
