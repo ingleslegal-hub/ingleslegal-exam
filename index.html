@@ -1,0 +1,115 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>InglesLegal Exams</title>
+  <style>
+    :root {
+      --purple: #2b1b33;
+      --purple-card: #3a2847;
+      --gold: #c8a96b;
+      --text: #f3efe6;
+      --muted: #cfc7b8;
+    }
+    body {
+      margin: 0;
+      font-family: system-ui, -apple-system, "Segoe UI", Roboto, sans-serif;
+      line-height: 1.5;
+      background: var(--purple);
+      color: var(--text);
+    }
+    main { max-width: 860px; margin: 0 auto; padding: 40px 16px 56px; }
+    h1 { font-size: 2rem; margin: 0 0 8px; text-align: center; color: var(--gold); }
+    h2 { font-size: 1.25rem; margin: 36px 0 12px; color: var(--gold); }
+    .intro { margin: 0 0 24px; font-size: 1.05rem; text-align: center; color: var(--text); }
+    .grid { display: grid; gap: 14px; grid-template-columns: repeat(auto-fit, minmax(240px, 1fr)); }
+    .card {
+      background: var(--purple-card);
+      border-radius: 10px;
+      padding: 18px;
+      display: flex;
+      flex-direction: column;
+      gap: 8px;
+    }
+    .card h3 { margin: 0; font-size: 1.05rem; color: var(--text); }
+    .card p { margin: 0; font-size: 0.95rem; color: var(--muted); flex-grow: 1; }
+    .btn {
+      display: inline-block;
+      margin-top: 6px;
+      padding: 9px 14px;
+      background: transparent;
+      border: 2px solid var(--gold);
+      color: var(--gold);
+      text-decoration: none;
+      border-radius: 6px;
+      font-weight: 600;
+      text-align: center;
+    }
+    .btn:hover { background: rgba(200, 169, 107, 0.12); }
+    .note { font-size: 0.9rem; color: var(--muted); margin-top: 28px; text-align: center; }
+  </style>
+</head>
+<body>
+  <main>
+    <h1>InglesLegal Exams</h1>
+    <p class="intro">
+      Choose the exam that matches your level or your career path. Each exam is free to take,
+      and you can review your results and certificate when you finish.
+    </p>
+
+    <h2>Certification levels</h2>
+    <div class="grid">
+      <div class="card">
+        <h3>Tier 1: Foundations</h3>
+        <p>Check your core legal English and see where you start.</p>
+        <a class="btn" href="tier-1-exam.html">Start Tier 1</a>
+      </div>
+      <div class="card">
+        <h3>Tier 2: Intermediate</h3>
+        <p>Test your working legal English for everyday case tasks.</p>
+        <a class="btn" href="tier-2-exam.html">Start Tier 2</a>
+      </div>
+      <div class="card">
+        <h3>Tier 3: Advanced</h3>
+        <p>Test advanced legal English for complex case work.</p>
+        <a class="btn" href="tier-3-exam.html">Start Tier 3</a>
+      </div>
+    </div>
+
+    <h2>Career pathway exams</h2>
+    <div class="grid">
+      <div class="card">
+        <h3>Immigration Support Specialist</h3>
+        <p>100 questions covering the immigration support pathway.</p>
+        <a class="btn" href="pathways/immigration-exam.html">Start exam</a>
+      </div>
+      <div class="card">
+        <h3>Personal Injury Case Specialist</h3>
+        <p>100 questions covering the personal injury pathway.</p>
+        <a class="btn" href="pathways/personal-injury-exam.html">Start exam</a>
+      </div>
+      <div class="card">
+        <h3>Workers' Compensation Case Manager</h3>
+        <p>100 questions covering the workers' compensation pathway.</p>
+        <a class="btn" href="pathways/workers-comp-exam.html">Start exam</a>
+      </div>
+      <div class="card">
+        <h3>Family Law Paralegal</h3>
+        <p>100 questions covering the family law pathway.</p>
+        <a class="btn" href="pathways/family-law-exam.html">Start exam</a>
+      </div>
+      <div class="card">
+        <h3>Criminal Defense Legal Assistant</h3>
+        <p>100 questions covering the criminal defense pathway.</p>
+        <a class="btn" href="pathways/criminal-defense-exam.html">Start exam</a>
+      </div>
+    </div>
+
+    <p class="note">
+      Pass mark for every exam: 75%. A certificate is issued when you pass a full, completed exam.
+      Questions about your results? Contact us at the address on the InglesLegal website.
+    </p>
+  </main>
+</body>
+</html>
