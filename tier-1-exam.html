@@ -154,6 +154,60 @@
   .entry-note{ font-size:.8rem; color:#B9AAC4; margin-top:14px; text-align:center; }
   @media (max-width:600px){ .entry-card{ padding:22px 18px; } .entry-card h1{ font-size:1.6rem; } }
   @media (max-width:600px){ .wrap{ padding:16px 12px 40px; } .card{ padding:22px 18px; } h1{ font-size:22px; } .stem{font-size:16px;} }
+
+/* ===== Vocabulary-style theme: question and batch screens (same as the pathway exams) ===== */
+.logo-wrap{ text-align:center; padding:28px 16px 0; }
+.logo-wrap img{ width:100%; max-width:320px; height:auto; display:inline-block; }
+body.results-dark .logo-wrap{ display:none; }
+body:not(.results-dark) .topbar{ display:none; }
+body:not(.results-dark){ background:#2A1B33; color:#F1EBDE; font-family:'Source Sans 3','Segoe UI',Tahoma,sans-serif; color-scheme:dark; }
+body:not(.results-dark) .wrap, body:not(.results-dark) .progress-shell{ max-width:640px; }
+body:not(.results-dark) .progress-shell{ padding-top:22px; }
+body:not(.results-dark) #tabs{ display:none; }
+body:not(.results-dark) .bar-outer{ background:#2A1B33; height:6px; border-radius:3px; margin-bottom:-8px; }
+body:not(.results-dark) .bar-inner{ background:#C9A96E; }
+body:not(.results-dark) .card{ background:#3D2A47; border:1px solid #6E5A79; border-radius:14px; padding:28px; box-shadow:0 2px 8px rgba(0,0,0,.2); }
+body:not(.results-dark) h1{ font-family:'Fraunces',Georgia,serif; font-weight:600; font-size:2rem; line-height:1.2; margin:0 0 .4em; color:#C9A96E; }
+body:not(.results-dark) h2{ font-family:'Fraunces',Georgia,serif; font-weight:600; color:#F1EBDE; }
+body:not(.results-dark) .sub{ font-family:inherit; font-size:1rem; line-height:1.6; color:#F1EBDE; margin-bottom:6px; }
+body:not(.results-dark) .footer-note{ font-family:inherit; color:#B9AAC4; text-align:center; }
+.eyebrow{ text-transform:uppercase; letter-spacing:.11em; font-size:.72rem; font-weight:700; color:#C9A96E; background:#2A1B33; display:inline-block; padding:.3em .7em; border-radius:999px; margin-bottom:14px; font-family:'Source Sans 3','Segoe UI',Tahoma,sans-serif; }
+body:not(.results-dark) .field{ margin-bottom:0; font-family:inherit; }
+body:not(.results-dark) .field label{ color:#F1EBDE; font-weight:600; font-size:.85rem; margin:16px 0 6px; }
+body:not(.results-dark) .field input, body:not(.results-dark) .field select{ width:100%; padding:8px 12px; border:1px solid #6E5A79; border-radius:8px; background:#2A1B33; color:#F1EBDE; font-size:1rem; font-family:inherit; }
+body:not(.results-dark) .field input:focus, body:not(.results-dark) .field select:focus{ outline:none; border-color:#C9A96E; box-shadow:0 0 0 2px rgba(216,179,100,.2); }
+.hint{ font-size:.82rem; color:#B9AAC4; margin-top:6px; line-height:1.45; font-family:'Source Sans 3','Segoe UI',Tahoma,sans-serif; }
+.formerr{ color:#E29585; font-size:.9rem; min-height:1.3em; margin-top:14px; font-family:'Source Sans 3','Segoe UI',Tahoma,sans-serif; }
+.vq-head{ display:flex; justify-content:space-between; align-items:baseline; gap:12px; margin-bottom:16px; }
+.vq-count{ white-space:nowrap; font-size:.85rem; color:#A9713F; text-transform:uppercase; letter-spacing:.05em; font-weight:600; }
+.vq-cat{ font-size:.75rem; color:#C9A96E; font-weight:600; text-align:right; text-transform:uppercase; }
+body:not(.results-dark) .stem{ font-family:'Fraunces',Georgia,serif; font-weight:700; font-size:1.5rem; line-height:1.3; color:#F1EBDE; margin:0 0 16px; }
+body:not(.results-dark) .stem.long{ font-size:1.12rem; font-weight:600; line-height:1.5; }
+body:not(.results-dark) .opt{ background:#3D2A47; border:1px solid #6E5A79; border-radius:8px; color:#F1EBDE; padding:12px 14px; margin:8px 0 0; font-family:inherit; font-size:.95rem; font-weight:600; line-height:1.4; }
+body:not(.results-dark) .opt:hover:not(:disabled){ border-color:#C9A96E; background:rgba(216,179,100,.06); }
+body:not(.results-dark) .opt.selected{ border-color:#C9A96E; background:rgba(216,179,100,.15); color:#C9A96E; box-shadow:none; }
+body:not(.results-dark) .navrow{ gap:12px; margin-top:22px; font-family:inherit; }
+body:not(.results-dark) .btn{ background:#C9A96E; color:#2A1B33; border-radius:8px; font-family:inherit; font-weight:700; font-size:.95rem; padding:12px 20px; letter-spacing:0; }
+body:not(.results-dark) .btn:hover{ background:#C9A96E; opacity:.92; }
+body:not(.results-dark) .btn:disabled{ background:#C9A96E; color:#2A1B33; opacity:.4; cursor:not-allowed; }
+body:not(.results-dark) .btn.ghost{ background:transparent; color:#C9A96E; border:1.5px solid #C9A96E; }
+body:not(.results-dark) .btn.ghost:hover{ background:rgba(201,169,110,.12); opacity:1; }
+body:not(.results-dark) .navrow .btn.next, body:not(.results-dark) .navrow .btn.gold{ flex:1; }
+body:not(.results-dark) .btn.block{ width:100%; margin-top:20px; }
+body:not(.results-dark) .scorebox{ font-family:inherit; }
+body:not(.results-dark) .scorebox .cell{ background:#2A1B33; border-color:#6E5A79; }
+body:not(.results-dark) .scorebox .num{ color:#C9A96E; font-family:inherit; }
+body:not(.results-dark) .scorebox .lbl{ color:#B9AAC4; }
+@media (max-width:600px){
+  body:not(.results-dark) .card{ padding:22px 18px; }
+  body:not(.results-dark) h1{ font-size:1.6rem; }
+  body:not(.results-dark) .stem{ font-size:1.25rem; }
+  body:not(.results-dark) .stem.long{ font-size:1.05rem; }
+}
+/* The entry screen draws its own logo inside the card area. */
+body.entry .logo-wrap{ display:none; }
+body.entry .card{ background:transparent; border:none; box-shadow:none; padding:0; }
+@media (max-width:600px){ body.entry .card{ padding:0; } }
 </style>
 </head>
 <body>
@@ -169,6 +223,7 @@
   </div>
   <div class="tag">Tier 1 Exam</div>
 </div>
+<div class="logo-wrap"><img src="https://ingleslegal-hub.github.io/ingleslegal-exam/vocabulary/logo.png" alt="Ingles Legal"></div>
 <div class="progress-shell" id="progressShell" style="display:none;">
   <div class="tabs" id="tabs"></div>
   <div class="bar-outer"><div class="bar-inner" id="barInner"></div></div>
@@ -359,15 +414,18 @@ function render(){
     renderTabs();
     const i = state.qIndex;
     const q = QUESTIONS[i];
-    const pct = Math.round((i/TOTAL)*100);
+    const pct = Math.round(((i+1)/TOTAL)*100);
     document.getElementById("barInner").style.width = pct + "%";
     const given = state.answers[i];
+    const lastInBatch = (i+1) % BATCH_SIZE === 0 || i+1 === TOTAL;
+    const canBack = i % BATCH_SIZE !== 0; // a finished batch has already been reported, so no going back past it
+    const nextLabel = lastInBatch ? (i+1 === TOTAL ? "Finish &rarr;" : "Finish batch &rarr;") : "Next &rarr;";
 
     card.innerHTML = `
-      <div class="qmeta">${q.cat} &middot; Question ${i+1} of ${TOTAL} &middot; Batch ${batchOfIndex(i)} of ${NUM_BATCHES}</div>
-      <div class="stem">${q.stem}</div>
+      <div class="vq-head"><span class="vq-count">Question ${i+1} of ${TOTAL}</span><span class="vq-cat">${q.cat}</span></div>
+      <div class="stem${q.stem.length > 190 ? " long" : ""}">${q.stem}</div>
       <div id="optsHolder"></div>
-      <div class="navrow"><span></span><button class="btn gold" id="nextBtn" onclick="advance()" ${given === null ? "disabled" : ""}>${(i+1)%BATCH_SIZE===0 || i+1===TOTAL ? "Continue" : "Next question"}</button></div>
+      <div class="navrow"><button class="btn prev" onclick="goBack()" ${canBack ? "" : "disabled"}>&larr; Previous</button><button class="btn gold next" id="nextBtn" onclick="advance()" ${given === null ? "disabled" : ""}>${nextLabel}</button></div>
     `;
     const holder = document.getElementById("optsHolder");
     q.opts.forEach((opt, idx) => {
@@ -375,7 +433,7 @@ function render(){
       let cls = "opt";
       if(idx === given) cls += " selected";
       btn.className = cls;
-      btn.innerHTML = `<span class="letter">${String.fromCharCode(65+idx)}.</span> ${opt}`;
+      btn.innerHTML = opt;
       btn.onclick = () => selectAnswer(idx);
       holder.appendChild(btn);
     });
@@ -633,6 +691,12 @@ function beginExam(ev){
   state.qIndex = 0;
   render();
   window.scrollTo(0, 0);
+}
+function goBack(){
+  if(state.qIndex % BATCH_SIZE === 0) return;
+  state.qIndex -= 1;
+  state.screen = "question";
+  render();
 }
 function selectAnswer(idx){
   state.answers[state.qIndex] = idx;
