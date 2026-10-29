@@ -45,12 +45,25 @@ batchSheet = ss.insertSheet('Batch Progress');
 batchSheet.appendRow(['Timestamp', 'Tier', 'Name', 'Email', 'Batch', 'Score', 'Total', 'Percent', 'Started At', 'Completed At']);
 batchSheet.setFrozenRows(1);
 }
+ensureProfileHeaders_(finalSheet, 12);
+ensureProfileHeaders_(batchSheet, 10);
 return { ss: ss, finalSheet: finalSheet, batchSheet: batchSheet };
+}
+
+// Entry-screen profile answers (tier exams). Stored after the existing columns so older rows still line up.
+const PROFILE_HEADERS = ['Legal English Use', 'Branch of Law', 'English Level'];
+function ensureProfileHeaders_(sheet, baseCols) {
+if (sheet.getLastColumn() < baseCols + PROFILE_HEADERS.length) {
+sheet.getRange(1, baseCols + 1, 1, PROFILE_HEADERS.length).setValues([PROFILE_HEADERS]);
+}
+}
+function profileCells_(data) {
+return [data.legalEnglishUse || '', data.branchOfLaw || '', data.englishLevel || ''];
 }
 
 function handleBatch(data) {
 const sheets = getSheets();
-sheets.batchSheet.appendRow([new Date(), data.tier, data.name, data.email, data.batch, data.score, data.total, data.percent, data.startedAt, data.completedAt]);
+sheets.batchSheet.appendRow([new Date(), data.tier, data.name, data.email, data.batch, data.score, data.total, data.percent, data.startedAt, data.completedAt].concat(profileCells_(data)));
 }
 
 function handleFinal(data) {
@@ -58,7 +71,7 @@ const sheets = getSheets();
 const answers = data.answers || [];
 const breakdown = categoryBreakdown(answers);
 const resultId = makeResultId(data.tier);
-sheets.finalSheet.appendRow([resultId, new Date(), data.tier, data.name, data.email, data.score, data.total, data.percent, data.passed, data.startedAt, data.completedAt, JSON.stringify(breakdown)]);
+sheets.finalSheet.appendRow([resultId, new Date(), data.tier, data.name, data.email, data.score, data.total, data.percent, data.passed, data.startedAt, data.completedAt, JSON.stringify(breakdown)].concat(profileCells_(data)));
 if (data.email) { sendResultsEmail(data, breakdown, resultId); }
 }
 

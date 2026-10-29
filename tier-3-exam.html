@@ -129,6 +129,29 @@
   body.results-dark .section-note{ color:var(--cream); }
   body.results-dark .coursecode{ color:var(--gold); }
   body.results-dark table.results td.below{ color:#E29585; }
+  /* ===== Entry screen: matches the Career Pathway Exams menu (pathways/index.html) ===== */
+  body.entry{ background:var(--aubergine); color:var(--cream); font-family:'Source Sans 3','Segoe UI',Tahoma,sans-serif; }
+  body.entry .topbar{ display:none; }
+  body.entry .wrap{ max-width:640px; padding:32px 16px 48px; }
+  body.entry .card{ background:transparent; border:none; box-shadow:none; padding:0; }
+  .entry-logo{ text-align:center; margin-bottom:24px; }
+  .entry-logo img{ width:100%; max-width:320px; height:auto; display:inline-block; }
+  .entry-card{ background:#3D2A47; border:1px solid var(--panel-line); border-radius:14px; padding:28px; box-shadow:0 2px 8px rgba(0,0,0,.2); }
+  .entry-eyebrow{ text-transform:uppercase; letter-spacing:.11em; font-size:.72rem; font-weight:700; color:var(--gold); background:var(--aubergine); display:inline-block; padding:.3em .7em; border-radius:999px; margin-bottom:14px; }
+  .entry-card h1{ font-family:'Fraunces',Georgia,serif; font-weight:600; font-size:2rem; line-height:1.2; margin:0 0 .4em; color:var(--gold); letter-spacing:0; }
+  .entry-card p{ line-height:1.6; color:var(--cream); margin:.3em 0 0; }
+  .entry-card label{ display:block; font-size:.85rem; font-weight:600; margin:16px 0 6px; color:var(--cream); }
+  .entry-card label.first{ margin-top:18px; }
+  .entry-card input[type=text], .entry-card input[type=email], .entry-card select{ width:100%; font-size:1rem; font-family:inherit; padding:8px 12px; border:1px solid var(--panel-line); border-radius:8px; background:var(--aubergine); color:var(--cream); }
+  .entry-card select{ font-size:.95rem; }
+  .entry-card input::placeholder{ color:#9C8CA8; }
+  .entry-card input:focus, .entry-card select:focus{ outline:none; border-color:var(--gold); box-shadow:0 0 0 2px rgba(216,179,100,.2); }
+  .entry-card #inBranchOther{ margin-top:8px; }
+  .entry-error{ color:#E29585; font-size:.9rem; min-height:1.3em; margin-top:14px; }
+  .entry-btn{ font:inherit; font-weight:700; cursor:pointer; border-radius:8px; border:none; padding:12px 20px; font-size:.95rem; background:var(--gold); color:var(--aubergine); width:100%; transition:opacity .18s ease; }
+  .entry-btn:hover{ opacity:.92; }
+  .entry-note{ font-size:.8rem; color:#B9AAC4; margin-top:14px; text-align:center; }
+  @media (max-width:600px){ .entry-card{ padding:22px 18px; } .entry-card h1{ font-size:1.6rem; } }
   @media (max-width:600px){ .wrap{ padding:16px 12px 40px; } .card{ padding:22px 18px; } h1{ font-size:22px; } .stem{font-size:16px;} }
 </style>
 </head>
@@ -194,8 +217,25 @@ function fmtPct(x){
 }
 function totalScore(){ return scoreBetween(0, TOTAL); }
 
+// Entry screen (styled like pathways/index.html). Candidate profile questions:
+const LOGO_URL = "https://ingleslegal-hub.github.io/ingleslegal-exam/vocabulary/logo.png";
+const USAGE_OPTIONS = ["Once a week", "Twice a week", "Every day", "I work 100% in English", "Does not apply"];
+const BRANCH_OPTIONS = ["Civil", "Commercial", "Criminal", "Family", "International", "Immigration", "Labor", "Personal Injury"];
+const OTHER_BRANCH = "Others";
+const LEVEL_OPTIONS = ["A1", "A2", "B1", "B2", "C1", "C2"];
+function branchOfLaw(){
+  const c = state.candidate || {};
+  if(c.branch === OTHER_BRANCH) return "Other: " + (c.branchOther || "");
+  return c.branch || "";
+}
+function profileFields(){
+  const c = state.candidate || {};
+  return { legalEnglishUse: c.usage || "", branchOfLaw: branchOfLaw(), englishLevel: c.englishLevel || "" };
+}
+
 function render(){
   document.body.classList.toggle("results-dark", state.screen === "final");
+  document.body.classList.toggle("entry", state.screen === "start");
   if(state.screen === "question" || state.screen === "batchEnd") saveProgress();
   if(state.screen === "final") clearProgress();
   const card = document.getElementById("card");
@@ -203,14 +243,43 @@ function render(){
 
   if(state.screen === "start"){
     progressShell.style.display = "none";
+    const opts = list => list.map(v => `<option value="${v}">${v}</option>`).join("");
     card.innerHTML = `
-      <h1>${TIER_LABEL} Certification Exam</h1>
-      <div class="sub">${TOTAL} questions across ${NUM_BATCHES} batches of ${BATCH_SIZE}. Correct answers and explanations are included in your final report, and you'll see a score check after every batch. After any batch except the last, you can stop and get a provisional result based on what you've completed so far, or continue for a complete, non-provisional result.</div>
-      <div class="field"><label>Full name</label><input id="inName" type="text" placeholder="Jane Candidate"></div>
-      <div class="field"><label>Email</label><input id="inEmail" type="email" placeholder="jane@example.com"></div>
-      <div class="navrow"><span></span><button class="btn gold" onclick="beginExam()">Begin Exam</button></div>
-      <div class="footer-note">Your email is used only to send you your results and feedback.</div>
+      <div class="entry-logo"><img src="${LOGO_URL}" alt="Ingles Legal"></div>
+      <form class="entry-card" id="entryForm" novalidate>
+        <div class="entry-eyebrow">Free &middot; No cost to try</div>
+        <h1>${TIER_LABEL} Certification Exam</h1>
+        <p>Test your legal English at the ${TIER_LABEL} level. ${TOTAL} questions in ${NUM_BATCHES} batches of ${BATCH_SIZE}, with a score check after every batch. You can stop after any batch except the last for a provisional result. Correct answers and explanations are in your final report, and a score of ${Math.round(PASS_THRESHOLD*100)}% or higher earns a Certificate of Passing.</p>
+
+        <label class="first" for="inUsage">How often do you use legal English in your current role?</label>
+        <select id="inUsage"><option value="">-- Choose an answer --</option>${opts(USAGE_OPTIONS)}</select>
+
+        <label for="inBranch">What branch of law are you interested in?</label>
+        <select id="inBranch"><option value="">-- Choose a branch --</option>${opts(BRANCH_OPTIONS)}<option value="${OTHER_BRANCH}">Others</option></select>
+        <input type="text" id="inBranchOther" placeholder="Tell us which branch" maxlength="80" style="display:none">
+
+        <label for="inLevel">What is your level of English?</label>
+        <select id="inLevel"><option value="">-- Choose your level --</option>${opts(LEVEL_OPTIONS)}</select>
+
+        <label for="inName">Your name:</label>
+        <input type="text" id="inName" placeholder="Enter your name" autocomplete="name">
+
+        <label for="inEmail">Your email:</label>
+        <input type="email" id="inEmail" placeholder="Enter your email" autocomplete="email">
+
+        <div class="entry-error" id="entryError" role="alert"></div>
+        <button type="submit" class="entry-btn">Start Exam</button>
+        <div class="entry-note">Your email is used only to send you your results and feedback.</div>
+      </form>
     `;
+    const c = state.candidate || {};
+    [["inUsage","usage"],["inBranch","branch"],["inBranchOther","branchOther"],["inLevel","englishLevel"],["inName","name"],["inEmail","email"]]
+      .forEach(([id,k]) => { if(c[k]) document.getElementById(id).value = c[k]; });
+    const branchSel = document.getElementById("inBranch"), otherBox = document.getElementById("inBranchOther");
+    const syncOther = () => { otherBox.style.display = branchSel.value === OTHER_BRANCH ? "block" : "none"; };
+    branchSel.addEventListener("change", () => { syncOther(); if(branchSel.value === OTHER_BRANCH) otherBox.focus(); });
+    syncOther();
+    document.getElementById("entryForm").addEventListener("submit", beginExam);
     return;
   }
 
@@ -467,13 +536,29 @@ function renderTabs(){
   tabs.innerHTML = html;
 }
 
-function beginExam(){
-  state.candidate.name = document.getElementById("inName").value.trim();
-  state.candidate.email = document.getElementById("inEmail").value.trim();
+function beginExam(ev){
+  if(ev) ev.preventDefault();
+  const val = id => document.getElementById(id).value.trim();
+  const c = {
+    usage: val("inUsage"), branch: val("inBranch"), branchOther: val("inBranchOther"),
+    englishLevel: val("inLevel"), name: val("inName"), email: val("inEmail")
+  };
+  let msg = "";
+  if(!c.usage) msg = "Please tell us how often you use legal English.";
+  else if(!c.branch) msg = "Please choose the branch of law you are interested in.";
+  else if(c.branch === OTHER_BRANCH && !c.branchOther) msg = "Please tell us which branch of law you are interested in.";
+  else if(!c.englishLevel) msg = "Please choose your level of English.";
+  else if(!c.name) msg = "Please enter your name.";
+  else if(!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(c.email)) msg = "Please enter a valid email address.";
+  document.getElementById("entryError").textContent = msg;
+  if(msg) return;
+  if(c.branch !== OTHER_BRANCH) c.branchOther = "";
+  state.candidate = c;
   state.startedAt = new Date().toISOString();
   state.screen = "question";
   state.qIndex = 0;
   render();
+  window.scrollTo(0, 0);
 }
 function selectAnswer(idx){
   state.answers[state.qIndex] = idx;
@@ -536,7 +621,7 @@ function sendBatch(bn){
     headers: { "Content-Type": "text/plain" },
     body: JSON.stringify({
       type: "batch", tier: TIER_LABEL,
-      name: state.candidate.name, email: state.candidate.email,
+      name: state.candidate.name, email: state.candidate.email, ...profileFields(),
       ...b, startedAt: state.startedAt, completedAt: new Date().toISOString()
     })
   }).catch(() => {});
@@ -545,7 +630,7 @@ function sendBatch(bn){
 async function submitResults(score, pct, passed){
   try{
     const payload = {
-      type: "final", tier: TIER_LABEL, name: state.candidate.name, email: state.candidate.email,
+      type: "final", tier: TIER_LABEL, name: state.candidate.name, email: state.candidate.email, ...profileFields(),
       batches: batchSummary(),
       startedAt: state.startedAt, completedAt: new Date().toISOString(),
       score, total: TOTAL, percent: Math.round(pct*1000)/10, passed, certId: (passed && state._certId) ? state._certId : "",
@@ -570,6 +655,10 @@ function downloadResults(){
   lines.push("==========================================");
   lines.push("Candidate: " + (state.candidate.name || "(not provided)"));
   lines.push("Email: " + (state.candidate.email || "(not provided)"));
+  { const p = profileFields();
+    if(p.legalEnglishUse) lines.push("Legal English use: " + p.legalEnglishUse);
+    if(p.branchOfLaw) lines.push("Branch of law of interest: " + p.branchOfLaw);
+    if(p.englishLevel) lines.push("Self-reported English level: " + p.englishLevel); }
   lines.push("Started: " + state.startedAt);
   lines.push("Completed: " + new Date().toISOString());
   lines.push("Questions completed: " + completed + " of " + TOTAL);

@@ -12,6 +12,16 @@ Three self-assessment exams matching your certification levels:
 
 These are published on www.ingleslegal.com/cert-exams/ as Claude Artifacts.
 
+Each tier page opens on an entry screen styled like the Career Pathway Exams menu (`pathways/index.html`). There is no exam picker, since the visitor has already chosen the level. The candidate answers three profile questions, all required, then enters their name and email:
+
+| Question | Answers |
+|---|---|
+| How often do you use legal English in your current role? | Once a week, Twice a week, Every day, I work 100% in English, Does not apply |
+| What branch of law are you interested in? | Civil, Commercial, Criminal, Family, International, Immigration, Labor, Personal Injury, Others (opens a text box) |
+| What is your level of English? | A1, A2, B1, B2, C1, C2 |
+
+The answers are sent with every batch and final webhook payload as `legalEnglishUse`, `branchOfLaw` (`Other: <text>` for Others) and `englishLevel`, appear in the downloaded results, and are logged by `apps-script/Code.gs` in three extra columns (Legal English Use, Branch of Law, English Level) on the Final Results and Batch Progress sheets. Redeploy the Apps Script web app after updating `Code.gs`.
+
 ---
 
 ## 2. Branch Pathway Exams (100 questions each)
