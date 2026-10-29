@@ -20,6 +20,16 @@ Each tier page opens on an entry screen styled like the Career Pathway Exams men
 | What branch of law are you interested in? | Civil, Commercial, Criminal, Family, International, Immigration, Labor, Personal Injury, Others (opens a text box) |
 | What is your level of English? | A1, A2, B1, B2, C1, C2 |
 
+The candidate also picks the length, and can deep-link it with `?length=one|two|full`:
+
+| Length | Questions | Certificate |
+|---|---|---|
+| One batch | 50, drawn evenly from every topic | No (the results invite the candidate to take the Full exam) |
+| Two batches | 100, drawn evenly from every topic, in 2 batches of 50 | No |
+| Full exam | All 150, in 3 batches of 50 | Yes, at 75% or higher |
+
+The webhook payloads include `length` (`one`, `two` or `full`), and the final payload's `total` is the number of questions in that length.
+
 The answers are sent with every batch and final webhook payload as `legalEnglishUse`, `branchOfLaw` (`Other: <text>` for Others) and `englishLevel`, appear in the downloaded results, and are logged by `apps-script/Code.gs` in three extra columns (Legal English Use, Branch of Law, English Level) on the Final Results and Batch Progress sheets. Redeploy the Apps Script web app after updating `Code.gs`.
 
 ---
