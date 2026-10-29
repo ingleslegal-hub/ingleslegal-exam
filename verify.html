@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Verify a Certificate | Ingles Legal</title>
+<title>Verify a Proficiency Report | Ingles Legal</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Archivo:wght@400;500;600;700&family=Spectral:ital,wght@0,400;0,500;1,400&display=swap" rel="stylesheet">
@@ -39,8 +39,8 @@
     <div class="wm"><b>Ingles</b>legal</div>
   </div>
   <div class="card">
-    <h1>Verify a certificate</h1>
-    <p>Enter the certificate ID printed on the report, or scan its QR code.</p>
+    <h1>Verify a Proficiency Report</h1>
+    <p>Enter the report ID printed on the Proficiency Report, or scan its QR code.</p>
     <form id="f"><input id="id" placeholder="IL-T2-XXXXXXXX" maxlength="24" autocomplete="off" spellcheck="false"><button id="go" type="submit">Verify</button></form>
     <div class="res" id="res"></div>
     <div class="note">Verification confirms that this ID was issued by the Ingles Legal exam system, and shows the details recorded at that time. Ingles Legal exams are self-assessments of legal English and are not an official credential.</div>
@@ -53,7 +53,7 @@
   function show(cls, html){ res.className = "res " + cls; res.innerHTML = html; }
   function lookup(id){
     id = id.trim().toUpperCase(); input.value = id;
-    if(!ID_RE.test(id)){ show("bad", '<div class="st">Not valid</div>That does not look like an Ingles Legal certificate ID. It should look like IL-T2-XXXXXXXX.'); return; }
+    if(!ID_RE.test(id)){ show("bad", '<div class="st">Not valid</div>That does not look like an Ingles Legal report ID. It should look like IL-T2-XXXXXXXX.'); return; }
     btn.disabled = true; show("", "");
     var cb = "ilv" + Date.now(), s = document.createElement("script"), done = false;
     function finish(){ done = true; btn.disabled = false; if(s.parentNode) s.parentNode.removeChild(s); try{ delete window[cb]; }catch(e){ window[cb] = undefined; } }
@@ -61,9 +61,9 @@
       if(done) return; finish();
       if(d && d.found){
         var date = new Date(d.issuedAt).toLocaleDateString("en-US", {year:"numeric", month:"long", day:"numeric"});
-        show("ok", '<div class="st">Verified</div><dl><dt>Awarded to</dt><dd>' + esc(d.name) + '</dd><dt>Exam</dt><dd>' + esc(d.exam) + '</dd><dt>Level</dt><dd>' + esc(d.level) + '</dd><dt>Score</dt><dd>' + esc(d.percent) + '% (' + esc(d.correct) + ' / ' + esc(d.total) + ')</dd><dt>Issued</dt><dd>' + esc(date) + '</dd><dt>ID</dt><dd>' + esc(d.id) + '</dd></dl>');
+        show("ok", '<div class="st">Verified</div><dl><dt>Prepared for</dt><dd>' + esc(d.name) + '</dd><dt>Exam</dt><dd>' + esc(d.exam) + '</dd><dt>Level</dt><dd>' + esc(d.level) + '</dd><dt>Score</dt><dd>' + esc(d.percent) + '% (' + esc(d.correct) + ' / ' + esc(d.total) + ')</dd><dt>Issued</dt><dd>' + esc(date) + '</dd><dt>ID</dt><dd>' + esc(d.id) + '</dd></dl>');
       } else {
-        show("bad", '<div class="st">Not found</div>No certificate with this ID is on record. Check the ID and try again.');
+        show("bad", '<div class="st">Not found</div>No Proficiency Report with this ID is on record. Check the ID and try again.');
       }
     };
     s.onerror = function(){ if(done) return; finish(); show("bad", '<div class="st">Could not check</div>The verification service could not be reached. Please try again in a moment.'); };
