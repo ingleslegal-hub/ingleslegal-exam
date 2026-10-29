@@ -45,6 +45,8 @@ The menu hands the name and email to the exam page through `sessionStorage` (nev
 | Full | 100, in 2 batches of 50 | Yes, at 75% or higher |
 | Half | 50, drawn at random and evenly from the 8 courses (6 or 7 per course), in 1 batch | No (the results screen invites the candidate to take the Full exam) |
 
+**/talent page section:** paste the entire contents of `pathways/embed-pathways.html` into a LearnWorlds **Embed** section (same steps as `vocabulary/embed-standalone.html`). It shows a heading, the five pathway names and one "Take Our Pathway Exam" button that opens the menu.
+
 The question screen follows the vocabulary quiz layout: logo, progress bar, question count with the course name, one question per screen, and Previous / Next buttons. Previous works within a batch; a finished batch has already been reported, so it cannot be reopened. The results webhook payloads include `length` (`half` or `full`) and `total`; `tier` is unchanged.
 
 ---
@@ -101,6 +103,7 @@ ingleslegal-exam/
 ├── tier-3-exam.html           (Tier 3 certification exam)
 ├── pathways/                  (Branch pathway exams, 5 × 100 questions)
 │   ├── index.html             (Menu: exam, Half/Full, name, email)
+│   ├── embed-pathways.html    ("Free Career Pathway Exams" section for the /talent page)
 │   └── *-exam.html            (The five pathway exams)
 ├── vocabulary/                (Free public vocabulary exams)
 │   ├── quiz-standalone.html   (Quiz engine)
