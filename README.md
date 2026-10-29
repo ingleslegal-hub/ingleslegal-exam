@@ -20,6 +20,8 @@ Each tier page opens on an entry screen styled like the Career Pathway Exams men
 | What branch of law are you interested in? | Civil, Commercial, Criminal, Family, International, Immigration, Labor, Personal Injury, Others (opens a text box) |
 | What is your level of English? | A1, A2, B1, B2, C1, C2 |
 
+The question and batch screens use the same vocabulary-quiz layout as the pathway exams: logo, progress bar, question count with the topic, one question per screen, and Previous / Next buttons (Previous works within a batch).
+
 The candidate also picks the length, and can deep-link it with `?length=one|two|full`:
 
 | Length | Questions | Proficiency Report |
