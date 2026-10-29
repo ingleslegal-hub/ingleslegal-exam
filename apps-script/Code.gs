@@ -1,22 +1,15 @@
 const SHEET_ID_PROPERTY = 'RESULTS_SHEET_ID';
-
+ 
 const TIER_THRESHOLDS = { 'Tier 1': 75, 'Tier 2': 75, 'Tier 3': 75 };
-
+ 
 const TIER_MEANING = {
 'Tier 1': 'Tier 1 confirms working proficiency in legal English and the core vocabulary of major US practice areas, reading intake notes, following basic procedural language, and communicating with supervision. It is Ingles Legal recommended bar for entry-level legal support roles.',
 'Tier 2': 'Tier 2 confirms the candidate can read and draft at an advanced professional level across core US legal practice areas, and can operate day-to-day legal software without supervision. A Tier 2 pass is Ingles Legal recommended bar for mid-level legal support hires.',
 'Tier 3': 'Tier 3 confirms expert-level fluency, including complex litigation vocabulary and cross-border contract work, operating independently on high-stakes matters. It is Ingles Legal recommended bar for senior legal support and paralegal roles.'
 };
-
+ 
 const PROMO_CODE = 'EXAM15';
-const VERIFY_BASE = 'https://ingleslegal-hub.github.io/ingleslegal-exam/verify.html?id=';
-
-function certBlockHtml_(certId) {
-  if (!certId || !/^IL-[A-Z0-9]{1,5}-[A-Z2-9]{8}$/.test(String(certId))) return '';
-  var url = VERIFY_BASE + encodeURIComponent(certId);
-  return '<table role="presentation" width="100%" style="border-collapse:collapse;background:#fff;border:1px solid #c9a96e;border-radius:8px;margin-top:14px;"><tr><td style="padding:16px 18px;"><div style="font-family:Arial,sans-serif;font-size:14px;font-weight:700;color:#241626;">Your Proficiency Report</div><div style="font-family:Arial,sans-serif;font-size:12px;color:#5b4f63;margin-top:4px;line-height:1.5;">Report ID <b>' + certId + '</b>. Anyone, such as an employer, can confirm it is genuine at the link below.</div><div style="margin-top:10px;"><a href="' + url + '" style="font-family:Arial,sans-serif;font-size:12px;font-weight:700;color:#2a1b33;background:#c9a96e;padding:8px 14px;border-radius:6px;text-decoration:none;display:inline-block;">Verify this report</a></div></td></tr></table>';
-}
-
+ 
 function doPost(e) {
 try {
 const data = JSON.parse(e.postData.contents);
@@ -26,7 +19,7 @@ return ContentService.createTextOutput(JSON.stringify({ ok: true })).setMimeType
 return ContentService.createTextOutput(JSON.stringify({ ok: false, error: String(err) })).setMimeType(ContentService.MimeType.JSON);
 }
 }
-
+ 
 function getSheets() {
 const props = PropertiesService.getScriptProperties();
 let id = props.getProperty(SHEET_ID_PROPERTY);
@@ -49,8 +42,8 @@ ensureProfileHeaders_(finalSheet, 12);
 ensureProfileHeaders_(batchSheet, 10);
 return { ss: ss, finalSheet: finalSheet, batchSheet: batchSheet };
 }
-
-// Entry-screen profile answers (tier exams). Stored after the existing columns so older rows still line up.
+ 
+// Entry-screen answers from the Tier exams, stored after the existing columns so older rows still line up.
 const PROFILE_HEADERS = ['Legal English Use', 'Branch of Law', 'English Level'];
 function ensureProfileHeaders_(sheet, baseCols) {
 if (sheet.getLastColumn() < baseCols + PROFILE_HEADERS.length) {
@@ -61,18 +54,18 @@ function profileCells_(data) {
 return [data.legalEnglishUse || '', data.branchOfLaw || '', data.englishLevel || ''];
 }
 
-function handleBatch(data) {
-const sheets = getSheets();
-sheets.batchSheet.appendRow([new Date(), data.tier, data.name, data.email, data.batch, data.score, data.total, data.percent, data.startedAt, data.completedAt].concat(profileCells_(data)));
-}
-
-// Shown after the exam name when the candidate chose a shorter length (tier: one/two batches; pathway: half).
+// Shown after the exam name when a shorter length was chosen (Tier: one/two batches; pathway: half).
 function lengthSuffix_(data) {
 var names = { one: 'One batch', two: 'Two batches', half: 'Half exam' };
 var n = names[data.length];
 return n ? ' &middot; ' + n + ' (' + data.total + ' questions)' : '';
 }
 
+function handleBatch(data) {
+const sheets = getSheets();
+sheets.batchSheet.appendRow([new Date(), data.tier, data.name, data.email, data.batch, data.score, data.total, data.percent, data.startedAt, data.completedAt].concat(profileCells_(data)));
+}
+ 
 function handleFinal(data) {
 const sheets = getSheets();
 const answers = data.answers || [];
@@ -81,7 +74,7 @@ const resultId = makeResultId(data.tier);
 sheets.finalSheet.appendRow([resultId, new Date(), data.tier, data.name, data.email, data.score, data.total, data.percent, data.passed, data.startedAt, data.completedAt, JSON.stringify(breakdown)].concat(profileCells_(data)));
 if (data.email) { sendResultsEmail(data, breakdown, resultId); }
 }
-
+ 
 function categoryBreakdown(answers) {
 const cats = {};
 answers.forEach(function (a) {
@@ -94,13 +87,13 @@ const c = cats[cat];
 return { cat: cat, correct: c.correct, total: c.total, percent: Math.round((c.correct / c.total) * 1000) / 10 };
 }).sort(function (a, b) { return b.percent - a.percent; });
 }
-
+ 
 function makeResultId(tier) {
 const tierCode = (tier || '').replace(/[^0-9]/g, '') || 'X';
 const rand = Utilities.getUuid().split('-')[0].toUpperCase().slice(0, 6);
 return 'IL-T' + tierCode + '-' + rand;
 }
-
+ 
 function formatDate(iso) {
 try {
 const d = new Date(iso);
@@ -109,16 +102,16 @@ return Utilities.formatDate(d, 'America/Bogota', 'MMMM d, yyyy');
 return iso || '';
 }
 }
-
+ 
 function barRowHtml(b, threshold) {
 const barColor = b.percent >= threshold ? '#0ca30c' : '#d03b3b';
 return '<tr><td style="padding:10px 0;font-family:Arial,sans-serif;font-size:13px;color:#241626;width:38%;vertical-align:middle;">' + b.cat + '</td><td style="padding:10px 8px;vertical-align:middle;"><div style="background:#e6ddd0;border-radius:4px;height:10px;width:100%;position:relative;overflow:hidden;"><div style="background:' + barColor + ';height:10px;width:' + b.percent + '%;border-radius:4px;"></div></div></td><td style="padding:10px 0 10px 8px;font-family:Arial,sans-serif;font-size:13px;font-weight:700;color:#241626;text-align:right;width:14%;vertical-align:middle;">' + b.percent + '%</td></tr>';
 }
-
+ 
 function tableRowHtml(b) {
 return '<tr><td style="padding:8px 10px;border-bottom:1px solid #e6ddd0;font-family:Arial,sans-serif;font-size:13px;">' + b.cat + '</td><td style="padding:8px 10px;border-bottom:1px solid #e6ddd0;font-family:Arial,sans-serif;font-size:13px;text-align:right;">' + b.correct + ' / ' + b.total + '</td><td style="padding:8px 10px;border-bottom:1px solid #e6ddd0;font-family:Arial,sans-serif;font-size:13px;font-weight:700;text-align:right;">' + b.percent + '%</td></tr>';
 }
-
+ 
 function sendResultsEmail(data, breakdown, resultId) {
 const passed = !!data.passed;
 const passText = passed ? 'PASSED' : 'Not yet passing';
@@ -130,7 +123,7 @@ const growth = breakdown.length ? breakdown[breakdown.length - 1] : null;
 const barRows = breakdown.map(function (b) { return barRowHtml(b, threshold); }).join('');
 const tableRows = breakdown.map(tableRowHtml).join('');
 const calloutsHtml = (strongest && growth) ? ('<table role="presentation" width="100%" style="border-collapse:collapse;margin-top:16px;"><tr><td style="width:50%;padding:14px;background:#fbf8f2;border:1px solid #e6ddd0;border-radius:8px;" valign="top"><div style="font-family:Arial,sans-serif;font-size:11px;text-transform:uppercase;letter-spacing:0.5px;color:#0ca30c;font-weight:700;">Strongest area</div><div style="font-family:Arial,sans-serif;font-size:15px;font-weight:700;margin-top:4px;color:#241626;">' + strongest.cat + '</div><div style="font-family:Arial,sans-serif;font-size:13px;color:#7d7084;margin-top:2px;">' + strongest.percent + '% correct</div></td><td style="width:4%;"></td><td style="width:46%;padding:14px;background:#fbf8f2;border:1px solid #e6ddd0;border-radius:8px;" valign="top"><div style="font-family:Arial,sans-serif;font-size:11px;text-transform:uppercase;letter-spacing:0.5px;color:#d03b3b;font-weight:700;">Growth area</div><div style="font-family:Arial,sans-serif;font-size:15px;font-weight:700;margin-top:4px;color:#241626;">' + growth.cat + '</div><div style="font-family:Arial,sans-serif;font-size:13px;color:#7d7084;margin-top:2px;">' + growth.percent + '% correct</div></td></tr></table>') : '';
-const html = '<div style="font-family:Georgia,\'Times New Roman\',serif;max-width:640px;margin:0 auto;color:#241626;background:#f5f1e8;">' + '<div style="background:linear-gradient(165deg,#2a1b33,#3a2644);padding:32px 28px;border-radius:12px 12px 0 0;color:#fff;">' + '<div style="font-family:Arial,sans-serif;font-size:11px;letter-spacing:1px;text-transform:uppercase;opacity:0.8;">Legal English Proficiency Assessment</div>' + '<h1 style="font-family:Arial,sans-serif;margin:10px 0 4px;font-size:22px;">' + data.tier + ' Proficiency Exam' + lengthSuffix_(data) + '</h1>' + '<div style="font-family:Arial,sans-serif;font-size:13px;opacity:0.85;">' + (data.name || 'Candidate') + ' &middot; completed ' + formatDate(data.completedAt) + '</div>' + '<div style="font-family:Arial,sans-serif;font-size:42px;font-weight:800;color:#d4b483;margin-top:16px;">' + data.percent + '%</div>' + '<div style="font-family:Arial,sans-serif;font-size:13px;opacity:0.85;">' + data.score + ' of ' + data.total + ' questions correct</div>' + '<div style="display:inline-block;margin-top:14px;padding:6px 14px;border-radius:20px;background:' + passBg + ';font-family:Arial,sans-serif;font-weight:700;font-size:12px;">' + passText + '</div>' + '<div style="margin-top:16px;font-family:Arial,sans-serif;font-size:12px;opacity:0.75;">Result ID <b>' + resultId + '</b> &middot; Passing threshold: ' + threshold + '%</div>' + '</div>' + '<div style="background:#fbf8f2;padding:28px;border:1px solid #e6ddd0;border-top:none;">' + '<h2 style="font-family:Arial,sans-serif;font-size:16px;margin:0 0 4px;">Score by category</h2>' + '<p style="font-family:Arial,sans-serif;font-size:12px;color:#7d7084;margin:0 0 10px;">Percentage correct in each area, against the ' + data.tier + ' passing threshold of ' + threshold + '%.</p>' + '<table role="presentation" width="100%" style="border-collapse:collapse;">' + barRows + '</table>' + calloutsHtml + '<h2 style="font-family:Arial,sans-serif;font-size:16px;margin:28px 0 4px;">Full breakdown</h2>' + '<table role="presentation" width="100%" style="border-collapse:collapse;">' + '<tr><th style="text-align:left;padding:8px 10px;border-bottom:2px solid #241626;font-family:Arial,sans-serif;font-size:12px;">Category</th><th style="text-align:right;padding:8px 10px;border-bottom:2px solid #241626;font-family:Arial,sans-serif;font-size:12px;">Correct</th><th style="text-align:right;padding:8px 10px;border-bottom:2px solid #241626;font-family:Arial,sans-serif;font-size:12px;">Score</th></tr>' + tableRows + '<tr><td style="padding:8px 10px;font-family:Arial,sans-serif;font-size:13px;font-weight:700;">Overall</td><td style="padding:8px 10px;text-align:right;font-family:Arial,sans-serif;font-size:13px;font-weight:700;">' + data.score + ' / ' + data.total + '</td><td style="padding:8px 10px;text-align:right;font-family:Arial,sans-serif;font-size:13px;font-weight:700;">' + data.percent + '%</td></tr>' + '</table>' + '<h2 style="font-family:Arial,sans-serif;font-size:16px;margin:28px 0 8px;">What this score means</h2>' + '<p style="font-family:Arial,sans-serif;font-size:13px;line-height:1.6;color:#5b4f63;margin:0;">' + meaning + '</p>' + '<h2 style="font-family:Arial,sans-serif;font-size:16px;margin:28px 0 8px;">Next steps</h2>' + '<table role="presentation" width="100%" style="border-collapse:collapse;background:#201723;border-radius:8px;">' + '<tr><td style="padding:16px 18px;">' + '<div style="font-family:Arial,sans-serif;font-size:14px;font-weight:700;color:#fff;">Keep building — 15% off any pathway or course</div>' + '<div style="font-family:Arial,sans-serif;font-size:12px;color:#c6b6cc;margin-top:2px;">One use on any learning pathway or course, valid for 180 days from this result.</div>' + '<div style="display:inline-block;margin-top:10px;padding:6px 12px;background:#3a2b3f;border-radius:6px;font-family:monospace;font-size:13px;color:#c9a96e;font-weight:700;letter-spacing:1px;">' + PROMO_CODE + '</div>' + '</td></tr>' + '</table>' + '<table role="presentation" width="100%" style="border-collapse:collapse;background:#fff;border:1px solid #e6ddd0;border-radius:8px;margin-top:14px;">' + '<tr><td style="padding:16px 18px;">' + '<div style="font-family:Arial,sans-serif;font-size:14px;font-weight:700;color:#241626;">Add a recorded interview assessment</div>' + '<div style="font-family:Arial,sans-serif;font-size:12px;color:#5b4f63;margin-top:4px;line-height:1.5;">A 15-minute recorded interview, reviewed and scored alongside this exam, gives employers a fuller picture of spoken fluency and professional communication. $10 one time.</div>' + '<div style="font-family:Arial,sans-serif;font-size:12px;color:#7d7084;margin-top:10px;">Reply to this email if you would like to add it, we will follow up with details.</div>' + '</td></tr>' + '</table>' + certBlockHtml_(data.certId) + '<p style="font-family:Arial,sans-serif;font-size:11px;color:#7d7084;margin-top:24px;">To verify this result, contact verify@ingleslegal.com with the Result ID above.</p>' + '</div>' + '<div style="font-family:Arial,sans-serif;font-size:11px;color:#7d7084;text-align:center;padding:16px;">Ingles Legal &middot; Legal English Proficiency Assessment &middot; ingleslegal.com</div>' + '</div>';
+const html = '<div style="font-family:Georgia,\'Times New Roman\',serif;max-width:640px;margin:0 auto;color:#241626;background:#f5f1e8;">' + '<div style="background:linear-gradient(165deg,#2a1b33,#3a2644);padding:32px 28px;border-radius:12px 12px 0 0;color:#fff;">' + '<div style="font-family:Arial,sans-serif;font-size:11px;letter-spacing:1px;text-transform:uppercase;opacity:0.8;">Legal English Proficiency Assessment</div>' + '<h1 style="font-family:Arial,sans-serif;margin:10px 0 4px;font-size:22px;">' + data.tier + ' Proficiency Exam' + lengthSuffix_(data) + '</h1>' + '<div style="font-family:Arial,sans-serif;font-size:13px;opacity:0.85;">' + (data.name || 'Candidate') + ' &middot; completed ' + formatDate(data.completedAt) + '</div>' + '<div style="font-family:Arial,sans-serif;font-size:42px;font-weight:800;color:#d4b483;margin-top:16px;">' + data.percent + '%</div>' + '<div style="font-family:Arial,sans-serif;font-size:13px;opacity:0.85;">' + data.score + ' of ' + data.total + ' questions correct</div>' + '<div style="display:inline-block;margin-top:14px;padding:6px 14px;border-radius:20px;background:' + passBg + ';font-family:Arial,sans-serif;font-weight:700;font-size:12px;">' + passText + '</div>' + '<div style="margin-top:16px;font-family:Arial,sans-serif;font-size:12px;opacity:0.75;">Result ID <b>' + resultId + '</b> &middot; Passing threshold: ' + threshold + '%</div>' + '</div>' + '<div style="background:#fbf8f2;padding:28px;border:1px solid #e6ddd0;border-top:none;">' + '<h2 style="font-family:Arial,sans-serif;font-size:16px;margin:0 0 4px;">Score by category</h2>' + '<p style="font-family:Arial,sans-serif;font-size:12px;color:#7d7084;margin:0 0 10px;">Percentage correct in each area, against the ' + data.tier + ' passing threshold of ' + threshold + '%.</p>' + '<table role="presentation" width="100%" style="border-collapse:collapse;">' + barRows + '</table>' + calloutsHtml + '<h2 style="font-family:Arial,sans-serif;font-size:16px;margin:28px 0 4px;">Full breakdown</h2>' + '<table role="presentation" width="100%" style="border-collapse:collapse;">' + '<tr><th style="text-align:left;padding:8px 10px;border-bottom:2px solid #241626;font-family:Arial,sans-serif;font-size:12px;">Category</th><th style="text-align:right;padding:8px 10px;border-bottom:2px solid #241626;font-family:Arial,sans-serif;font-size:12px;">Correct</th><th style="text-align:right;padding:8px 10px;border-bottom:2px solid #241626;font-family:Arial,sans-serif;font-size:12px;">Score</th></tr>' + tableRows + '<tr><td style="padding:8px 10px;font-family:Arial,sans-serif;font-size:13px;font-weight:700;">Overall</td><td style="padding:8px 10px;text-align:right;font-family:Arial,sans-serif;font-size:13px;font-weight:700;">' + data.score + ' / ' + data.total + '</td><td style="padding:8px 10px;text-align:right;font-family:Arial,sans-serif;font-size:13px;font-weight:700;">' + data.percent + '%</td></tr>' + '</table>' + '<h2 style="font-family:Arial,sans-serif;font-size:16px;margin:28px 0 8px;">What this score means</h2>' + '<p style="font-family:Arial,sans-serif;font-size:13px;line-height:1.6;color:#5b4f63;margin:0;">' + meaning + '</p>' + '<h2 style="font-family:Arial,sans-serif;font-size:16px;margin:28px 0 8px;">Next steps</h2>' + '<table role="presentation" width="100%" style="border-collapse:collapse;background:#201723;border-radius:8px;">' + '<tr><td style="padding:16px 18px;">' + '<div style="font-family:Arial,sans-serif;font-size:14px;font-weight:700;color:#fff;">Keep building — 15% off any pathway or course</div>' + '<div style="font-family:Arial,sans-serif;font-size:12px;color:#c6b6cc;margin-top:2px;">One use on any learning pathway or course, valid for 180 days from this result.</div>' + '<div style="display:inline-block;margin-top:10px;padding:6px 12px;background:#3a2b3f;border-radius:6px;font-family:monospace;font-size:13px;color:#c9a96e;font-weight:700;letter-spacing:1px;">' + PROMO_CODE + '</div>' + '</td></tr>' + '</table>' + '<table role="presentation" width="100%" style="border-collapse:collapse;background:#fff;border:1px solid #e6ddd0;border-radius:8px;margin-top:14px;">' + '<tr><td style="padding:16px 18px;">' + '<div style="font-family:Arial,sans-serif;font-size:14px;font-weight:700;color:#241626;">Add a recorded interview assessment</div>' + '<div style="font-family:Arial,sans-serif;font-size:12px;color:#5b4f63;margin-top:4px;line-height:1.5;">A 15-minute recorded interview, reviewed and scored alongside this exam, gives employers a fuller picture of spoken fluency and professional communication. $10 one time.</div>' + '<div style="font-family:Arial,sans-serif;font-size:12px;color:#7d7084;margin-top:10px;">Reply to this email if you would like to add it, we will follow up with details.</div>' + '</td></tr>' + '</table>' + '<p style="font-family:Arial,sans-serif;font-size:11px;color:#7d7084;margin-top:24px;">To verify this result, contact verify@ingleslegal.com with the Result ID above.</p>' + '</div>' + '<div style="font-family:Arial,sans-serif;font-size:11px;color:#7d7084;text-align:center;padding:16px;">Ingles Legal &middot; Legal English Proficiency Assessment &middot; ingleslegal.com</div>' + '</div>';
 const subject = 'Your ' + data.tier + ' results: ' + data.percent + '% — ' + passText;
 const plainText = 'Your ' + data.tier + ' exam results: ' + data.score + '/' + data.total + ' (' + data.percent + '%) — ' + passText + '. Result ID: ' + resultId + '. Strongest area: ' + (strongest ? strongest.cat : 'n/a') + '. Growth area: ' + (growth ? growth.cat : 'n/a') + '.';
 GmailApp.sendEmail(data.email, subject, plainText, { htmlBody: html, name: 'Ingles Legal' });
@@ -173,8 +166,6 @@ function sendVocabResultsEmail(data, resultId) {
     + '<div style="font-family:Arial,sans-serif;font-size:12px;color:#c6b6cc;margin-top:2px;">Take a Tier exam to receive a shareable Legal English Proficiency Report.</div>'
     + '</td></tr>'
     + '</table>'
-    + '<table role="presentation" width="100%" style="border-collapse:collapse;background:#201723;border-radius:8px;margin-top:14px;"><tr><td style="padding:16px 18px;"><div style="font-family:Arial,sans-serif;font-size:14px;font-weight:700;color:#fff;">15% off any pathway or course</div><div style="font-family:Arial,sans-serif;font-size:12px;color:#c6b6cc;margin-top:2px;">One use, valid for 180 days from this result.</div><div style="display:inline-block;margin-top:10px;padding:6px 12px;background:#3a2b3f;border-radius:6px;font-family:monospace;font-size:13px;color:#c9a96e;font-weight:700;letter-spacing:1px;">' + PROMO_CODE + '</div></td></tr></table>'
-    + certBlockHtml_(data.certId)
     + '</div>'
     + '<div style="font-family:Arial,sans-serif;font-size:11px;color:#7d7084;text-align:center;padding:16px;">Ingles Legal &middot; Legal English Vocabulary &middot; ingleslegal.com</div>'
     + '</div>';
@@ -194,7 +185,7 @@ function sendVocabResultsEmail(data, resultId) {
  
    That's the only edit to existing code. Save, then Deploy > Manage deployments > edit the existing
    web app deployment > New version (keep the same URL) so the live webhook picks up the change. */
-
+ 
 /* ===== CERTIFICATES AND VERIFICATION (added) ===== */
 var CERT_SHEET_NAME = 'Certificates';
 // Pass mark is 75% for every exam (TIER_THRESHOLDS in Code.gs is also 75 for all tiers).
@@ -202,7 +193,7 @@ function certPassMark_(data) {
   return 75;
 }
 var CERT_HEADERS = ['id', 'issuedAt', 'name', 'email', 'exam', 'level', 'kind', 'percent', 'correct', 'total'];
-
+ 
 function certSheet_() {
   var ss = getSheets().ss; // same results spreadsheet the other exam data goes to
   var sh = ss.getSheetByName(CERT_SHEET_NAME);
@@ -213,7 +204,7 @@ function certSheet_() {
   }
   return sh;
 }
-
+ 
 function saveCertificate_(data) {
   var lock = LockService.getScriptLock();
   lock.waitLock(20000);
@@ -236,14 +227,14 @@ function saveCertificate_(data) {
     lock.releaseLock();
   }
 }
-
+ 
 function maskName_(name) {
   var parts = String(name || '').trim().split(/\s+/).filter(String);
   if (!parts.length) return '';
   if (parts.length === 1) return parts[0];
   return parts[0] + ' ' + parts[parts.length - 1].charAt(0).toUpperCase() + '.';
 }
-
+ 
 function verifyCertificate_(e) {
   var id = String(e.parameter.verify || '').trim().toUpperCase();
   var out = { found: false };
@@ -254,7 +245,7 @@ function verifyCertificate_(e) {
       if (hit) {
         var row = sh.getRange(hit.getRow(), 1, 1, CERT_HEADERS.length).getValues()[0];
         out = {
-          found: true, id: row[0], issuedAt: new Date(row[1]).toISOString(), name: row[2],
+          found: true, id: row[0], issuedAt: new Date(row[1]).toISOString(), name: maskName_(row[2]),
           exam: row[4], level: row[5], percent: row[7], correct: row[8], total: row[9]
         };
       }
@@ -266,12 +257,12 @@ function verifyCertificate_(e) {
   }
   return json_(out);
 }
-
+ 
 function doGet(e) {
   if (e && e.parameter && e.parameter.verify) return verifyCertificate_(e);
   return json_({ ok: true, service: 'ingleslegal-exams' });
 }
-
+ 
 function json_(obj) {
   return ContentService.createTextOutput(JSON.stringify(obj)).setMimeType(ContentService.MimeType.JSON);
-}
+  }
