@@ -1,0 +1,194 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Career Pathway Exams | Ingles Legal</title>
+  <style>
+    :root{
+      --aubergine:#2A1B33;
+      --aubergine-light:#3D2A47;
+      --cream:#F1EBDE;
+      --gold:#C9A96E;
+      --bronze:#A9713F;
+      --panel-line:#6E5A79;
+      --bad:#E29585;
+      --bg: var(--aubergine);
+      --surface: var(--aubergine-light);
+      --surface-2: var(--aubergine);
+      --ink: var(--cream);
+      --line: var(--panel-line);
+      color-scheme: dark;
+    }
+    *{box-sizing:border-box;}
+    html,body{margin:0;padding:0;}
+    body{
+      background:var(--bg);
+      color:var(--ink);
+      font-family:'Source Sans 3','Segoe UI',Tahoma,sans-serif;
+      padding:32px 16px;
+      display:flex;
+      justify-content:center;
+      min-height:100vh;
+    }
+    .wrap{width:100%; max-width:640px;}
+    h1{
+      font-family:'Fraunces',Georgia,serif;
+      font-weight:600;
+      font-size:2rem;
+      line-height:1.2;
+      margin:0 0 .4em 0;
+      color:var(--gold);
+    }
+    p{line-height:1.6; color:var(--cream); margin:.3em 0 0;}
+    .eyebrow{
+      text-transform:uppercase;
+      letter-spacing:.11em;
+      font-size:.72rem;
+      font-weight:700;
+      color:var(--gold);
+      background:var(--surface-2);
+      display:inline-block;
+      padding:.3em .7em;
+      border-radius:999px;
+      margin-bottom:14px;
+    }
+    .card{
+      background:var(--surface);
+      border:1px solid var(--line);
+      border-radius:14px;
+      padding:28px;
+      box-shadow:0 2px 8px rgba(0,0,0,.2);
+    }
+    label{display:block; font-size:.85rem; font-weight:600; margin:16px 0 6px; color:var(--ink);}
+    label:first-of-type{margin-top:18px;}
+    input[type=text],input[type=email],select{
+      width:100%;
+      font-size:1rem;
+      font-family:inherit;
+      padding:8px 12px;
+      border:1px solid var(--line);
+      border-radius:8px;
+      background:var(--surface-2);
+      color:var(--ink);
+    }
+    select{font-size:.95rem;}
+    input:focus,select:focus{
+      outline:none;
+      border-color:var(--gold);
+      box-shadow:0 0 0 2px rgba(216,179,100,.2);
+    }
+    .hint{font-size:.82rem; color:#B9AAC4; margin-top:6px; line-height:1.45;}
+    .error{color:var(--bad); font-size:.9rem; min-height:1.3em; margin-top:14px;}
+    button{
+      font:inherit;
+      font-weight:700;
+      cursor:pointer;
+      border-radius:8px;
+      border:none;
+      padding:12px 20px;
+      font-size:.95rem;
+      background:var(--gold);
+      color:var(--aubergine);
+      width:100%;
+      transition:opacity .18s ease;
+    }
+    button:hover{opacity:.92;}
+    .note{font-size:.8rem; color:#B9AAC4; margin-top:14px; text-align:center;}
+  </style>
+</head>
+<body>
+  <div class="wrap">
+    <div style="text-align:center; margin-bottom:24px;">
+      <img src="../vocabulary/logo.png" alt="Ingles Legal" style="width:100%; max-width:320px; height:auto; display:inline-block;">
+    </div>
+
+    <form id="menu" class="card" novalidate>
+      <div class="eyebrow">Free &middot; No cost to try</div>
+      <h1>Career Pathway Exams</h1>
+      <p>Test your legal English for your career pathway. Each exam covers all 8 courses of its pathway, and your results include a score for each course. This is a free, no-enrollment-required assessment.</p>
+
+      <label for="exam">Select an exam:</label>
+      <select id="exam">
+        <option value="">-- Choose an exam --</option>
+      </select>
+
+      <label for="length">Select length:</label>
+      <select id="length">
+        <option value="">-- Choose length --</option>
+        <option value="half">Half Exam (50 questions)</option>
+        <option value="full">Full Exam (100 questions)</option>
+      </select>
+      <div class="hint" id="lengthHint"></div>
+
+      <label for="name">Your name:</label>
+      <input type="text" id="name" placeholder="Enter your name" autocomplete="name" required>
+
+      <label for="email">Your email:</label>
+      <input type="email" id="email" placeholder="Enter your email" autocomplete="email" required>
+
+      <div class="error" id="error" role="alert"></div>
+      <button type="submit">Start Exam</button>
+      <div class="note">Your email is used only to send you your results and feedback.</div>
+    </form>
+  </div>
+
+  <script>
+    // One entry per pathway exam. "file" is the exam page in this folder.
+    var EXAMS = [
+      { key: "immigration",      file: "immigration-exam.html",      label: "Immigration Support Specialist" },
+      { key: "personal-injury",  file: "personal-injury-exam.html",  label: "Personal Injury Case Specialist" },
+      { key: "workers-comp",     file: "workers-comp-exam.html",     label: "Workers’ Compensation Case Manager" },
+      { key: "family-law",       file: "family-law-exam.html",       label: "Family Law Paralegal" },
+      { key: "criminal-defense", file: "criminal-defense-exam.html", label: "Criminal Defense Legal Assistant" }
+    ];
+    var LAUNCH_KEY = "ingleslegal_pathway_launch";
+    var HINTS = {
+      half: "50 questions drawn evenly from all 8 courses, in one sitting. The Certificate of Passing is awarded on the Full exam only.",
+      full: "100 questions in 2 batches of 50. Pass at 75% to earn a Certificate of Passing."
+    };
+
+    var examSel = document.getElementById("exam");
+    var lengthSel = document.getElementById("length");
+    var errorEl = document.getElementById("error");
+
+    EXAMS.forEach(function(e){
+      var o = document.createElement("option");
+      o.value = e.key; o.textContent = e.label;
+      examSel.appendChild(o);
+    });
+
+    // Optional deep links: index.html?exam=family-law&length=half
+    var params = new URLSearchParams(location.search);
+    if (EXAMS.some(function(e){ return e.key === params.get("exam"); })) examSel.value = params.get("exam");
+    if (params.get("length") === "half" || params.get("length") === "full") lengthSel.value = params.get("length");
+
+    function showHint(){ document.getElementById("lengthHint").textContent = HINTS[lengthSel.value] || ""; }
+    lengthSel.addEventListener("change", showHint);
+    showHint();
+
+    document.getElementById("menu").addEventListener("submit", function(ev){
+      ev.preventDefault();
+      var exam = EXAMS.filter(function(e){ return e.key === examSel.value; })[0];
+      var length = lengthSel.value;
+      var name = document.getElementById("name").value.trim();
+      var email = document.getElementById("email").value.trim();
+      var msg = "";
+      if (!exam) msg = "Please choose an exam.";
+      else if (!length) msg = "Please choose the exam length.";
+      else if (!name) msg = "Please enter your name.";
+      else if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email)) msg = "Please enter a valid email address.";
+      errorEl.textContent = msg;
+      if (msg) return;
+
+      // Name and email are handed to the exam page through sessionStorage, never the URL.
+      try {
+        sessionStorage.setItem(LAUNCH_KEY, JSON.stringify({
+          exam: exam.file, length: length, name: name, email: email, ts: Date.now()
+        }));
+      } catch (e) { /* storage blocked: the exam page will ask for name and email itself */ }
+      location.href = exam.file + "?length=" + encodeURIComponent(length);
+    });
+  </script>
+</body>
+</html>

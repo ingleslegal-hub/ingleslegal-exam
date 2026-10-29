@@ -28,6 +28,25 @@ One exam per bilingual branch learning pathway. Each has 100 questions mapped to
 
 Live at `https://ingleslegal-hub.github.io/ingleslegal-exam/pathways/<file>`.
 
+### Pathway exam menu
+
+`pathways/index.html` is a single start page, styled like the vocabulary quiz, where the candidate picks:
+
+1. the exam (the five pathways above),
+2. the length (**Half** or **Full**), and
+3. enters their name and email.
+
+Live at `https://ingleslegal-hub.github.io/ingleslegal-exam/pathways/index.html`. Optional deep links preselect the dropdowns: `index.html?exam=family-law&length=half` (exam keys: `immigration`, `personal-injury`, `workers-comp`, `family-law`, `criminal-defense`).
+
+The menu hands the name and email to the exam page through `sessionStorage` (never in the URL), and the exam starts straight on question 1. If an exam page is opened directly, it shows its own start screen with the same fields.
+
+| Length | Questions | Certificate |
+|---|---|---|
+| Full | 100, in 2 batches of 50 | Yes, at 75% or higher |
+| Half | 50, drawn at random and evenly from the 8 courses (6 or 7 per course), in 1 batch | No (the results screen invites the candidate to take the Full exam) |
+
+The question screen follows the vocabulary quiz layout: logo, progress bar, question count with the course name, one question per screen, and Previous / Next buttons. Previous works within a batch; a finished batch has already been reported, so it cannot be reopened. The results webhook payloads include `length` (`half` or `full`) and `total`; `tier` is unchanged.
+
 ---
 
 ## 3. Vocabulary Exams (Free Public Practice)
@@ -81,6 +100,8 @@ ingleslegal-exam/
 ├── tier-2-exam.html           (Tier 2 certification exam)
 ├── tier-3-exam.html           (Tier 3 certification exam)
 ├── pathways/                  (Branch pathway exams, 5 × 100 questions)
+│   ├── index.html             (Menu: exam, Half/Full, name, email)
+│   └── *-exam.html            (The five pathway exams)
 ├── vocabulary/                (Free public vocabulary exams)
 │   ├── quiz-standalone.html   (Quiz engine)
 │   ├── master.json            (1,220 question bank)
@@ -208,7 +229,7 @@ Every exam awards a vertical **Certificate of Passing / Skills Report** when the
 | Exam | When it appears |
 |---|---|
 | Tier 1, 2, 3 | Completed exam (not stopped early) at 75% or higher |
-| Pathway exams (5) | Completed exam at 75% or higher |
+| Pathway exams (5) | **Full Exam only**, completed at 75% or higher (Half Exam shows a prompt to take the Full Exam) |
 | Vocabulary | **Full Exam only**, 75% or higher (Half Exam shows a prompt to take the Full Exam) |
 
 The report shows the strongest skills (golden ribbon), a skills snapshot, windows of opportunity with a recommended pathway, the EXAM15 (15%, one use, 180 days) offer, a certificate ID and a QR code. Candidates can view it, save it as PDF (print dialog) or download it as a file.
