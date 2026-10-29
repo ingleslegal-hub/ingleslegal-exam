@@ -2,15 +2,37 @@
 
 Free practice exams for legal English learners. Three systems:
 
-## 1. Tier Exams (Certification)
+## 1. Tier Exams (Proficiency)
 
-Three self-assessment exams matching your certification levels:
+Three self-assessment exams matching your proficiency levels:
 
 - **Tier 1 Exam** (`tier-1-exam.html`) — Foundation level
 - **Tier 2 Exam** (`tier-2-exam.html`) — Intermediate level  
 - **Tier 3 Exam** (`tier-3-exam.html`) — Advanced level
 
 These are published on www.ingleslegal.com/cert-exams/ as Claude Artifacts.
+
+Each tier page opens on an entry screen styled like the Career Pathway Exams menu (`pathways/index.html`). There is no exam picker, since the visitor has already chosen the level. The candidate answers three profile questions, all required, then enters their name and email:
+
+| Question | Answers |
+|---|---|
+| How often do you use legal English in your current role? | Once a week, Twice a week, Every day, I work 100% in English, Does not apply |
+| What branch of law are you interested in? | Civil, Commercial, Criminal, Family, International, Immigration, Labor, Personal Injury, Others (opens a text box) |
+| What is your level of English? | A1, A2, B1, B2, C1, C2 |
+
+The candidate also picks the length, and can deep-link it with `?length=one|two|full`:
+
+| Length | Questions | Proficiency Report |
+|---|---|---|
+| One batch | 50, drawn evenly from every topic | Yes, at 75% or higher |
+| Two batches | 100, drawn evenly from every topic, in 2 batches of 50 | Yes, at 75% or higher |
+| Full exam | All 150, in 3 batches of 50 | Yes, at 75% or higher |
+
+The report and the results email name the length for One and Two batches.
+
+The webhook payloads include `length` (`one`, `two` or `full`), and the final payload's `total` is the number of questions in that length.
+
+The answers are sent with every batch and final webhook payload as `legalEnglishUse`, `branchOfLaw` (`Other: <text>` for Others) and `englishLevel`, appear in the downloaded results, and are logged by `apps-script/Code.gs` in three extra columns (Legal English Use, Branch of Law, English Level) on the Final Results and Batch Progress sheets. Redeploy the Apps Script web app after updating `Code.gs`.
 
 ---
 
@@ -40,7 +62,7 @@ Live at `https://ingleslegal-hub.github.io/ingleslegal-exam/pathways/index.html`
 
 The menu hands the name and email to the exam page through `sessionStorage` (never in the URL), and the exam starts straight on question 1. If an exam page is opened directly, it shows its own start screen with the same fields.
 
-| Length | Questions | Certificate |
+| Length | Questions | Proficiency Report |
 |---|---|---|
 | Full | 100, in 2 batches of 50 | Yes, at 75% or higher |
 | Half | 50, drawn at random and evenly from the 8 courses (6 or 7 per course), in 1 batch | No (the results screen invites the candidate to take the Full exam) |
@@ -98,9 +120,9 @@ Edit the `startExam()` function in `quiz-standalone.html` (line ~380) to send le
 
 ```
 ingleslegal-exam/
-├── tier-1-exam.html           (Tier 1 certification exam)
-├── tier-2-exam.html           (Tier 2 certification exam)
-├── tier-3-exam.html           (Tier 3 certification exam)
+├── tier-1-exam.html           (Tier 1 proficiency exam)
+├── tier-2-exam.html           (Tier 2 proficiency exam)
+├── tier-3-exam.html           (Tier 3 proficiency exam)
 ├── pathways/                  (Branch pathway exams, 5 × 100 questions)
 │   ├── index.html             (Menu: exam, Half/Full, name, email)
 │   ├── embed-pathways.html    ("Free Career Pathway Exams" section for the /talent page)
@@ -118,7 +140,7 @@ ingleslegal-exam/
 ## Key Features
 
 ### Tier Exams
-- Certification assessment
+- Proficiency assessment
 - Published as Claude Artifacts
 - Links from www.ingleslegal.com/cert-exams/
 
@@ -225,18 +247,20 @@ For questions about the system, contact Felipe (felipe.toro.e@gmail.com).
 
 ---
 
-## Certificates and verification
+## Proficiency Reports and verification
 
-Every exam awards a vertical **Certificate of Passing / Skills Report** when the candidate passes:
+Ingles Legal is not a certifying body, so candidate-facing text never says certificate or certification. Code identifiers (`cert*` functions, the `certificate` webhook type, the `Certificates` sheet) keep their names so stored records and verification keep working.
+
+Every exam issues a vertical **Legal English Proficiency Report** when the candidate passes:
 
 | Exam | When it appears |
 |---|---|
-| Tier 1, 2, 3 | Completed exam (not stopped early) at 75% or higher |
+| Tier 1, 2, 3 | Completed exam of any length (not stopped early) at 75% or higher |
 | Pathway exams (5) | **Full Exam only**, completed at 75% or higher (Half Exam shows a prompt to take the Full Exam) |
 | Vocabulary | **Full Exam only**, 75% or higher (Half Exam shows a prompt to take the Full Exam) |
 
-The report shows the strongest skills (golden ribbon), a skills snapshot, windows of opportunity with a recommended pathway, the EXAM15 (15%, one use, 180 days) offer, a certificate ID and a QR code. Candidates can view it, save it as PDF (print dialog) or download it as a file.
+The report shows the strongest skills (golden ribbon), a skills snapshot, windows of opportunity with a recommended pathway, the EXAM15 (15%, one use, 180 days) offer, a report ID and a QR code. Candidates can view it, save it as PDF (print dialog) or download it as a file.
 
-**Verification.** Each certificate gets an ID like `IL-T2-XXXXXXXX`. The exam posts it (type `certificate`) to the same Apps Script webhook as the results, which stores it in a `Certificates` sheet. `verify.html` looks the ID up and shows the full name, exam, score and date. Setup steps are in `apps-script/certificates.gs` (paste into the existing Apps Script project and redeploy).
+**Verification.** Each report gets an ID like `IL-T2-XXXXXXXX`. The exam posts it (type `certificate`) to the same Apps Script webhook as the results, which stores it in a `Certificates` sheet. `verify.html` looks the ID up and shows the full name, exam, score and date. Setup steps are in `apps-script/certificates.gs` (paste into the existing Apps Script project and redeploy).
 
-The certificate module is embedded in each exam file (it must work as a standalone file). To change the design, edit it in one exam file and copy the block between the two `<script>` tags at the end of the page into the others.
+The report module is embedded in each exam file (it must work as a standalone file). To change the design, edit it in one exam file and copy the block between the two `<script>` tags at the end of the page into the others.

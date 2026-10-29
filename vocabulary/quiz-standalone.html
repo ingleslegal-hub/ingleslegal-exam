@@ -589,9 +589,9 @@
           };
           el.innerHTML = certCardHTML(D, RESULTS_WEBHOOK_URL);
         } else if (!full && score >= CERT_PASS) {
-          el.innerHTML = '<div class="next-step"><div class="ns-head">Want a certificate?</div><p>You scored ' + score + '%. Certificates are awarded for 75% or higher on the <strong>Full Exam</strong>. Take the Full Exam in this category to earn yours.</p></div>';
+          el.innerHTML = '<div class="next-step"><div class="ns-head">Want your Proficiency Report?</div><p>You scored ' + score + '%. A Proficiency Report is issued for 75% or higher on the <strong>Full Exam</strong>. Take the Full Exam in this category to receive yours.</p></div>';
         } else if (full) {
-          el.innerHTML = '<div class="next-step"><div class="ns-head">Certificate</div><p>A certificate is awarded for 75% or higher on the Full Exam. Review the answers below and try again.</p></div>';
+          el.innerHTML = '<div class="next-step"><div class="ns-head">Proficiency Report</div><p>A Proficiency Report is issued for 75% or higher on the Full Exam. Review the answers below and try again.</p></div>';
         } else {
           el.innerHTML = '';
         }
@@ -2641,7 +2641,7 @@ function certQrSvg(text, size){
   return `<svg width="${size}" height="${size}" viewBox="0 0 ${size} ${size}" shape-rendering="crispEdges"><path d="${d}" fill="#1E1226"/></svg>`;
 }
 const CERT_MARK = '<svg width="40" height="40" viewBox="0 0 40 40"><path d="M18,4 A16,16 0 0 0 18,36" fill="none" stroke="#6E5A79" stroke-width="1.5"/><path d="M18,9 A11,11 0 0 0 18,31" fill="none" stroke="#A9713F" stroke-width="2"/><path d="M18,14 A6,6 0 0 0 18,26" fill="none" stroke="#C9A96E" stroke-width="3"/><circle cx="25" cy="20" r="3" fill="#F1EBDE"/></svg>';
-const CERT_DISC = "Ingles Legal exams are self-assessments of legal English. This report is not a license, bar admission or an official credential. Verification confirms that this ID was issued by the Ingles Legal exam system.";
+const CERT_DISC = "Ingles Legal exams are self-assessments of legal English. This report is not a certification, license, bar admission or official credential. Verification confirms that this ID was issued by the Ingles Legal exam system.";
 
 function certWindowText(p, pm){
   if(p < pm) return p + "% &middot; below the pass mark, your biggest opportunity.";
@@ -2658,8 +2658,8 @@ function certReportHTML(D){
   return `<div class="il-rep">
   <div class="il-hd"><svg class="il-arcs" viewBox="0 0 400 400"><g fill="none" stroke="#C9A96E"><circle cx="200" cy="200" r="190" stroke-width="1" opacity=".35"/><circle cx="200" cy="200" r="140" stroke-width="2" opacity=".5"/><circle cx="200" cy="200" r="90" stroke-width="4" opacity=".7"/></g></svg>
    <div class="il-brand">${CERT_MARK}<div class="il-wm"><b>Ingles</b>legal</div></div>
-   <div class="il-kick">Skills Report</div><h1>Certificate of Passing</h1>
-   <div class="il-who"><div><div class="il-lbl">Awarded to</div><div class="il-nm">${certEsc(D.name)}</div><div class="il-ex">${certEsc(D.exam)}</div><span class="il-pill">${certEsc(D.level)}</span></div>
+   <div class="il-kick">Exam Results</div><h1>Legal English Proficiency Report</h1>
+   <div class="il-who"><div><div class="il-lbl">Prepared for</div><div class="il-nm">${certEsc(D.name)}</div><div class="il-ex">${certEsc(D.exam)}</div><span class="il-pill">${certEsc(D.level)}</span></div>
    <div class="il-dt"><div class="il-lbl">Date issued</div><div class="il-v">${certEsc(D.date)}</div></div></div></div>
   <div class="il-sc"><div class="il-ring"><svg width="118" height="118" viewBox="0 0 118 118"><circle cx="59" cy="59" r="52" fill="none" stroke="#ebe4d6" stroke-width="9"/><circle cx="59" cy="59" r="52" fill="none" stroke="#C9A96E" stroke-width="9" stroke-linecap="round" stroke-dasharray="${dash} ${circ}" transform="rotate(-90 59 59)"/></svg><div class="il-t"><b>${D.pct}%</b><span>Score</span></div></div>
    <div class="il-stats"><div class="il-stat"><div class="il-n">${D.correct} / ${D.total}</div><div class="il-l">Correct answers</div></div><div class="il-stat"><div class="il-n">${PM}%</div><div class="il-l">Pass mark</div></div><div class="il-stat"><div class="il-n">${diff >= 0 ? "+" : ""}${diff}</div><div class="il-l">Points above pass mark</div></div></div>
@@ -2675,7 +2675,7 @@ function certReportHTML(D){
     <div class="il-pw"><div class="il-l"><b>Recommended pathway:</b> ${certEsc(D.pathway)}<br>${certEsc(D.pathwayWhy)}</div><div class="il-off"><code>EXAM15</code><span>15% off any course or pathway, one use, until ${certEsc(D.offerUntil)}</span></div></div></div>
   </div>
   <div class="il-ft"><div class="il-qr">${certQrSvg(verify, 92)}</div>
-   <div class="il-m"><b>VERIFY THIS CERTIFICATE</b><div class="il-id">${D.id}</div>Scan the code or visit<br><span class="il-url">${CERT_VERIFY.replace("https://","")}</span> and enter the ID.</div><div class="il-seal"><span>Ingles<br>Legal<br>Certified</span></div></div>
+   <div class="il-m"><b>VERIFY THIS REPORT</b><div class="il-id">${D.id}</div>Scan the code or visit<br><span class="il-url">${CERT_VERIFY.replace("https://","")}</span> and enter the ID.</div><div class="il-seal"><span>Ingles<br>Legal<br>Exam</span></div></div>
   <div class="il-disc">${CERT_DISC}</div></div>`;
 }
 
@@ -2713,12 +2713,12 @@ function closeCertificate(){
 function printCertificate(){ try{ window.print(); }catch(e){ alert("Printing is blocked here. Use Download file, then open it and print or save as PDF."); } }
 function downloadCertificateFile(){
   if(!_certD) return;
-  const html = '<!doctype html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1"><title>Ingles Legal Certificate ' + _certD.id + '</title>'
+  const html = '<!doctype html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1"><title>Ingles Legal Proficiency Report ' + _certD.id + '</title>'
     + '<link href="https://fonts.googleapis.com/css2?family=Archivo:wght@400;500;600;700&family=Spectral:ital,wght@0,400;0,500;0,600;1,400&display=swap" rel="stylesheet">'
     + '<style>body{margin:0;background:#cfc8bb;padding:24px}' + CERT_CSS + '@page{size:A4 portrait;margin:0}@media print{body{background:#fff;padding:0}.il-rep{zoom:.74;margin:0 auto}}</style></head><body>'
     + certReportHTML(_certD) + '</body></html>';
   const blob = new Blob([html], {type:"text/html"}), url = URL.createObjectURL(blob);
-  const a = document.createElement("a"); a.href = url; a.download = "Ingleslegal_Certificate_" + _certD.id + ".html";
+  const a = document.createElement("a"); a.href = url; a.download = "Ingleslegal_Proficiency_Report_" + _certD.id + ".html";
   document.body.appendChild(a); a.click(); document.body.removeChild(a); URL.revokeObjectURL(url);
 }
 function certRegister(D, webhookUrl){
@@ -2733,10 +2733,10 @@ function certCardHTML(D, webhookUrl){
   certInjectStyles();
   _certD = D;
   if(!D._registered){ D._registered = true; certRegister(D, webhookUrl); }
-  return `<div class="certcard"><div class="ct">Certificate of Passing</div><div class="headline">Your certificate is ready</div>
+  return `<div class="certcard"><div class="ct">Proficiency Report</div><div class="headline">Your Proficiency Report is ready</div>
     <p>You passed with <strong>${D.pct}%</strong>. Open your skills report with your strongest areas and next opportunities, save it as a PDF, or share it.</p>
-    <div class="certrow"><button type="button" class="${D.btn.gold}" onclick="openCertificate()">View certificate</button><button type="button" class="${D.btn.ghost}" onclick="openCertificate(true)">Save as PDF</button></div>
-    <div class="certidline">Certificate ID: ${D.id}</div></div>`;
+    <div class="certrow"><button type="button" class="${D.btn.gold}" onclick="openCertificate()">View report</button><button type="button" class="${D.btn.ghost}" onclick="openCertificate(true)">Save as PDF</button></div>
+    <div class="certidline">Report ID: ${D.id}</div></div>`;
 }
 function certPct1(c, t){ return Math.round(c / t * 1000) / 10; }
 </script>
