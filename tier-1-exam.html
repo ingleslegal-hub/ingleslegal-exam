@@ -232,7 +232,7 @@ body.entry .card{ background:transparent; border:none; box-shadow:none; padding:
 
 <script>
 // ============================================================
-// Tier 1 — 150 questions (Foundation level), rebuilt Oct 2026.
+// Tier 1 — 150 questions (Intermediate level), rebuilt Oct 2026.
 // Answer positions balanced; option lengths checked for bias. Source: scratch bank t1*.json
 // ============================================================
 const TIER_LABEL = "Tier 1";
@@ -328,6 +328,8 @@ function fmtPct(x){
 function totalScore(){ return scoreBetween(0, TOTAL); }
 
 // Entry screen (styled like pathways/index.html). Candidate profile questions:
+// Level names as shown on the website (Tier 1 = Intermediate, Tier 2 = Advanced, Tier 3 = Expert).
+const TIER_LEVEL = ["Intermediate", "Advanced", "Expert"][parseInt((TIER_LABEL.match(/\d+/) || ["1"])[0], 10) - 1] || "Legal English";
 const LOGO_URL = "https://ingleslegal-hub.github.io/ingleslegal-exam/vocabulary/logo.png";
 const USAGE_OPTIONS = ["Once a week", "Twice a week", "Every day", "I work 100% in English", "Does not apply"];
 const BRANCH_OPTIONS = ["Civil", "Commercial", "Criminal", "Family", "International", "Immigration", "Labor", "Personal Injury"];
@@ -363,9 +365,9 @@ function render(){
     card.innerHTML = `
       <div class="entry-logo"><img src="${LOGO_URL}" alt="Ingles Legal"></div>
       <form class="entry-card" id="entryForm" novalidate>
-        <div class="entry-eyebrow">Free &middot; No cost to try</div>
+        <div class="entry-eyebrow">${TIER_LEVEL} &middot; Free &middot; No cost to try</div>
         <h1>${TIER_LABEL} Proficiency Exam</h1>
-        <p>Test your legal English at the ${TIER_LABEL} level. Choose one, two or three batches of ${BATCH_SIZE} questions, with a score check after every batch. Correct answers and explanations are in your final report, and a score of ${Math.round(PASS_THRESHOLD*100)}% or higher on any length earns your Proficiency Report.</p>
+        <p>Test your legal English at the ${TIER_LEVEL} level. Choose one, two or three batches of ${BATCH_SIZE} questions, with a score check after every batch. Correct answers and explanations are in your final report, and a score of ${Math.round(PASS_THRESHOLD*100)}% or higher on any length earns your Proficiency Report.</p>
 
         <label class="first" for="inLength">Select length:</label>
         <select id="inLength"><option value="">-- Choose length --</option>${LENGTH_OPTIONS.map(o => `<option value="${o.key}">${o.name}: ${lengthSize(o.key)} questions</option>`).join("")}</select>
@@ -2878,7 +2880,7 @@ function certBuildExamData(completed, score, pct){
   } else {
     prefix = "T" + num;
     exam = TIER_LABEL + " Proficiency Exam" + (MODE !== "full" ? " \u00b7 " + lengthLabel() : "");
-    level = (["Foundation", "Intermediate", "Advanced"][num - 1] || "Legal") + " Legal English";
+    level = TIER_LEVEL + " Legal English";
     const rec = recommendPathways(completed)[0];
     pathway = PATHWAYS[rec.key].name;
     why = PATHWAYS[rec.key].blurb;

@@ -6,9 +6,9 @@ Free practice exams for legal English learners. Three systems:
 
 Three self-assessment exams matching your proficiency levels:
 
-- **Tier 1 Exam** (`tier-1-exam.html`) — Foundation level
-- **Tier 2 Exam** (`tier-2-exam.html`) — Intermediate level  
-- **Tier 3 Exam** (`tier-3-exam.html`) — Advanced level
+- **Tier 1 Exam** (`tier-1-exam.html`) — Intermediate level
+- **Tier 2 Exam** (`tier-2-exam.html`) — Advanced level  
+- **Tier 3 Exam** (`tier-3-exam.html`) — Expert level
 
 These are published on www.ingleslegal.com/cert-exams/ as Claude Artifacts.
 

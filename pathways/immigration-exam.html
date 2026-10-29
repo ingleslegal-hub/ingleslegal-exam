@@ -2784,7 +2784,7 @@ function certBuildExamData(completed, score, pct){
   } else {
     prefix = "T" + num;
     exam = TIER_LABEL + " Proficiency Exam";
-    level = (["Foundation", "Intermediate", "Advanced"][num - 1] || "Legal") + " Legal English";
+    level = (["Intermediate", "Advanced", "Expert"][num - 1] || "Legal") + " Legal English";
     const rec = recommendPathways(completed)[0];
     pathway = PATHWAYS[rec.key].name;
     why = PATHWAYS[rec.key].blurb;
