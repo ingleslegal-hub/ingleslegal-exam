@@ -240,7 +240,7 @@ See `/vocabulary/DEPLOYMENT.md` for full instructions on:
 
 For deployment help, see `/vocabulary/DEPLOYMENT.md`.
 
-For questions about the system, contact Felipe (felipe.toro.e@gmail.com).
+For questions about the system, contact hello@ingleslegal.com.
 
 ---
 
