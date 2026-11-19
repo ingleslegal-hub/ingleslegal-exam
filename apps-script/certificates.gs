@@ -1,5 +1,5 @@
 /**
- * Ingles Legal - certificate registry and verification (Google Apps Script)
+ * Ingleslegal - certificate registry and verification (Google Apps Script)
  *
  * WHAT IT DOES
  *  - Saves every certificate issued by the exams into a "Certificates" sheet (one row per certificate).
