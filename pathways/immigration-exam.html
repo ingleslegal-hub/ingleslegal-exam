@@ -199,7 +199,7 @@ body:not(.results-dark) .scorebox .lbl{ color:#B9AAC4; }
   </div>
   <div class="tag">Immigration Pathway Exam</div>
 </div>
-<div class="logo-wrap"><img src="../vocabulary/logo.png" alt="Ingles Legal"></div>
+<div class="logo-wrap"><img src="../vocabulary/logo.png" alt="Ingleslegal"></div>
 <div class="progress-shell" id="progressShell" style="display:none;">
   <div class="tabs" id="tabs"></div>
   <div class="bar-outer"><div class="bar-inner" id="barInner"></div></div>
@@ -471,23 +471,23 @@ function discountHTML(){
   const d = until.toLocaleDateString("en-US", {month:"long", day:"numeric", year:"numeric"});
   return `<div class="offer">
     <div class="tagline">Exam taker offer</div>
-    <div class="headline">${DISCOUNT_PCT}% off any pathway or course</div>
-    <p>One use on any learning pathway or course. Valid for ${DISCOUNT_DAYS} days, until <strong>${d}</strong>.</p>
+    <div class="headline">Save this code: ${DISCOUNT_PCT}% off your first pathway</div>
+    <p>Use it when your pathway opens (Jan&ndash;Mar 2027). Valid until <strong>${d}</strong>.</p>
     <div class="coderow"><code>${DISCOUNT_CODE}</code><button type="button" class="btn gold" onclick="copyText(DISCOUNT_CODE, this, 'Copy code')">Copy code</button></div>
   </div>`;
 }
-function shareText(pctText){ return "I scored " + pctText + " on the " + EXAM_NAME + " at Ingles Legal. Try it free: " + EXAM_URL; }
-function inviteText(){ return "I just took the free " + EXAM_NAME + " from Ingles Legal and thought you might want to try it: " + EXAM_URL; }
+function shareText(pctText){ return "I scored " + pctText + " on the " + EXAM_NAME + " at Ingleslegal. Try it free: " + EXAM_URL; }
+function inviteText(){ return "I just took the free " + EXAM_NAME + " from Ingleslegal and thought you might want to try it: " + EXAM_URL; }
 let _sharePct = "";
 function doShare(btn){
   const text = shareText(_sharePct);
-  if(navigator.share){ navigator.share({ title: "Ingles Legal - " + EXAM_NAME, text: text, url: EXAM_URL }).catch(() => {}); }
+  if(navigator.share){ navigator.share({ title: "Ingleslegal - " + EXAM_NAME, text: text, url: EXAM_URL }).catch(() => {}); }
   else { copyText(text, btn, "Share"); }
 }
 function shareHTML(pctText){
   _sharePct = pctText;
   const wa = "https://wa.me/?text=" + encodeURIComponent(shareText(pctText));
-  const mail = "mailto:?subject=" + encodeURIComponent("Free legal English exam from Ingles Legal") + "&body=" + encodeURIComponent(inviteText());
+  const mail = "mailto:?subject=" + encodeURIComponent("Free legal English exam from Ingleslegal") + "&body=" + encodeURIComponent(inviteText());
   return `<div class="sharebox">
     <div class="headline">Share your result</div>
     <p>Know a colleague learning legal English? Invite them to take the exam.</p>
@@ -498,18 +498,38 @@ function shareHTML(pctText){
     </div>
   </div>`;
 }
+const IL_PATHWAY_INFO = {
+  immigration: { name: "Immigration Support Specialist", month: "January 2027" },
+  launchpad: { name: "Legal English Launchpad", month: "February 2027" },
+  personal_injury: { name: "Personal Injury Case Specialist", month: "February 2027" },
+  workers_comp: { name: "Workers' Compensation Case Manager", month: "March 2027" },
+  family_law: { name: "Family Law Paralegal", month: "March 2027" },
+  criminal_defense: { name: "Criminal Defense Legal Assistant", month: "March 2027" }
+};
+const IL_WAITLIST_URL = "https://ingleslegal-hub.github.io/ingleslegal-exam/waitlist.html";
+function ilKey(){ return ({"Immigration Pathway":"immigration","Personal Injury Pathway":"personal_injury","Workers' Compensation Pathway":"workers_comp","Family Law Pathway":"family_law","Criminal Defense Pathway":"criminal_defense"})[TIER_LABEL] || ""; }
+function ilOpens(name){ const k = Object.keys(IL_PATHWAY_INFO).find(k => IL_PATHWAY_INFO[k].name === name); return k ? " (opens " + IL_PATHWAY_INFO[k].month + ")" : ""; }
+function ilNotify(btn, key){
+  const c = (typeof state !== "undefined" && state.candidate) || {};
+  const page = IL_WAITLIST_URL + (key && key !== "all" ? "?pathway=" + key : "");
+  if(!c.email){ window.open(page, "_blank", "noopener"); return; }
+  btn.disabled = true; btn.textContent = "Adding you...";
+  fetch(RESULTS_WEBHOOK_URL, { method: "POST", headers: {"Content-Type":"text/plain"}, body: JSON.stringify({ type: "waitlist", name: c.name || "", email: c.email, pathways: [key || "all"], source: EXAM_NAME + " results", consent: true }) })
+    .then(r => r.json()).then(j => { if(j && j.ok){ btn.textContent = "You're on the list \u2713"; } else { throw new Error("not ok"); } })
+    .catch(() => { btn.disabled = false; btn.textContent = "Use the sign-up form"; btn.onclick = () => window.open(page, "_blank", "noopener"); });
+}
 function nextStepHTML(completed, passed){
   const limit = Math.round(PASS_THRESHOLD * 100);
   const weak = courseBreakdown(completed).filter(r => r.percent < limit).sort((a,b) => a.percent - b.percent).slice(0,3);
   let body;
   if(passed){
-    body = "Great work. You are ready to apply the " + PATHWAY_NAME + " skills in real case work. Explore our courses to keep growing.";
+    body = "Great work. You are ready to apply the " + PATHWAY_NAME + " skills in real case work. The " + PATHWAY_NAME + " pathway opens in " + IL_PATHWAY_INFO[ilKey()].month + ".";
   } else if(weak.length){
-    body = "Start with: <strong>" + weak.map(r => r.code + " " + r.name).join(", ") + "</strong>. Review the answers below, then retake this exam to measure your progress.";
+    body = "Start with: <strong>" + weak.map(r => r.name).join(", ") + "</strong>, part of the " + PATHWAY_NAME + " pathway, opening " + IL_PATHWAY_INFO[ilKey()].month + ". Review the answers below, then retake this exam to measure your progress.";
   } else {
-    body = "Review the answers below, then retake this exam to measure your progress.";
+    body = "Review the answers below, then retake this exam to measure your progress. The " + PATHWAY_NAME + " pathway opens in " + IL_PATHWAY_INFO[ilKey()].month + ".";
   }
-  return `<div class="nextstep"><div class="headline">Your next step</div><p>${body}</p><a class="btn gold" href="${COURSES_URL}" target="_blank" rel="noopener">Explore Ingles Legal courses</a></div>`;
+  return `<div class="nextstep"><div class="headline">Your next step</div><p>${body}</p><button type="button" class="btn gold" onclick="ilNotify(this, ilKey())">Notify me when it opens</button></div>`;
 }
 function filterReview(v){
   document.querySelectorAll(".review .rv").forEach(el => { el.style.display = (!v || el.dataset.cat === v) ? "" : "none"; });
@@ -2560,7 +2580,7 @@ var qrcode = function() {
 
 </script>
 <script>
-/* Ingles Legal certificate module (shared). Requires the qrcode() global from qrcode.js. */
+/* Ingleslegal certificate module (shared). Requires the qrcode() global from qrcode.js. */
 const CERT_PASS = 75;
 const CERT_VERIFY = "https://ingleslegal-hub.github.io/ingleslegal-exam/verify.html";
 const CERT_ALPHABET = "ABCDEFGHJKMNPQRSTUVWXYZ23456789";
@@ -2665,7 +2685,7 @@ function certQrSvg(text, size){
   return `<svg width="${size}" height="${size}" viewBox="0 0 ${size} ${size}" shape-rendering="crispEdges"><path d="${d}" fill="#1E1226"/></svg>`;
 }
 const CERT_MARK = '<svg width="40" height="40" viewBox="0 0 40 40"><path d="M18,4 A16,16 0 0 0 18,36" fill="none" stroke="#6E5A79" stroke-width="1.5"/><path d="M18,9 A11,11 0 0 0 18,31" fill="none" stroke="#A9713F" stroke-width="2"/><path d="M18,14 A6,6 0 0 0 18,26" fill="none" stroke="#C9A96E" stroke-width="3"/><circle cx="25" cy="20" r="3" fill="#F1EBDE"/></svg>';
-const CERT_DISC = "Ingles Legal exams are self-assessments of legal English. This report is not a certification, license, bar admission or official credential. Verification confirms that this ID was issued by the Ingles Legal exam system.";
+const CERT_DISC = "Ingleslegal exams are self-assessments of legal English. This report is not a certification, license, bar admission or official credential. Verification confirms that this ID was issued by the Ingleslegal exam system.";
 
 function certWindowText(p, pm){
   if(p < pm) return p + "% &middot; below the pass mark, your biggest opportunity.";
@@ -2696,7 +2716,7 @@ function certReportHTML(D){
    <div class="il-legend">Dark marker = ${PM}% pass mark</div></div>
    <div class="il-win"><div class="il-sec">Windows of opportunity</div><div class="il-ttl">Where your next gains are</div>
     <div class="il-wgrid">${low.map(s => `<div class="il-w"><div class="il-a">Next to strengthen</div><div class="il-b">${certEsc(s.n)}</div><div class="il-c">${certWindowText(s.p, PM)}</div></div>`).join("")}</div>
-    <div class="il-pw"><div class="il-l"><b>Recommended pathway:</b> ${certEsc(D.pathway)}<br>${certEsc(D.pathwayWhy)}</div><div class="il-off"><code>EXAM15</code><span>15% off any course or pathway, one use, until ${certEsc(D.offerUntil)}</span></div></div></div>
+    <div class="il-pw"><div class="il-l"><b>Recommended pathway:</b> ${certEsc(D.pathway)}${certEsc(typeof ilOpens === "function" ? ilOpens(D.pathway) : "")}<br>${certEsc(D.pathwayWhy)}</div><div class="il-off"><code>EXAM15</code><span>15% off your first pathway when it opens, until ${certEsc(D.offerUntil)}</span></div></div></div>
   </div>
   <div class="il-ft"><div class="il-qr">${certQrSvg(verify, 92)}</div>
    <div class="il-m"><b>VERIFY THIS REPORT</b><div class="il-id">${D.id}</div>Scan the code or visit<br><span class="il-url">${CERT_VERIFY.replace("https://","")}</span> and enter the ID.</div><div class="il-seal"><span>Ingles<br>Legal<br>Exam</span></div></div>
@@ -2737,7 +2757,7 @@ function closeCertificate(){
 function printCertificate(){ try{ window.print(); }catch(e){ alert("Printing is blocked here. Use Download file, then open it and print or save as PDF."); } }
 function downloadCertificateFile(){
   if(!_certD) return;
-  const html = '<!doctype html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1"><title>Ingles Legal Proficiency Report ' + _certD.id + '</title>'
+  const html = '<!doctype html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1"><title>Ingleslegal Proficiency Report ' + _certD.id + '</title>'
     + '<link href="https://fonts.googleapis.com/css2?family=Archivo:wght@400;500;600;700&family=Spectral:ital,wght@0,400;0,500;0,600;1,400&display=swap" rel="stylesheet">'
     + '<style>body{margin:0;background:#cfc8bb;padding:24px}' + CERT_CSS + '@page{size:A4 portrait;margin:0}@media print{body{background:#fff;padding:0}.il-rep{zoom:.74;margin:0 auto}}</style></head><body>'
     + certReportHTML(_certD) + '</body></html>';
