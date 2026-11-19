@@ -151,6 +151,7 @@
   .entry-error{ color:#E29585; font-size:.9rem; min-height:1.3em; margin-top:14px; }
   .entry-btn{ font:inherit; font-family:'Source Sans 3','Segoe UI',Tahoma,sans-serif; font-weight:700; cursor:pointer; border-radius:8px; border:none; padding:12px 20px; font-size:.95rem; background:var(--gold); color:var(--aubergine); width:100%; transition:opacity .18s ease; }
   .entry-btn:hover{ opacity:.92; }
+  label.il-consent,.il-consent{display:flex!important;gap:10px;align-items:flex-start;font-size:.85rem!important;line-height:1.45;margin:12px 0 0!important;text-align:left;cursor:pointer;font-weight:400!important;text-transform:none!important;letter-spacing:normal!important}.il-consent input{flex:none;width:16px;height:16px;margin:3px 0 0;accent-color:#C8A96B}.il-consent a{color:#C8A96B}
   .entry-note{ font-size:.8rem; color:#B9AAC4; margin-top:14px; text-align:center; }
   @media (max-width:600px){ .entry-card{ padding:22px 18px; } .entry-card h1{ font-size:1.6rem; } }
   @media (max-width:600px){ .wrap{ padding:16px 12px 40px; } .card{ padding:22px 18px; } h1{ font-size:22px; } .stem{font-size:16px;} }
@@ -389,9 +390,10 @@ function render(){
         <label for="inEmail">Your email:</label>
         <input type="email" id="inEmail" placeholder="Enter your email" autocomplete="email">
 
+        <label class="il-consent"><input type="checkbox" id="inConsent"><span>I agree that Ingleslegal may use my name, email and answers to send my results, as described in the <a href="https://www.ingleslegal.com/privacy" target="_blank" rel="noopener">Privacy Policy</a>. <b>(required)</b></span></label><label class="il-consent"><input type="checkbox" id="inNews"><span>Email me news about the learning pathways and the day mine opens. (optional)</span></label>
         <div class="entry-error" id="entryError" role="alert"></div>
         <button type="submit" class="entry-btn">Start Exam</button>
-        <div class="entry-note">Your email is used only to send you your results and feedback.</div>
+        <div class="entry-note">We use your details only as described in our <a href="https://www.ingleslegal.com/privacy" target="_blank" rel="noopener" style="color:#C8A96B;">Privacy Policy</a>. You can ask us to delete them at any time.</div>
       </form>
     `;
     const c = state.candidate || {};
@@ -687,6 +689,15 @@ function renderTabs(){
   tabs.innerHTML = html;
 }
 
+function ilConsentPing(name, email, exam, news, pathway){
+  try {
+    if (!RESULTS_WEBHOOK_URL) return;
+    var body = JSON.stringify({ type: "consent", name: name, email: email, exam: exam, consent: true, news: !!news, pathways: [pathway || "all"], page: location.pathname });
+    if (!(navigator.sendBeacon && navigator.sendBeacon(RESULTS_WEBHOOK_URL, new Blob([body], { type: "text/plain" })))) {
+      fetch(RESULTS_WEBHOOK_URL, { method: "POST", headers: { "Content-Type": "text/plain" }, body: body, keepalive: true });
+    }
+  } catch (e) {}
+}
 function beginExam(ev){
   if(ev) ev.preventDefault();
   const val = id => document.getElementById(id).value.trim();
@@ -703,10 +714,13 @@ function beginExam(ev){
   else if(!c.englishLevel) msg = "Please choose your level of English.";
   else if(!c.name) msg = "Please enter your name.";
   else if(!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(c.email)) msg = "Please enter a valid email address.";
+  else if(!document.getElementById("inConsent").checked) msg = "Please tick the box to agree to the Privacy Policy.";
   document.getElementById("entryError").textContent = msg;
   if(msg) return;
   if(c.branch !== OTHER_BRANCH) c.branchOther = "";
+  c.consent = true; c.news = document.getElementById("inNews").checked;
   state.candidate = c;
+  ilConsentPing(c.name, c.email, EXAM_NAME, c.news, "all");
   applyMode(length);
   state.startedAt = new Date().toISOString();
   state.screen = "question";
