@@ -1,0 +1,138 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Learning pathways waitlist | Ingleslegal</title>
+  <style>
+    :root {
+      --purple: #2b1b33;
+      --purple-card: #3a2847;
+      --gold: #c8a96b;
+      --text: #f3efe6;
+      --muted: #cfc7b8;
+    }
+    body {
+      margin: 0;
+      font-family: system-ui, -apple-system, "Segoe UI", Roboto, sans-serif;
+      line-height: 1.5;
+      background: var(--purple);
+      color: var(--text);
+    }
+    main { max-width: 640px; margin: 0 auto; padding: 40px 16px 56px; }
+    h1 { font-size: 2rem; margin: 0 0 8px; text-align: center; color: var(--gold); }
+    .intro { margin: 0 0 24px; font-size: 1.05rem; text-align: center; color: var(--text); }
+    .card { background: var(--purple-card); border-radius: 10px; padding: 22px; }
+    label.field { display: block; font-weight: 600; margin: 0 0 14px; }
+    label.field span { display: block; margin-bottom: 6px; }
+    input[type=text], input[type=email] {
+      width: 100%; box-sizing: border-box; padding: 10px 12px; border-radius: 6px;
+      border: 1px solid #5a4766; background: #2b1b33; color: var(--text); font: inherit;
+    }
+    input[type=text]:focus, input[type=email]:focus { outline: 2px solid var(--gold); border-color: var(--gold); }
+    fieldset { border: 0; padding: 0; margin: 6px 0 16px; }
+    legend { font-weight: 600; margin-bottom: 8px; }
+    .pw { display: flex; gap: 10px; align-items: flex-start; padding: 8px 0; border-top: 1px solid #4a3858; }
+    .pw:first-of-type { border-top: 0; }
+    .pw input { margin-top: 4px; accent-color: var(--gold); width: 18px; height: 18px; }
+    .pw .name { font-weight: 600; }
+    .pw .month { color: var(--muted); font-size: 0.9rem; }
+    .consent { display: flex; gap: 10px; align-items: flex-start; font-size: 0.92rem; color: var(--muted); margin: 8px 0 18px; }
+    .consent input { margin-top: 3px; accent-color: var(--gold); width: 18px; height: 18px; }
+    .btn {
+      display: inline-block; padding: 11px 18px; background: transparent; border: 2px solid var(--gold);
+      color: var(--gold); text-decoration: none; border-radius: 6px; font-weight: 600; font: inherit; font-weight: 600;
+      cursor: pointer; text-align: center;
+    }
+    .btn:hover { background: rgba(200, 169, 107, 0.12); }
+    .btn[disabled] { opacity: .6; cursor: wait; }
+    .msg { margin-top: 14px; font-size: 0.95rem; }
+    .msg.err { color: #f2a7a7; }
+    .done { text-align: center; }
+    .done h2 { color: var(--gold); margin: 0 0 8px; }
+    .done p { color: var(--muted); margin: 0 0 16px; }
+    .logo { text-align: center; margin: 0 0 24px; }
+    .logo img { width: 240px; max-width: 70%; height: auto; }
+    .pw .desc { color: var(--muted); font-size: 0.88rem; margin-top: 2px; }
+    .note { font-size: 0.9rem; color: var(--muted); margin-top: 28px; text-align: center; }
+    .note a { color: var(--gold); }
+  </style>
+</head>
+<body>
+<main>
+  <div class="logo"><img src="logo-transparent.png" alt="Ingleslegal"></div>
+  <h1>Learning pathways are coming</h1>
+  <p class="intro">Six Ingleslegal learning pathways open January to March 2027. Each one is a complete set of bilingual courses for one branch of U.S. law. Leave your email and we'll tell you the day your pathway opens.</p>
+
+  <div class="card" id="formCard">
+    <form id="wl" novalidate>
+      <label class="field"><span>First name</span><input type="text" id="name" autocomplete="given-name" maxlength="80"></label>
+      <label class="field"><span>Email</span><input type="email" id="email" autocomplete="email" required maxlength="160"></label>
+      <fieldset id="pws">
+        <legend>Which pathways interest you?</legend>
+      </fieldset>
+      <label class="consent"><input type="checkbox" id="consent" required><span>Yes, email me when these pathways open. I can ask to be removed at any time by writing to exams@ingleslegal.com.</span></label>
+      <button type="submit" class="btn" id="go">Notify me</button>
+      <div class="msg" id="msg" role="status" aria-live="polite"></div>
+    </form>
+  </div>
+
+  <div class="card done" id="doneCard" hidden>
+    <h2>You're on the list</h2>
+    <p>We've sent a confirmation to your email. While you wait, take a free exam to see where you stand.</p>
+    <a class="btn" href="./">Choose your free exam</a>
+  </div>
+
+  <p class="note"><a href="./">Back to the free exams</a></p>
+</main>
+<script>
+const RESULTS_WEBHOOK_URL = "https://script.google.com/macros/s/AKfycbyLtcitp5MB6QoNl0jVXOCI7TPHot9Lj-wYJNosfrQZpnI5pmH2ECoX2Ytv5pVQt1f-/exec";
+const PATHWAYS = [
+  { key: "immigration", name: "Immigration Support Specialist", month: "January 2027", desc: "Run an immigration file from the first call to filing and court date: family-based, humanitarian and removal-defense support.", size: "8 courses \u00b7 30 hours" },
+  { key: "launchpad", name: "Legal English Launchpad", month: "February 2027", desc: "The starting point for low to intermediate English: workplace English, phone and email skills, first legal vocabulary and simple documents.", size: "10 courses \u00b7 40 hours" },
+  { key: "personal_injury", name: "Personal Injury Case Specialist", month: "February 2027", desc: "Carry a personal injury claim from the accident call to settlement disbursement, with a focus on pre-litigation.", size: "8 courses \u00b7 30 hours" },
+  { key: "workers_comp", name: "Workers' Compensation Case Manager", month: "March 2027", desc: "Manage an injured worker's case from first report to settlement, with examples from California, Texas, Florida and Illinois.", size: "8 courses \u00b7 30 hours" },
+  { key: "family_law", name: "Family Law Paralegal", month: "March 2027", desc: "Support divorce, custody, support and protective-order cases from intake to final judgment, with California and Texas examples.", size: "8 courses \u00b7 30 hours" },
+  { key: "criminal_defense", name: "Criminal Defense Legal Assistant", month: "March 2027", desc: "Support a defense team from the first jail call to sentencing: court calendars, discovery and immigration consequences for Spanish-speaking clients.", size: "8 courses \u00b7 30 hours" }
+];
+const pre = new URLSearchParams(location.search).get("pathway");
+const box = document.getElementById("pws");
+PATHWAYS.forEach(p => {
+  const row = document.createElement("label");
+  row.className = "pw";
+  const cb = document.createElement("input");
+  cb.type = "checkbox"; cb.value = p.key; cb.checked = !pre || pre === "all" || pre === p.key;
+  const txt = document.createElement("div");
+  const n = document.createElement("div"); n.className = "name"; n.textContent = p.name;
+  const m = document.createElement("div"); m.className = "month"; m.textContent = "Opens " + p.month + " · " + p.size;
+  const d = document.createElement("div"); d.className = "desc"; d.textContent = p.desc;
+  txt.append(n, m, d); row.append(cb, txt); box.append(row);
+});
+const msg = document.getElementById("msg");
+document.getElementById("wl").addEventListener("submit", e => {
+  e.preventDefault();
+  msg.className = "msg"; msg.textContent = "";
+  const name = document.getElementById("name").value.trim();
+  const email = document.getElementById("email").value.trim();
+  const keys = [...box.querySelectorAll("input:checked")].map(c => c.value);
+  if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email)) { msg.className = "msg err"; msg.textContent = "Please enter a valid email address."; return; }
+  if (!keys.length) { msg.className = "msg err"; msg.textContent = "Please choose at least one pathway."; return; }
+  if (!document.getElementById("consent").checked) { msg.className = "msg err"; msg.textContent = "Please tick the box so we can email you."; return; }
+  const btn = document.getElementById("go"); btn.disabled = true; btn.textContent = "Adding you...";
+  fetch(RESULTS_WEBHOOK_URL, { method: "POST", headers: { "Content-Type": "text/plain" },
+    body: JSON.stringify({ type: "waitlist", name, email, pathways: keys, source: "Waitlist page" + (pre ? " (" + pre + ")" : ""), consent: true }) })
+    .then(r => r.json())
+    .then(j => {
+      if (!j || !j.ok) throw new Error((j && j.error) || "not ok");
+      document.getElementById("formCard").hidden = true;
+      document.getElementById("doneCard").hidden = false;
+    })
+    .catch(() => {
+      btn.disabled = false; btn.textContent = "Notify me";
+      msg.className = "msg err";
+      msg.textContent = "Something went wrong. Please try again, or email exams@ingleslegal.com and we'll add you.";
+    });
+});
+</script>
+</body>
+</html>

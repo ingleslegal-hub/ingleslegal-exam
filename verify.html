@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Verify a Proficiency Report | Ingles Legal</title>
+<title>Verify a Proficiency Report | Ingleslegal</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Archivo:wght@400;500;600;700&family=Spectral:ital,wght@0,400;0,500;1,400&display=swap" rel="stylesheet">
@@ -43,7 +43,7 @@
     <p>Enter the report ID printed on the Proficiency Report, or scan its QR code.</p>
     <form id="f"><input id="id" placeholder="IL-T2-XXXXXXXX" maxlength="24" autocomplete="off" spellcheck="false"><button id="go" type="submit">Verify</button></form>
     <div class="res" id="res"></div>
-    <div class="note">Verification confirms that this ID was issued by the Ingles Legal exam system, and shows the details recorded at that time. Ingles Legal exams are self-assessments of legal English and are not an official credential.</div>
+    <div class="note">Verification confirms that this ID was issued by the Ingleslegal exam system, and shows the details recorded at that time. Ingleslegal exams are self-assessments of legal English and are not an official credential.</div>
   </div>
 <script>
   var WEBHOOK = "https://script.google.com/macros/s/AKfycbyLtcitp5MB6QoNl0jVXOCI7TPHot9Lj-wYJNosfrQZpnI5pmH2ECoX2Ytv5pVQt1f-/exec";
@@ -53,7 +53,7 @@
   function show(cls, html){ res.className = "res " + cls; res.innerHTML = html; }
   function lookup(id){
     id = id.trim().toUpperCase(); input.value = id;
-    if(!ID_RE.test(id)){ show("bad", '<div class="st">Not valid</div>That does not look like an Ingles Legal report ID. It should look like IL-T2-XXXXXXXX.'); return; }
+    if(!ID_RE.test(id)){ show("bad", '<div class="st">Not valid</div>That does not look like an Ingleslegal report ID. It should look like IL-T2-XXXXXXXX.'); return; }
     btn.disabled = true; show("", "");
     var cb = "ilv" + Date.now(), s = document.createElement("script"), done = false;
     function finish(){ done = true; btn.disabled = false; if(s.parentNode) s.parentNode.removeChild(s); try{ delete window[cb]; }catch(e){ window[cb] = undefined; } }

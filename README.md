@@ -1,4 +1,4 @@
-# Ingles Legal Examination System
+# Ingleslegal Examination System
 
 Free practice exams for legal English learners. Three systems:
 
@@ -10,7 +10,7 @@ Three self-assessment exams matching your proficiency levels:
 - **Tier 2 Exam** (`tier-2-exam.html`) — Advanced level  
 - **Tier 3 Exam** (`tier-3-exam.html`) — Expert level
 
-These are published on www.ingleslegal.com/cert-exams/ as Claude Artifacts.
+Live at `https://ingleslegal-hub.github.io/ingleslegal-exam/tier-1-exam.html` (and `tier-2-exam.html`, `tier-3-exam.html`). The three "Take Exam" buttons on the /talent page should link to these.
 
 Each tier page opens on an entry screen styled like the Career Pathway Exams menu (`pathways/index.html`). There is no exam picker, since the visitor has already chosen the level. The candidate answers three profile questions, all required, then enters their name and email:
 
@@ -143,8 +143,8 @@ ingleslegal-exam/
 
 ### Tier Exams
 - Proficiency assessment
-- Published as Claude Artifacts
-- Links from www.ingleslegal.com/cert-exams/
+- Hosted on GitHub Pages (see links above)
+- Linked from the "Take Exam" buttons on www.ingleslegal.com/talent
 
 ### Vocabulary Exams
 - **Completely free** — no paywalls
@@ -251,7 +251,7 @@ For questions about the system, contact hello@ingleslegal.com.
 
 ## Proficiency Reports and verification
 
-Ingles Legal is not a certifying body, so candidate-facing text never says certificate or certification. Code identifiers (`cert*` functions, the `certificate` webhook type, the `Certificates` sheet) keep their names so stored records and verification keep working.
+Ingleslegal is not a certifying body, so candidate-facing text never says certificate or certification. Code identifiers (`cert*` functions, the `certificate` webhook type, the `Certificates` sheet) keep their names so stored records and verification keep working.
 
 Every exam issues a vertical **Legal English Proficiency Report** when the candidate passes:
 
