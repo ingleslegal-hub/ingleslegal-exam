@@ -67,6 +67,7 @@
     .card + .card{margin-top:16px;}
     label{display:block; font-size:.85rem; font-weight:600; margin:16px 0 6px; color:var(--ink);}
     label:first-of-type{margin-top:18px;}
+    label.il-consent,.il-consent{display:flex!important;gap:10px;align-items:flex-start;font-size:.85rem!important;line-height:1.45;margin:12px 0 0!important;text-align:left;cursor:pointer;font-weight:400!important;text-transform:none!important;letter-spacing:normal!important}.il-consent input{flex:none;width:16px;height:16px;margin:3px 0 0;accent-color:#C8A96B}.il-consent a{color:#C8A96B}
     input[type=text],input[type=email]{
       width:100%;
       font-size:1rem;
@@ -269,6 +270,8 @@
 
       <label for="gateEmail">Your email:</label>
       <input type="email" id="gateEmail" placeholder="Enter your email" required>
+      <label class="il-consent"><input type="checkbox" id="gateConsent"><span>I agree that Ingleslegal may use my name, email and answers to send my results, as described in the <a href="https://www.ingleslegal.com/privacy" target="_blank" rel="noopener">Privacy Policy</a>. <b>(required)</b></span></label><label class="il-consent"><input type="checkbox" id="gateNews"><span>Email me news about the learning pathways and the day mine opens. (optional)</span></label>
+      <p style="font-size:12px; opacity:.75; margin:12px 0 0;">We use your details only as described in our <a href="https://www.ingleslegal.com/privacy" target="_blank" rel="noopener" style="color:#C8A96B;">Privacy Policy</a>. You can ask us to delete them at any time.</p>
 
       <button class="btn-primary" onclick="app.startExam()" style="width:100%; margin-top:20px; background:#C9A96E; color:#2A1B33;">Start Exam</button>
     </div>
@@ -346,6 +349,7 @@
   </div>
 
   <script>
+    function ilConsentPing(n, e, x, news, pw) { try { if (!RESULTS_WEBHOOK_URL) return; var body = JSON.stringify({ type: "consent", name: n, email: e, exam: x, consent: true, news: !!news, pathways: [pw || "all"], page: location.pathname }); if (!(navigator.sendBeacon && navigator.sendBeacon(RESULTS_WEBHOOK_URL, new Blob([body], { type: "text/plain" })))) fetch(RESULTS_WEBHOOK_URL, { method: "POST", headers: { "Content-Type": "text/plain" }, body: body, keepalive: true }); } catch (err) {} }
     const RESULTS_WEBHOOK_URL = "https://script.google.com/macros/s/AKfycbyLtcitp5MB6QoNl0jVXOCI7TPHot9Lj-wYJNosfrQZpnI5pmH2ECoX2Ytv5pVQt1f-/exec"; // same results/email webhook used by the tier exams; leave blank to skip auto-submit
 
     const app = {
@@ -388,6 +392,12 @@
           alert('Please enter your name and email');
           return;
         }
+
+        if (!document.getElementById('gateConsent').checked) {
+          alert('Please tick the box to agree to the Privacy Policy.');
+          return;
+        }
+        ilConsentPing(name, email, 'Vocabulary quiz', document.getElementById('gateNews').checked, 'all');
 
         this.category = category;
         this.variant = variant;
