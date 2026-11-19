@@ -28,7 +28,7 @@ var PATHWAY_CODES = { immigration: 'IMM', personal_injury: 'PI', workers_comp: '
 function doPost(e) {
 try {
 const data = JSON.parse(e.postData.contents);
-if (data.type === 'final') { handleFinal(data); } else if (data.type === 'batch') { handleBatch(data); } else if (data.type === 'vocab') { handleVocab(data); } else if (data.type === 'certificate') { return saveCertificate_(data); } else if (data.type === 'waitlist') { return handleWaitlist_(data); }
+if (data.type === 'final') { handleFinal(data); } else if (data.type === 'batch') { handleBatch(data); } else if (data.type === 'vocab') { handleVocab(data); } else if (data.type === 'certificate') { return saveCertificate_(data); } else if (data.type === 'waitlist') { return handleWaitlist_(data); } else if (data.type === 'consent') { return handleConsent_(data); }
 return ContentService.createTextOutput(JSON.stringify({ ok: true })).setMimeType(ContentService.MimeType.JSON);
 } catch (err) {
 return ContentService.createTextOutput(JSON.stringify({ ok: false, error: String(err) })).setMimeType(ContentService.MimeType.JSON);
@@ -287,6 +287,26 @@ function doGet(e) {
 function json_(obj) {
   return ContentService.createTextOutput(JSON.stringify(obj)).setMimeType(ContentService.MimeType.JSON);
   }
+
+/* ===== CONSENT LOG ===== */
+function handleConsent_(data) {
+  var email = String(data.email || '').trim().slice(0, 200);
+  if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email) || data.consent !== true) return json_({ ok: false, error: 'invalid' });
+  var name = String(data.name || '').trim().slice(0, 120);
+  var news = data.news === true;
+  var lock = LockService.getScriptLock();
+  lock.waitLock(10000);
+  try {
+    var ss = getSheets().ss;
+    var sh = ss.getSheetByName('Consent');
+    if (!sh) { sh = ss.insertSheet('Consent'); sh.appendRow(['Timestamp', 'Name', 'Email', 'Exam', 'Privacy consent', 'Pathway news', 'Page']); sh.setFrozenRows(1); }
+    sh.appendRow([new Date(), cellSafe_(name), cellSafe_(email), cellSafe_(String(data.exam || '').slice(0, 80)), 'Yes', news ? 'Yes' : 'No', cellSafe_(String(data.page || '').slice(0, 120))]);
+  } finally { lock.releaseLock(); }
+  if (news) {
+    return handleWaitlist_({ name: name, email: email, pathways: data.pathways, source: String(data.exam || 'Exam') + ' start', consent: true });
+  }
+  return json_({ ok: true });
+}
 
 /* ===== PATHWAYS WAITLIST ===== */
 function cellSafe_(v) { v = String(v == null ? '' : v); return /^[=+\-@]/.test(v) ? "'" + v : v; }
