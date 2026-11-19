@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>General &amp; Specific Vocabulary Tests | Ingles Legal</title>
+  <title>General &amp; Specific Vocabulary Tests | Ingleslegal</title>
   <style>
     :root{
       --aubergine:#2A1B33;
@@ -231,7 +231,7 @@
   <div class="wrap">
     <!-- LOGO -->
     <div style="text-align:center; margin-bottom:24px;">
-      <img src="logo.png" alt="Ingles Legal" style="width:100%; max-width:320px; height:auto; display:inline-block;">
+      <img src="logo.png" alt="Ingleslegal" style="width:100%; max-width:320px; height:auto; display:inline-block;">
     </div>
 
     <!-- GATE: Email Entry -->
@@ -557,7 +557,16 @@
         return this.recommendPicks(levelName).map((r, i) => {
           const p = this.PATHWAYS[r.key];
           return `<div style="border-top:1px solid var(--line); padding-top:12px; margin-top:12px;"><div class="rec-name"><span class="pill">${i === 0 ? 'Best match' : 'Also consider'}</span>${p.name}</div><div class="rec-why">${r.reason}</div><p>${p.blurb}</p><a class="btn-link ${i === 0 ? '' : 'ghost'}" style="${i === 0 ? '' : 'background:transparent;color:var(--gold);border:1px solid var(--gold);'}" href="${this.COURSES_URL}" target="_blank" rel="noopener">Explore ${p.name}</a></div>`;
-        }).join('');
+        }).join('') + `<div style="border-top:1px solid var(--line); padding-top:12px; margin-top:12px;"><div class="rec-name"><span class="pill">Opening 2027</span>Six learning pathways</div><p>Our six learning pathways open January to March 2027.</p><button type="button" class="btn-primary" onclick="app.notify(this)">Notify me when pathways open</button></div>`;
+      },
+
+      notify(btn) {
+        const page = 'https://ingleslegal-hub.github.io/ingleslegal-exam/waitlist.html';
+        if (!this.email || !RESULTS_WEBHOOK_URL) { window.open(page, '_blank', 'noopener'); return; }
+        btn.disabled = true; btn.textContent = 'Adding you...';
+        fetch(RESULTS_WEBHOOK_URL, { method: 'POST', headers: { 'Content-Type': 'text/plain' }, body: JSON.stringify({ type: 'waitlist', name: this.name || '', email: this.email, pathways: ['all'], source: 'Vocabulary quiz results', consent: true }) })
+          .then(r => r.json()).then(j => { if (j && j.ok) { btn.textContent = "You're on the list \u2713"; } else { throw new Error('not ok'); } })
+          .catch(() => { btn.disabled = false; btn.textContent = 'Use the sign-up form'; btn.onclick = () => window.open(page, '_blank', 'noopener'); });
       },
 
       certSetup(correct, score, levelName) {
@@ -600,7 +609,7 @@
       offerHTML() {
         const until = new Date(Date.now() + this.DISCOUNT_DAYS * 24 * 60 * 60 * 1000);
         const d = until.toLocaleDateString('en-US', { month: 'long', day: 'numeric', year: 'numeric' });
-        return `<div class="offer"><div class="tagline">Exam taker offer</div><div class="headline">${this.DISCOUNT_PCT}% off any pathway or course</div><p>One use on any learning pathway or course. Valid for ${this.DISCOUNT_DAYS} days, until <strong>${d}</strong>.</p><div class="coderow"><code>${this.DISCOUNT_CODE}</code><button type="button" class="btn-primary" onclick="app.copyText(app.DISCOUNT_CODE, this, 'Copy code')">Copy code</button></div></div>`;
+        return `<div class="offer"><div class="tagline">Exam taker offer</div><div class="headline">Save this code: ${this.DISCOUNT_PCT}% off your first pathway</div><p>Use it when your pathway opens (Jan&ndash;Mar 2027). Valid until <strong>${d}</strong>.</p><div class="coderow"><code>${this.DISCOUNT_CODE}</code><button type="button" class="btn-primary" onclick="app.copyText(app.DISCOUNT_CODE, this, 'Copy code')">Copy code</button></div></div>`;
       },
 
       copyText(text, btn, label) {
@@ -613,18 +622,18 @@
         if (navigator.clipboard && navigator.clipboard.writeText) { navigator.clipboard.writeText(text).then(done, fallback); } else { fallback(); }
       },
 
-      shareText() { return 'I scored ' + this.sharePct + ' on the ' + this.EXAM_NAME + ' at Ingles Legal. Try it free: ' + this.EXAM_URL; },
+      shareText() { return 'I scored ' + this.sharePct + ' on the ' + this.EXAM_NAME + ' at Ingleslegal. Try it free: ' + this.EXAM_URL; },
 
       doShare(btn) {
         const text = this.shareText();
-        if (navigator.share) { navigator.share({ title: 'Ingles Legal - ' + this.EXAM_NAME, text: text, url: this.EXAM_URL }).catch(() => {}); }
+        if (navigator.share) { navigator.share({ title: 'Ingleslegal - ' + this.EXAM_NAME, text: text, url: this.EXAM_URL }).catch(() => {}); }
         else { this.copyText(text, btn, 'Share'); }
       },
 
       shareHTML(pctText) {
         this.sharePct = pctText;
         const wa = 'https://wa.me/?text=' + encodeURIComponent(this.shareText());
-        const mail = 'mailto:?subject=' + encodeURIComponent('Free legal English test from Ingles Legal') + '&body=' + encodeURIComponent('I just took the free ' + this.EXAM_NAME + ' from Ingles Legal and thought you might want to try it: ' + this.EXAM_URL);
+        const mail = 'mailto:?subject=' + encodeURIComponent('Free legal English test from Ingleslegal') + '&body=' + encodeURIComponent('I just took the free ' + this.EXAM_NAME + ' from Ingleslegal and thought you might want to try it: ' + this.EXAM_URL);
         return `<div class="sharebox"><div class="headline">Share your result</div><p>Know a colleague learning legal English? Invite them to take the test.</p><div class="sharerow"><button type="button" class="btn-primary" onclick="app.doShare(this)">Share</button><a class="btn-link ghost" href="${wa}" target="_blank" rel="noopener">WhatsApp</a><a class="btn-link ghost" href="${mail}">Email a colleague</a></div></div>`;
       },
 
@@ -2536,7 +2545,7 @@ var qrcode = function() {
 
 </script>
 <script>
-/* Ingles Legal certificate module (shared). Requires the qrcode() global from qrcode.js. */
+/* Ingleslegal certificate module (shared). Requires the qrcode() global from qrcode.js. */
 const CERT_PASS = 75;
 const CERT_VERIFY = "https://ingleslegal-hub.github.io/ingleslegal-exam/verify.html";
 const CERT_ALPHABET = "ABCDEFGHJKMNPQRSTUVWXYZ23456789";
@@ -2641,7 +2650,7 @@ function certQrSvg(text, size){
   return `<svg width="${size}" height="${size}" viewBox="0 0 ${size} ${size}" shape-rendering="crispEdges"><path d="${d}" fill="#1E1226"/></svg>`;
 }
 const CERT_MARK = '<svg width="40" height="40" viewBox="0 0 40 40"><path d="M18,4 A16,16 0 0 0 18,36" fill="none" stroke="#6E5A79" stroke-width="1.5"/><path d="M18,9 A11,11 0 0 0 18,31" fill="none" stroke="#A9713F" stroke-width="2"/><path d="M18,14 A6,6 0 0 0 18,26" fill="none" stroke="#C9A96E" stroke-width="3"/><circle cx="25" cy="20" r="3" fill="#F1EBDE"/></svg>';
-const CERT_DISC = "Ingles Legal exams are self-assessments of legal English. This report is not a certification, license, bar admission or official credential. Verification confirms that this ID was issued by the Ingles Legal exam system.";
+const CERT_DISC = "Ingleslegal exams are self-assessments of legal English. This report is not a certification, license, bar admission or official credential. Verification confirms that this ID was issued by the Ingleslegal exam system.";
 
 function certWindowText(p, pm){
   if(p < pm) return p + "% &middot; below the pass mark, your biggest opportunity.";
@@ -2672,7 +2681,7 @@ function certReportHTML(D){
    <div class="il-legend">Dark marker = ${PM}% pass mark</div></div>
    <div class="il-win"><div class="il-sec">Windows of opportunity</div><div class="il-ttl">Where your next gains are</div>
     <div class="il-wgrid">${low.map(s => `<div class="il-w"><div class="il-a">Next to strengthen</div><div class="il-b">${certEsc(s.n)}</div><div class="il-c">${certWindowText(s.p, PM)}</div></div>`).join("")}</div>
-    <div class="il-pw"><div class="il-l"><b>Recommended pathway:</b> ${certEsc(D.pathway)}<br>${certEsc(D.pathwayWhy)}</div><div class="il-off"><code>EXAM15</code><span>15% off any course or pathway, one use, until ${certEsc(D.offerUntil)}</span></div></div></div>
+    <div class="il-pw"><div class="il-l"><b>Recommended pathway:</b> ${certEsc(D.pathway)}<br>${certEsc(D.pathwayWhy)}</div><div class="il-off"><code>EXAM15</code><span>15% off your first pathway when it opens, until ${certEsc(D.offerUntil)}</span></div></div></div>
   </div>
   <div class="il-ft"><div class="il-qr">${certQrSvg(verify, 92)}</div>
    <div class="il-m"><b>VERIFY THIS REPORT</b><div class="il-id">${D.id}</div>Scan the code or visit<br><span class="il-url">${CERT_VERIFY.replace("https://","")}</span> and enter the ID.</div><div class="il-seal"><span>Ingles<br>Legal<br>Exam</span></div></div>
@@ -2713,7 +2722,7 @@ function closeCertificate(){
 function printCertificate(){ try{ window.print(); }catch(e){ alert("Printing is blocked here. Use Download file, then open it and print or save as PDF."); } }
 function downloadCertificateFile(){
   if(!_certD) return;
-  const html = '<!doctype html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1"><title>Ingles Legal Proficiency Report ' + _certD.id + '</title>'
+  const html = '<!doctype html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1"><title>Ingleslegal Proficiency Report ' + _certD.id + '</title>'
     + '<link href="https://fonts.googleapis.com/css2?family=Archivo:wght@400;500;600;700&family=Spectral:ital,wght@0,400;0,500;0,600;1,400&display=swap" rel="stylesheet">'
     + '<style>body{margin:0;background:#cfc8bb;padding:24px}' + CERT_CSS + '@page{size:A4 portrait;margin:0}@media print{body{background:#fff;padding:0}.il-rep{zoom:.74;margin:0 auto}}</style></head><body>'
     + certReportHTML(_certD) + '</body></html>';
