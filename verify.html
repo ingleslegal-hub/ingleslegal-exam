@@ -43,7 +43,7 @@
     <p>Enter the report ID printed on the Proficiency Report, or scan its QR code.</p>
     <form id="f"><input id="id" placeholder="IL-T2-XXXXXXXX" maxlength="24" autocomplete="off" spellcheck="false"><button id="go" type="submit">Verify</button></form>
     <div class="res" id="res"></div>
-    <div class="note">Verification confirms that this ID was issued by the Ingleslegal exam system, and shows the details recorded at that time. Ingleslegal exams are self-assessments of legal English and are not an official credential.</div>
+    <div class="note">Verification confirms that this ID was issued by the Ingleslegal exam system, and shows the details recorded at that time. Ingleslegal exams are unsupervised online practice benchmarks of legal English, not an official credential.</div>
   </div>
 <script>
   var WEBHOOK = "https://script.google.com/macros/s/AKfycbyLtcitp5MB6QoNl0jVXOCI7TPHot9Lj-wYJNosfrQZpnI5pmH2ECoX2Ytv5pVQt1f-/exec";
@@ -61,7 +61,7 @@
       if(done) return; finish();
       if(d && d.found){
         var date = new Date(d.issuedAt).toLocaleDateString("en-US", {year:"numeric", month:"long", day:"numeric"});
-        show("ok", '<div class="st">Verified</div><dl><dt>Prepared for</dt><dd>' + esc(d.name) + '</dd><dt>Exam</dt><dd>' + esc(d.exam) + '</dd><dt>Level</dt><dd>' + esc(d.level) + '</dd><dt>Score</dt><dd>' + esc(d.percent) + '% (' + esc(d.correct) + ' / ' + esc(d.total) + ')</dd><dt>Issued</dt><dd>' + esc(date) + '</dd><dt>ID</dt><dd>' + esc(d.id) + '</dd></dl>');
+        show("ok", '<div class="st">On record</div><dl><dt>Prepared for</dt><dd>' + esc(d.name) + '</dd><dt>Exam</dt><dd>' + esc(d.exam) + '</dd><dt>Level</dt><dd>' + esc(d.level) + '</dd><dt>Score</dt><dd>' + esc(d.percent) + '% (' + esc(d.correct) + ' / ' + esc(d.total) + ')</dd><dt>Issued</dt><dd>' + esc(date) + '</dd><dt>ID</dt><dd>' + esc(d.id) + '</dd></dl>');
       } else {
         show("bad", '<div class="st">Not found</div>No Proficiency Report with this ID is on record. Check the ID and try again.');
       }
