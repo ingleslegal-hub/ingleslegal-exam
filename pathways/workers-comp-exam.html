@@ -73,6 +73,7 @@
   table.results tr:nth-child(even) td{ background:var(--light-section); }
   .placement{ background:var(--aubergine); color:var(--cream); border-left:3px solid var(--gold); border-radius:3px; padding:18px 20px; margin:18px 0; font-family:"Archivo", Arial, sans-serif; }
   .placement .headline{ font-weight:600; color:var(--gold); font-size:16px; margin-bottom:4px; }
+  label.il-consent,.il-consent{display:flex!important;gap:10px;align-items:flex-start;font-size:.85rem!important;line-height:1.45;margin:12px 0 0!important;text-align:left;cursor:pointer;font-weight:400!important;text-transform:none!important;letter-spacing:normal!important}.il-consent input{flex:none;width:16px;height:16px;margin:3px 0 0;accent-color:#C8A96B}.il-consent a{color:#C8A96B}
   .footer-note{ font-family:"Archivo", Arial, sans-serif; font-size:12px; color:var(--body-on-light); margin-top:18px; line-height:1.5; }
   .synctag{ font-family:"Archivo", Arial, sans-serif; font-size:11px; color:var(--panel-line); margin-top:8px; }
   table.results td.below{ color:var(--bad); font-weight:600; }
@@ -310,9 +311,10 @@ function render(){
         <div class="hint" id="lenHint"></div></div>
       <div class="field"><label for="inName">Your name:</label><input id="inName" type="text" placeholder="Enter your name" autocomplete="name"></div>
       <div class="field"><label for="inEmail">Your email:</label><input id="inEmail" type="email" placeholder="Enter your email" autocomplete="email"></div>
+      <label class="il-consent"><input type="checkbox" id="inConsent"><span>I agree that Ingleslegal may use my name, email and answers to send my results, as described in the <a href="https://www.ingleslegal.com/privacy" target="_blank" rel="noopener">Privacy Policy</a>. <b>(required)</b></span></label><label class="il-consent"><input type="checkbox" id="inNews"><span>Email me news about the learning pathways and the day mine opens. (optional)</span></label>
       <div class="formerr" id="formErr" role="alert"></div>
       <button class="btn gold block" onclick="beginExam()">Start Exam</button>
-      <div class="footer-note">Your email is used only to send you your results and feedback.</div>
+      <div class="footer-note">We use your details only as described in our <a href="https://www.ingleslegal.com/privacy" target="_blank" rel="noopener" style="color:#C8A96B;">Privacy Policy</a>. You can ask us to delete them at any time.</div>
     `;
     lengthHint();
     return;
@@ -586,6 +588,15 @@ function lengthHint(){
     ? HALF_SIZE + " questions drawn evenly from all " + COURSES.length + " courses, in one sitting. The Proficiency Report is issued on the Full exam only."
     : ALL_QUESTIONS.length + " questions in " + Math.ceil(ALL_QUESTIONS.length / BATCH_SIZE) + " batches of " + BATCH_SIZE + ". Pass at " + Math.round(PASS_THRESHOLD*100) + "% to receive your Proficiency Report.";
 }
+function ilConsentPing(name, email, exam, news, pathway){
+  try {
+    if (!RESULTS_WEBHOOK_URL) return;
+    var body = JSON.stringify({ type: "consent", name: name, email: email, exam: exam, consent: true, news: !!news, pathways: [pathway || "all"], page: location.pathname });
+    if (!(navigator.sendBeacon && navigator.sendBeacon(RESULTS_WEBHOOK_URL, new Blob([body], { type: "text/plain" })))) {
+      fetch(RESULTS_WEBHOOK_URL, { method: "POST", headers: { "Content-Type": "text/plain" }, body: body, keepalive: true });
+    }
+  } catch (e) {}
+}
 function beginExam(){
   const name = document.getElementById("inName").value.trim();
   const email = document.getElementById("inEmail").value.trim();
@@ -593,6 +604,11 @@ function beginExam(){
     document.getElementById("formErr").textContent = !name ? "Please enter your name." : "Please enter a valid email address.";
     return;
   }
+  if(!document.getElementById("inConsent").checked){
+    document.getElementById("formErr").textContent = "Please tick the box to agree to the Privacy Policy.";
+    return;
+  }
+  ilConsentPing(name, email, EXAM_NAME, document.getElementById("inNews").checked, ilKey());
   const sel = document.getElementById("inLength");
   startWith(name, email, sel ? sel.value : "full");
 }

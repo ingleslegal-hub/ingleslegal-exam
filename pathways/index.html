@@ -94,6 +94,7 @@
       transition:opacity .18s ease;
     }
     button:hover{opacity:.92;}
+    label.il-consent,.il-consent{display:flex!important;gap:10px;align-items:flex-start;font-size:.85rem!important;line-height:1.45;margin:12px 0 0!important;text-align:left;cursor:pointer;font-weight:400!important;text-transform:none!important;letter-spacing:normal!important}.il-consent input{flex:none;width:16px;height:16px;margin:3px 0 0;accent-color:#C8A96B}.il-consent a{color:#C8A96B}
     .note{font-size:.8rem; color:#B9AAC4; margin-top:14px; text-align:center;}
   </style>
 </head>
@@ -127,9 +128,10 @@
       <label for="email">Your email:</label>
       <input type="email" id="email" placeholder="Enter your email" autocomplete="email" required>
 
+      <label class="il-consent"><input type="checkbox" id="consent"><span>I agree that Ingleslegal may use my name, email and answers to send my results, as described in the <a href="https://www.ingleslegal.com/privacy" target="_blank" rel="noopener">Privacy Policy</a>. <b>(required)</b></span></label><label class="il-consent"><input type="checkbox" id="news"><span>Email me news about the learning pathways and the day mine opens. (optional)</span></label>
       <div class="error" id="error" role="alert"></div>
       <button type="submit">Start Exam</button>
-      <div class="note">Your email is used only to send you your results and feedback.</div>
+      <div class="note">We use your details only as described in our <a href="https://www.ingleslegal.com/privacy" target="_blank" rel="noopener" style="color:#C8A96B;">Privacy Policy</a>. You can ask us to delete them at any time.</div>
     </form>
   </div>
 
@@ -148,6 +150,17 @@
       full: "100 questions in 2 batches of 50. Pass at 75% to receive your Proficiency Report."
     };
 
+    var RESULTS_WEBHOOK_URL = "https://script.google.com/macros/s/AKfycbyLtcitp5MB6QoNl0jVXOCI7TPHot9Lj-wYJNosfrQZpnI5pmH2ECoX2Ytv5pVQt1f-/exec";
+    function ilConsentPing(name, email, exam, news, pathway){
+      try {
+        if (!RESULTS_WEBHOOK_URL) return;
+        var body = JSON.stringify({ type: "consent", name: name, email: email, exam: exam, consent: true, news: !!news, pathways: [pathway || "all"], page: location.pathname });
+        if (!(navigator.sendBeacon && navigator.sendBeacon(RESULTS_WEBHOOK_URL, new Blob([body], { type: "text/plain" })))) {
+          fetch(RESULTS_WEBHOOK_URL, { method: "POST", headers: { "Content-Type": "text/plain" }, body: body, keepalive: true });
+        }
+      } catch (e) {}
+    }
+    
     var examSel = document.getElementById("exam");
     var lengthSel = document.getElementById("length");
     var errorEl = document.getElementById("error");
@@ -178,9 +191,12 @@
       else if (!length) msg = "Please choose the exam length.";
       else if (!name) msg = "Please enter your name.";
       else if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email)) msg = "Please enter a valid email address.";
+      else if (!document.getElementById("consent").checked) msg = "Please tick the box to agree to the Privacy Policy.";
       errorEl.textContent = msg;
       if (msg) return;
 
+      var PW_KEYS = { "immigration-exam.html": "immigration", "personal-injury-exam.html": "personal_injury", "workers-comp-exam.html": "workers_comp", "family-law-exam.html": "family_law", "criminal-defense-exam.html": "criminal_defense" };
+      ilConsentPing(name, email, exam.label + " (menu)", document.getElementById("news").checked, PW_KEYS[String(exam.file).split("/").pop()] || "all");
       // Name and email are handed to the exam page through sessionStorage, never the URL.
       try {
         sessionStorage.setItem(LAUNCH_KEY, JSON.stringify({
