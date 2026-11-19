@@ -67,6 +67,7 @@
     .card + .card{margin-top:16px;}
     label{display:block; font-size:.85rem; font-weight:600; margin:16px 0 6px; color:var(--ink);}
     label:first-of-type{margin-top:18px;}
+    .formerr{color:#E29585;font-size:.9rem;min-height:1.3em;margin-top:14px}
     label.il-consent,.il-consent{display:flex!important;gap:10px;align-items:flex-start;font-size:.85rem!important;line-height:1.45;margin:12px 0 0!important;text-align:left;cursor:pointer;font-weight:400!important;text-transform:none!important;letter-spacing:normal!important}.il-consent input{flex:none;width:16px;height:16px;margin:3px 0 0;accent-color:#C8A96B}.il-consent a{color:#C8A96B}
     input[type=text],input[type=email]{
       width:100%;
@@ -273,6 +274,7 @@
       <label class="il-consent"><input type="checkbox" id="gateConsent"><span>I agree that Ingleslegal may use my name, email and answers to send my results, as described in the <a href="https://www.ingleslegal.com/privacy" target="_blank" rel="noopener">Privacy Policy</a>. <b>(required)</b></span></label><label class="il-consent"><input type="checkbox" id="gateNews"><span>Email me news about the learning pathways and the day mine opens. (optional)</span></label>
       <p style="font-size:12px; opacity:.75; margin:12px 0 0;">We use your details only as described in our <a href="https://www.ingleslegal.com/privacy" target="_blank" rel="noopener" style="color:#C8A96B;">Privacy Policy</a>. You can ask us to delete them at any time.</p>
 
+      <div class="formerr" id="gateErr" role="alert"></div>
       <button class="btn-primary" onclick="app.startExam()" style="width:100%; margin-top:20px; background:#C9A96E; color:#2A1B33;">Start Exam</button>
     </div>
 
@@ -372,7 +374,7 @@
           document.getElementById('loadingSection').classList.add('hidden');
           document.getElementById('gateSection').classList.remove('hidden');
         } catch (err) {
-          alert('Error loading questions: ' + err.message);
+          document.getElementById('loadingSection').innerHTML = '<p style="margin-top:16px;">We could not load the questions. Please check your connection and refresh the page.</p>';
           console.error(err);
         }
       },
@@ -383,20 +385,14 @@
         const name = document.getElementById('gateName').value.trim();
         const email = document.getElementById('gateEmail').value.trim();
 
-        if (!category || !variant) {
-          alert('Please select a category and length');
-          return;
-        }
-
-        if (!name || !email) {
-          alert('Please enter your name and email');
-          return;
-        }
-
-        if (!document.getElementById('gateConsent').checked) {
-          alert('Please tick the box to agree to the Privacy Policy.');
-          return;
-        }
+        const err = document.getElementById('gateErr');
+        const fail = (msg) => { err.textContent = msg; return; };
+        if (!category) return fail('Please choose a category.');
+        if (!variant) return fail('Please choose a length.');
+        if (!name) return fail('Please enter your name.');
+        if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email)) return fail('Please enter a valid email address.');
+        if (!document.getElementById('gateConsent').checked) return fail('Please tick the box to agree to the Privacy Policy.');
+        err.textContent = '';
         ilConsentPing(name, email, 'Vocabulary quiz', document.getElementById('gateNews').checked, 'all');
 
         this.category = category;
@@ -649,9 +645,9 @@
 
       levelFor(score) {
         if (score >= 90) return { name: 'Advanced', text: 'Excellent command of this vocabulary.', next: 'You are ready for advanced legal English. Explore our specialty pathways to apply it in real case work.' };
-        if (score >= 75) return { name: 'Proficient', text: 'Solid command, with a few gaps to close.', next: 'Review the questions you missed below, then try the full exam or another category to confirm your level.' };
-        if (score >= 60) return { name: 'Developing', text: 'You know the basics, and there is room to grow.', next: 'Study the explanations below, then retake this exam. Our courses build this vocabulary step by step.' };
-        return { name: 'Foundation', text: 'This is a good starting point.', next: 'Start with the explanations below and our beginner-friendly courses, then retake this exam to measure your progress.' };
+        if (score >= 75) return { name: 'Proficient', text: 'Solid command, with a few gaps to close.', next: this.variant === 'full' ? 'Review the questions you missed below, then try another category to confirm your level.' : 'Review the questions you missed below, then try the full exam or another category to confirm your level.' };
+        if (score >= 60) return { name: 'Developing', text: 'You know the basics, and there is room to grow.', next: 'Study the explanations below, then retake this exam. Our learning pathways build this vocabulary step by step.' };
+        return { name: 'Foundation', text: 'This is a good starting point.', next: 'Start with the explanations below, then retake this exam to measure your progress. Our learning pathways build this vocabulary from the basics.' };
       },
 
       downloadResults() {
