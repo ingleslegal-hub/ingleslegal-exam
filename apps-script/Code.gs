@@ -15,13 +15,19 @@ var WAITLIST_URL = IL_EXAM_BASE + 'waitlist.html';
 var LOGO_URL = IL_EXAM_BASE + 'logo-transparent.png';
 var LOGO_IMG = '<img src="' + LOGO_URL + '" width="180" alt="Ingleslegal" style="display:block;width:180px;max-width:60%;height:auto;border:0;margin:0 0 20px;">';
 var IL_PATHWAYS = {
-  immigration: { name: 'Immigration Support Specialist', month: 'January 2027', exam: 'pathways/immigration-exam.html', desc: 'Run an immigration file from the first call to filing and court date: family-based, humanitarian and removal-defense support.', size: '8 courses &middot; 32 hours' },
   launchpad: { name: 'Legal English Launchpad', month: 'February 2027', exam: '', desc: 'The starting point for low to intermediate English: workplace English, phone and email skills, first legal vocabulary and simple documents.', size: '10 courses &middot; 40 hours' },
+  intake: { name: 'Intake & Support', month: 'January 2027', exam: 'tier-1-exam.html', desc: 'Legal English for first client contact, case screening and file setup in practice-management software.', size: '' },
+  litigation: { name: 'Litigation & Management', month: 'February 2027', exam: 'tier-2-exam.html', desc: 'Procedural vocabulary, evidence processing and day-to-day case management in Personal Injury, Labor Law and Immigration.', size: '' },
+  trial: { name: 'Trial & Strategy', month: 'March 2027', exam: 'tier-3-exam.html', desc: 'Advanced legal English, U.S. common-law structures, trial preparation and case analysis.', size: '' },
+  immigration: { name: 'Immigration Support Specialist', month: 'January 2027', exam: 'pathways/immigration-exam.html', desc: 'Run an immigration file from the first call to filing and court date: family-based, humanitarian and removal-defense support.', size: '8 courses &middot; 32 hours' },
   personal_injury: { name: 'Personal Injury Case Specialist', month: 'February 2027', exam: 'pathways/personal-injury-exam.html', desc: 'Carry a personal injury claim from the accident call to settlement disbursement, with a focus on pre-litigation.', size: '8 courses &middot; 32 hours' },
   workers_comp: { name: "Workers' Compensation Case Manager", month: 'March 2027', exam: 'pathways/workers-comp-exam.html', desc: "Manage an injured worker's case from first report to settlement, with examples from California, Texas, Florida and Illinois.", size: '8 courses &middot; 32 hours' },
   family_law: { name: 'Family Law Paralegal', month: 'March 2027', exam: 'pathways/family-law-exam.html', desc: 'Support divorce, custody, support and protective-order cases from intake to final judgment, with California and Texas examples.', size: '8 courses &middot; 32 hours' },
   criminal_defense: { name: 'Criminal Defense Legal Assistant', month: 'March 2027', exam: 'pathways/criminal-defense-exam.html', desc: 'Support a defense team from the first jail call to sentencing: court calendars, discovery and immigration consequences for Spanish-speaking clients.', size: '8 courses &middot; 32 hours' }
 };
+// Tier exams recommend the general pathway for their level, plus the specialty pathway for the branch of law chosen at the start.
+var TIER_PATHWAY = { 'Tier 1': 'intake', 'Tier 2': 'litigation', 'Tier 3': 'trial' };
+var BRANCH_PATHWAY = { 'Immigration': 'immigration', 'Personal Injury': 'personal_injury', 'Labor': 'workers_comp', 'Family': 'family_law', 'Criminal': 'criminal_defense' };
 var PATHWAY_BY_LABEL = { 'Immigration Pathway': 'immigration', 'Personal Injury Pathway': 'personal_injury', "Workers' Compensation Pathway": 'workers_comp', 'Family Law Pathway': 'family_law', 'Criminal Defense Pathway': 'criminal_defense' };
 var PATHWAY_CODES = { immigration: 'IMM', personal_injury: 'PI', workers_comp: 'WC', family_law: 'FAM', criminal_defense: 'CRIM' };
  
@@ -149,10 +155,11 @@ const passed = !!data.passed; const reportId = (passed && /^IL-[A-Z0-9]{1,5}-[A-
 const passText = (passed ? 'PASSED' : 'Not yet passing') + (data.stoppedEarly ? ' (provisional)' : '');
 const answeredTotal = data.answered || data.total;
 const provisionalHtml = data.stoppedEarly ? '<p style="font-family:Arial,sans-serif;font-size:13px;line-height:1.6;color:#5b4f63;margin:0 0 20px;padding:12px 14px;background:#f5f1e8;border-left:4px solid #c8a96b;border-radius:4px;">You stopped after batch ' + ((data.batches && data.batches.length) || Math.round(answeredTotal / 50)) + ', so these results are provisional. They are based on the ' + answeredTotal + ' questions you answered.</p>' : '';
-const nextKey = PATHWAY_BY_LABEL[data.tier]; const nextPw = nextKey ? IL_PATHWAYS[nextKey] : null;
-const nextTitle = nextPw ? ('The ' + nextPw.name + ' pathway opens in ' + nextPw.month) : 'Six learning pathways open January to March 2027';
-const nextLink = WAITLIST_URL + (nextKey ? '?pathway=' + nextKey : '');
-const nextCta = nextPw ? 'Notify me when it opens' : 'Notify me when pathways open';
+const nextKey = PATHWAY_BY_LABEL[data.tier] || TIER_PATHWAY[data.tier]; const nextPw = nextKey ? IL_PATHWAYS[nextKey] : null;
+const branchKey = TIER_PATHWAY[data.tier] ? (BRANCH_PATHWAY[data.branchOfLaw] || '') : ''; const branchPw = branchKey ? IL_PATHWAYS[branchKey] : null;
+const nextTitle = nextPw ? (branchPw ? ('Your pathways: ' + nextPw.name + ' (opens ' + nextPw.month + ') and ' + branchPw.name + ' (opens ' + branchPw.month + ')') : ('The ' + nextPw.name + ' pathway opens in ' + nextPw.month)) : 'Our learning pathways open January to March 2027';
+const nextLink = WAITLIST_URL + (nextKey ? '?pathway=' + nextKey + (branchPw ? ',' + branchKey : '') : '');
+const nextCta = nextPw ? (branchPw ? 'Notify me when they open' : 'Notify me when it opens') : 'Notify me when pathways open';
 const passBg = passed ? 'rgba(12,163,12,0.25)' : 'rgba(208,59,59,0.25)';
 const threshold = TIER_THRESHOLDS[data.tier] || 75;
 const meaning = TIER_MEANING[data.tier] || (nextPw ? (passed ? ('You met the ' + threshold + '% passing bar for the ' + nextPw.name + ' exam. You already handle the core legal English of this kind of case work, and the pathway builds on it step by step.') : ('This exam measures the legal English used in ' + nextPw.name + ' work. Your category scores show where to focus first, and the pathway covers each of these areas step by step.')) : '');
@@ -362,7 +369,7 @@ function sendWaitlistEmail_(name, email, keys) {
       + '<td style="' + F + 'font-size:14px;font-weight:700;color:#241626;">' + esc_(p.name) + (mine ? ' <span style="display:inline-block;margin-left:6px;padding:2px 8px;background:#2b1b33;color:#c8a96b;border-radius:10px;font-size:10px;letter-spacing:0.5px;text-transform:uppercase;vertical-align:middle;">On your list</span>' : '') + '</td>'
       + '<td style="' + F + 'font-size:12px;font-weight:700;color:#7a5a2e;text-align:right;white-space:nowrap;">Opens ' + p.month + '</td></tr></table>'
       + '<div style="' + F + 'font-size:12px;line-height:1.5;color:#5b4f63;margin-top:4px;">' + p.desc + '</div>'
-      + '<div style="' + F + 'font-size:11px;color:#7d7084;margin-top:6px;">' + p.size + ' &middot; ' + exam + '</div>'
+      + '<div style="' + F + 'font-size:11px;color:#7d7084;margin-top:6px;">' + (p.size ? p.size + ' &middot; ' : '') + exam + '</div>'
       + '</td></tr><tr><td style="height:8px;line-height:8px;font-size:0;">&nbsp;</td></tr>';
   }).join('');
   var first = name ? esc_(String(name).split(' ')[0]) : '';
@@ -370,8 +377,8 @@ function sendWaitlistEmail_(name, email, keys) {
     + '<div style="background:linear-gradient(165deg,#2a1b33,#3a2644);padding:32px 28px;border-radius:12px 12px 0 0;color:#fff;">' + LOGO_IMG
     + '<div style="' + F + 'font-size:14px;line-height:1.6;color:#f3efe6;margin:0 0 22px;">Thank you for your interest in Ingleslegal, created by Latin American lawyers and legal professionals just like you. We know what it takes to build a legal career in English, and we are committed to delivering learning pathways that lead to real progress in the U.S. legal industry.</div>'
     + '<div style="' + F + 'font-size:11px;letter-spacing:1px;text-transform:uppercase;opacity:0.8;">Ingleslegal Learning Pathways</div>'
-    + '<h1 style="' + F + 'margin:10px 0 6px;font-size:22px;color:#c8a96b;">Six learning pathways are on the way</h1>'
-    + '<div style="' + F + 'font-size:13px;line-height:1.5;opacity:0.85;">Step-by-step bilingual training for legal professionals who want to work with U.S. law firms. Each pathway is a complete set of courses for one branch of U.S. law.</div>'
+    + '<h1 style="' + F + 'margin:10px 0 6px;font-size:22px;color:#c8a96b;">Our learning pathways are on the way</h1>'
+    + '<div style="' + F + 'font-size:13px;line-height:1.5;opacity:0.85;">Step-by-step bilingual training for legal professionals who want to work with U.S. law firms, from building your level of legal English to working in one branch of U.S. law.</div>'
     + '<div style="' + F + 'font-size:42px;font-weight:800;color:#c8a96b;margin-top:16px;">2027</div>'
     + '<div style="' + F + 'font-size:13px;opacity:0.85;">Opening January to March</div>'
     + '</div>'
@@ -394,7 +401,7 @@ function sendWaitlistEmail_(name, email, keys) {
     + '</div>'
     + '<div style="' + F + 'font-size:11px;color:#7d7084;text-align:center;padding:16px;">Ingleslegal &middot; Learning Pathways &middot; <a href="https://www.ingleslegal.com" style="color:#7d7084;">ingleslegal.com</a></div>'
     + '</div>';
-  var plain = 'Six Ingleslegal learning pathways open January to March 2027: ' + Object.keys(IL_PATHWAYS).map(function (k) { return IL_PATHWAYS[k].name + ' (' + IL_PATHWAYS[k].month + ')'; }).join(', ') + '.\n\nYou\'re on the list. Thank you for your interest in Ingleslegal, created by Latin American lawyers and legal professionals just like you. We know what it takes to build a legal career in English, and we are committed to delivering learning pathways that lead to real progress in the U.S. legal industry.\n\nWe\'ll email you the day your pathway opens: ' + keys.map(function (k) { return IL_PATHWAYS[k].name; }).join(', ') + '.\n\nWhile you wait, take a free exam: ' + IL_EXAM_BASE + '\n\nTo be removed, reply to this email.';
+  var plain = 'Ingleslegal learning pathways open January to March 2027: ' + Object.keys(IL_PATHWAYS).map(function (k) { return IL_PATHWAYS[k].name + ' (' + IL_PATHWAYS[k].month + ')'; }).join(', ') + '.\n\nYou\'re on the list. Thank you for your interest in Ingleslegal, created by Latin American lawyers and legal professionals just like you. We know what it takes to build a legal career in English, and we are committed to delivering learning pathways that lead to real progress in the U.S. legal industry.\n\nWe\'ll email you the day your pathway opens: ' + keys.map(function (k) { return IL_PATHWAYS[k].name; }).join(', ') + '.\n\nWhile you wait, take a free exam: ' + IL_EXAM_BASE + '\n\nTo be removed, reply to this email.';
   GmailApp.sendEmail(email, 'You\'re on the list: Ingleslegal learning pathways', plain, { htmlBody: html, name: 'Ingleslegal Exams', from: 'exams@ingleslegal.com', replyTo: 'exams@ingleslegal.com' });
 }
 
