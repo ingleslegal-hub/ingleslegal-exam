@@ -27,6 +27,7 @@ var IL_PATHWAYS = {
 };
 // Tier exams recommend the general pathway for their level, plus the specialty pathway for the branch of law chosen at the start.
 var TIER_PATHWAY = { 'Tier 1': 'intake', 'Tier 2': 'litigation', 'Tier 3': 'trial' };
+var LAUNCHPAD_BELOW = 60; // Tier 1 scores under 60% are pointed to the Legal English Launchpad.
 var BRANCH_PATHWAY = { 'Immigration': 'immigration', 'Personal Injury': 'personal_injury', 'Labor': 'workers_comp', 'Family': 'family_law', 'Criminal': 'criminal_defense' };
 var PATHWAY_BY_LABEL = { 'Immigration Pathway': 'immigration', 'Personal Injury Pathway': 'personal_injury', "Workers' Compensation Pathway": 'workers_comp', 'Family Law Pathway': 'family_law', 'Criminal Defense Pathway': 'criminal_defense' };
 var PATHWAY_CODES = { immigration: 'IMM', personal_injury: 'PI', workers_comp: 'WC', family_law: 'FAM', criminal_defense: 'CRIM' };
@@ -155,7 +156,7 @@ const passed = !!data.passed; const reportId = (passed && /^IL-[A-Z0-9]{1,5}-[A-
 const passText = (passed ? 'PASSED' : 'Not yet passing') + (data.stoppedEarly ? ' (provisional)' : '');
 const answeredTotal = data.answered || data.total;
 const provisionalHtml = data.stoppedEarly ? '<p style="font-family:Arial,sans-serif;font-size:13px;line-height:1.6;color:#5b4f63;margin:0 0 20px;padding:12px 14px;background:#f5f1e8;border-left:4px solid #c8a96b;border-radius:4px;">You stopped after batch ' + ((data.batches && data.batches.length) || Math.round(answeredTotal / 50)) + ', so these results are provisional. They are based on the ' + answeredTotal + ' questions you answered.</p>' : '';
-const nextKey = PATHWAY_BY_LABEL[data.tier] || TIER_PATHWAY[data.tier]; const nextPw = nextKey ? IL_PATHWAYS[nextKey] : null;
+const nextKey = PATHWAY_BY_LABEL[data.tier] || ((data.tier === 'Tier 1' && Number(data.percent) < LAUNCHPAD_BELOW) ? 'launchpad' : TIER_PATHWAY[data.tier]); const nextPw = nextKey ? IL_PATHWAYS[nextKey] : null;
 const branchKey = TIER_PATHWAY[data.tier] ? (BRANCH_PATHWAY[data.branchOfLaw] || '') : ''; const branchPw = branchKey ? IL_PATHWAYS[branchKey] : null;
 const nextTitle = nextPw ? (branchPw ? ('Your pathways: ' + nextPw.name + ' (opens ' + nextPw.month + ') and ' + branchPw.name + ' (opens ' + branchPw.month + ')') : ('The ' + nextPw.name + ' pathway opens in ' + nextPw.month)) : 'Our learning pathways open January to March 2027';
 const nextLink = WAITLIST_URL + (nextKey ? '?pathway=' + nextKey + (branchPw ? ',' + branchKey : '') : '');
