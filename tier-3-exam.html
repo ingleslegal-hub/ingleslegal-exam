@@ -577,9 +577,9 @@ function shareHTML(pctText){
   </div>`;
 }
 const PATHWAYS = {
-  intake: { name: "Intake & Support", blurb: "Legal English for first client contact, case screening and file setup in practice-management software." },
-  lit: { name: "Litigation & Management", blurb: "Procedural vocabulary, evidence processing and day-to-day case management in Personal Injury, Labor Law and Immigration." },
-  trial: { name: "Trial & Strategy", blurb: "Advanced legal English, U.S. common-law structures, trial preparation and case analysis." }
+  intake: { name: "Intake & Support", wl: "intake", month: "January 2027", blurb: "Legal English for first client contact, case screening and file setup in practice-management software." },
+  lit: { name: "Litigation & Management", wl: "litigation", month: "February 2027", blurb: "Procedural vocabulary, evidence processing and day-to-day case management in Personal Injury, Labor Law and Immigration." },
+  trial: { name: "Trial & Strategy", wl: "trial", month: "March 2027", blurb: "Advanced legal English, U.S. common-law structures, trial preparation and case analysis." }
 };
 const CAT_PATHWAY = {
   "Legal Foundations & Courts":"intake", "Register & Translation":"intake", "Legal Software & Practice":"intake",
@@ -593,27 +593,22 @@ const CAT_PATHWAY = {
 };
 const TIER_DEFAULT = { 1:"intake", 2:"lit", 3:"trial" };
 function recommendPathways(completed){
+  // Each Tier recommends the general pathway built for its level (Tier 1: Intake & Support, Tier 2: Litigation & Management, Tier 3: Trial & Strategy).
   const n = parseInt((TIER_LABEL.match(/\d+/) || ["1"])[0], 10);
-  const w = {}, why = {};
-  topicStats(completed).forEach(t => {
-    const p = t.right / t.total;
-    if(p < PASS_THRESHOLD){
-      const k = CAT_PATHWAY[t.cat] || TIER_DEFAULT[n];
-      w[k] = (w[k] || 0) + (PASS_THRESHOLD - p) * t.total;
-      (why[k] = why[k] || []).push(t.cat);
-    }
-  });
-  const keys = Object.keys(w).sort((a,b) => w[b] - w[a]).slice(0,2);
-  if(!keys.length) return [{ key: TIER_DEFAULT[n], reason: "It matches your " + TIER_LABEL + " level." }];
-  return keys.map(k => ({ key: k, reason: "Based on your results in " + why[k].join(", ") + "." }));
+  return [{ key: TIER_DEFAULT[n], reason: "It is the pathway for the " + TIER_LABEL + " (" + TIER_LEVEL + ") level." }];
 }
+// Specialty pathway for the branch of law chosen on the start screen (no match for Civil, Commercial, International or Others).
+const BRANCH_PATHWAY = { "Immigration": "immigration", "Personal Injury": "personal_injury", "Labor": "workers_comp", "Family": "family_law", "Criminal": "criminal_defense" };
 const IL_PATHWAY_INFO = {
-  immigration: { name: "Immigration Support Specialist", month: "January 2027" },
+  intake: { name: "Intake & Support", month: "January 2027" },
+  litigation: { name: "Litigation & Management", month: "February 2027" },
+  trial: { name: "Trial & Strategy", month: "March 2027" },
+  immigration: { name: "Immigration Support Specialist", month: "January 2027", desc: "Run an immigration file from the first call to filing and court date: family-based, humanitarian and removal-defense support." },
   launchpad: { name: "Legal English Launchpad", month: "February 2027" },
-  personal_injury: { name: "Personal Injury Case Specialist", month: "February 2027" },
-  workers_comp: { name: "Workers' Compensation Case Manager", month: "March 2027" },
-  family_law: { name: "Family Law Paralegal", month: "March 2027" },
-  criminal_defense: { name: "Criminal Defense Legal Assistant", month: "March 2027" }
+  personal_injury: { name: "Personal Injury Case Specialist", month: "February 2027", desc: "Carry a personal injury claim from the accident call to settlement disbursement, with a focus on pre-litigation." },
+  workers_comp: { name: "Workers' Compensation Case Manager", month: "March 2027", desc: "Manage an injured worker's case from first report to settlement, with examples from California, Texas, Florida and Illinois." },
+  family_law: { name: "Family Law Paralegal", month: "March 2027", desc: "Support divorce, custody, support and protective-order cases from intake to final judgment, with California and Texas examples." },
+  criminal_defense: { name: "Criminal Defense Legal Assistant", month: "March 2027", desc: "Support a defense team from the first jail call to sentencing: court calendars, discovery and immigration consequences for Spanish-speaking clients." }
 };
 const IL_WAITLIST_URL = "https://ingleslegal-hub.github.io/ingleslegal-exam/waitlist.html";
 function ilKey(){ return ({"Immigration Pathway":"immigration","Personal Injury Pathway":"personal_injury","Workers' Compensation Pathway":"workers_comp","Family Law Pathway":"family_law","Criminal Defense Pathway":"criminal_defense"})[TIER_LABEL] || ""; }
@@ -632,15 +627,18 @@ function nextStepHTML(completed, passed){
   const recs = recommendPathways(completed);
   let body;
   if(passed){
-    body = n < 3 ? "Great work. You are ready to take the Tier " + (n+1) + " exam. These pathways will keep building your legal English." : "Great work. You have reached the top tier. These pathways will put your legal English to work.";
+    body = n < 3 ? "Great work. You are ready to take the Tier " + (n+1) + " exam. The pathways below will keep building your legal English." : "Great work. You have reached the top tier. The pathways below will put your legal English to work.";
   } else {
-    body = "Review the answers below, then retake this exam. These pathways cover the topics where you can gain the most.";
+    body = "Review the answers below, then retake this exam. The pathways below build these skills step by step.";
   }
-  const cards = recs.map((r, i) => {
-    const p = PATHWAYS[r.key];
-    return `<div class="rec"><div class="recname">${i === 0 ? '<span class="pill">Best match</span>' : '<span class="pill">Also consider</span>'}${p.name}</div><div class="recwhy">${r.reason}</div><p>${p.blurb}</p><a class="btn ${i === 0 ? "gold" : "ghost"}" href="${COURSES_URL}" target="_blank" rel="noopener">Explore ${p.name}</a></div>`;
-  }).join("");
-  return `<div class="nextstep"><div class="headline">Your next step</div><p>${body}</p>${cards}<div class="rec"><div class="recname"><span class="pill">Opening 2027</span>Six learning pathways</div><p>Our six learning pathways open January to March 2027.</p><button type="button" class="btn gold" onclick="ilNotify(this,'all')">Notify me when pathways open</button></div></div>`;
+  const lp = PATHWAYS[recs[0].key];
+  const cards = [`<div class="rec"><div class="recname"><span class="pill">Best match for your level</span>${lp.name}</div><div class="recwhy">${recs[0].reason} Opens ${lp.month}.</div><p>${lp.blurb}</p><button type="button" class="btn gold" onclick="ilNotify(this,'${lp.wl}')">Notify me when it opens</button></div>`];
+  const branch = (state.candidate || {}).branch, bk = BRANCH_PATHWAY[branch];
+  if(bk){
+    const b = IL_PATHWAY_INFO[bk];
+    cards.push(`<div class="rec"><div class="recname"><span class="pill">For your branch of law</span>${b.name}</div><div class="recwhy">It matches the branch you chose: ${branch}. Opens ${b.month}.</div><p>${b.desc}</p><button type="button" class="btn ghost" onclick="ilNotify(this,'${bk}')">Notify me when it opens</button></div>`);
+  }
+  return `<div class="nextstep"><div class="headline">Your next step</div><p>${body}</p>${cards.join("")}<div class="rec"><div class="recname"><span class="pill">Opening 2027</span>All learning pathways</div><p>Our learning pathways open January to March 2027, from your level of legal English to your branch of law.</p><button type="button" class="btn gold" onclick="ilNotify(this,'all')">Notify me when pathways open</button></div></div>`;
 }
 function filterReview(v){
   document.querySelectorAll(".review .rv").forEach(el => { el.style.display = (!v || el.dataset.cat === v) ? "" : "none"; });

@@ -54,6 +54,8 @@
     .logo { text-align: center; margin: 0 0 24px; }
     .logo img { width: 240px; max-width: 70%; height: auto; }
     .pw .desc { color: var(--muted); font-size: 0.88rem; margin-top: 2px; }
+    .grp { color: var(--gold); font-size: 0.8rem; font-weight: 700; letter-spacing: 0.06em; text-transform: uppercase; margin: 14px 0 2px; }
+    .grp + .pw { border-top: 0; }
     .note { font-size: 0.9rem; color: var(--muted); margin-top: 28px; text-align: center; }
     .note a { color: var(--gold); }
   </style>
@@ -62,7 +64,7 @@
 <main>
   <div class="logo"><img src="logo-transparent.png" alt="Ingleslegal"></div>
   <h1>Learning pathways are coming</h1>
-  <p class="intro">Six Ingleslegal learning pathways open January to March 2027. Each one is a complete set of bilingual courses for one branch of U.S. law. Leave your email and we'll tell you the day your pathway opens.</p>
+  <p class="intro">Ingleslegal learning pathways open January to March 2027. Some build your legal English level by level; others prepare you for one branch of U.S. law. Leave your email and we'll tell you the day your pathway opens.</p>
 
   <div class="card" id="formCard">
     <form id="wl" novalidate>
@@ -88,23 +90,30 @@
 <script>
 const RESULTS_WEBHOOK_URL = "https://script.google.com/macros/s/AKfycbyLtcitp5MB6QoNl0jVXOCI7TPHot9Lj-wYJNosfrQZpnI5pmH2ECoX2Ytv5pVQt1f-/exec";
 const PATHWAYS = [
-  { key: "immigration", name: "Immigration Support Specialist", month: "January 2027", desc: "Run an immigration file from the first call to filing and court date: family-based, humanitarian and removal-defense support.", size: "8 courses \u00b7 32 hours" },
-  { key: "launchpad", name: "Legal English Launchpad", month: "February 2027", desc: "The starting point for low to intermediate English: workplace English, phone and email skills, first legal vocabulary and simple documents.", size: "10 courses \u00b7 40 hours" },
-  { key: "personal_injury", name: "Personal Injury Case Specialist", month: "February 2027", desc: "Carry a personal injury claim from the accident call to settlement disbursement, with a focus on pre-litigation.", size: "8 courses \u00b7 32 hours" },
-  { key: "workers_comp", name: "Workers' Compensation Case Manager", month: "March 2027", desc: "Manage an injured worker's case from first report to settlement, with examples from California, Texas, Florida and Illinois.", size: "8 courses \u00b7 32 hours" },
-  { key: "family_law", name: "Family Law Paralegal", month: "March 2027", desc: "Support divorce, custody, support and protective-order cases from intake to final judgment, with California and Texas examples.", size: "8 courses \u00b7 32 hours" },
-  { key: "criminal_defense", name: "Criminal Defense Legal Assistant", month: "March 2027", desc: "Support a defense team from the first jail call to sentencing: court calendars, discovery and immigration consequences for Spanish-speaking clients.", size: "8 courses \u00b7 32 hours" }
+  { key: "launchpad", group: "level", name: "Legal English Launchpad", month: "February 2027", desc: "The starting point for low to intermediate English: workplace English, phone and email skills, first legal vocabulary and simple documents.", size: "10 courses \u00b7 40 hours" },
+  { key: "intake", group: "level", name: "Intake & Support", month: "January 2027", desc: "Legal English for first client contact, case screening and file setup in practice-management software.", size: "" },
+  { key: "litigation", group: "level", name: "Litigation & Management", month: "February 2027", desc: "Procedural vocabulary, evidence processing and day-to-day case management in Personal Injury, Labor Law and Immigration.", size: "" },
+  { key: "trial", group: "level", name: "Trial & Strategy", month: "March 2027", desc: "Advanced legal English, U.S. common-law structures, trial preparation and case analysis.", size: "" },
+  { key: "immigration", group: "branch", name: "Immigration Support Specialist", month: "January 2027", desc: "Run an immigration file from the first call to filing and court date: family-based, humanitarian and removal-defense support.", size: "8 courses \u00b7 32 hours" },
+  { key: "personal_injury", group: "branch", name: "Personal Injury Case Specialist", month: "February 2027", desc: "Carry a personal injury claim from the accident call to settlement disbursement, with a focus on pre-litigation.", size: "8 courses \u00b7 32 hours" },
+  { key: "workers_comp", group: "branch", name: "Workers' Compensation Case Manager", month: "March 2027", desc: "Manage an injured worker's case from first report to settlement, with examples from California, Texas, Florida and Illinois.", size: "8 courses \u00b7 32 hours" },
+  { key: "family_law", group: "branch", name: "Family Law Paralegal", month: "March 2027", desc: "Support divorce, custody, support and protective-order cases from intake to final judgment, with California and Texas examples.", size: "8 courses \u00b7 32 hours" },
+  { key: "criminal_defense", group: "branch", name: "Criminal Defense Legal Assistant", month: "March 2027", desc: "Support a defense team from the first jail call to sentencing: court calendars, discovery and immigration consequences for Spanish-speaking clients.", size: "8 courses \u00b7 32 hours" }
 ];
-const pre = new URLSearchParams(location.search).get("pathway");
+const GROUPS = { level: "Build your level", branch: "Work in one branch of U.S. law" };
+// ?pathway=intake or ?pathway=intake,immigration pre-selects those pathways; no parameter (or "all") selects every one.
+const pre = (new URLSearchParams(location.search).get("pathway") || "").split(",").map(x => x.trim()).filter(Boolean);
 const box = document.getElementById("pws");
+let lastGroup = "";
 PATHWAYS.forEach(p => {
+  if (p.group !== lastGroup) { const g = document.createElement("div"); g.className = "grp"; g.textContent = GROUPS[p.group]; box.append(g); lastGroup = p.group; }
   const row = document.createElement("label");
   row.className = "pw";
   const cb = document.createElement("input");
-  cb.type = "checkbox"; cb.value = p.key; cb.checked = !pre || pre === "all" || pre === p.key;
+  cb.type = "checkbox"; cb.value = p.key; cb.checked = !pre.length || pre.includes("all") || pre.includes(p.key);
   const txt = document.createElement("div");
   const n = document.createElement("div"); n.className = "name"; n.textContent = p.name;
-  const m = document.createElement("div"); m.className = "month"; m.textContent = "Opens " + p.month + " · " + p.size;
+  const m = document.createElement("div"); m.className = "month"; m.textContent = "Opens " + p.month + (p.size ? " \u00b7 " + p.size : "");
   const d = document.createElement("div"); d.className = "desc"; d.textContent = p.desc;
   txt.append(n, m, d); row.append(cb, txt); box.append(row);
 });
@@ -120,7 +129,7 @@ document.getElementById("wl").addEventListener("submit", e => {
   if (!document.getElementById("consent").checked) { msg.className = "msg err"; msg.textContent = "Please tick the box so we can email you."; return; }
   const btn = document.getElementById("go"); btn.disabled = true; btn.textContent = "Adding you...";
   fetch(RESULTS_WEBHOOK_URL, { method: "POST", headers: { "Content-Type": "text/plain" },
-    body: JSON.stringify({ type: "waitlist", name, email, pathways: keys, source: "Waitlist page" + (pre ? " (" + pre + ")" : ""), consent: true }) })
+    body: JSON.stringify({ type: "waitlist", name, email, pathways: keys, source: "Waitlist page" + (pre.length ? " (" + pre.join(",") + ")" : ""), consent: true }) })
     .then(r => r.json())
     .then(j => {
       if (!j || !j.ok) throw new Error((j && j.error) || "not ok");
