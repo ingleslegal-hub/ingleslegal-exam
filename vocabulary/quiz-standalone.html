@@ -185,11 +185,13 @@
     }
     .next-step .ns-head{font-weight:700; color:var(--gold); margin-bottom:6px; font-size:1.05rem;}
     .next-step p{margin:0 0 14px;}
-    a.btn-link{
+    a.btn-link, button.btn-link{
       display:inline-block; text-decoration:none; background:var(--gold); color:var(--aubergine);
       font-weight:700; border-radius:8px; padding:10px 20px; font-size:.95rem;
     }
-    a.btn-link:hover{opacity:.92;}
+    a.btn-link:hover, button.btn-link:hover{opacity:.92;}
+    button.btn-link{border:0; cursor:pointer;}
+    button.btn-link:disabled{opacity:.6; cursor:wait;}
     .offer{
       border:1.5px solid var(--gold); border-radius:10px; padding:18px 20px; margin:18px 0;
       background:linear-gradient(135deg, rgba(201,169,110,.16), rgba(201,169,110,.04));
@@ -534,14 +536,22 @@
       },
 
       PATHWAYS: {
-        intake: { name: 'Intake & Support', blurb: 'Legal English for first client contact, case screening and file setup in practice-management software.' },
-        lit: { name: 'Litigation & Management', blurb: 'Procedural vocabulary, evidence processing and day-to-day case management in Personal Injury, Labor Law and Immigration.' },
-        trial: { name: 'Trial & Strategy', blurb: 'Advanced legal English, U.S. common-law structures, trial preparation and case analysis.' }
+        intake: { name: 'Intake & Support', wl: 'intake', month: 'January 2027', blurb: 'Legal English for first client contact, case screening and file setup in practice-management software.' },
+        lit: { name: 'Litigation & Management', wl: 'litigation', month: 'February 2027', blurb: 'Procedural vocabulary, evidence processing and day-to-day case management in Personal Injury, Labor Law and Immigration.' },
+        trial: { name: 'Trial & Strategy', wl: 'trial', month: 'March 2027', blurb: 'Advanced legal English, U.S. common-law structures, trial preparation and case analysis.' }
       },
       CAT_PATHWAY: {
         general_legal_english: 'intake', translation: 'intake', common_expressions: 'intake',
         civil_law: 'lit', immigration_law: 'lit', personal_injury: 'lit', family_law: 'lit', labor_law: 'lit', other_branches: 'lit',
         contract_law: 'trial', criminal_law: 'trial', commercial_law: 'trial'
+      },
+      // Specialty pathway for the topic tested, when one exists.
+      TOPIC_SPECIALTY: {
+        immigration_law: { key: 'immigration', name: 'Immigration Support Specialist', month: 'January 2027', blurb: 'Run an immigration file from the first call to filing and court date: family-based, humanitarian and removal-defense support.' },
+        personal_injury: { key: 'personal_injury', name: 'Personal Injury Case Specialist', month: 'February 2027', blurb: 'Carry a personal injury claim from the accident call to settlement disbursement, with a focus on pre-litigation.' },
+        labor_law: { key: 'workers_comp', name: 'Workers\' Compensation Case Manager', month: 'March 2027', blurb: 'Manage an injured worker\'s case from first report to settlement, with examples from California, Texas, Florida and Illinois.' },
+        family_law: { key: 'family_law', name: 'Family Law Paralegal', month: 'March 2027', blurb: 'Support divorce, custody, support and protective-order cases from intake to final judgment, with California and Texas examples.' },
+        criminal_law: { key: 'criminal_defense', name: 'Criminal Defense Legal Assistant', month: 'March 2027', blurb: 'Support a defense team from the first jail call to sentencing: court calendars, discovery and immigration consequences for Spanish-speaking clients.' }
       },
       DISCOUNT_CODE: 'EXAM15', DISCOUNT_PCT: 15, DISCOUNT_DAYS: 180,
       COURSES_URL: 'https://www.ingleslegal.com/courses',
@@ -560,17 +570,21 @@
       },
 
       recommendFor(levelName) {
-        return this.recommendPicks(levelName).map((r, i) => {
+        const cards = this.recommendPicks(levelName).map((r, i) => {
           const p = this.PATHWAYS[r.key];
-          return `<div style="border-top:1px solid var(--line); padding-top:12px; margin-top:12px;"><div class="rec-name"><span class="pill">${i === 0 ? 'Best match' : 'Also consider'}</span>${p.name}</div><div class="rec-why">${r.reason}</div><p>${p.blurb}</p><a class="btn-link ${i === 0 ? '' : 'ghost'}" style="${i === 0 ? '' : 'background:transparent;color:var(--gold);border:1px solid var(--gold);'}" href="${this.COURSES_URL}" target="_blank" rel="noopener">Explore ${p.name}</a></div>`;
-        }).join('') + `<div style="border-top:1px solid var(--line); padding-top:12px; margin-top:12px;"><div class="rec-name"><span class="pill">Opening 2027</span>Six learning pathways</div><p>Our six learning pathways open January to March 2027.</p><button type="button" class="btn-primary" onclick="app.notify(this)">Notify me when pathways open</button></div>`;
+          return { pill: i === 0 ? 'Best match' : 'Also consider', name: p.name, why: r.reason + ' Opens ' + p.month + '.', blurb: p.blurb, key: p.wl };
+        });
+        const sp = this.TOPIC_SPECIALTY[this.category];
+        if (sp) cards.push({ pill: 'For this topic', name: sp.name, why: 'It is the specialty pathway for ' + this.categoryLabel + '. Opens ' + sp.month + '.', blurb: sp.blurb, key: sp.key });
+        return cards.map((c, i) => `<div style="border-top:1px solid var(--line); padding-top:12px; margin-top:12px;"><div class="rec-name"><span class="pill">${c.pill}</span>${c.name}</div><div class="rec-why">${c.why}</div><p>${c.blurb}</p><button type="button" class="btn-link ${i === 0 ? '' : 'ghost'}" style="cursor:pointer;font:inherit;${i === 0 ? '' : 'background:transparent;color:var(--gold);border:1px solid var(--gold);'}" onclick="app.notify(this,'${c.key}')">Notify me when it opens</button></div>`).join('')
+          + `<div style="border-top:1px solid var(--line); padding-top:12px; margin-top:12px;"><div class="rec-name"><span class="pill">Opening 2027</span>All learning pathways</div><p>Our learning pathways open January to March 2027, from your level of legal English to your branch of law.</p><button type="button" class="btn-primary" onclick="app.notify(this)">Notify me when pathways open</button></div>`;
       },
 
-      notify(btn) {
-        const page = 'https://ingleslegal-hub.github.io/ingleslegal-exam/waitlist.html';
+      notify(btn, key) {
+        const page = 'https://ingleslegal-hub.github.io/ingleslegal-exam/waitlist.html' + (key ? '?pathway=' + key : '');
         if (!this.email || !RESULTS_WEBHOOK_URL) { window.open(page, '_blank', 'noopener'); return; }
         btn.disabled = true; btn.textContent = 'Adding you...';
-        fetch(RESULTS_WEBHOOK_URL, { method: 'POST', headers: { 'Content-Type': 'text/plain' }, body: JSON.stringify({ type: 'waitlist', name: this.name || '', email: this.email, pathways: ['all'], source: 'Vocabulary quiz results', consent: true }) })
+        fetch(RESULTS_WEBHOOK_URL, { method: 'POST', headers: { 'Content-Type': 'text/plain' }, body: JSON.stringify({ type: 'waitlist', name: this.name || '', email: this.email, pathways: [key || 'all'], source: 'Vocabulary quiz results', consent: true }) })
           .then(r => r.json()).then(j => { if (j && j.ok) { btn.textContent = "You're on the list \u2713"; } else { throw new Error('not ok'); } })
           .catch(() => { btn.disabled = false; btn.textContent = 'Use the sign-up form'; btn.onclick = () => window.open(page, '_blank', 'noopener'); });
       },
