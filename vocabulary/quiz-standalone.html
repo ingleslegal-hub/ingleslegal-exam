@@ -538,7 +538,8 @@
       PATHWAYS: {
         intake: { name: 'Intake & Support', wl: 'intake', month: 'January 2027', blurb: 'Legal English for first client contact, case screening and file setup in practice-management software.' },
         lit: { name: 'Litigation & Management', wl: 'litigation', month: 'February 2027', blurb: 'Procedural vocabulary, evidence processing and day-to-day case management in Personal Injury, Labor Law and Immigration.' },
-        trial: { name: 'Trial & Strategy', wl: 'trial', month: 'March 2027', blurb: 'Advanced legal English, U.S. common-law structures, trial preparation and case analysis.' }
+        trial: { name: 'Trial & Strategy', wl: 'trial', month: 'March 2027', blurb: 'Advanced legal English, U.S. common-law structures, trial preparation and case analysis.' },
+        launchpad: { name: 'Legal English Launchpad', wl: 'launchpad', month: 'February 2027', blurb: 'The starting point for low to intermediate English: workplace English, phone and email skills, first legal vocabulary and simple documents.' }
       },
       CAT_PATHWAY: {
         general_legal_english: 'intake', translation: 'intake', common_expressions: 'intake',
@@ -559,8 +560,13 @@
       EXAM_NAME: 'Legal English Vocabulary Test',
 
       recommendPicks(levelName) {
-        // Beginners start with Intake & Support (foundations); stronger candidates follow their category.
-        const early = levelName === 'Foundation' || levelName === 'Developing';
+        // Foundation starts with the Legal English Launchpad, then Intake & Support.
+        // Developing starts with Intake & Support (foundations); stronger candidates follow their category.
+        if (levelName === 'Foundation') return [
+          { key: 'launchpad', reason: 'It starts with everyday and first legal English, based on your Foundation level.' },
+          { key: 'intake', reason: 'Next, it moves into first client contact and case screening.' }
+        ];
+        const early = levelName === 'Developing';
         const catKey = this.CAT_PATHWAY[this.category] || 'intake';
         const first = early ? 'intake' : catKey;
         const reason1 = early ? 'It builds the foundations first, based on your ' + levelName + ' level.' : 'It matches the topic you just tested: ' + this.categoryLabel + '.';
