@@ -579,7 +579,8 @@ function shareHTML(pctText){
 const PATHWAYS = {
   intake: { name: "Intake & Support", wl: "intake", month: "January 2027", blurb: "Legal English for first client contact, case screening and file setup in practice-management software." },
   lit: { name: "Litigation & Management", wl: "litigation", month: "February 2027", blurb: "Procedural vocabulary, evidence processing and day-to-day case management in Personal Injury, Labor Law and Immigration." },
-  trial: { name: "Trial & Strategy", wl: "trial", month: "March 2027", blurb: "Advanced legal English, U.S. common-law structures, trial preparation and case analysis." }
+  trial: { name: "Trial & Strategy", wl: "trial", month: "March 2027", blurb: "Advanced legal English, U.S. common-law structures, trial preparation and case analysis." },
+  launchpad: { name: "Legal English Launchpad", wl: "launchpad", month: "February 2027", blurb: "The starting point for low to intermediate English: workplace English, phone and email skills, first legal vocabulary and simple documents." }
 };
 const CAT_PATHWAY = {
   "Legal Foundations & Courts":"intake", "Register & Translation":"intake", "Legal Software & Practice":"intake",
@@ -592,9 +593,16 @@ const CAT_PATHWAY = {
   "Cross-Border Translation":"trial", "Legal Writing & Advocacy":"trial"
 };
 const TIER_DEFAULT = { 1:"intake", 2:"lit", 3:"trial" };
+const LAUNCHPAD_BELOW = 0.60; // Tier 1 scores under 60% start with the Legal English Launchpad.
 function recommendPathways(completed){
   // Each Tier recommends the general pathway built for its level (Tier 1: Intake & Support, Tier 2: Litigation & Management, Tier 3: Trial & Strategy).
+  // A Tier 1 score under 60% recommends the Legal English Launchpad, the pathway for basic to intermediate English.
   const n = parseInt((TIER_LABEL.match(/\d+/) || ["1"])[0], 10);
+  if(n === 1 && completed > 0){
+    let right = 0;
+    for(let i = 0; i < completed; i++){ if(state.answers[i] === QUESTIONS[i].a) right++; }
+    if(right / completed < LAUNCHPAD_BELOW) return [{ key: "launchpad", reason: "Your score shows it is best to build your everyday and first legal English before " + PATHWAYS[TIER_DEFAULT[1]].name + "." }];
+  }
   return [{ key: TIER_DEFAULT[n], reason: "It is the pathway for the " + TIER_LABEL + " (" + TIER_LEVEL + ") level." }];
 }
 // Specialty pathway for the branch of law chosen on the start screen (no match for Civil, Commercial, International or Others).
