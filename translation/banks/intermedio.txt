@@ -1,0 +1,709 @@
+## Litigio civil | Civil Litigation
+
+Q: ¿Cómo se dice en inglés "presentar una demanda" (civil)?
++ to file a lawsuit
+- to present a demand
+- to raise a claim form
+- to issue a judgment
+E: Las demandas se "file" ante el tribunal ("to file a lawsuit" o "to file a complaint"). "Demand" es una exigencia de pago ("demand letter"), no la demanda judicial.
+
+Q: ¿Cómo se dice en inglés "El juez dictó sentencia" (proceso civil)?
++ The judge entered judgment.
+- The judge dictated a sentence.
+- The judge reached a verdict.
+- The judge issued a subpoena.
+E: En lo civil, la sentencia es el "judgment", y el juez la "enters" o "renders". "Sentence" es solo la pena en un caso penal, y el "verdict" normalmente lo da el jurado.
+
+Q: ¿Cómo se dice en inglés "rendir declaración" (un testigo, en el juicio)?
++ to testify
+- to render a declaration
+- to surrender a statement
+- to make a declaration of intent
+E: Se dice "to testify" o "to give testimony". "Render" se usa para sentencias o servicios ("services rendered"), y una "declaration" es un tipo específico de documento escrito.
+
+Q: ¿Cómo se dice en inglés "llegar a un acuerdo" (las partes, para terminar el pleito)?
++ to settle
+- to arrive at an accord
+- to reach a verdict
+- to plead guilty
+E: "The case settled" significa que las partes llegaron a un acuerdo. "Accord" existe, pero no es la forma natural. "Verdict" es la decisión del jurado y "to plead guilty" es declararse culpable.
+
+Q: ¿Cómo se dice en inglés "fallar a favor del demandante"?
++ to rule in favor of the plaintiff
+- to fail in favor of the plaintiff
+- to find against the plaintiff
+- to dismiss the plaintiff's claim
+E: El juez "rules in favor of" una parte. "To fail" significa fracasar, y "to find against the plaintiff" significa lo contrario: decidir en su contra.
+
+Q: ¿Cómo se dice en inglés "presentar pruebas" (en el juicio)?
++ to introduce evidence
+- to present proofs
+- to tamper with evidence
+- to suppress evidence
+E: Las pruebas se "introduce" o "offer" en juicio. "To tamper with evidence" es alterar pruebas, y "to suppress evidence" es excluirlas, por ejemplo por haberse obtenido ilegalmente.
+
+Q: ¿Cómo se dice en inglés "Objeción, su señoría" (en un tribunal de EE. UU.)?
++ Objection, Your Honor.
+- Objection, Mister Judge.
+- Protest, Your Excellency.
+- Objection, my lord.
+E: En los tribunales de EE. UU. al juez se le dice "Your Honor". "My lord" es una fórmula británica tradicional, y "Mister Judge" no se usa.
+
+Q: ¿Cómo se dice en inglés "Se acepta la objeción" (lo dice el juez)?
++ Sustained.
+- Overruled.
+- Accepted.
+- Agreed.
+E: Si el juez acepta la objeción, dice "Sustained"; si la rechaza, "Overruled".
+
+Q: ¿Cómo se dice en inglés "conceder una solicitud" (el juez)?
++ to grant a motion
+- to concede a solicitation
+- to deny a motion
+- to file a motion
+E: El juez "grants" (concede) o "denies" (niega) una "motion". "Concede" significa admitir un punto en una discusión.
+
+Q: ¿Cómo se dice en inglés "correr traslado de un escrito" (a la otra parte)?
++ to serve a copy on the opposing party
+- to run a transfer of the filing
+- to file the original with the court
+- to transfer venue
+E: Entregar una copia del escrito a la otra parte es "to serve" ("certificate of service"). "To transfer venue" es trasladar el caso a otro tribunal.
+
+Q: ¿Cómo se dice en inglés "condenar en costas al demandado"?
++ to award costs against the defendant
+- to condemn the defendant in costs
+- to waive the defendant's costs
+- to charge the defendant with a crime
+E: Se dice "to award costs against" (o "to tax costs against") una parte. "Condemn" no se usa así, y "to charge with a crime" es imputar un delito.
+
+Q: ¿Cómo se dice en inglés "El demandado no compareció"?
++ The defendant failed to appear.
+- The defendant did not compare.
+- The defendant did not comply.
+- The defendant defaulted the plaintiff.
+E: Comparecer es "to appear". "To compare" significa comparar, y "to comply" significa cumplir.
+
+Q: ¿Cómo se dice en inglés "interrogatorio directo" (de la parte que presentó al testigo)?
++ direct examination
+- direct interrogation
+- cross-examination
+- recross
+E: La parte que presenta al testigo hace la "direct examination", y la contraparte, la "cross-examination". "Interrogation" se asocia con los interrogatorios de la policía.
+
+Q: ¿Cómo se dice en inglés "selección del jurado" (preguntas a los posibles jurados)?
++ voir dire
+- jury duty
+- jury instructions
+- deliberation
+E: Se llama "voir dire". "Jury duty" es el deber ciudadano de servir como jurado, y las "jury instructions" son las instrucciones del juez al jurado.
+
+Q: ¿Cómo se dice en inglés "fijar fecha para la audiencia"?
++ to set a hearing
+- to fix the audience date
+- to vacate a hearing
+- to waive a hearing
+E: Se dice "to set" (o "to schedule") a hearing. "To vacate a hearing" es cancelarla, y "audience" significa público.
+
+Q: ¿Cómo se dice en inglés "levantar la sesión" (terminar la audiencia del día)?
++ to adjourn
+- to lift the session
+- to raise the court
+- to sustain
+E: Terminar la sesión es "to adjourn" ("Court is adjourned"). "To sustain" se usa para aceptar una objeción.
+
+Q: ¿Cómo se dice en inglés "bajo juramento"?
++ under oath
+- below oath
+- on swear
+- by oath-taking
+E: Se dice "under oath" ("testify under oath"). "Below" y "on swear" son calcos incorrectos.
+
+Q: ¿Cómo se dice en inglés "presentar una demanda de reconvención"?
++ to file a counterclaim
+- to file a cross-examination
+- to file a contra-demand
+- to file an answer
+E: La demanda del demandado contra el demandante es un "counterclaim". El "answer" solo contesta la demanda, y la "cross-examination" es un interrogatorio.
+
+Q: ¿Cómo se dice en inglés "pedir que se rechace la demanda" (sin llegar a juicio)?
++ to move to dismiss the complaint
+- to request disestimation of the demand
+- to move for discovery
+- to amend the complaint
+E: Se presenta una "motion to dismiss" ("to move to dismiss"). "To amend the complaint" es reformar la demanda.
+
+Q: ¿Cómo se dice en inglés "La sentencia quedó en firme" (ya no admite recursos)?
++ The judgment became final.
+- The judgment stayed firm.
+- The judgment was signed.
+- The judgment was appealed.
+E: Una sentencia en firme es un "final judgment" ("the judgment became final"). "Firm" no tiene ese sentido en inglés.
+
+## Proceso penal | Criminal Procedure
+
+Q: ¿Cómo se dice en inglés "formular cargos" (contra una persona)?
++ to bring charges
+- to formulate loads
+- to drop charges
+- to plead the charges
+E: Se dice "to bring charges" (o "to file charges"). "To drop charges" es retirarlos.
+
+Q: ¿Cómo se dice en inglés "dejar en libertad bajo fianza"?
++ to release on bail
+- to free under guarantee
+- to remand into custody
+- to release on parole
+E: Se dice "to release on bail". "To remand into custody" es enviar a la persona a prisión, y "parole" es la libertad condicional después de cumplir parte de la pena.
+
+Q: ¿Cómo se dice en inglés "leerle sus derechos" (al capturado)?
++ to read someone their Miranda rights
+- to read someone the riot act
+- to lecture someone on their rights
+- to waive someone's rights
+E: La policía "reads someone their Miranda rights". "To read someone the riot act" es una expresión que significa regañar fuertemente.
+
+Q: ¿Cómo se dice en inglés "estar bajo custodia" (de la policía)?
++ to be in custody
+- to be custodial
+- to be on probation
+- to be held harmless
+E: Se dice "to be in custody". "Held harmless" es una expresión de contratos que significa mantener indemne.
+
+Q: ¿Cómo se dice en inglés "audiencia de imposición de pena"?
++ sentencing hearing
+- penalty audience
+- preliminary hearing
+- bail hearing
+E: La audiencia en que el juez fija la pena es la "sentencing hearing". La "preliminary hearing" revisa si hay causa probable, y la "bail hearing" decide sobre la fianza.
+
+Q: ¿Cómo se dice en inglés "cumplir una condena" (en prisión)?
++ to serve a sentence
+- to comply with a condemnation
+- to complete a conviction
+- to sentence a convict
+E: Se dice "to serve a sentence" ("serve time"). "Conviction" es la declaración de culpabilidad, no la pena.
+
+Q: ¿Cómo se dice en inglés "El jurado lo declaró culpable"?
++ The jury found him guilty.
+- The jury declared him culpable.
+- The jury pleaded him guilty.
+- The jury sentenced him guilty.
+E: El jurado "finds" a alguien culpable. El acusado "pleads" (se declara), y el juez "sentences" (impone la pena).
+
+Q: ¿Cómo se dice en inglés "absolver" (al acusado)?
++ to acquit
+- to absolve
+- to pardon
+- to parole
+E: Se dice "to acquit" ("acquittal" = absolución). "To pardon" es indultar, y "to absolve" se usa en sentido moral o religioso.
+
+Q: ¿Cómo se dice en inglés "capturado en flagrancia"?
++ caught in the act
+- flagrantly arrested
+- arrested on suspicion
+- arrested on a warrant
+E: Se dice "caught in the act" (o "caught red-handed"). En inglés, "flagrant" significa descarado o evidente.
+
+Q: ¿Cómo se dice en inglés "pruebas de cargo"?
++ evidence for the prosecution
+- charge proofs
+- exculpatory evidence
+- character evidence
+E: Las pruebas que presenta la fiscalía son la "evidence for the prosecution". La "exculpatory evidence" es la prueba de descargo, que favorece al acusado.
+
+Q: ¿Cómo se dice en inglés "orden de alejamiento"?
++ restraining order
+- distancing order
+- gag order
+- bench warrant
+E: Se dice "restraining order" (o "protective order"). La "gag order" prohíbe hablar del caso con la prensa.
+
+Q: ¿Cómo se dice en inglés "periodo de prueba en libertad" (en lugar de prisión)?
++ probation
+- probate
+- parole
+- trial period
+E: Se dice "probation". Ojo: "probate" es el proceso de sucesión, y "parole" es la libertad condicional después de la prisión.
+
+Q: ¿Cómo se dice en inglés "conducir bajo los efectos del alcohol"?
++ driving under the influence
+- driving under effects of alcohol
+- drunk and disorderly
+- reckless driving
+E: Se dice "driving under the influence" (DUI) o, en algunos estados, "driving while intoxicated" (DWI). "Drunk and disorderly" es alterar el orden público en estado de embriaguez.
+
+Q: ¿Cómo se dice en inglés "violencia intrafamiliar"?
++ domestic violence
+- intrafamiliar violence
+- child neglect
+- home invasion
+E: Se dice "domestic violence" (Texas usa "family violence"). "Home invasion" es la entrada violenta a una vivienda habitada.
+
+Q: ¿Cómo se dice en inglés "porte ilegal de armas"?
++ unlawful carrying of a weapon
+- illegal arms port
+- armed robbery
+- weapons trafficking
+E: Se dice "unlawful carrying of a weapon" (o "unlawful possession of a firearm"). "Port" significa puerto.
+
+Q: ¿Cómo se dice en inglés "tráfico de estupefacientes"?
++ drug trafficking
+- narcotics traffic
+- drug possession
+- drug paraphernalia
+E: Se dice "drug trafficking". "Traffic" solo, en inglés corriente, es el tráfico de vehículos, y "drug possession" es la simple tenencia.
+
+Q: ¿Cómo se dice en inglés "El capturado fue puesto a disposición del juez"?
++ The arrestee was brought before the judge.
+- The arrestee was put at the judge's disposition.
+- The arrestee was released to the judge.
+- The arrestee was handed to the jury.
+E: Se dice "brought before the judge" (o "before a magistrate"). "Disposition" significa resolución final de un caso, o temperamento.
+
+Q: ¿Cómo se dice en inglés "presunción de inocencia"?
++ presumption of innocence
+- innocent plea
+- double jeopardy
+- right to bail
+E: Se dice "presumption of innocence". "Double jeopardy" es la prohibición de juzgar dos veces por el mismo hecho (non bis in idem).
+
+Q: ¿Cómo se dice en inglés "más allá de toda duda razonable"?
++ beyond a reasonable doubt
+- more than any reasonable doubt
+- by a preponderance of the evidence
+- by clear and present danger
+E: El estándar penal es "beyond a reasonable doubt". "Preponderance of the evidence" es el estándar civil: más probable que no.
+
+Q: ¿Cómo se dice en inglés "conmutar la pena"?
++ to commute a sentence
+- to exchange the penalty
+- to appeal a sentence
+- to expunge a record
+E: Se dice "to commute a sentence" (reducirla, normalmente por decisión del gobernador o del presidente). "To expunge a record" es borrar los antecedentes.
+
+## Redacción de contratos | Contract Drafting
+
+Q: ¿Cómo se dice en inglés "No obstante lo anterior" (en un contrato)?
++ Notwithstanding the foregoing
+- Pursuant to the foregoing
+- Subject to the foregoing
+- In addition to the foregoing
+E: Las cuatro son expresiones reales de contratos: "pursuant to" = de conformidad con, "subject to" = sujeto a, "in addition to" = además de. Confundirlas cambia el efecto de la cláusula.
+
+Q: ¿Cómo se dice en inglés "en adelante, 'el Arrendatario'"?
++ hereinafter referred to as the "Tenant"
+- in advance the "Tenant"
+- from forward called the "Tenant"
+- hereto the "Tenant"
+E: La fórmula es "hereinafter referred to as" o, en forma breve, (the "Tenant"). "In advance" significa por anticipado.
+
+Q: ¿Cómo se dice en inglés "a la firma del presente contrato"?
++ upon execution of this Agreement
+- at the firm of the present contract
+- prior to the execution of this Agreement
+- upon termination of this Agreement
+E: Firmar un contrato es "to execute", y "el presente contrato" es "this Agreement". "Prior to" significa antes de, y "upon termination" significa al terminar.
+
+Q: ¿Cómo se dice en inglés "El contrato entrará en vigor el 1 de enero"?
++ The Agreement shall take effect on January 1.
+- The contract will enter into vigor on January 1.
+- The Agreement shall expire on January 1.
+- The Agreement shall be terminated on January 1.
+E: Se dice "take effect" o "become effective" ("Effective Date"). "Vigor" en inglés significa energía.
+
+Q: ¿Cómo se dice en inglés "de conformidad con" (la ley, la cláusula 5)?
++ pursuant to
+- in lieu of
+- notwithstanding
+- regardless of
+E: "Pursuant to" significa de conformidad con. "In lieu of" significa en lugar de, y "regardless of" significa sin importar.
+
+Q: ¿Cómo se dice en inglés "Las partes acuerdan lo siguiente"?
++ The parties hereby agree as follows:
+- The parties remember the following:
+- The parties accord to the following:
+- The parties are agreed by the following:
+E: La fórmula es "The parties hereby agree as follows". Cuidado: "acordarse" de algo es "to remember", que es otra cosa.
+
+Q: ¿Cómo se dice en inglés "terminación anticipada" (del contrato)?
++ early termination
+- anticipated termination
+- termination for cause
+- contract rescission
+E: Se dice "early termination". "Anticipated" significa esperado o previsto, y "termination for cause" es la terminación por incumplimiento.
+
+Q: ¿Cómo se dice en inglés "prórroga automática" (del contrato)?
++ automatic renewal
+- automatic prorogation
+- automatic termination
+- holdover
+E: Se dice "automatic renewal" ("evergreen clause"). "Holdover" es cuando el arrendatario se queda después de vencer el contrato.
+
+Q: ¿Cómo se dice en inglés "cesión del contrato" (a un tercero)?
++ assignment
+- cession
+- sublease
+- waiver
+E: Transferir los derechos de un contrato a un tercero es "assignment". "Sublease" es subarrendar, y "cession" se usa para ceder territorio entre Estados.
+
+Q: ¿Cómo se dice en inglés "subarrendar"?
++ to sublease
+- to underrent
+- to lease back
+- to evict
+E: Se dice "to sublease" (o "to sublet"). "To lease back" es vender un bien y tomarlo luego en arriendo, y "to evict" es desalojar.
+
+Q: ¿Cómo se dice en inglés "cláusula penal" (indemnización fijada de antemano por incumplimiento)?
++ liquidated damages clause
+- penal clause
+- criminal penalty clause
+- punitive clause
+E: En EE. UU. se llama "liquidated damages clause". Si un tribunal la considera un castigo ("penalty") y no una estimación razonable del daño, no la aplica.
+
+Q: ¿Cómo se dice en inglés "acuerdo de confidencialidad"?
++ non-disclosure agreement
+- confidence agreement
+- gag order
+- privacy notice
+E: Se dice "non-disclosure agreement" (NDA) o "confidentiality agreement". La "privacy notice" es el aviso de privacidad.
+
+Q: ¿Cómo se dice en inglés "cláusula de no competencia"?
++ non-compete clause
+- no-competition pact
+- non-solicitation clause
+- exclusivity clause
+E: Se dice "non-compete clause". La "non-solicitation clause" prohíbe captar a los clientes o empleados de la otra parte.
+
+Q: ¿Cómo se dice en inglés "salvo pacto en contrario"?
++ unless otherwise agreed
+- save contrary pact
+- except as required by law
+- unless the contrary is pacted
+E: Se dice "unless otherwise agreed" (o "unless otherwise agreed in writing"). "Except as required by law" significa salvo lo que exija la ley.
+
+Q: ¿Cómo se dice en inglés "en caso de controversia" (entre las partes)?
++ in the event of a dispute
+- in case of a contest
+- in the event of default
+- in the case of discussion
+E: Se dice "in the event of a dispute". "In the event of default" significa en caso de incumplimiento (normalmente de pago).
+
+Q: ¿Cómo se dice en inglés "Las partes se someten a arbitraje"?
++ The parties submit to arbitration.
+- The parties are subjected to arbitrage.
+- The parties waive arbitration.
+- The parties appeal to arbitration.
+E: Se dice "submit to arbitration". "Arbitrage" es una operación financiera, y "waive arbitration" significa renunciar al arbitraje.
+
+Q: ¿Cómo se dice en inglés "Todas las notificaciones se harán por escrito"?
++ All notices shall be given in writing.
+- All notifications will be made by written.
+- All notices may be given orally.
+- All notices shall be served by the court.
+E: En los contratos las comunicaciones formales son "notices" ("Notices clause"), y "por escrito" es "in writing".
+
+Q: ¿Cómo se dice en inglés "vigencia del contrato" (su duración)?
++ term of the Agreement
+- vigency of the contract
+- terms and conditions
+- termination of the Agreement
+E: La duración es el "term" (en singular). "Terms and conditions" (en plural) son las condiciones del contrato.
+
+Q: ¿Cómo se dice en inglés "Este contrato solo podrá modificarse por escrito firmado por ambas partes"?
++ This Agreement may be amended only by a written instrument signed by both parties.
+- This contract may be modified uniquely by a scripture signed by both parts.
+- This Agreement may be amended by either party at any time.
+- This Agreement shall not be amended under any circumstances.
+E: Modificar un contrato es "to amend". "Scripture" significa texto sagrado, y "parts" no se usa para "partes" de un contrato ("parties").
+
+Q: ¿Cómo se dice en inglés "a título gratuito" (sin contraprestación)?
++ without consideration
+- at free title
+- for valuable consideration
+- as a gift tax
+E: En derecho estadounidense, la contraprestación es "consideration": a título gratuito es "without consideration", y a título oneroso es "for valuable consideration".
+
+## Comunicación con clientes y oficina | Client and Office Communication
+
+Q: ¿Cómo se dice en inglés "programar una cita" (con el abogado)?
++ to schedule an appointment
+- to concert a date
+- to make a date
+- to appoint a meeting
+E: Se dice "to schedule an appointment". "To make a date" suena a una cita romántica, y "to appoint" significa nombrar a alguien.
+
+Q: ¿Cómo se dice en inglés "consulta inicial gratuita"?
++ free initial consultation
+- free first query
+- complimentary first audit
+- pro bono case
+E: Se dice "free initial consultation". "Pro bono" es el trabajo gratuito por interés público, no una consulta inicial.
+
+Q: ¿Cómo se dice en inglés "El abogado le devolverá la llamada"?
++ The attorney will call you back.
+- The attorney will return you the call.
+- The attorney will call you again back.
+- The attorney will recall you.
+E: Se dice "will call you back" (o "will return your call"). "To recall" significa recordar o retirar del mercado.
+
+Q: ¿Cómo se dice en inglés "¿En qué le puedo colaborar?" (al contestar el teléfono)?
++ How may I help you?
+- In what can I collaborate you?
+- What can I do for collaboration?
+- How can I collaborate with you?
+E: Se dice "How may I help you?" "To collaborate" significa trabajar juntos en un proyecto.
+
+Q: ¿Cómo se dice en inglés "el estado de su caso"?
++ the status of your case
+- the state of your case
+- the estate of your case
+- the statute of your case
+E: Se dice "status". "State" es un estado (de EE. UU.), "estate" es la masa sucesoral o un patrimonio, y "statute" es una ley.
+
+Q: ¿Cómo se dice en inglés "contrato de servicios con el cliente" (que firma el cliente al contratar al despacho)?
++ engagement letter
+- services lending contract
+- client release
+- service level agreement
+E: Se dice "engagement letter" (o "retainer agreement"). Un "service level agreement" (SLA) es un contrato de tecnología, y un "release" es un finiquito.
+
+Q: ¿Cómo se dice en inglés "formulario de admisión del cliente" (la primera entrevista)?
++ intake form
+- admission ticket
+- release form
+- entry visa
+E: Se dice "intake form" ("client intake"). La "release form" es una autorización o renuncia que firma el cliente.
+
+Q: ¿Cómo se dice en inglés "conflicto de intereses"?
++ conflict of interest
+- conflict of laws
+- interested conflict
+- interest dispute
+E: Se dice "conflict of interest". "Conflict of laws" es el derecho internacional privado: qué ley aplica.
+
+Q: ¿Cómo se dice en inglés "secreto profesional" (entre abogado y cliente)?
++ attorney-client privilege
+- professional secret
+- trade secret
+- executive privilege
+E: Se dice "attorney-client privilege". "Trade secret" es un secreto comercial, y "executive privilege" es una prerrogativa del poder ejecutivo.
+
+Q: ¿Cómo se dice en inglés "dejar un mensaje de voz"?
++ to leave a voicemail
+- to let a voice message
+- to drop a call
+- to hold the line
+E: Se dice "to leave a voicemail". "To drop a call" es cortarse la llamada, y "to hold the line" es esperar en línea.
+
+Q: ¿Cómo se dice en inglés "Por favor, espere en la línea"?
++ Please hold.
+- Please wait in the line.
+- Please hang up.
+- Please line up.
+E: Se dice "Please hold". "To line up" es hacer fila, y "to hang up" es colgar.
+
+Q: ¿Cómo se dice en inglés "Adjunto le envío los documentos"?
++ Please find the documents attached.
+- Adjunct I send you the documents.
+- I attach you the documents.
+- Annexed I send to you the documents.
+E: La fórmula es "Please find attached" o "I have attached". "Adjunct" significa auxiliar o accesorio.
+
+Q: ¿Cómo se dice en inglés "Quedo atento a sus comentarios" (al cerrar un correo)?
++ I look forward to your comments.
+- I am pending of your comments.
+- I stay attentive to your comments.
+- I wait your comments attentively.
+E: La fórmula natural es "I look forward to your comments" (o "to hearing from you"). "Pending" se usa para cosas, no para personas.
+
+Q: ¿Cómo se dice en inglés "Estimado señor Pérez:" (al iniciar una carta)?
++ Dear Mr. Pérez:
+- Esteemed Mr. Pérez:
+- Estimated Mr. Pérez:
+- Respected Sir Pérez:
+E: La fórmula es "Dear Mr. Pérez:" (con dos puntos en cartas formales de EE. UU.). "Estimated" significa calculado aproximadamente.
+
+Q: ¿Cómo se dice en inglés "Envíenos los documentos a más tardar el viernes"?
++ Send us the documents no later than Friday.
+- Send us the documents until Friday.
+- Send us the documents more later Friday.
+- Send us the documents after Friday.
+E: Se dice "no later than Friday" (o "by Friday"). "Until" indica la duración de algo hasta un momento, no un límite.
+
+Q: ¿Cómo se dice en inglés "Le recuerdo que su audiencia es mañana"?
++ This is a reminder that your hearing is tomorrow.
+- I remember you that your audience is tomorrow.
+- I record you that your hearing is tomorrow.
+- I remind that your audience is tomorrow.
+E: Se dice "to remind someone" (no "remember", que es acordarse). "Hearing" es la audiencia judicial, y "audience" es el público.
+
+Q: ¿Cómo se dice en inglés "autenticar la firma ante notario"?
++ to have the signature notarized
+- to authenticate the firm before a notary
+- to legalize the firm
+- to certify the firm's signature
+E: Se dice "to have the signature notarized". "Firm" significa empresa, no firma.
+
+Q: ¿Cómo se dice en inglés "El abogado está en audiencia" (no puede atender)?
++ The attorney is in court.
+- The attorney is in audience.
+- The attorney is hearing.
+- The attorney is in an audition.
+E: Se dice "in court" (o "in a hearing"). "Audition" es una prueba para un papel de actuación.
+
+Q: ¿Cómo se dice en inglés "devolver los documentos originales" (al cliente)?
++ to return the original documents
+- to devolve the original documents
+- to refund the original documents
+- to give back the copies
+E: Se dice "to return". "To devolve" significa transferir competencias o poderes, y "to refund" se usa para dinero.
+
+Q: ¿Cómo se dice en inglés "dar seguimiento al caso"?
++ to follow up on the case
+- to give pursuit to the case
+- to persecute the case
+- to trace the case
+E: Se dice "to follow up on". "To persecute" significa perseguir u hostigar, y "to prosecute" significa procesar penalmente.
+
+## Familia, inmigración y trabajo | Family, Immigration and Employment
+
+Q: ¿Cómo se dice en inglés "solicitar el divorcio"?
++ to file for divorce
+- to solicit a divorce
+- to apply a divorce
+- to sue the divorce
+E: Se dice "to file for divorce" ("petition for dissolution of marriage" en algunos estados). "To solicit" suele significar pedir algo de forma insistente.
+
+Q: ¿Cómo se dice en inglés "custodia compartida"?
++ joint custody
+- shared guard
+- sole custody
+- joint tenancy
+E: Se dice "joint custody". "Sole custody" es la custodia exclusiva, y "joint tenancy" es una forma de copropiedad de bienes.
+
+Q: ¿Cómo se dice en inglés "cuotas alimentarias atrasadas"?
++ child support arrears
+- delayed food quotas
+- back taxes
+- late fees
+E: La deuda acumulada de manutención son los "child support arrears". "Back taxes" son impuestos atrasados.
+
+Q: ¿Cómo se dice en inglés "reconocer la paternidad" (voluntariamente)?
++ to acknowledge paternity
+- to deny paternity
+- to terminate parental rights
+- to grant visitation
+E: Se dice "to acknowledge paternity" (con un formulario "Acknowledgment of Paternity"). "To terminate parental rights" es quitar la patria potestad.
+
+Q: ¿Cómo se dice en inglés "solicitud de asilo"?
++ asylum application
+- asylum solicitude
+- asylum seeker
+- safe harbor
+E: Se dice "asylum application" (Formulario I-589). "Asylum seeker" es la persona que lo solicita, y "safe harbor" es una cláusula de protección legal.
+
+Q: ¿Cómo se dice en inglés "permiso de trabajo" (que emite USCIS)?
++ employment authorization document
+- labor license
+- advance parole
+- naturalization certificate
+E: El permiso de trabajo es el "Employment Authorization Document" (EAD). "Advance parole" es un permiso para viajar y regresar a EE. UU.
+
+Q: ¿Cómo se dice en inglés "ciudadanía por naturalización"?
++ citizenship through naturalization
+- citizenship through nationalization
+- residency by naturalization
+- dual citizenship
+E: Se dice "citizenship through naturalization". "Nationalization" es cuando el Estado toma el control de una empresa.
+
+Q: ¿Cómo se dice en inglés "orden de deportación"?
++ removal order
+- deportation sentence
+- voluntary departure
+- expulsion warrant
+E: El término legal actual es "order of removal" (o "removal order"). "Voluntary departure" es la salida voluntaria que concede el juez.
+
+Q: ¿Cómo se dice en inglés "petición familiar" (un ciudadano pide la residencia para su familiar)?
++ family-based petition
+- family solicitation
+- family reunification act
+- humanitarian parole
+E: Se dice "family-based petition" (Formulario I-130). "Humanitarian parole" es un permiso temporal de entrada por razones humanitarias.
+
+Q: ¿Cómo se dice en inglés "estatus migratorio"?
++ immigration status
+- migratory statute
+- migration state
+- immigration statute
+E: Se dice "immigration status". "Statute" es una ley, y "migratory" se usa sobre todo para animales, como las aves migratorias.
+
+Q: ¿Cómo se dice en inglés "fecha de prioridad" (de una petición de inmigración)?
++ priority date
+- priority deadline
+- preferential date
+- due date
+E: Se dice "priority date", la fecha que determina el turno del solicitante en el boletín de visas.
+
+Q: ¿Cómo se dice en inglés "cita biométrica" (para tomar huellas y foto)?
++ biometrics appointment
+- biometric date
+- biometric citation
+- fingerprint test
+E: Se dice "biometrics appointment". "Citation" puede ser una multa o una cita de jurisprudencia.
+
+Q: ¿Cómo se dice en inglés "licencia de maternidad"?
++ maternity leave
+- maternity license
+- maternity permit
+- parental license
+E: Se dice "maternity leave". "License" es un permiso oficial, como la licencia de conducción o la profesional.
+
+Q: ¿Cómo se dice en inglés "acoso laboral"?
++ workplace harassment
+- labor siege
+- hostile takeover
+- labor dispute
+E: Se dice "workplace harassment". "Hostile takeover" es una adquisición hostil de una empresa, y "labor dispute" es un conflicto laboral colectivo.
+
+Q: ¿Cómo se dice en inglés "contratista independiente"?
++ independent contractor
+- at-will employee
+- temp agency
+- union member
+E: Se dice "independent contractor". "At-will employee" es un empleado que puede ser despedido sin causa.
+
+Q: ¿Cómo se dice en inglés "reclamar el pago de horas extras"?
++ to file a claim for unpaid overtime
+- to reclaim extra hours
+- to claim overtime in advance
+- to report extra time
+E: Se dice "to file a claim for unpaid overtime" (o "wage claim"). "To reclaim" significa recuperar algo.
+
+Q: ¿Cómo se dice en inglés "seguro de desempleo"?
++ unemployment insurance
+- unemployment security
+- Social Security disability
+- severance pay
+E: Se dice "unemployment insurance" (o "unemployment benefits"). "Severance pay" es la indemnización por despido.
+
+Q: ¿Cómo se dice en inglés "incapacidad temporal total" (accidente de trabajo)?
++ temporary total disability
+- total temporal incapacity
+- permanent partial disability
+- short-term leave
+E: Se dice "temporary total disability" (TTD), en el sistema de "workers' compensation". "Temporal" en inglés se refiere al tiempo en sentido abstracto o a las sienes.
+
+Q: ¿Cómo se dice en inglés "audiencia individual" (en la que el juez de inmigración decide el fondo del caso)?
++ individual hearing
+- master calendar hearing
+- credible fear interview
+- asylum interview
+E: La audiencia de fondo es la "individual hearing" ("merits hearing"). La "master calendar hearing" es una audiencia preliminar breve, y la "asylum interview" la hace USCIS, no el juez.
+
+Q: ¿Cómo se dice en inglés "fianza migratoria"?
++ immigration bond
+- migratory bail
+- bail bondsman
+- surety company
+E: Se dice "immigration bond". El "bail bondsman" es quien presta el dinero de la fianza en casos penales.

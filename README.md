@@ -75,7 +75,27 @@ The question screen follows the vocabulary quiz layout: logo, progress bar, ques
 
 ---
 
-## 3. Vocabulary Exams (Free Public Practice)
+## 3. Legal Translation Exams (Spanish → English)
+
+Three exams, one per level, for Spanish speakers: instructions, questions and explanations in Spanish (usted), answer options in English (U.S. legal usage). 100 questions each, in 5 areas of 20, built on the pathway exam engine (same look, Half/Full lengths, batches of 50, consent boxes, EXAM15 offer, share options, results webhook). Pass mark: 75%.
+
+| Level | File | Content | Report ID | Recommended pathway |
+|---|---|---|---|---|
+| Básico | `translation/basico-exam.html` | Single terms | IL-TRB-… | Legal English Launchpad |
+| Intermedio | `translation/intermedio-exam.html` | Phrases and collocations | IL-TRI-… | Intake & Support |
+| Avanzado | `translation/avanzado-exam.html` | Full sentences: false friends, clauses, court filings, register, concepts with no direct equivalent | IL-TRA-… | Litigation & Management |
+
+Live at `https://ingleslegal-hub.github.io/ingleslegal-exam/translation/<file>`.
+
+**/talent page section:** paste the entire contents of `translation/embed-translation.html` into a LearnWorlds **Embed** section (same steps as `pathways/embed-pathways.html`). It shows a Spanish heading and one button per level. Each start screen has a level picker, and `?length=half` preselects the Half exam. A pass on the Full exam earns the Proficiency Report, which stays in English so candidates can show it to U.S. employers (area names are translated on the report).
+
+The webhook `tier` values are `Traducción Básico`, `Traducción Intermedio` and `Traducción Avanzado`. `apps-script/Code.gs` (`TRANSLATION_EXAMS`) gives them their result IDs and sends the results email in Spanish (`sendTranslationEmail_`). Redeploy the Apps Script as a **New version** of the existing deployment after updating `Code.gs`.
+
+A readable copy of each bank is in `translation/banks/*.txt` (`## Área | English area name`, then `Q:`, `+` correct option, `-` wrong options, `E:` explanation), for review by a bilingual lawyer. To change a question, edit it in the page's `ALL_QUESTIONS` list (`a` is the index of the correct option, starting at 0) and in the .txt file, so the two stay in sync.
+
+---
+
+## 4. Vocabulary Exams (Free Public Practice)
 
 A **completely standalone, self-hosted vocabulary practice system** with **1,220 questions** across 12 legal categories. No Claude login required.
 
@@ -125,6 +145,7 @@ ingleslegal-exam/
 ├── tier-1-exam.html           (Tier 1 proficiency exam)
 ├── tier-2-exam.html           (Tier 2 proficiency exam)
 ├── tier-3-exam.html           (Tier 3 proficiency exam)
+├── translation/               (Legal translation exams, Spanish → English, 3 levels × 100 questions)
 ├── pathways/                  (Branch pathway exams, 5 × 100 questions)
 │   ├── index.html             (Menu: exam, Half/Full, name, email)
 │   ├── embed-pathways.html    ("Free Career Pathway Exams" section for the /talent page)
