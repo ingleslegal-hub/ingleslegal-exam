@@ -31,6 +31,13 @@ var LAUNCHPAD_BELOW = 60; // Tier 1 scores under 60% are pointed to the Legal En
 var BRANCH_PATHWAY = { 'Immigration': 'immigration', 'Personal Injury': 'personal_injury', 'Labor': 'workers_comp', 'Family': 'family_law', 'Criminal': 'criminal_defense' };
 var PATHWAY_BY_LABEL = { 'Immigration Pathway': 'immigration', 'Personal Injury Pathway': 'personal_injury', "Workers' Compensation Pathway": 'workers_comp', 'Family Law Pathway': 'family_law', 'Criminal Defense Pathway': 'criminal_defense' };
 var PATHWAY_CODES = { immigration: 'IMM', personal_injury: 'PI', workers_comp: 'WC', family_law: 'FAM', criminal_defense: 'CRIM' };
+// Legal translation exams (translation/*.html): Spanish screens, Spanish results email, IDs IL-TRB / IL-TRI / IL-TRA.
+var TRANSLATION_EXAMS = {
+  'Traducción Básico': { code: 'TRB', level: 'Básico', next: 'launchpad', nextLevelFile: 'translation/intermedio-exam.html', nextLevelName: 'Intermedio' },
+  'Traducción Intermedio': { code: 'TRI', level: 'Intermedio', next: 'intake', nextLevelFile: 'translation/avanzado-exam.html', nextLevelName: 'Avanzado' },
+  'Traducción Avanzado': { code: 'TRA', level: 'Avanzado', next: 'litigation', nextLevelFile: '', nextLevelName: '' }
+};
+var MONTHS_ES = { 'January 2027': 'enero de 2027', 'February 2027': 'febrero de 2027', 'March 2027': 'marzo de 2027' };
  
 function doPost(e) {
 try {
@@ -130,6 +137,7 @@ const tierCode = (tier || '').replace(/[^0-9]/g, '') || 'X';
 const rand = Utilities.getUuid().split('-')[0].toUpperCase().slice(0, 6);
 const pwKey = PATHWAY_BY_LABEL[tier];
 if (pwKey) return 'IL-' + PATHWAY_CODES[pwKey] + '-' + rand;
+if (TRANSLATION_EXAMS[tier]) return 'IL-' + TRANSLATION_EXAMS[tier].code + '-' + rand;
 return 'IL-T' + tierCode + '-' + rand;
 }
  
@@ -152,6 +160,7 @@ return '<tr><td style="padding:8px 10px;border-bottom:1px solid #e6ddd0;font-fam
 }
  
 function sendResultsEmail(data, breakdown, resultId) {
+if (TRANSLATION_EXAMS[data.tier]) { sendTranslationEmail_(data, breakdown, resultId); return; }
 const passed = !!data.passed; const reportId = (passed && /^IL-[A-Z0-9]{1,5}-[A-Z2-9]{8}$/.test(String(data.certId || ''))) ? String(data.certId) : ''; const verifyUrl = 'https://ingleslegal-hub.github.io/ingleslegal-exam/verify.html' + (reportId ? '?id=' + reportId : ''); const verifyLine = reportId ? 'Anyone can check this Proficiency Report on the <a href="' + verifyUrl + '" style="color:#7d7084;">Ingleslegal verify page</a> with Report ID <b>' + reportId + '</b>. Questions? Contact exams@ingleslegal.com.' : 'Keep this Result ID for your records. Questions? Contact exams@ingleslegal.com.';
 const passText = (passed ? 'PASSED' : 'Not yet passing') + (data.stoppedEarly ? ' (provisional)' : '');
 const answeredTotal = data.answered || data.total;
@@ -406,3 +415,76 @@ function sendWaitlistEmail_(name, email, keys) {
   GmailApp.sendEmail(email, 'You\'re on the list: Ingleslegal learning pathways', plain, { htmlBody: html, name: 'Ingleslegal Exams', from: 'exams@ingleslegal.com', replyTo: 'exams@ingleslegal.com' });
 }
 
+/* ===== Legal translation exams: Spanish results email =====
+   Called from sendResultsEmail when data.tier is one of TRANSLATION_EXAMS.
+   Same layout and colors as the other results emails. */
+function sendTranslationEmail_(data, breakdown, resultId) {
+  var ex = TRANSLATION_EXAMS[data.tier];
+  var passed = !!data.passed;
+  var reportId = (passed && /^IL-[A-Z0-9]{1,5}-[A-Z2-9]{8}$/.test(String(data.certId || ''))) ? String(data.certId) : '';
+  var verifyUrl = IL_EXAM_BASE + 'verify.html' + (reportId ? '?id=' + reportId : '');
+  var answered = data.answered || data.total;
+  var threshold = 75;
+  var passText = (passed ? 'APROBADO' : 'Aún no aprobado') + (data.stoppedEarly ? ' (provisional)' : '');
+  var lengthText = data.length === 'half' ? ' &middot; Medio examen (' + data.total + ' preguntas)' : '';
+  if (data.stoppedEarly) lengthText = ' &middot; Detenido después del bloque ' + ((data.batches && data.batches.length) || Math.round(answered / 50)) + ' (' + answered + ' de ' + data.total + ' preguntas)';
+  var pw = IL_PATHWAYS[ex.next];
+  var month = MONTHS_ES[pw.month] || pw.month;
+  var strongest = breakdown.length ? breakdown[0] : null;
+  var growth = breakdown.length ? breakdown[breakdown.length - 1] : null;
+  var F = 'font-family:Arial,sans-serif;';
+  var provisionalHtml = data.stoppedEarly ? '<p style="' + F + 'font-size:13px;line-height:1.6;color:#5b4f63;margin:0 0 20px;padding:12px 14px;background:#f5f1e8;border-left:4px solid #c8a96b;border-radius:4px;">Usted se detuvo antes de terminar, así que estos resultados son provisionales. Se basan en las ' + answered + ' preguntas que respondió.</p>' : '';
+  var calloutsHtml = (strongest && growth && breakdown.length > 1) ? ('<table role="presentation" width="100%" style="border-collapse:collapse;margin-top:16px;"><tr><td style="width:48%;padding:14px;background:#fbf8f2;border:1px solid #e6ddd0;border-radius:8px;" valign="top"><div style="' + F + 'font-size:11px;text-transform:uppercase;letter-spacing:0.5px;color:#0ca30c;font-weight:700;">Área más fuerte</div><div style="' + F + 'font-size:15px;font-weight:700;margin-top:4px;color:#241626;">' + esc_(strongest.cat) + '</div><div style="' + F + 'font-size:13px;color:#7d7084;margin-top:2px;">' + strongest.percent + '% correctas</div></td><td style="width:4%;"></td><td style="width:48%;padding:14px;background:#fbf8f2;border:1px solid #e6ddd0;border-radius:8px;" valign="top"><div style="' + F + 'font-size:11px;text-transform:uppercase;letter-spacing:0.5px;color:#d03b3b;font-weight:700;">Área para repasar</div><div style="' + F + 'font-size:15px;font-weight:700;margin-top:4px;color:#241626;">' + esc_(growth.cat) + '</div><div style="' + F + 'font-size:13px;color:#7d7084;margin-top:2px;">' + growth.percent + '% correctas</div></td></tr></table>') : '';
+  var meaning = passed
+    ? 'Superó el ' + threshold + '% en el nivel ' + ex.level + ' de traducción jurídica del español al inglés.' + (ex.nextLevelFile ? ' Ya puede presentar el nivel ' + ex.nextLevelName + '.' : ' Es el nivel más alto de este examen.')
+    : 'Este examen mide cómo traduce al inglés la terminología y las expresiones jurídicas que usa en su trabajo. El puntaje por área le muestra qué repasar primero. Revise las explicaciones de la pantalla de resultados y vuelva a presentarlo para medir su progreso.';
+  var nextLevelBtn = (passed && ex.nextLevelFile) ? ' <a href="' + IL_EXAM_BASE + ex.nextLevelFile + '" style="display:inline-block;margin-left:6px;padding:8px 15px;border:2px solid #c8a96b;color:#c8a96b;border-radius:6px;' + F + 'font-size:13px;font-weight:700;text-decoration:none;">Presentar el nivel ' + ex.nextLevelName + '</a>' : '';
+  var verifyLine = reportId
+    ? 'Cualquier persona puede verificar este Proficiency Report en la <a href="' + verifyUrl + '" style="color:#7d7084;">página de verificación de Ingleslegal</a> con el ID <b>' + reportId + '</b>. ¿Preguntas? Escríbanos a exams@ingleslegal.com.'
+    : 'Guarde este ID de resultado para sus registros. ¿Preguntas? Escríbanos a exams@ingleslegal.com.';
+  var tableRows = breakdown.map(tableRowHtml).join('');
+  var barRows = breakdown.map(function (b) { return barRowHtml(b, threshold); }).join('');
+  var html = '<div style="font-family:Georgia,\'Times New Roman\',serif;max-width:640px;margin:0 auto;color:#241626;background:#f5f1e8;">'
+    + '<div style="background:linear-gradient(165deg,#2a1b33,#3a2644);padding:32px 28px;border-radius:12px 12px 0 0;color:#fff;">' + LOGO_IMG
+    + '<div style="' + F + 'font-size:11px;letter-spacing:1px;text-transform:uppercase;opacity:0.8;">Examen de traducción jurídica &middot; Español &rarr; inglés</div>'
+    + '<h1 style="' + F + 'margin:10px 0 4px;font-size:22px;color:#c8a96b;">Nivel ' + ex.level + lengthText + '</h1>'
+    + '<div style="' + F + 'font-size:13px;opacity:0.85;">' + esc_(data.name || 'Candidato') + ' &middot; ' + formatDateEs_(data.completedAt) + '</div>'
+    + '<div style="' + F + 'font-size:42px;font-weight:800;color:#c8a96b;margin-top:16px;">' + data.percent + '%</div>'
+    + '<div style="' + F + 'font-size:13px;opacity:0.85;">' + data.score + ' de ' + answered + ' respuestas correctas</div>'
+    + '<div style="display:inline-block;margin-top:14px;padding:6px 14px;border-radius:20px;background:' + (passed ? 'rgba(12,163,12,0.25)' : 'rgba(208,59,59,0.25)') + ';' + F + 'font-weight:700;font-size:12px;">' + passText + '</div>'
+    + '<div style="margin-top:16px;' + F + 'font-size:12px;opacity:0.75;">' + (reportId ? 'ID del informe <b>' + reportId : 'ID del resultado <b>' + resultId) + '</b> &middot; Puntaje mínimo: ' + threshold + '%</div>'
+    + '</div>'
+    + '<div style="background:#fbf8f2;padding:28px;border:1px solid #e6ddd0;border-top:none;">' + provisionalHtml
+    + '<h2 style="' + F + 'font-size:16px;margin:0 0 4px;">Puntaje por área</h2>'
+    + '<p style="' + F + 'font-size:12px;color:#7d7084;margin:0 0 10px;">Porcentaje de respuestas correctas en cada área, frente al mínimo de ' + threshold + '%.</p>'
+    + '<table role="presentation" width="100%" style="border-collapse:collapse;">' + barRows + '</table>' + calloutsHtml
+    + '<h2 style="' + F + 'font-size:16px;margin:28px 0 4px;">Detalle</h2>'
+    + '<table role="presentation" width="100%" style="border-collapse:collapse;"><tr><th style="text-align:left;padding:8px 10px;border-bottom:2px solid #241626;' + F + 'font-size:12px;">Área</th><th style="text-align:right;padding:8px 10px;border-bottom:2px solid #241626;' + F + 'font-size:12px;">Correctas</th><th style="text-align:right;padding:8px 10px;border-bottom:2px solid #241626;' + F + 'font-size:12px;">Puntaje</th></tr>' + tableRows
+    + '<tr><td style="padding:8px 10px;' + F + 'font-size:13px;font-weight:700;">Total</td><td style="padding:8px 10px;text-align:right;' + F + 'font-size:13px;font-weight:700;">' + data.score + ' / ' + answered + '</td><td style="padding:8px 10px;text-align:right;' + F + 'font-size:13px;font-weight:700;">' + data.percent + '%</td></tr></table>'
+    + '<h2 style="' + F + 'font-size:16px;margin:28px 0 8px;">Qué significa su puntaje</h2>'
+    + '<p style="' + F + 'font-size:13px;line-height:1.6;color:#5b4f63;margin:0;">' + meaning + '</p>'
+    + '<h2 style="' + F + 'font-size:16px;margin:28px 0 8px;">Siguientes pasos</h2>'
+    + '<table role="presentation" width="100%" style="border-collapse:collapse;background:#2b1b33;border-radius:8px;"><tr><td style="padding:16px 18px;">'
+    + '<div style="' + F + 'font-size:14px;font-weight:700;color:#c8a96b;">La ruta ' + pw.name + ' abre en ' + month + '</div>'
+    + '<div style="' + F + 'font-size:12px;color:#c6b6cc;margin-top:2px;">Guarde su código: 15% de descuento en su primera ruta cuando abra. Válido por 180 días desde este resultado.</div>'
+    + '<div style="display:inline-block;margin-top:10px;padding:6px 12px;background:#3a2847;border-radius:6px;font-family:monospace;font-size:13px;color:#c8a96b;font-weight:700;letter-spacing:1px;">' + PROMO_CODE + '</div>'
+    + '<div style="margin-top:14px;"><a href="' + WAITLIST_URL + '?pathway=' + ex.next + '" style="display:inline-block;padding:9px 16px;background:#c8a96b;color:#2b1b33;border-radius:6px;' + F + 'font-size:13px;font-weight:700;text-decoration:none;">Avisarme cuando abra</a>' + nextLevelBtn + '</div>'
+    + '</td></tr></table>'
+    + '<p style="' + F + 'font-size:11px;color:#7d7084;margin-top:24px;">' + verifyLine + '</p>'
+    + '</div>'
+    + '<div style="' + F + 'font-size:11px;color:#7d7084;text-align:center;padding:16px;">Ingleslegal &middot; Inglés jurídico para profesionales latinoamericanos &middot; <a href="https://www.ingleslegal.com" style="color:#7d7084;">ingleslegal.com</a></div>'
+    + '</div>';
+  var subject = 'Sus resultados del examen de traducción (' + ex.level + '): ' + data.percent + '% — ' + passText;
+  var plainText = 'Examen de traducción jurídica, nivel ' + ex.level + ': ' + data.score + '/' + answered + ' (' + data.percent + '%) — ' + passText
+    + (reportId ? '. ID del informe: ' + reportId + ' (verificación: ' + verifyUrl + ')' : '. ID del resultado: ' + resultId)
+    + '. Área más fuerte: ' + (strongest ? strongest.cat : 'n/d') + '. Área para repasar: ' + (growth ? growth.cat : 'n/d') + '.';
+  GmailApp.sendEmail(data.email, subject, plainText, { htmlBody: html, name: 'Ingleslegal Exams', from: 'exams@ingleslegal.com', replyTo: 'exams@ingleslegal.com' });
+}
+function formatDateEs_(iso) {
+  var m = ['enero', 'febrero', 'marzo', 'abril', 'mayo', 'junio', 'julio', 'agosto', 'septiembre', 'octubre', 'noviembre', 'diciembre'];
+  try {
+    var d = new Date(iso);
+    var p = Utilities.formatDate(d, 'America/Bogota', 'd M yyyy').split(' ');
+    return p[0] + ' de ' + m[Number(p[1]) - 1] + ' de ' + p[2];
+  } catch (err) { return iso || ''; }
+}

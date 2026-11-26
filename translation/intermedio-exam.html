@@ -1,0 +1,2860 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Ingleslegal — Examen de traducción jurídica · Intermedio</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Archivo:ital,wght@0,400;0,500;0,600;1,400&family=Spectral:ital,wght@0,400;0,600;1,400&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --aubergine:#2A1B33; --gold:#C9A96E; --cream:#F1EBDE; --bronze:#A9713F;
+    --panel-line:#6E5A79; --lifted-aubergine:#503A5C; --light-section:#FBF8F1;
+    --body-on-light:#6B5F62; --ok:#2f6f4f; --bad:#a3402f;
+  }
+  *{box-sizing:border-box;}
+  body{ margin:0; background:var(--light-section); color:var(--body-on-light); font-family:"Spectral", Georgia, serif; -webkit-font-smoothing:antialiased; }
+  .topbar{ background:var(--aubergine); color:var(--cream); padding:16px 24px; display:flex; align-items:center; justify-content:space-between; }
+  .brandmark{ display:flex; align-items:center; gap:10px; }
+  .wordmark{ font-family:"Archivo", Arial, sans-serif; font-weight:600; letter-spacing:-0.01em; font-size:19px; }
+  .wordmark .ingles{ color:var(--gold); } .wordmark .legal{ color:var(--cream); }
+  .tag{ font-size:11px; color:#B9AAC4; font-family:"Archivo", Arial, sans-serif; letter-spacing:.5px; text-transform:uppercase;}
+  .wrap{ max-width:740px; margin:0 auto; padding:28px 20px 60px; }
+  .card{ background:#fff; border:1px solid rgba(110,90,121,.18); border-radius:3px; padding:32px 30px; box-shadow:0 1px 3px rgba(42,27,51,.06); }
+  h1{ font-family:"Archivo", Arial, sans-serif; font-weight:600; font-size:26px; margin:0 0 6px; color:var(--lifted-aubergine); letter-spacing:-0.01em;}
+  h2{ font-family:"Archivo", Arial, sans-serif; font-weight:600; font-size:19px; margin:0 0 14px; color:var(--lifted-aubergine); }
+  .sub{ font-family:"Archivo", Arial, sans-serif; color:var(--body-on-light); font-size:14px; margin-bottom:22px; line-height:1.5;}
+  .progress-shell{ max-width:740px; margin:0 auto; padding:14px 20px 0; font-family:"Archivo", Arial, sans-serif; }
+  .tabs{ display:flex; gap:4px; margin-bottom:6px; }
+  .tab{ flex:1; text-align:center; font-size:11px; padding:6px 2px; border-radius:2px 2px 0 0; color:var(--panel-line); background:#efe9db; letter-spacing:.4px; font-weight:600; }
+  .tab.active{ background:var(--aubergine); color:var(--cream); }
+  .tab.done{ background:var(--gold); color:var(--aubergine); }
+  .bar-outer{ height:6px; background:#efe9db; border-radius:4px; overflow:hidden; }
+  .bar-inner{ height:100%; background:linear-gradient(90deg, var(--aubergine), var(--gold)); width:0%; transition:width .25s ease; }
+  .qmeta{ font-family:"Archivo", Arial, sans-serif; font-weight:500; font-size:12px; color:var(--bronze); margin-bottom:8px; letter-spacing:.3px; text-transform:uppercase;}
+  .stem{ font-family:"Spectral", Georgia, serif; font-size:18px; line-height:1.55; margin-bottom:22px; color:var(--lifted-aubergine); white-space:pre-wrap; }
+  .opt{ display:block; width:100%; text-align:left; background:#fffdf9; border:1.5px solid rgba(110,90,121,.25); border-radius:3px; padding:14px 16px; margin-bottom:10px; font-family:"Archivo", Arial, sans-serif; font-size:15px; cursor:pointer; transition:.12s; color:var(--body-on-light); }
+  .opt:hover:not(:disabled){ border-color:var(--gold); background:#fff; }
+  .opt:disabled{ cursor:default; }
+  .opt.correct{ border-color:var(--ok); background:#eef6f1; color:#1f4d38; }
+  .opt.incorrect{ border-color:var(--bad); background:#f9eeec; color:#7a2c1e; }
+  .opt.selected{ border-color:var(--gold); background:#faf3e4; color:var(--lifted-aubergine); box-shadow:0 0 0 1px var(--gold) inset; }
+  .review h2{ margin-top:26px; }
+  .rv{ border:1px solid rgba(110,90,121,.2); border-left:4px solid var(--bad); border-radius:3px; padding:14px 16px; margin:0 0 12px; font-family:"Archivo", Arial, sans-serif; background:#fff; }
+  .rv.ok{ border-left-color:var(--ok); }
+  .rv .rq{ font-size:12px; color:var(--bronze); text-transform:uppercase; letter-spacing:.4px; margin-bottom:6px; }
+  .rv .rs{ font-family:"Spectral", Georgia, serif; font-size:16px; line-height:1.5; color:var(--lifted-aubergine); margin-bottom:10px; white-space:pre-wrap; }
+  .rv .ra{ font-size:14px; line-height:1.5; margin:3px 0; }
+  .rv .ra.bad{ color:#7a2c1e; } .rv .ra.good{ color:#1f4d38; }
+  .rv .rationale{ margin:10px 0 0; }
+  details.rvgroup > summary{ cursor:pointer; font-family:"Archivo", Arial, sans-serif; font-weight:600; color:var(--lifted-aubergine); margin:8px 0 12px; }
+  .opt .letter{ display:inline-block; width:22px; font-weight:600; color:var(--bronze); }
+  .navrow{ display:flex; justify-content:space-between; align-items:center; margin-top:18px; font-family:"Archivo", Arial, sans-serif;}
+  .btn{ background:var(--aubergine); color:var(--cream); border:none; padding:12px 22px; border-radius:3px; font-family:"Archivo", Arial, sans-serif; font-weight:500; font-size:14px; cursor:pointer; letter-spacing:.3px; }
+  .btn:hover{ background:var(--lifted-aubergine); }
+  .btn.gold{ background:var(--gold); color:var(--aubergine); }
+  .btn.gold:hover{ background:#d9bd8a; }
+  .btn:disabled{ background:#d8d2c8; color:#8a8a8a; cursor:not-allowed; }
+  .btn.ghost{ background:transparent; color:var(--aubergine); border:1.5px solid var(--aubergine); }
+  .field{ margin-bottom:14px; font-family:"Archivo", Arial, sans-serif; }
+  .field label{ display:block; font-size:13px; color:var(--body-on-light); margin-bottom:5px; }
+  .field input{ width:100%; padding:11px 12px; border:1.5px solid rgba(110,90,121,.3); border-radius:3px; font-size:15px; font-family:"Archivo", Arial, sans-serif; }
+  .banner{ background:var(--aubergine); color:var(--cream); padding:16px 20px; border-radius:3px; margin-bottom:20px; font-family:"Archivo", Arial, sans-serif; font-size:14px; line-height:1.5; }
+  .rationale{ background:var(--light-section); border-left:3px solid var(--gold); border-radius:3px; padding:14px 16px; margin:16px 0; font-family:"Archivo", Arial, sans-serif; font-size:13.5px; line-height:1.55; color:var(--lifted-aubergine); }
+  .rationale strong{ color:var(--bronze); }
+  .scorebox{ display:flex; gap:14px; margin:18px 0; font-family:"Archivo", Arial, sans-serif; }
+  .scorebox .cell{ flex:1; background:var(--light-section); border:1px solid rgba(110,90,121,.2); border-radius:3px; padding:14px; text-align:center; }
+  .scorebox .num{ font-family:"Archivo", Arial, sans-serif; font-size:26px; font-weight:600; color:var(--lifted-aubergine); }
+  .scorebox .lbl{ font-size:11px; color:var(--bronze); text-transform:uppercase; letter-spacing:.4px; margin-top:2px;}
+  table.results{ width:100%; border-collapse:collapse; font-family:"Archivo", Arial, sans-serif; font-size:13px; margin:16px 0; }
+  table.results th, table.results td{ border:1px solid rgba(110,90,121,.2); padding:8px 10px; text-align:left; }
+  table.results th{ background:var(--aubergine); color:var(--cream); font-size:11px; text-transform:uppercase; font-weight:500; }
+  table.results tr:nth-child(even) td{ background:var(--light-section); }
+  .placement{ background:var(--aubergine); color:var(--cream); border-left:3px solid var(--gold); border-radius:3px; padding:18px 20px; margin:18px 0; font-family:"Archivo", Arial, sans-serif; }
+  .placement .headline{ font-weight:600; color:var(--gold); font-size:16px; margin-bottom:4px; }
+  label.il-consent,.il-consent{display:flex!important;gap:10px;align-items:flex-start;font-size:.85rem!important;line-height:1.45;margin:12px 0 0!important;text-align:left;cursor:pointer;font-weight:400!important;text-transform:none!important;letter-spacing:normal!important}.il-consent input{flex:none;width:16px;height:16px;margin:3px 0 0;accent-color:#C8A96B}.il-consent a{color:#C8A96B}
+  .footer-note{ font-family:"Archivo", Arial, sans-serif; font-size:12px; color:var(--body-on-light); margin-top:18px; line-height:1.5; }
+  .synctag{ font-family:"Archivo", Arial, sans-serif; font-size:11px; color:var(--panel-line); margin-top:8px; }
+  table.results td.below{ color:var(--bad); font-weight:600; }
+  .coursecode{ color:var(--bronze); font-weight:600; margin-right:6px; }
+  .levelpick{ margin-bottom:4px; }
+  .section-label{ font-family:"Archivo", Arial, sans-serif; font-weight:600; font-size:15px; color:var(--lifted-aubergine); margin:22px 0 4px; }
+  .section-note{ font-family:"Archivo", Arial, sans-serif; font-size:12.5px; color:var(--body-on-light); margin:0 0 4px; line-height:1.5; }
+  .topics td.bartd{ width:34%; }
+  .bar{ height:8px; background:#efe9db; border-radius:4px; overflow:hidden; }
+  .bar span{ display:block; height:100%; background:var(--gold); }
+  .bar.low span{ background:var(--bad); }
+  .nextstep{ border:1px solid rgba(110,90,121,.3); border-left:3px solid var(--gold); border-radius:3px; padding:18px 20px; margin:18px 0; font-family:"Archivo", Arial, sans-serif; background:var(--light-section); }
+  .nextstep .headline{ font-weight:600; font-size:16px; margin-bottom:6px; color:var(--lifted-aubergine); }
+  .nextstep p{ margin:0 0 12px; font-size:14px; line-height:1.55; }
+  .nextstep a.btn{ display:inline-block; text-decoration:none; }
+  .filterrow{ font-family:"Archivo", Arial, sans-serif; font-size:13px; margin:0 0 14px; }
+  .filterrow select{ margin-left:8px; padding:7px 10px; border-radius:3px; border:1.5px solid rgba(110,90,121,.3); font-family:inherit; font-size:13px; }
+  body.results-dark{ background:#1E1226; }
+  body.results-dark .card{ background:var(--aubergine); border-color:var(--panel-line); box-shadow:0 2px 12px rgba(0,0,0,.4); }
+  body.results-dark h1, body.results-dark h2{ color:var(--gold); }
+  body.results-dark .sub, body.results-dark .footer-note, body.results-dark .nextstep p, body.results-dark .filterrow{ color:var(--cream); }
+  body.results-dark .synctag{ color:#B9AAC4; }
+  body.results-dark table.results th{ background:#1E1226; color:var(--gold); }
+  body.results-dark table.results td{ border-color:rgba(110,90,121,.55); color:var(--cream); background:transparent; }
+  body.results-dark table.results tr:nth-child(even) td{ background:rgba(255,255,255,.04); }
+  body.results-dark .bar{ background:rgba(255,255,255,.12); }
+  body.results-dark .placement{ background:#1E1226; }
+  body.results-dark .nextstep{ background:#1E1226; border-color:rgba(110,90,121,.55); border-left-color:var(--gold); }
+  body.results-dark .nextstep .headline{ color:var(--gold); }
+  body.results-dark .rv{ background:#33213D; border-color:rgba(110,90,121,.55); border-left-color:var(--bad); }
+  body.results-dark .rv.ok{ border-left-color:var(--ok); }
+  body.results-dark .rv .rq{ color:var(--gold); }
+  body.results-dark .rv .rs{ color:var(--cream); }
+  body.results-dark .rv .ra.bad{ color:#E29585; }
+  body.results-dark .rv .ra.good{ color:#7FCBA5; }
+  body.results-dark .rationale{ background:rgba(201,169,110,.1); color:var(--cream); }
+  body.results-dark .rationale strong{ color:var(--gold); }
+  body.results-dark details.rvgroup > summary{ color:var(--cream); }
+  body.results-dark .btn.ghost{ color:var(--gold); border-color:var(--gold); }
+  body.results-dark .btn.ghost:hover{ background:rgba(201,169,110,.12); }
+  body.results-dark .filterrow select{ background:#1E1226; color:var(--cream); border-color:var(--panel-line); }
+  .offer{ border:1.5px solid var(--gold); border-radius:3px; padding:18px 20px; margin:18px 0; font-family:"Archivo", Arial, sans-serif; background:linear-gradient(135deg, rgba(201,169,110,.16), rgba(201,169,110,.04)); }
+  .offer .tagline{ font-size:11px; letter-spacing:.8px; text-transform:uppercase; color:var(--gold); font-weight:600; margin-bottom:4px; }
+  .offer .headline{ font-size:20px; font-weight:600; color:var(--cream); margin-bottom:6px; }
+  .offer p{ margin:0 0 12px; font-size:14px; line-height:1.55; color:var(--cream); }
+  .offer .coderow{ display:flex; gap:10px; align-items:center; flex-wrap:wrap; }
+  .offer code{ font-family:"Courier New", monospace; font-size:20px; letter-spacing:2px; font-weight:700; color:var(--gold); border:1.5px dashed var(--gold); padding:8px 16px; border-radius:3px; background:#1E1226; }
+  .sharebox{ border:1px solid rgba(110,90,121,.55); border-radius:3px; padding:18px 20px; margin:18px 0; font-family:"Archivo", Arial, sans-serif; background:#1E1226; }
+  .sharebox .headline{ font-weight:600; font-size:16px; color:var(--gold); margin-bottom:6px; }
+  .sharebox p{ margin:0 0 12px; font-size:14px; line-height:1.55; color:var(--cream); }
+  .sharerow{ display:flex; gap:10px; flex-wrap:wrap; }
+  .sharerow a.btn{ display:inline-block; text-decoration:none; }
+  .rec{ border-top:1px solid rgba(110,90,121,.55); padding-top:12px; margin-top:12px; }
+  .rec .recname{ font-weight:600; color:var(--cream); font-size:15px; }
+  .rec .recwhy{ font-size:13px; color:#B9AAC4; margin:2px 0 8px; }
+  .rec p{ margin:0 0 10px; }
+  .rec .pill{ display:inline-block; font-size:10px; letter-spacing:.6px; text-transform:uppercase; background:var(--gold); color:var(--aubergine); padding:2px 8px; border-radius:10px; margin-right:8px; font-weight:700; vertical-align:middle; }
+  body.results-dark .section-label{ color:var(--gold); }
+  body.results-dark .section-note{ color:var(--cream); }
+  body.results-dark .coursecode{ color:var(--gold); }
+  body.results-dark table.results td.below{ color:#E29585; }
+  @media (max-width:600px){ .wrap{ padding:16px 12px 40px; } .card{ padding:22px 18px; } h1{ font-size:22px; } .stem{font-size:16px;} }
+
+/* ===== Vocabulary-style theme: start, question and batch screens ===== */
+.logo-wrap{ text-align:center; padding:28px 16px 0; }
+.logo-wrap img{ width:100%; max-width:320px; height:auto; display:inline-block; }
+body.results-dark .logo-wrap{ display:none; }
+body:not(.results-dark) .topbar{ display:none; }
+body:not(.results-dark){ background:#2A1B33; color:#F1EBDE; font-family:'Source Sans 3','Segoe UI',Tahoma,sans-serif; color-scheme:dark; }
+body:not(.results-dark) .wrap, body:not(.results-dark) .progress-shell{ max-width:640px; }
+body:not(.results-dark) .progress-shell{ padding-top:22px; }
+body:not(.results-dark) #tabs{ display:none; }
+body:not(.results-dark) .bar-outer{ background:#2A1B33; height:6px; border-radius:3px; margin-bottom:-8px; }
+body:not(.results-dark) .bar-inner{ background:#C9A96E; }
+body:not(.results-dark) .card{ background:#3D2A47; border:1px solid #6E5A79; border-radius:14px; padding:28px; box-shadow:0 2px 8px rgba(0,0,0,.2); }
+body:not(.results-dark) h1{ font-family:'Fraunces',Georgia,serif; font-weight:600; font-size:2rem; line-height:1.2; margin:0 0 .4em; color:#C9A96E; }
+body:not(.results-dark) h2{ font-family:'Fraunces',Georgia,serif; font-weight:600; color:#F1EBDE; }
+body:not(.results-dark) .sub{ font-family:inherit; font-size:1rem; line-height:1.6; color:#F1EBDE; margin-bottom:6px; }
+body:not(.results-dark) .footer-note{ font-family:inherit; color:#B9AAC4; text-align:center; }
+.eyebrow{ text-transform:uppercase; letter-spacing:.11em; font-size:.72rem; font-weight:700; color:#C9A96E; background:#2A1B33; display:inline-block; padding:.3em .7em; border-radius:999px; margin-bottom:14px; font-family:'Source Sans 3','Segoe UI',Tahoma,sans-serif; }
+body:not(.results-dark) .field{ margin-bottom:0; font-family:inherit; }
+body:not(.results-dark) .field label{ color:#F1EBDE; font-weight:600; font-size:.85rem; margin:16px 0 6px; }
+body:not(.results-dark) .field input, body:not(.results-dark) .field select{ width:100%; padding:8px 12px; border:1px solid #6E5A79; border-radius:8px; background:#2A1B33; color:#F1EBDE; font-size:1rem; font-family:inherit; }
+body:not(.results-dark) .field input:focus, body:not(.results-dark) .field select:focus{ outline:none; border-color:#C9A96E; box-shadow:0 0 0 2px rgba(216,179,100,.2); }
+.hint{ font-size:.82rem; color:#B9AAC4; margin-top:6px; line-height:1.45; font-family:'Source Sans 3','Segoe UI',Tahoma,sans-serif; }
+.formerr{ color:#E29585; font-size:.9rem; min-height:1.3em; margin-top:14px; font-family:'Source Sans 3','Segoe UI',Tahoma,sans-serif; }
+.vq-head{ display:flex; justify-content:space-between; align-items:baseline; gap:12px; margin-bottom:16px; }
+.vq-count{ white-space:nowrap; font-size:.85rem; color:#A9713F; text-transform:uppercase; letter-spacing:.05em; font-weight:600; }
+.vq-cat{ font-size:.75rem; color:#C9A96E; font-weight:600; text-align:right; text-transform:uppercase; }
+body:not(.results-dark) .stem{ font-family:'Fraunces',Georgia,serif; font-weight:700; font-size:1.5rem; line-height:1.3; color:#F1EBDE; margin:0 0 16px; }
+body:not(.results-dark) .stem.long{ font-size:1.12rem; font-weight:600; line-height:1.5; }
+body:not(.results-dark) .opt{ background:#3D2A47; border:1px solid #6E5A79; border-radius:8px; color:#F1EBDE; padding:12px 14px; margin:8px 0 0; font-family:inherit; font-size:.95rem; font-weight:600; line-height:1.4; }
+body:not(.results-dark) .opt:hover:not(:disabled){ border-color:#C9A96E; background:rgba(216,179,100,.06); }
+body:not(.results-dark) .opt.selected{ border-color:#C9A96E; background:rgba(216,179,100,.15); color:#C9A96E; box-shadow:none; }
+body:not(.results-dark) .navrow{ gap:12px; margin-top:22px; font-family:inherit; }
+body:not(.results-dark) .btn{ background:#C9A96E; color:#2A1B33; border-radius:8px; font-family:inherit; font-weight:700; font-size:.95rem; padding:12px 20px; letter-spacing:0; }
+body:not(.results-dark) .btn:hover{ background:#C9A96E; opacity:.92; }
+body:not(.results-dark) .btn:disabled{ background:#C9A96E; color:#2A1B33; opacity:.4; cursor:not-allowed; }
+body:not(.results-dark) .btn.ghost{ background:transparent; color:#C9A96E; border:1.5px solid #C9A96E; }
+body:not(.results-dark) .btn.ghost:hover{ background:rgba(201,169,110,.12); opacity:1; }
+body:not(.results-dark) .navrow .btn.next, body:not(.results-dark) .navrow .btn.gold{ flex:1; }
+body:not(.results-dark) .btn.block{ width:100%; margin-top:20px; }
+body:not(.results-dark) .scorebox{ font-family:inherit; }
+body:not(.results-dark) .scorebox .cell{ background:#2A1B33; border-color:#6E5A79; }
+body:not(.results-dark) .scorebox .num{ color:#C9A96E; font-family:inherit; }
+body:not(.results-dark) .scorebox .lbl{ color:#B9AAC4; }
+@media (max-width:600px){
+  body:not(.results-dark) .card{ padding:22px 18px; }
+  body:not(.results-dark) h1{ font-size:1.6rem; }
+  body:not(.results-dark) .stem{ font-size:1.25rem; }
+  body:not(.results-dark) .stem.long{ font-size:1.05rem; }
+}
+</style>
+</head>
+<body>
+<div class="topbar">
+  <div class="brandmark">
+    <svg width="32" height="32" viewBox="0 0 40 40" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+      <path d="M18,4 A16,16 0 0 0 18,36" fill="none" stroke="#6E5A79" stroke-width="1.5"/>
+      <path d="M18,9 A11,11 0 0 0 18,31" fill="none" stroke="#A9713F" stroke-width="2"/>
+      <path d="M18,14 A6,6 0 0 0 18,26" fill="none" stroke="#C9A96E" stroke-width="3"/>
+      <circle cx="25" cy="20" r="3" fill="#F1EBDE"/>
+    </svg>
+    <div class="wordmark"><span class="ingles">Ingles</span><span class="legal">legal</span></div>
+  </div>
+  <div class="tag">Traducción jurídica · Intermedio</div>
+</div>
+<div class="logo-wrap"><img src="../vocabulary/logo.png" alt="Ingleslegal"></div>
+<div class="progress-shell" id="progressShell" style="display:none;">
+  <div class="tabs" id="tabs"></div>
+  <div class="bar-outer"><div class="bar-inner" id="barInner"></div></div>
+</div>
+<div class="wrap"><div class="card" id="card"></div></div>
+
+<script>
+// ============================================================
+// Examen de traducción jurídica (español → inglés) · Nivel Intermedio
+// 100 preguntas en 5 áreas de 20. Instrucciones en español, respuestas en inglés.
+// Built from the pathway exam engine (pathways/immigration-exam.html).
+// ============================================================
+const TIER_LABEL = "Traducción Intermedio"; // sent to the results backend as "tier"
+const LEVEL_KEY = "intermedio";
+const LEVEL_NAME = "Intermedio";
+const LEVEL_EN = "Intermediate";
+const EXAM_TITLE = "Examen de traducción jurídica";
+const LEVEL_DESC = "frases y expresiones de uso diario en litigios, contratos, atención al cliente e inmigración";
+const CERT_PREFIX = "TRI";
+const NEXT_PATHWAY = "intake";
+const NEXT_PATHWAY_WHY = "Put these phrases to work in client intake, case screening and file setup.";
+const LEVEL_FILES = { basico: "basico-exam.html", intermedio: "intermedio-exam.html", avanzado: "avanzado-exam.html" };
+const PASS_THRESHOLD = 0.75; // fraction, e.g. 0.75
+const RESULTS_WEBHOOK_URL = "https://script.google.com/macros/s/AKfycbyLtcitp5MB6QoNl0jVXOCI7TPHot9Lj-wYJNosfrQZpnI5pmH2ECoX2Ytv5pVQt1f-/exec";
+
+const ALL_QUESTIONS = [{"cat": "Litigio civil", "stem": "¿Cómo se dice en inglés \"presentar una demanda\" (civil)?", "opts": ["to issue a judgment", "to raise a claim form", "to file a lawsuit", "to present a demand"], "a": 2, "fb": "Las demandas se \"file\" ante el tribunal (\"to file a lawsuit\" o \"to file a complaint\"). \"Demand\" es una exigencia de pago (\"demand letter\"), no la demanda judicial."}, {"cat": "Litigio civil", "stem": "¿Cómo se dice en inglés \"El juez dictó sentencia\" (proceso civil)?", "opts": ["The judge dictated a sentence.", "The judge entered judgment.", "The judge issued a subpoena.", "The judge reached a verdict."], "a": 1, "fb": "En lo civil, la sentencia es el \"judgment\", y el juez la \"enters\" o \"renders\". \"Sentence\" es solo la pena en un caso penal, y el \"verdict\" normalmente lo da el jurado."}, {"cat": "Litigio civil", "stem": "¿Cómo se dice en inglés \"rendir declaración\" (un testigo, en el juicio)?", "opts": ["to surrender a statement", "to render a declaration", "to make a declaration of intent", "to testify"], "a": 3, "fb": "Se dice \"to testify\" o \"to give testimony\". \"Render\" se usa para sentencias o servicios (\"services rendered\"), y una \"declaration\" es un tipo específico de documento escrito."}, {"cat": "Litigio civil", "stem": "¿Cómo se dice en inglés \"llegar a un acuerdo\" (las partes, para terminar el pleito)?", "opts": ["to reach a verdict", "to plead guilty", "to arrive at an accord", "to settle"], "a": 3, "fb": "\"The case settled\" significa que las partes llegaron a un acuerdo. \"Accord\" existe, pero no es la forma natural. \"Verdict\" es la decisión del jurado y \"to plead guilty\" es declararse culpable."}, {"cat": "Litigio civil", "stem": "¿Cómo se dice en inglés \"fallar a favor del demandante\"?", "opts": ["to find against the plaintiff", "to rule in favor of the plaintiff", "to fail in favor of the plaintiff", "to dismiss the plaintiff's claim"], "a": 1, "fb": "El juez \"rules in favor of\" una parte. \"To fail\" significa fracasar, y \"to find against the plaintiff\" significa lo contrario: decidir en su contra."}, {"cat": "Litigio civil", "stem": "¿Cómo se dice en inglés \"presentar pruebas\" (en el juicio)?", "opts": ["to tamper with evidence", "to present proofs", "to suppress evidence", "to introduce evidence"], "a": 3, "fb": "Las pruebas se \"introduce\" o \"offer\" en juicio. \"To tamper with evidence\" es alterar pruebas, y \"to suppress evidence\" es excluirlas, por ejemplo por haberse obtenido ilegalmente."}, {"cat": "Litigio civil", "stem": "¿Cómo se dice en inglés \"Objeción, su señoría\" (en un tribunal de EE. UU.)?", "opts": ["Protest, Your Excellency.", "Objection, my lord.", "Objection, Mister Judge.", "Objection, Your Honor."], "a": 3, "fb": "En los tribunales de EE. UU. al juez se le dice \"Your Honor\". \"My lord\" es una fórmula británica tradicional, y \"Mister Judge\" no se usa."}, {"cat": "Litigio civil", "stem": "¿Cómo se dice en inglés \"Se acepta la objeción\" (lo dice el juez)?", "opts": ["Sustained.", "Accepted.", "Overruled.", "Agreed."], "a": 0, "fb": "Si el juez acepta la objeción, dice \"Sustained\"; si la rechaza, \"Overruled\"."}, {"cat": "Litigio civil", "stem": "¿Cómo se dice en inglés \"conceder una solicitud\" (el juez)?", "opts": ["to grant a motion", "to deny a motion", "to file a motion", "to concede a solicitation"], "a": 0, "fb": "El juez \"grants\" (concede) o \"denies\" (niega) una \"motion\". \"Concede\" significa admitir un punto en una discusión."}, {"cat": "Litigio civil", "stem": "¿Cómo se dice en inglés \"correr traslado de un escrito\" (a la otra parte)?", "opts": ["to transfer venue", "to serve a copy on the opposing party", "to file the original with the court", "to run a transfer of the filing"], "a": 1, "fb": "Entregar una copia del escrito a la otra parte es \"to serve\" (\"certificate of service\"). \"To transfer venue\" es trasladar el caso a otro tribunal."}, {"cat": "Litigio civil", "stem": "¿Cómo se dice en inglés \"condenar en costas al demandado\"?", "opts": ["to waive the defendant's costs", "to condemn the defendant in costs", "to charge the defendant with a crime", "to award costs against the defendant"], "a": 3, "fb": "Se dice \"to award costs against\" (o \"to tax costs against\") una parte. \"Condemn\" no se usa así, y \"to charge with a crime\" es imputar un delito."}, {"cat": "Litigio civil", "stem": "¿Cómo se dice en inglés \"El demandado no compareció\"?", "opts": ["The defendant failed to appear.", "The defendant defaulted the plaintiff.", "The defendant did not comply.", "The defendant did not compare."], "a": 0, "fb": "Comparecer es \"to appear\". \"To compare\" significa comparar, y \"to comply\" significa cumplir."}, {"cat": "Litigio civil", "stem": "¿Cómo se dice en inglés \"interrogatorio directo\" (de la parte que presentó al testigo)?", "opts": ["recross", "direct interrogation", "direct examination", "cross-examination"], "a": 2, "fb": "La parte que presenta al testigo hace la \"direct examination\", y la contraparte, la \"cross-examination\". \"Interrogation\" se asocia con los interrogatorios de la policía."}, {"cat": "Litigio civil", "stem": "¿Cómo se dice en inglés \"selección del jurado\" (preguntas a los posibles jurados)?", "opts": ["jury instructions", "jury duty", "voir dire", "deliberation"], "a": 2, "fb": "Se llama \"voir dire\". \"Jury duty\" es el deber ciudadano de servir como jurado, y las \"jury instructions\" son las instrucciones del juez al jurado."}, {"cat": "Litigio civil", "stem": "¿Cómo se dice en inglés \"fijar fecha para la audiencia\"?", "opts": ["to waive a hearing", "to vacate a hearing", "to set a hearing", "to fix the audience date"], "a": 2, "fb": "Se dice \"to set\" (o \"to schedule\") a hearing. \"To vacate a hearing\" es cancelarla, y \"audience\" significa público."}, {"cat": "Litigio civil", "stem": "¿Cómo se dice en inglés \"levantar la sesión\" (terminar la audiencia del día)?", "opts": ["to adjourn", "to lift the session", "to raise the court", "to sustain"], "a": 0, "fb": "Terminar la sesión es \"to adjourn\" (\"Court is adjourned\"). \"To sustain\" se usa para aceptar una objeción."}, {"cat": "Litigio civil", "stem": "¿Cómo se dice en inglés \"bajo juramento\"?", "opts": ["below oath", "under oath", "by oath-taking", "on swear"], "a": 1, "fb": "Se dice \"under oath\" (\"testify under oath\"). \"Below\" y \"on swear\" son calcos incorrectos."}, {"cat": "Litigio civil", "stem": "¿Cómo se dice en inglés \"presentar una demanda de reconvención\"?", "opts": ["to file a contra-demand", "to file an answer", "to file a counterclaim", "to file a cross-examination"], "a": 2, "fb": "La demanda del demandado contra el demandante es un \"counterclaim\". El \"answer\" solo contesta la demanda, y la \"cross-examination\" es un interrogatorio."}, {"cat": "Litigio civil", "stem": "¿Cómo se dice en inglés \"pedir que se rechace la demanda\" (sin llegar a juicio)?", "opts": ["to amend the complaint", "to move for discovery", "to request disestimation of the demand", "to move to dismiss the complaint"], "a": 3, "fb": "Se presenta una \"motion to dismiss\" (\"to move to dismiss\"). \"To amend the complaint\" es reformar la demanda."}, {"cat": "Litigio civil", "stem": "¿Cómo se dice en inglés \"La sentencia quedó en firme\" (ya no admite recursos)?", "opts": ["The judgment became final.", "The judgment stayed firm.", "The judgment was appealed.", "The judgment was signed."], "a": 0, "fb": "Una sentencia en firme es un \"final judgment\" (\"the judgment became final\"). \"Firm\" no tiene ese sentido en inglés."}, {"cat": "Proceso penal", "stem": "¿Cómo se dice en inglés \"formular cargos\" (contra una persona)?", "opts": ["to bring charges", "to formulate loads", "to plead the charges", "to drop charges"], "a": 0, "fb": "Se dice \"to bring charges\" (o \"to file charges\"). \"To drop charges\" es retirarlos."}, {"cat": "Proceso penal", "stem": "¿Cómo se dice en inglés \"dejar en libertad bajo fianza\"?", "opts": ["to remand into custody", "to free under guarantee", "to release on parole", "to release on bail"], "a": 3, "fb": "Se dice \"to release on bail\". \"To remand into custody\" es enviar a la persona a prisión, y \"parole\" es la libertad condicional después de cumplir parte de la pena."}, {"cat": "Proceso penal", "stem": "¿Cómo se dice en inglés \"leerle sus derechos\" (al capturado)?", "opts": ["to waive someone's rights", "to lecture someone on their rights", "to read someone their Miranda rights", "to read someone the riot act"], "a": 2, "fb": "La policía \"reads someone their Miranda rights\". \"To read someone the riot act\" es una expresión que significa regañar fuertemente."}, {"cat": "Proceso penal", "stem": "¿Cómo se dice en inglés \"estar bajo custodia\" (de la policía)?", "opts": ["to be held harmless", "to be on probation", "to be in custody", "to be custodial"], "a": 2, "fb": "Se dice \"to be in custody\". \"Held harmless\" es una expresión de contratos que significa mantener indemne."}, {"cat": "Proceso penal", "stem": "¿Cómo se dice en inglés \"audiencia de imposición de pena\"?", "opts": ["sentencing hearing", "bail hearing", "preliminary hearing", "penalty audience"], "a": 0, "fb": "La audiencia en que el juez fija la pena es la \"sentencing hearing\". La \"preliminary hearing\" revisa si hay causa probable, y la \"bail hearing\" decide sobre la fianza."}, {"cat": "Proceso penal", "stem": "¿Cómo se dice en inglés \"cumplir una condena\" (en prisión)?", "opts": ["to serve a sentence", "to comply with a condemnation", "to sentence a convict", "to complete a conviction"], "a": 0, "fb": "Se dice \"to serve a sentence\" (\"serve time\"). \"Conviction\" es la declaración de culpabilidad, no la pena."}, {"cat": "Proceso penal", "stem": "¿Cómo se dice en inglés \"El jurado lo declaró culpable\"?", "opts": ["The jury found him guilty.", "The jury declared him culpable.", "The jury pleaded him guilty.", "The jury sentenced him guilty."], "a": 0, "fb": "El jurado \"finds\" a alguien culpable. El acusado \"pleads\" (se declara), y el juez \"sentences\" (impone la pena)."}, {"cat": "Proceso penal", "stem": "¿Cómo se dice en inglés \"absolver\" (al acusado)?", "opts": ["to parole", "to absolve", "to acquit", "to pardon"], "a": 2, "fb": "Se dice \"to acquit\" (\"acquittal\" = absolución). \"To pardon\" es indultar, y \"to absolve\" se usa en sentido moral o religioso."}, {"cat": "Proceso penal", "stem": "¿Cómo se dice en inglés \"capturado en flagrancia\"?", "opts": ["caught in the act", "arrested on suspicion", "flagrantly arrested", "arrested on a warrant"], "a": 0, "fb": "Se dice \"caught in the act\" (o \"caught red-handed\"). En inglés, \"flagrant\" significa descarado o evidente."}, {"cat": "Proceso penal", "stem": "¿Cómo se dice en inglés \"pruebas de cargo\"?", "opts": ["evidence for the prosecution", "charge proofs", "exculpatory evidence", "character evidence"], "a": 0, "fb": "Las pruebas que presenta la fiscalía son la \"evidence for the prosecution\". La \"exculpatory evidence\" es la prueba de descargo, que favorece al acusado."}, {"cat": "Proceso penal", "stem": "¿Cómo se dice en inglés \"orden de alejamiento\"?", "opts": ["gag order", "restraining order", "bench warrant", "distancing order"], "a": 1, "fb": "Se dice \"restraining order\" (o \"protective order\"). La \"gag order\" prohíbe hablar del caso con la prensa."}, {"cat": "Proceso penal", "stem": "¿Cómo se dice en inglés \"periodo de prueba en libertad\" (en lugar de prisión)?", "opts": ["trial period", "parole", "probation", "probate"], "a": 2, "fb": "Se dice \"probation\". Ojo: \"probate\" es el proceso de sucesión, y \"parole\" es la libertad condicional después de la prisión."}, {"cat": "Proceso penal", "stem": "¿Cómo se dice en inglés \"conducir bajo los efectos del alcohol\"?", "opts": ["driving under effects of alcohol", "drunk and disorderly", "driving under the influence", "reckless driving"], "a": 2, "fb": "Se dice \"driving under the influence\" (DUI) o, en algunos estados, \"driving while intoxicated\" (DWI). \"Drunk and disorderly\" es alterar el orden público en estado de embriaguez."}, {"cat": "Proceso penal", "stem": "¿Cómo se dice en inglés \"violencia intrafamiliar\"?", "opts": ["domestic violence", "child neglect", "intrafamiliar violence", "home invasion"], "a": 0, "fb": "Se dice \"domestic violence\" (Texas usa \"family violence\"). \"Home invasion\" es la entrada violenta a una vivienda habitada."}, {"cat": "Proceso penal", "stem": "¿Cómo se dice en inglés \"porte ilegal de armas\"?", "opts": ["unlawful carrying of a weapon", "armed robbery", "illegal arms port", "weapons trafficking"], "a": 0, "fb": "Se dice \"unlawful carrying of a weapon\" (o \"unlawful possession of a firearm\"). \"Port\" significa puerto."}, {"cat": "Proceso penal", "stem": "¿Cómo se dice en inglés \"tráfico de estupefacientes\"?", "opts": ["drug possession", "narcotics traffic", "drug paraphernalia", "drug trafficking"], "a": 3, "fb": "Se dice \"drug trafficking\". \"Traffic\" solo, en inglés corriente, es el tráfico de vehículos, y \"drug possession\" es la simple tenencia."}, {"cat": "Proceso penal", "stem": "¿Cómo se dice en inglés \"El capturado fue puesto a disposición del juez\"?", "opts": ["The arrestee was put at the judge's disposition.", "The arrestee was brought before the judge.", "The arrestee was released to the judge.", "The arrestee was handed to the jury."], "a": 1, "fb": "Se dice \"brought before the judge\" (o \"before a magistrate\"). \"Disposition\" significa resolución final de un caso, o temperamento."}, {"cat": "Proceso penal", "stem": "¿Cómo se dice en inglés \"presunción de inocencia\"?", "opts": ["innocent plea", "presumption of innocence", "right to bail", "double jeopardy"], "a": 1, "fb": "Se dice \"presumption of innocence\". \"Double jeopardy\" es la prohibición de juzgar dos veces por el mismo hecho (non bis in idem)."}, {"cat": "Proceso penal", "stem": "¿Cómo se dice en inglés \"más allá de toda duda razonable\"?", "opts": ["more than any reasonable doubt", "by a preponderance of the evidence", "by clear and present danger", "beyond a reasonable doubt"], "a": 3, "fb": "El estándar penal es \"beyond a reasonable doubt\". \"Preponderance of the evidence\" es el estándar civil: más probable que no."}, {"cat": "Proceso penal", "stem": "¿Cómo se dice en inglés \"conmutar la pena\"?", "opts": ["to expunge a record", "to exchange the penalty", "to appeal a sentence", "to commute a sentence"], "a": 3, "fb": "Se dice \"to commute a sentence\" (reducirla, normalmente por decisión del gobernador o del presidente). \"To expunge a record\" es borrar los antecedentes."}, {"cat": "Redacción de contratos", "stem": "¿Cómo se dice en inglés \"No obstante lo anterior\" (en un contrato)?", "opts": ["Subject to the foregoing", "Notwithstanding the foregoing", "Pursuant to the foregoing", "In addition to the foregoing"], "a": 1, "fb": "Las cuatro son expresiones reales de contratos: \"pursuant to\" = de conformidad con, \"subject to\" = sujeto a, \"in addition to\" = además de. Confundirlas cambia el efecto de la cláusula."}, {"cat": "Redacción de contratos", "stem": "¿Cómo se dice en inglés \"en adelante, 'el Arrendatario'\"?", "opts": ["from forward called the \"Tenant\"", "hereto the \"Tenant\"", "in advance the \"Tenant\"", "hereinafter referred to as the \"Tenant\""], "a": 3, "fb": "La fórmula es \"hereinafter referred to as\" o, en forma breve, (the \"Tenant\"). \"In advance\" significa por anticipado."}, {"cat": "Redacción de contratos", "stem": "¿Cómo se dice en inglés \"a la firma del presente contrato\"?", "opts": ["prior to the execution of this Agreement", "at the firm of the present contract", "upon termination of this Agreement", "upon execution of this Agreement"], "a": 3, "fb": "Firmar un contrato es \"to execute\", y \"el presente contrato\" es \"this Agreement\". \"Prior to\" significa antes de, y \"upon termination\" significa al terminar."}, {"cat": "Redacción de contratos", "stem": "¿Cómo se dice en inglés \"El contrato entrará en vigor el 1 de enero\"?", "opts": ["The Agreement shall take effect on January 1.", "The Agreement shall be terminated on January 1.", "The contract will enter into vigor on January 1.", "The Agreement shall expire on January 1."], "a": 0, "fb": "Se dice \"take effect\" o \"become effective\" (\"Effective Date\"). \"Vigor\" en inglés significa energía."}, {"cat": "Redacción de contratos", "stem": "¿Cómo se dice en inglés \"de conformidad con\" (la ley, la cláusula 5)?", "opts": ["regardless of", "in lieu of", "notwithstanding", "pursuant to"], "a": 3, "fb": "\"Pursuant to\" significa de conformidad con. \"In lieu of\" significa en lugar de, y \"regardless of\" significa sin importar."}, {"cat": "Redacción de contratos", "stem": "¿Cómo se dice en inglés \"Las partes acuerdan lo siguiente\"?", "opts": ["The parties hereby agree as follows:", "The parties accord to the following:", "The parties are agreed by the following:", "The parties remember the following:"], "a": 0, "fb": "La fórmula es \"The parties hereby agree as follows\". Cuidado: \"acordarse\" de algo es \"to remember\", que es otra cosa."}, {"cat": "Redacción de contratos", "stem": "¿Cómo se dice en inglés \"terminación anticipada\" (del contrato)?", "opts": ["termination for cause", "contract rescission", "anticipated termination", "early termination"], "a": 3, "fb": "Se dice \"early termination\". \"Anticipated\" significa esperado o previsto, y \"termination for cause\" es la terminación por incumplimiento."}, {"cat": "Redacción de contratos", "stem": "¿Cómo se dice en inglés \"prórroga automática\" (del contrato)?", "opts": ["automatic prorogation", "automatic termination", "automatic renewal", "holdover"], "a": 2, "fb": "Se dice \"automatic renewal\" (\"evergreen clause\"). \"Holdover\" es cuando el arrendatario se queda después de vencer el contrato."}, {"cat": "Redacción de contratos", "stem": "¿Cómo se dice en inglés \"cesión del contrato\" (a un tercero)?", "opts": ["cession", "assignment", "sublease", "waiver"], "a": 1, "fb": "Transferir los derechos de un contrato a un tercero es \"assignment\". \"Sublease\" es subarrendar, y \"cession\" se usa para ceder territorio entre Estados."}, {"cat": "Redacción de contratos", "stem": "¿Cómo se dice en inglés \"subarrendar\"?", "opts": ["to lease back", "to sublease", "to evict", "to underrent"], "a": 1, "fb": "Se dice \"to sublease\" (o \"to sublet\"). \"To lease back\" es vender un bien y tomarlo luego en arriendo, y \"to evict\" es desalojar."}, {"cat": "Redacción de contratos", "stem": "¿Cómo se dice en inglés \"cláusula penal\" (indemnización fijada de antemano por incumplimiento)?", "opts": ["criminal penalty clause", "penal clause", "liquidated damages clause", "punitive clause"], "a": 2, "fb": "En EE. UU. se llama \"liquidated damages clause\". Si un tribunal la considera un castigo (\"penalty\") y no una estimación razonable del daño, no la aplica."}, {"cat": "Redacción de contratos", "stem": "¿Cómo se dice en inglés \"acuerdo de confidencialidad\"?", "opts": ["gag order", "confidence agreement", "privacy notice", "non-disclosure agreement"], "a": 3, "fb": "Se dice \"non-disclosure agreement\" (NDA) o \"confidentiality agreement\". La \"privacy notice\" es el aviso de privacidad."}, {"cat": "Redacción de contratos", "stem": "¿Cómo se dice en inglés \"cláusula de no competencia\"?", "opts": ["exclusivity clause", "non-compete clause", "no-competition pact", "non-solicitation clause"], "a": 1, "fb": "Se dice \"non-compete clause\". La \"non-solicitation clause\" prohíbe captar a los clientes o empleados de la otra parte."}, {"cat": "Redacción de contratos", "stem": "¿Cómo se dice en inglés \"salvo pacto en contrario\"?", "opts": ["save contrary pact", "unless the contrary is pacted", "unless otherwise agreed", "except as required by law"], "a": 2, "fb": "Se dice \"unless otherwise agreed\" (o \"unless otherwise agreed in writing\"). \"Except as required by law\" significa salvo lo que exija la ley."}, {"cat": "Redacción de contratos", "stem": "¿Cómo se dice en inglés \"en caso de controversia\" (entre las partes)?", "opts": ["in the event of a dispute", "in the event of default", "in case of a contest", "in the case of discussion"], "a": 0, "fb": "Se dice \"in the event of a dispute\". \"In the event of default\" significa en caso de incumplimiento (normalmente de pago)."}, {"cat": "Redacción de contratos", "stem": "¿Cómo se dice en inglés \"Las partes se someten a arbitraje\"?", "opts": ["The parties are subjected to arbitrage.", "The parties submit to arbitration.", "The parties waive arbitration.", "The parties appeal to arbitration."], "a": 1, "fb": "Se dice \"submit to arbitration\". \"Arbitrage\" es una operación financiera, y \"waive arbitration\" significa renunciar al arbitraje."}, {"cat": "Redacción de contratos", "stem": "¿Cómo se dice en inglés \"Todas las notificaciones se harán por escrito\"?", "opts": ["All notices shall be served by the court.", "All notices may be given orally.", "All notifications will be made by written.", "All notices shall be given in writing."], "a": 3, "fb": "En los contratos las comunicaciones formales son \"notices\" (\"Notices clause\"), y \"por escrito\" es \"in writing\"."}, {"cat": "Redacción de contratos", "stem": "¿Cómo se dice en inglés \"vigencia del contrato\" (su duración)?", "opts": ["term of the Agreement", "vigency of the contract", "termination of the Agreement", "terms and conditions"], "a": 0, "fb": "La duración es el \"term\" (en singular). \"Terms and conditions\" (en plural) son las condiciones del contrato."}, {"cat": "Redacción de contratos", "stem": "¿Cómo se dice en inglés \"Este contrato solo podrá modificarse por escrito firmado por ambas partes\"?", "opts": ["This Agreement may be amended only by a written instrument signed by both parties.", "This Agreement shall not be amended under any circumstances.", "This Agreement may be amended by either party at any time.", "This contract may be modified uniquely by a scripture signed by both parts."], "a": 0, "fb": "Modificar un contrato es \"to amend\". \"Scripture\" significa texto sagrado, y \"parts\" no se usa para \"partes\" de un contrato (\"parties\")."}, {"cat": "Redacción de contratos", "stem": "¿Cómo se dice en inglés \"a título gratuito\" (sin contraprestación)?", "opts": ["for valuable consideration", "at free title", "as a gift tax", "without consideration"], "a": 3, "fb": "En derecho estadounidense, la contraprestación es \"consideration\": a título gratuito es \"without consideration\", y a título oneroso es \"for valuable consideration\"."}, {"cat": "Comunicación con clientes y oficina", "stem": "¿Cómo se dice en inglés \"programar una cita\" (con el abogado)?", "opts": ["to schedule an appointment", "to appoint a meeting", "to concert a date", "to make a date"], "a": 0, "fb": "Se dice \"to schedule an appointment\". \"To make a date\" suena a una cita romántica, y \"to appoint\" significa nombrar a alguien."}, {"cat": "Comunicación con clientes y oficina", "stem": "¿Cómo se dice en inglés \"consulta inicial gratuita\"?", "opts": ["free first query", "free initial consultation", "pro bono case", "complimentary first audit"], "a": 1, "fb": "Se dice \"free initial consultation\". \"Pro bono\" es el trabajo gratuito por interés público, no una consulta inicial."}, {"cat": "Comunicación con clientes y oficina", "stem": "¿Cómo se dice en inglés \"El abogado le devolverá la llamada\"?", "opts": ["The attorney will call you back.", "The attorney will return you the call.", "The attorney will recall you.", "The attorney will call you again back."], "a": 0, "fb": "Se dice \"will call you back\" (o \"will return your call\"). \"To recall\" significa recordar o retirar del mercado."}, {"cat": "Comunicación con clientes y oficina", "stem": "¿Cómo se dice en inglés \"¿En qué le puedo colaborar?\" (al contestar el teléfono)?", "opts": ["In what can I collaborate you?", "How may I help you?", "How can I collaborate with you?", "What can I do for collaboration?"], "a": 1, "fb": "Se dice \"How may I help you?\" \"To collaborate\" significa trabajar juntos en un proyecto."}, {"cat": "Comunicación con clientes y oficina", "stem": "¿Cómo se dice en inglés \"el estado de su caso\"?", "opts": ["the estate of your case", "the state of your case", "the statute of your case", "the status of your case"], "a": 3, "fb": "Se dice \"status\". \"State\" es un estado (de EE. UU.), \"estate\" es la masa sucesoral o un patrimonio, y \"statute\" es una ley."}, {"cat": "Comunicación con clientes y oficina", "stem": "¿Cómo se dice en inglés \"contrato de servicios con el cliente\" (que firma el cliente al contratar al despacho)?", "opts": ["services lending contract", "engagement letter", "client release", "service level agreement"], "a": 1, "fb": "Se dice \"engagement letter\" (o \"retainer agreement\"). Un \"service level agreement\" (SLA) es un contrato de tecnología, y un \"release\" es un finiquito."}, {"cat": "Comunicación con clientes y oficina", "stem": "¿Cómo se dice en inglés \"formulario de admisión del cliente\" (la primera entrevista)?", "opts": ["release form", "intake form", "admission ticket", "entry visa"], "a": 1, "fb": "Se dice \"intake form\" (\"client intake\"). La \"release form\" es una autorización o renuncia que firma el cliente."}, {"cat": "Comunicación con clientes y oficina", "stem": "¿Cómo se dice en inglés \"conflicto de intereses\"?", "opts": ["interested conflict", "interest dispute", "conflict of interest", "conflict of laws"], "a": 2, "fb": "Se dice \"conflict of interest\". \"Conflict of laws\" es el derecho internacional privado: qué ley aplica."}, {"cat": "Comunicación con clientes y oficina", "stem": "¿Cómo se dice en inglés \"secreto profesional\" (entre abogado y cliente)?", "opts": ["executive privilege", "attorney-client privilege", "trade secret", "professional secret"], "a": 1, "fb": "Se dice \"attorney-client privilege\". \"Trade secret\" es un secreto comercial, y \"executive privilege\" es una prerrogativa del poder ejecutivo."}, {"cat": "Comunicación con clientes y oficina", "stem": "¿Cómo se dice en inglés \"dejar un mensaje de voz\"?", "opts": ["to leave a voicemail", "to hold the line", "to drop a call", "to let a voice message"], "a": 0, "fb": "Se dice \"to leave a voicemail\". \"To drop a call\" es cortarse la llamada, y \"to hold the line\" es esperar en línea."}, {"cat": "Comunicación con clientes y oficina", "stem": "¿Cómo se dice en inglés \"Por favor, espere en la línea\"?", "opts": ["Please wait in the line.", "Please hold.", "Please hang up.", "Please line up."], "a": 1, "fb": "Se dice \"Please hold\". \"To line up\" es hacer fila, y \"to hang up\" es colgar."}, {"cat": "Comunicación con clientes y oficina", "stem": "¿Cómo se dice en inglés \"Adjunto le envío los documentos\"?", "opts": ["Annexed I send to you the documents.", "I attach you the documents.", "Adjunct I send you the documents.", "Please find the documents attached."], "a": 3, "fb": "La fórmula es \"Please find attached\" o \"I have attached\". \"Adjunct\" significa auxiliar o accesorio."}, {"cat": "Comunicación con clientes y oficina", "stem": "¿Cómo se dice en inglés \"Quedo atento a sus comentarios\" (al cerrar un correo)?", "opts": ["I stay attentive to your comments.", "I wait your comments attentively.", "I look forward to your comments.", "I am pending of your comments."], "a": 2, "fb": "La fórmula natural es \"I look forward to your comments\" (o \"to hearing from you\"). \"Pending\" se usa para cosas, no para personas."}, {"cat": "Comunicación con clientes y oficina", "stem": "¿Cómo se dice en inglés \"Estimado señor Pérez:\" (al iniciar una carta)?", "opts": ["Estimated Mr. Pérez:", "Respected Sir Pérez:", "Dear Mr. Pérez:", "Esteemed Mr. Pérez:"], "a": 2, "fb": "La fórmula es \"Dear Mr. Pérez:\" (con dos puntos en cartas formales de EE. UU.). \"Estimated\" significa calculado aproximadamente."}, {"cat": "Comunicación con clientes y oficina", "stem": "¿Cómo se dice en inglés \"Envíenos los documentos a más tardar el viernes\"?", "opts": ["Send us the documents until Friday.", "Send us the documents after Friday.", "Send us the documents no later than Friday.", "Send us the documents more later Friday."], "a": 2, "fb": "Se dice \"no later than Friday\" (o \"by Friday\"). \"Until\" indica la duración de algo hasta un momento, no un límite."}, {"cat": "Comunicación con clientes y oficina", "stem": "¿Cómo se dice en inglés \"Le recuerdo que su audiencia es mañana\"?", "opts": ["I record you that your hearing is tomorrow.", "I remember you that your audience is tomorrow.", "I remind that your audience is tomorrow.", "This is a reminder that your hearing is tomorrow."], "a": 3, "fb": "Se dice \"to remind someone\" (no \"remember\", que es acordarse). \"Hearing\" es la audiencia judicial, y \"audience\" es el público."}, {"cat": "Comunicación con clientes y oficina", "stem": "¿Cómo se dice en inglés \"autenticar la firma ante notario\"?", "opts": ["to legalize the firm", "to have the signature notarized", "to authenticate the firm before a notary", "to certify the firm's signature"], "a": 1, "fb": "Se dice \"to have the signature notarized\". \"Firm\" significa empresa, no firma."}, {"cat": "Comunicación con clientes y oficina", "stem": "¿Cómo se dice en inglés \"El abogado está en audiencia\" (no puede atender)?", "opts": ["The attorney is in an audition.", "The attorney is hearing.", "The attorney is in court.", "The attorney is in audience."], "a": 2, "fb": "Se dice \"in court\" (o \"in a hearing\"). \"Audition\" es una prueba para un papel de actuación."}, {"cat": "Comunicación con clientes y oficina", "stem": "¿Cómo se dice en inglés \"devolver los documentos originales\" (al cliente)?", "opts": ["to devolve the original documents", "to return the original documents", "to give back the copies", "to refund the original documents"], "a": 1, "fb": "Se dice \"to return\". \"To devolve\" significa transferir competencias o poderes, y \"to refund\" se usa para dinero."}, {"cat": "Comunicación con clientes y oficina", "stem": "¿Cómo se dice en inglés \"dar seguimiento al caso\"?", "opts": ["to follow up on the case", "to give pursuit to the case", "to trace the case", "to persecute the case"], "a": 0, "fb": "Se dice \"to follow up on\". \"To persecute\" significa perseguir u hostigar, y \"to prosecute\" significa procesar penalmente."}, {"cat": "Familia, inmigración y trabajo", "stem": "¿Cómo se dice en inglés \"solicitar el divorcio\"?", "opts": ["to solicit a divorce", "to apply a divorce", "to sue the divorce", "to file for divorce"], "a": 3, "fb": "Se dice \"to file for divorce\" (\"petition for dissolution of marriage\" en algunos estados). \"To solicit\" suele significar pedir algo de forma insistente."}, {"cat": "Familia, inmigración y trabajo", "stem": "¿Cómo se dice en inglés \"custodia compartida\"?", "opts": ["joint custody", "joint tenancy", "sole custody", "shared guard"], "a": 0, "fb": "Se dice \"joint custody\". \"Sole custody\" es la custodia exclusiva, y \"joint tenancy\" es una forma de copropiedad de bienes."}, {"cat": "Familia, inmigración y trabajo", "stem": "¿Cómo se dice en inglés \"cuotas alimentarias atrasadas\"?", "opts": ["delayed food quotas", "back taxes", "child support arrears", "late fees"], "a": 2, "fb": "La deuda acumulada de manutención son los \"child support arrears\". \"Back taxes\" son impuestos atrasados."}, {"cat": "Familia, inmigración y trabajo", "stem": "¿Cómo se dice en inglés \"reconocer la paternidad\" (voluntariamente)?", "opts": ["to deny paternity", "to acknowledge paternity", "to terminate parental rights", "to grant visitation"], "a": 1, "fb": "Se dice \"to acknowledge paternity\" (con un formulario \"Acknowledgment of Paternity\"). \"To terminate parental rights\" es quitar la patria potestad."}, {"cat": "Familia, inmigración y trabajo", "stem": "¿Cómo se dice en inglés \"solicitud de asilo\"?", "opts": ["safe harbor", "asylum application", "asylum solicitude", "asylum seeker"], "a": 1, "fb": "Se dice \"asylum application\" (Formulario I-589). \"Asylum seeker\" es la persona que lo solicita, y \"safe harbor\" es una cláusula de protección legal."}, {"cat": "Familia, inmigración y trabajo", "stem": "¿Cómo se dice en inglés \"permiso de trabajo\" (que emite USCIS)?", "opts": ["labor license", "employment authorization document", "naturalization certificate", "advance parole"], "a": 1, "fb": "El permiso de trabajo es el \"Employment Authorization Document\" (EAD). \"Advance parole\" es un permiso para viajar y regresar a EE. UU."}, {"cat": "Familia, inmigración y trabajo", "stem": "¿Cómo se dice en inglés \"ciudadanía por naturalización\"?", "opts": ["dual citizenship", "residency by naturalization", "citizenship through naturalization", "citizenship through nationalization"], "a": 2, "fb": "Se dice \"citizenship through naturalization\". \"Nationalization\" es cuando el Estado toma el control de una empresa."}, {"cat": "Familia, inmigración y trabajo", "stem": "¿Cómo se dice en inglés \"orden de deportación\"?", "opts": ["voluntary departure", "expulsion warrant", "removal order", "deportation sentence"], "a": 2, "fb": "El término legal actual es \"order of removal\" (o \"removal order\"). \"Voluntary departure\" es la salida voluntaria que concede el juez."}, {"cat": "Familia, inmigración y trabajo", "stem": "¿Cómo se dice en inglés \"petición familiar\" (un ciudadano pide la residencia para su familiar)?", "opts": ["family solicitation", "humanitarian parole", "family-based petition", "family reunification act"], "a": 2, "fb": "Se dice \"family-based petition\" (Formulario I-130). \"Humanitarian parole\" es un permiso temporal de entrada por razones humanitarias."}, {"cat": "Familia, inmigración y trabajo", "stem": "¿Cómo se dice en inglés \"estatus migratorio\"?", "opts": ["immigration statute", "migratory statute", "migration state", "immigration status"], "a": 3, "fb": "Se dice \"immigration status\". \"Statute\" es una ley, y \"migratory\" se usa sobre todo para animales, como las aves migratorias."}, {"cat": "Familia, inmigración y trabajo", "stem": "¿Cómo se dice en inglés \"fecha de prioridad\" (de una petición de inmigración)?", "opts": ["preferential date", "priority date", "priority deadline", "due date"], "a": 1, "fb": "Se dice \"priority date\", la fecha que determina el turno del solicitante en el boletín de visas."}, {"cat": "Familia, inmigración y trabajo", "stem": "¿Cómo se dice en inglés \"cita biométrica\" (para tomar huellas y foto)?", "opts": ["biometric date", "fingerprint test", "biometrics appointment", "biometric citation"], "a": 2, "fb": "Se dice \"biometrics appointment\". \"Citation\" puede ser una multa o una cita de jurisprudencia."}, {"cat": "Familia, inmigración y trabajo", "stem": "¿Cómo se dice en inglés \"licencia de maternidad\"?", "opts": ["maternity license", "parental license", "maternity permit", "maternity leave"], "a": 3, "fb": "Se dice \"maternity leave\". \"License\" es un permiso oficial, como la licencia de conducción o la profesional."}, {"cat": "Familia, inmigración y trabajo", "stem": "¿Cómo se dice en inglés \"acoso laboral\"?", "opts": ["hostile takeover", "labor siege", "labor dispute", "workplace harassment"], "a": 3, "fb": "Se dice \"workplace harassment\". \"Hostile takeover\" es una adquisición hostil de una empresa, y \"labor dispute\" es un conflicto laboral colectivo."}, {"cat": "Familia, inmigración y trabajo", "stem": "¿Cómo se dice en inglés \"contratista independiente\"?", "opts": ["temp agency", "independent contractor", "union member", "at-will employee"], "a": 1, "fb": "Se dice \"independent contractor\". \"At-will employee\" es un empleado que puede ser despedido sin causa."}, {"cat": "Familia, inmigración y trabajo", "stem": "¿Cómo se dice en inglés \"reclamar el pago de horas extras\"?", "opts": ["to report extra time", "to claim overtime in advance", "to reclaim extra hours", "to file a claim for unpaid overtime"], "a": 3, "fb": "Se dice \"to file a claim for unpaid overtime\" (o \"wage claim\"). \"To reclaim\" significa recuperar algo."}, {"cat": "Familia, inmigración y trabajo", "stem": "¿Cómo se dice en inglés \"seguro de desempleo\"?", "opts": ["unemployment insurance", "Social Security disability", "unemployment security", "severance pay"], "a": 0, "fb": "Se dice \"unemployment insurance\" (o \"unemployment benefits\"). \"Severance pay\" es la indemnización por despido."}, {"cat": "Familia, inmigración y trabajo", "stem": "¿Cómo se dice en inglés \"incapacidad temporal total\" (accidente de trabajo)?", "opts": ["total temporal incapacity", "short-term leave", "temporary total disability", "permanent partial disability"], "a": 2, "fb": "Se dice \"temporary total disability\" (TTD), en el sistema de \"workers' compensation\". \"Temporal\" en inglés se refiere al tiempo en sentido abstracto o a las sienes."}, {"cat": "Familia, inmigración y trabajo", "stem": "¿Cómo se dice en inglés \"audiencia individual\" (en la que el juez de inmigración decide el fondo del caso)?", "opts": ["individual hearing", "master calendar hearing", "asylum interview", "credible fear interview"], "a": 0, "fb": "La audiencia de fondo es la \"individual hearing\" (\"merits hearing\"). La \"master calendar hearing\" es una audiencia preliminar breve, y la \"asylum interview\" la hace USCIS, no el juez."}, {"cat": "Familia, inmigración y trabajo", "stem": "¿Cómo se dice en inglés \"fianza migratoria\"?", "opts": ["migratory bail", "bail bondsman", "immigration bond", "surety company"], "a": 2, "fb": "Se dice \"immigration bond\". El \"bail bondsman\" es quien presta el dinero de la fianza en casos penales."}];
+const COURSES = [{"code": "", "name": "Litigio civil", "en": "Civil Litigation"}, {"code": "", "name": "Proceso penal", "en": "Criminal Procedure"}, {"code": "", "name": "Redacción de contratos", "en": "Contract Drafting"}, {"code": "", "name": "Comunicación con clientes y oficina", "en": "Client and Office Communication"}, {"code": "", "name": "Familia, inmigración y trabajo", "en": "Family, Immigration and Employment"}];
+
+// Exam length: "full" = every question (a pass earns the Proficiency Report);
+// "half" = HALF_SIZE questions drawn evenly from the areas (no Proficiency Report).
+const HALF_SIZE = 50;
+let QUESTIONS = ALL_QUESTIONS;
+let TOTAL = QUESTIONS.length;
+const BATCH_SIZE = 50;
+let NUM_BATCHES = Math.ceil(TOTAL / BATCH_SIZE);
+let MODE = "full";
+let PICKED = null; // indices into ALL_QUESTIONS for a half exam
+
+function pickBalanced(size){
+  const byCat = new Map();
+  ALL_QUESTIONS.forEach((q, i) => { if(!byCat.has(q.cat)) byCat.set(q.cat, []); byCat.get(q.cat).push(i); });
+  const cats = Array.from(byCat.keys());
+  const shuffle = a => { for(let i = a.length - 1; i > 0; i--){ const j = Math.floor(Math.random() * (i + 1)); [a[i], a[j]] = [a[j], a[i]]; } return a; };
+  const base = Math.floor(size / cats.length);
+  let extra = size - base * cats.length;
+  const quota = new Map(cats.map(c => [c, base]));
+  shuffle(cats.slice()).forEach(c => { if(extra > 0 && byCat.get(c).length > quota.get(c)){ quota.set(c, quota.get(c) + 1); extra--; } });
+  const out = [];
+  cats.forEach(c => { out.push(...shuffle(byCat.get(c).slice()).slice(0, quota.get(c))); });
+  return out.sort((a, b) => a - b); // keep the original course order
+}
+function applyMode(mode, picked){
+  if(mode === "half" && ALL_QUESTIONS.length > HALF_SIZE){
+    MODE = "half";
+    const ok = Array.isArray(picked) && picked.length === HALF_SIZE && picked.every(i => Number.isInteger(i) && i >= 0 && i < ALL_QUESTIONS.length);
+    PICKED = ok ? picked : pickBalanced(HALF_SIZE);
+    QUESTIONS = PICKED.map(i => ALL_QUESTIONS[i]);
+  } else {
+    MODE = "full"; PICKED = null; QUESTIONS = ALL_QUESTIONS;
+  }
+  TOTAL = QUESTIONS.length;
+  NUM_BATCHES = Math.ceil(TOTAL / BATCH_SIZE);
+  state.answers = new Array(TOTAL).fill(null);
+  state.mode = MODE;
+  state.picked = PICKED;
+}
+
+let state = {
+  screen: "start",
+  candidate: { name: "", email: "" },
+  answers: new Array(TOTAL).fill(null),
+  qIndex: 0,
+  startedAt: null,
+  awaitingNext: false,
+  completedCount: 0,
+  stoppedEarly: false,
+  mode: "full",
+  picked: null,
+};
+
+function batchBounds(batchNum){
+  const start = (batchNum - 1) * BATCH_SIZE;
+  return [start, Math.min(start + BATCH_SIZE, TOTAL)];
+}
+function batchOfIndex(i){ return Math.floor(i / BATCH_SIZE) + 1; }
+function scoreBetween(start, end){
+  let c = 0;
+  for(let i=start;i<end;i++){ if(state.answers[i] !== null && state.answers[i] === QUESTIONS[i].a) c++; }
+  return c;
+}
+function fmtPct(x){
+  let v = Math.round(x*1000)/10;
+  if(x < PASS_THRESHOLD && v >= PASS_THRESHOLD*100) v = Math.round(PASS_THRESHOLD*1000 - 1)/10;
+  return (Number.isInteger(v) ? v : v.toFixed(1)) + "%";
+}
+function totalScore(){ return scoreBetween(0, TOTAL); }
+
+function render(){
+  document.body.classList.toggle("results-dark", state.screen === "final");
+  if(state.screen === "question" || state.screen === "batchEnd") saveProgress();
+  if(state.screen === "final") clearProgress();
+  const card = document.getElementById("card");
+  const progressShell = document.getElementById("progressShell");
+
+  if(state.screen === "start"){
+    progressShell.style.display = "none";
+    const pre = new URLSearchParams(location.search).get("length") === "half" ? "half" : "full";
+    card.innerHTML = `
+      <div class="eyebrow">Gratis &middot; Español &rarr; inglés</div>
+      <h1>${EXAM_TITLE}</h1>
+      <div class="sub">Lea cada enunciado en español y elija la traducción al inglés que usaría un abogado o asistente legal en Estados Unidos. Solo una opción es correcta. Al final verá su puntaje por área y la explicación de cada respuesta.</div>
+      <div class="field levelpick"><label for="inLevel">Nivel:</label>
+        <select id="inLevel" onchange="switchLevel(this.value)">
+          <option value="basico" ${LEVEL_KEY === "basico" ? "selected" : ""}>Básico: términos</option>
+          <option value="intermedio" ${LEVEL_KEY === "intermedio" ? "selected" : ""}>Intermedio: frases y expresiones</option>
+          <option value="avanzado" ${LEVEL_KEY === "avanzado" ? "selected" : ""}>Avanzado: oraciones completas</option>
+        </select>
+        <div class="hint">Nivel ${LEVEL_NAME}: ${LEVEL_DESC}.</div></div>
+      <div class="field"><label for="inLength">Duración:</label>
+        <select id="inLength" onchange="lengthHint()">
+          <option value="full" ${pre === "full" ? "selected" : ""}>Examen completo (${ALL_QUESTIONS.length} preguntas)</option>
+          <option value="half" ${pre === "half" ? "selected" : ""}>Medio examen (${HALF_SIZE} preguntas)</option>
+        </select>
+        <div class="hint" id="lenHint"></div></div>
+      <div class="field"><label for="inName">Su nombre:</label><input id="inName" type="text" placeholder="Escriba su nombre" autocomplete="name"></div>
+      <div class="field"><label for="inEmail">Su correo electrónico:</label><input id="inEmail" type="email" placeholder="Escriba su correo" autocomplete="email"></div>
+      <label class="il-consent"><input type="checkbox" id="inConsent"><span>Autorizo a Ingleslegal a usar mi nombre, mi correo y mis respuestas para enviarme mis resultados, según la <a href="https://www.ingleslegal.com/privacy" target="_blank" rel="noopener">Política de Privacidad</a>. <b>(obligatorio)</b></span></label><label class="il-consent"><input type="checkbox" id="inNews"><span>Quiero recibir noticias sobre las rutas de aprendizaje y el día en que abra la mía. (opcional)</span></label>
+      <div class="formerr" id="formErr" role="alert"></div>
+      <button class="btn gold block" onclick="beginExam()">Comenzar el examen</button>
+      <div class="footer-note">Usamos sus datos solo como se describe en nuestra <a href="https://www.ingleslegal.com/privacy" target="_blank" rel="noopener" style="color:#C8A96B;">Política de Privacidad</a>. Puede pedirnos que los borremos en cualquier momento.</div>
+    `;
+    lengthHint();
+    return;
+  }
+
+  if(state.screen === "question"){
+    progressShell.style.display = "block";
+    renderTabs();
+    const i = state.qIndex;
+    const q = QUESTIONS[i];
+    const pct = Math.round(((i+1)/TOTAL)*100);
+    document.getElementById("barInner").style.width = pct + "%";
+    const given = state.answers[i];
+    const lastInBatch = (i+1) % BATCH_SIZE === 0 || i+1 === TOTAL;
+    const canBack = i % BATCH_SIZE !== 0; // a finished batch has already been reported, so no going back past it
+    const nextLabel = lastInBatch ? (i+1 === TOTAL ? "Terminar &rarr;" : "Terminar bloque &rarr;") : "Siguiente &rarr;";
+
+    card.innerHTML = `
+      <div class="vq-head"><span class="vq-count">Pregunta ${i+1} de ${TOTAL}</span><span class="vq-cat">${q.cat}</span></div>
+      <div class="stem${q.stem.length > 190 ? " long" : ""}">${q.stem}</div>
+      <div id="optsHolder"></div>
+      <div class="navrow"><button class="btn prev" onclick="goBack()" ${canBack ? "" : "disabled"}>&larr; Anterior</button><button class="btn gold next" id="nextBtn" onclick="advance()" ${given === null ? "disabled" : ""}>${nextLabel}</button></div>
+    `;
+    const holder = document.getElementById("optsHolder");
+    q.opts.forEach((opt, idx) => {
+      const btn = document.createElement("button");
+      let cls = "opt";
+      if(idx === given) cls += " selected";
+      btn.className = cls;
+      btn.innerHTML = opt;
+      btn.onclick = () => selectAnswer(idx);
+      holder.appendChild(btn);
+    });
+    return;
+  }
+
+  if(state.screen === "batchEnd"){
+    progressShell.style.display = "block";
+    renderTabs();
+    const bn = state._justFinishedBatch;
+    const [bs, be] = batchBounds(bn);
+    document.getElementById("barInner").style.width = Math.round((be/TOTAL)*100) + "%";
+    const bScore = scoreBetween(bs, be);
+    const bMax = be - bs;
+    const bPct = Math.round((bScore/bMax)*100);
+    card.innerHTML = `
+      <h2>Bloque ${bn} de ${NUM_BATCHES} terminado</h2>
+      <div class="scorebox">
+        <div class="cell"><div class="num">${bScore}/${bMax}</div><div class="lbl">Este bloque</div></div>
+        <div class="cell"><div class="num">${bPct}%</div><div class="lbl">Puntaje del bloque</div></div>
+      </div>
+      <div class="navrow">
+        ${bn < NUM_BATCHES ? '<button class="btn ghost" onclick="stopNow()">Detenerme aquí y ver mis resultados</button>' : '<span></span>'}
+        <button class="btn gold" onclick="continueAfterBatch()">${bn < NUM_BATCHES ? "Continuar con el siguiente bloque" : "Ver resultados finales"}</button>
+      </div>
+    `;
+    return;
+  }
+
+  if(state.screen === "final"){
+    progressShell.style.display = "none";
+    const completed = state.completedCount || TOTAL;
+    const partial = completed < TOTAL;
+    const score = scoreBetween(0, completed);
+    const pct = score / completed;
+    const passed = pct >= PASS_THRESHOLD;
+    const rows = [];
+    const fullBatches = Math.floor(completed / BATCH_SIZE);
+    for(let bn=1; bn<=fullBatches; bn++){
+      const [bs,be] = batchBounds(bn);
+      const s = scoreBetween(bs,be);
+      rows.push(`<tr><td>Bloque ${bn} (P${bs+1}&ndash;${be})</td><td>${s} / ${be-bs}</td><td>${fmtPct(s/(be-bs))}</td></tr>`);
+    }
+    card.innerHTML = `
+      <h1>${partial ? "Examen detenido: resultados provisionales" : "Examen terminado"}</h1>
+      <div class="sub">${state.candidate.name || "Candidato"}${state.candidate.email ? " &middot; " + state.candidate.email : ""} &middot; Nivel ${LEVEL_NAME} &middot; ${completed} de ${TOTAL} preguntas respondidas${MODE === "half" ? " &middot; Medio examen" : ""}</div>
+      <table class="results"><tr><th>Sección</th><th>Puntaje</th><th>%</th></tr>${rows.join("")}
+        <tr><td><strong>${partial ? "Total hasta ahora" : "Total"}</strong></td><td>${score} / ${completed}</td><td>${fmtPct(pct)}</td></tr>
+      </table>
+      ${courseTableHtml(completed)}
+      <div class="placement">
+        <div class="headline">${EXAM_TITLE} &middot; ${LEVEL_NAME}: ${passed ? "APROBADO" : "Aún no aprobado"}${partial ? " (provisional)" : ""}</div>
+        <div>El puntaje mínimo para aprobar es ${Math.round(PASS_THRESHOLD*100)}%. Usted obtuvo ${fmtPct(pct)}${partial ? ", con base en " + completed + " de " + TOTAL + " preguntas." : "."}${passed ? "" : " " + shortBy(score, completed)}</div>
+      </div>
+      ${certCardForExam(completed, partial, passed, score, pct)}
+      ${nextStepHTML(completed, passed)}
+      ${discountHTML()}
+      ${shareHTML(fmtPct(pct))}
+      ${reviewHTML(completed)}
+      <div class="navrow">
+        <button class="btn ghost" onclick="downloadResults()">Descargar mis resultados</button>
+        ${partial ? '<button class="btn gold" onclick="resumeExam()">Seguir respondiendo</button>' : '<span></span>'}
+      </div>
+      <div class="synctag" id="syncTag">${RESULTS_WEBHOOK_URL ? "Enviando sus resultados..." : ""}</div>
+      <div class="footer-note">${RESULTS_WEBHOOK_URL ? "En unos minutos también recibirá sus resultados por correo." : "Use Descargar mis resultados para guardar una copia."}</div>
+    `;
+    if(RESULTS_WEBHOOK_URL){ submitResults(score, pct, passed); }
+    return;
+  }
+}
+
+function courseBreakdown(completed){
+  const rows = COURSES.map(c => ({ code: c.code, name: c.name, correct: 0, total: 0 }));
+  QUESTIONS.slice(0, completed).forEach((q, i) => {
+    const r = rows.find(x => x.name === q.cat);
+    if(!r) return;
+    r.total++;
+    if(state.answers[i] !== null && state.answers[i] === q.a) r.correct++;
+  });
+  return rows.filter(r => r.total > 0).map(r => ({ ...r, percent: Math.round((r.correct / r.total) * 100) }));
+}
+function courseTableHtml(completed){
+  const rows = courseBreakdown(completed);
+  if(!rows.length) return "";
+  const limit = Math.round(PASS_THRESHOLD * 100);
+  const below = rows.filter(r => r.percent < limit);
+  return `
+      <div class="section-label">Puntaje por área</div>
+      <div class="section-note">Cada pregunta pertenece a una de las ${COURSES.length} áreas del nivel ${LEVEL_NAME}. Las áreas por debajo de ${limit}% son las que más le conviene repasar.</div>
+      <table class="results"><tr><th>Área</th><th>Puntaje</th><th>%</th></tr>${rows.map(r =>
+        `<tr><td>${r.name}</td><td>${r.correct} / ${r.total}</td><td class="${r.percent < limit ? "below" : ""}">${r.percent}%</td></tr>`).join("")}
+      </table>
+      ${below.length ? `<div class="footer-note"><strong>Para repasar primero:</strong> ${below.map(r => r.name).join(", ")}.</div>` : `<div class="footer-note">Obtuvo ${limit}% o más en todas las áreas que respondió.</div>`}`;
+}
+function shortBy(score, completed){
+  const need = Math.ceil(PASS_THRESHOLD*completed - 1e-9) - score;
+  return need > 0 ? "Le faltaron " + need + " respuesta" + (need === 1 ? "" : "s") + " correcta" + (need === 1 ? "" : "s") + " para aprobar." : "";
+}
+function topicStats(completed){
+  const map = {}; const order = [];
+  for(let i=0;i<completed;i++){
+    const c = QUESTIONS[i].cat;
+    if(!map[c]){ map[c] = {cat:c, right:0, total:0}; order.push(c); }
+    map[c].total++; if(state.answers[i] === QUESTIONS[i].a) map[c].right++;
+  }
+  return order.map(c => map[c]);
+}
+const DISCOUNT_CODE = "EXAM15";
+const DISCOUNT_PCT = 15;
+const DISCOUNT_DAYS = 180;
+const COURSES_URL = "https://www.ingleslegal.com/courses";
+const EXAM_URL = "https://ingleslegal-hub.github.io/ingleslegal-exam/translation/intermedio-exam.html";
+const EXAM_NAME = EXAM_TITLE + " (" + LEVEL_NAME + ")";
+function copyText(text, btn, label){
+  const done = () => { if(!btn) return; btn.textContent = "Copiado"; setTimeout(() => { btn.textContent = label; }, 1800); };
+  const fallback = () => {
+    const t = document.createElement("textarea"); t.value = text; document.body.appendChild(t); t.select();
+    try{ document.execCommand("copy"); }catch(e){}
+    document.body.removeChild(t); done();
+  };
+  if(navigator.clipboard && navigator.clipboard.writeText){ navigator.clipboard.writeText(text).then(done, fallback); } else { fallback(); }
+}
+function discountHTML(){
+  const until = new Date(Date.now() + DISCOUNT_DAYS*24*60*60*1000);
+  const d = until.toLocaleDateString("es-CO", {month:"long", day:"numeric", year:"numeric"});
+  return `<div class="offer">
+    <div class="tagline">Beneficio por presentar el examen</div>
+    <div class="headline">Guarde este código: ${DISCOUNT_PCT}% de descuento en su primera ruta</div>
+    <p>Úselo cuando abra su ruta de aprendizaje (enero a marzo de 2027). Válido hasta el <strong>${d}</strong>.</p>
+    <div class="coderow"><code>${DISCOUNT_CODE}</code><button type="button" class="btn gold" onclick="copyText(DISCOUNT_CODE, this, 'Copiar código')">Copiar código</button></div>
+  </div>`;
+}
+function shareText(pctText){ return "Obtuve " + pctText + " en el " + EXAM_NAME + " de Ingleslegal. Preséntelo gratis: " + EXAM_URL; }
+function inviteText(){ return "Acabo de presentar el " + EXAM_NAME + " gratuito de Ingleslegal y creo que le puede interesar: " + EXAM_URL; }
+let _sharePct = "";
+function doShare(btn){
+  const text = shareText(_sharePct);
+  if(navigator.share){ navigator.share({ title: "Ingleslegal - " + EXAM_NAME, text: text, url: EXAM_URL }).catch(() => {}); }
+  else { copyText(text, btn, "Compartir"); }
+}
+function shareHTML(pctText){
+  _sharePct = pctText;
+  const wa = "https://wa.me/?text=" + encodeURIComponent(shareText(pctText));
+  const mail = "mailto:?subject=" + encodeURIComponent("Examen gratuito de traducción jurídica de Ingleslegal") + "&body=" + encodeURIComponent(inviteText());
+  return `<div class="sharebox">
+    <div class="headline">Comparta su resultado</div>
+    <p>¿Conoce a un colega que esté aprendiendo inglés jurídico? Invítelo a presentar el examen.</p>
+    <div class="sharerow">
+      <button type="button" class="btn gold" onclick="doShare(this)">Compartir</button>
+      <a class="btn ghost" href="${wa}" target="_blank" rel="noopener">WhatsApp</a>
+      <a class="btn ghost" href="${mail}">Enviar por correo</a>
+    </div>
+  </div>`;
+}
+const IL_PATHWAY_INFO = {
+  immigration: { name: "Immigration Support Specialist", month: "January 2027" },
+  launchpad: { name: "Legal English Launchpad", month: "February 2027" },
+  personal_injury: { name: "Personal Injury Case Specialist", month: "February 2027" },
+  workers_comp: { name: "Workers' Compensation Case Manager", month: "March 2027" },
+  family_law: { name: "Family Law Paralegal", month: "March 2027" },
+  criminal_defense: { name: "Criminal Defense Legal Assistant", month: "March 2027" },
+  intake: { name: "Intake & Support", month: "January 2027" },
+  litigation: { name: "Litigation & Management", month: "February 2027" },
+  trial: { name: "Trial & Strategy", month: "March 2027" }
+};
+const IL_MONTH_ES = { "January 2027": "enero de 2027", "February 2027": "febrero de 2027", "March 2027": "marzo de 2027" };
+const IL_WAITLIST_URL = "https://ingleslegal-hub.github.io/ingleslegal-exam/waitlist.html";
+function ilKey(){ return NEXT_PATHWAY; }
+function ilOpens(name){ const k = Object.keys(IL_PATHWAY_INFO).find(k => IL_PATHWAY_INFO[k].name === name); return k ? " (opens " + IL_PATHWAY_INFO[k].month + ")" : ""; }
+function ilNotify(btn, key){
+  const c = (typeof state !== "undefined" && state.candidate) || {};
+  const page = IL_WAITLIST_URL + (key && key !== "all" ? "?pathway=" + key : "");
+  if(!c.email){ window.open(page, "_blank", "noopener"); return; }
+  btn.disabled = true; btn.textContent = "Agregándolo...";
+  fetch(RESULTS_WEBHOOK_URL, { method: "POST", headers: {"Content-Type":"text/plain"}, body: JSON.stringify({ type: "waitlist", name: c.name || "", email: c.email, pathways: [key || "all"], source: EXAM_NAME + " results", consent: true }) })
+    .then(r => r.json()).then(j => { if(j && j.ok){ btn.textContent = "Ya está en la lista \u2713"; } else { throw new Error("not ok"); } })
+    .catch(() => { btn.disabled = false; btn.textContent = "Usar el formulario de registro"; btn.onclick = () => window.open(page, "_blank", "noopener"); });
+}
+function nextStepHTML(completed, passed){
+  const limit = Math.round(PASS_THRESHOLD * 100);
+  const weak = courseBreakdown(completed).filter(r => r.percent < limit).sort((a,b) => a.percent - b.percent).slice(0,2);
+  const pw = IL_PATHWAY_INFO[NEXT_PATHWAY];
+  const month = IL_MONTH_ES[pw.month] || pw.month;
+  const nextLevel = LEVEL_KEY === "basico" ? "intermedio" : (LEVEL_KEY === "intermedio" ? "avanzado" : "");
+  let body;
+  if(passed){
+    body = "Muy bien. " + (nextLevel ? "Ya puede pasar al nivel <strong>" + (nextLevel === "intermedio" ? "Intermedio" : "Avanzado") + "</strong>. " : "Domina la traducción jurídica de nivel avanzado. ")
+      + "Para seguir avanzando, la ruta <strong>" + pw.name + "</strong> abre en " + month + ".";
+  } else if(weak.length){
+    body = "Repase primero: <strong>" + weak.map(r => r.name).join(" y ") + "</strong>. Revise las respuestas de abajo y vuelva a presentar este examen para medir su progreso. La ruta <strong>" + pw.name + "</strong>, que trabaja estas habilidades, abre en " + month + ".";
+  } else {
+    body = "Revise las respuestas de abajo y vuelva a presentar este examen para medir su progreso. La ruta <strong>" + pw.name + "</strong> abre en " + month + ".";
+  }
+  const nextBtn = (passed && nextLevel) ? ` <a class="btn ghost" href="${LEVEL_FILES[nextLevel]}">Presentar el nivel ${nextLevel === "intermedio" ? "Intermedio" : "Avanzado"}</a>` : "";
+  return `<div class="nextstep"><div class="headline">Su siguiente paso</div><p>${body}</p><button type="button" class="btn gold" onclick="ilNotify(this, ilKey())">Avisarme cuando abra</button>${nextBtn}</div>`;
+}
+function filterReview(v){
+  document.querySelectorAll(".review .rv").forEach(el => { el.style.display = (!v || el.dataset.cat === v) ? "" : "none"; });
+}
+function reviewItem(q, i){
+  const given = state.answers[i];
+  const ok = given === q.a;
+  const L = n => String.fromCharCode(65+n);
+  return `<div class="rv ${ok ? "ok" : ""}" data-cat="${q.cat}">
+    <div class="rq">Pregunta ${i+1} &middot; ${q.cat}</div>
+    <div class="rs">${q.stem}</div>
+    ${ok ? "" : `<div class="ra bad"><strong>Su respuesta:</strong> ${given === null ? "Sin responder" : L(given) + ". " + q.opts[given]}</div>`}
+    <div class="ra good"><strong>${ok ? "Su respuesta (correcta):" : "Respuesta correcta:"}</strong> ${L(q.a)}. ${q.opts[q.a]}</div>
+    <div class="rationale">${q.fb}</div>
+  </div>`;
+}
+function reviewHTML(completed){
+  const missed = [], right = [];
+  for(let i=0;i<completed;i++){ (state.answers[i] === QUESTIONS[i].a ? right : missed).push(i); }
+  const cats = topicStats(completed).map(t => t.cat);
+  let html = '<div class="review"><h2>Revisión de respuestas</h2>';
+  if(cats.length > 1){
+    html += '<div class="filterrow">Filtrar por área:<select onchange="filterReview(this.value)"><option value="">Todas las áreas</option>' + cats.map(c => '<option value="' + c.replace(/"/g,"&quot;") + '">' + c + '</option>').join("") + '</select></div>';
+  }
+  if(missed.length){
+    html += `<p class="sub">Preguntas para repasar (${missed.length})</p>` + missed.map(i => reviewItem(QUESTIONS[i], i)).join("");
+  } else {
+    html += '<p class="sub">Respondió correctamente todas las preguntas.</p>';
+  }
+  if(right.length){
+    html += `<details class="rvgroup"><summary>Preguntas que respondió correctamente (${right.length})</summary>` + right.map(i => reviewItem(QUESTIONS[i], i)).join("") + "</details>";
+  }
+  return html + "</div>";
+}
+function renderTabs(){
+  const tabs = document.getElementById("tabs");
+  const currentBatch = state.screen === "batchEnd" ? state._justFinishedBatch : batchOfIndex(state.qIndex);
+  let html = "";
+  for(let b=1; b<=NUM_BATCHES; b++){
+    let cls = "tab";
+    if(b < currentBatch || (state.screen === "batchEnd" && b <= currentBatch)) cls += " done";
+    else if(b === currentBatch && state.screen !== "batchEnd") cls += " active";
+    html += `<div class="${cls}">Bloque ${b}</div>`;
+  }
+  tabs.innerHTML = html;
+}
+
+const EMAIL_RE = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+function lengthHint(){
+  const sel = document.getElementById("inLength"), el = document.getElementById("lenHint");
+  if(!sel || !el) return;
+  el.textContent = sel.value === "half"
+    ? HALF_SIZE + " preguntas elegidas por igual de las " + COURSES.length + " áreas, en un solo bloque. El Proficiency Report solo se emite en el examen completo."
+    : ALL_QUESTIONS.length + " preguntas en " + Math.ceil(ALL_QUESTIONS.length / BATCH_SIZE) + " bloques de " + BATCH_SIZE + ". Apruebe con " + Math.round(PASS_THRESHOLD*100) + "% para recibir su Proficiency Report.";
+}
+function switchLevel(v){
+  if(!LEVEL_FILES[v] || v === LEVEL_KEY) return;
+  const len = document.getElementById("inLength");
+  location.href = LEVEL_FILES[v] + (len && len.value === "half" ? "?length=half" : "");
+}
+function ilConsentPing(name, email, exam, news, pathway){
+  try {
+    if (!RESULTS_WEBHOOK_URL) return;
+    var body = JSON.stringify({ type: "consent", name: name, email: email, exam: exam, consent: true, news: !!news, pathways: [pathway || "all"], page: location.pathname });
+    if (!(navigator.sendBeacon && navigator.sendBeacon(RESULTS_WEBHOOK_URL, new Blob([body], { type: "text/plain" })))) {
+      fetch(RESULTS_WEBHOOK_URL, { method: "POST", headers: { "Content-Type": "text/plain" }, body: body, keepalive: true });
+    }
+  } catch (e) {}
+}
+function beginExam(){
+  const name = document.getElementById("inName").value.trim();
+  const email = document.getElementById("inEmail").value.trim();
+  if(!name || !EMAIL_RE.test(email)){
+    document.getElementById("formErr").textContent = !name ? "Escriba su nombre." : "Escriba un correo electrónico válido.";
+    return;
+  }
+  if(!document.getElementById("inConsent").checked){
+    document.getElementById("formErr").textContent = "Marque la casilla de autorización para continuar.";
+    return;
+  }
+  ilConsentPing(name, email, EXAM_NAME, document.getElementById("inNews").checked, ilKey());
+  const sel = document.getElementById("inLength");
+  startWith(name, email, sel ? sel.value : "full");
+}
+function startWith(name, email, length){
+  applyMode(length === "half" ? "half" : "full");
+  state.candidate.name = name;
+  state.candidate.email = email;
+  state.startedAt = new Date().toISOString();
+  state.screen = "question";
+  state.qIndex = 0;
+  render();
+}
+function goBack(){
+  if(state.qIndex % BATCH_SIZE === 0) return;
+  state.qIndex -= 1;
+  state.screen = "question";
+  render();
+}
+function selectAnswer(idx){
+  state.answers[state.qIndex] = idx;
+  render();
+}
+function advance(){
+  if(state.answers[state.qIndex] === null) return;
+  const finishedIndex = state.qIndex;
+  const isLastInBatch = (finishedIndex + 1) % BATCH_SIZE === 0 || finishedIndex + 1 === TOTAL;
+  if(isLastInBatch){
+    state._justFinishedBatch = batchOfIndex(finishedIndex);
+    sendBatch(state._justFinishedBatch);
+    state.screen = "batchEnd";
+  } else {
+    state.qIndex = finishedIndex + 1;
+    state.screen = "question";
+  }
+  render();
+}
+function continueAfterBatch(){
+  if(state._justFinishedBatch >= NUM_BATCHES){
+    state.completedCount = TOTAL;
+    state.stoppedEarly = false;
+    state.screen = "final";
+  }
+  else { state.qIndex = state._justFinishedBatch * BATCH_SIZE; state.screen = "question"; }
+  render();
+}
+
+function stopNow(){
+  state.completedCount = batchBounds(state._justFinishedBatch)[1];
+  state.stoppedEarly = true;
+  state.screen = "final";
+  render();
+}
+
+function resumeExam(){
+  state.qIndex = Math.min(state.completedCount, TOTAL - 1);
+  state.screen = "question";
+  render();
+}
+
+function batchSummary(){
+  const out = [];
+  for(let bn = 1; bn <= NUM_BATCHES; bn++){
+    const [bs, be] = batchBounds(bn);
+    if(state.answers[be - 1] === null) break;
+    const s = scoreBetween(bs, be);
+    out.push({ batch: bn, score: s, total: be - bs, percent: Math.round((s / (be - bs)) * 100) });
+  }
+  return out;
+}
+
+function sendBatch(bn){
+  if(!RESULTS_WEBHOOK_URL) return;
+  const b = batchSummary().find(x => x.batch === bn);
+  if(!b) return;
+  fetch(RESULTS_WEBHOOK_URL, {
+    method: "POST",
+    headers: { "Content-Type": "text/plain" },
+    body: JSON.stringify({
+      type: "batch", tier: TIER_LABEL, length: MODE,
+      name: state.candidate.name, email: state.candidate.email,
+      ...b, startedAt: state.startedAt, completedAt: new Date().toISOString()
+    })
+  }).catch(() => {});
+}
+
+async function submitResults(score, pct, passed){
+  try{
+    const payload = {
+      type: "final", tier: TIER_LABEL, length: MODE, name: state.candidate.name, email: state.candidate.email,
+      batches: batchSummary(),
+      startedAt: state.startedAt, completedAt: new Date().toISOString(),
+      score, total: TOTAL, percent: Math.round(pct*1000)/10, passed, certId: (passed && state._certId) ? state._certId : "",
+      answers: QUESTIONS.map((q,i) => ({ cat: q.cat, given: state.answers[i], correct: q.a }))
+    };
+    const res = await fetch(RESULTS_WEBHOOK_URL, {
+      method: "POST", headers: {"Content-Type":"text/plain"}, body: JSON.stringify(payload)
+    });
+    document.getElementById("syncTag").textContent = res.ok ? "Resultados enviados." : "No se pudieron enviar automáticamente. Use Descargar mis resultados.";
+  } catch(e){
+    const tag = document.getElementById("syncTag");
+    if(tag) tag.textContent = "No se pudieron enviar automáticamente. Use Descargar mis resultados.";
+  }
+}
+
+function downloadResults(){
+  const completed = state.completedCount || TOTAL;
+  const partial = completed < TOTAL;
+  const score = scoreBetween(0, completed); const pct = score/completed;
+  let lines = [];
+  lines.push(`INGLESLEGAL — ${EXAM_TITLE.toUpperCase()} (${LEVEL_NAME.toUpperCase()}) — RESULTADOS` + (partial ? " (PARCIALES: EXAMEN DETENIDO)" : ""));
+  lines.push("==========================================");
+  lines.push("Candidato: " + (state.candidate.name || "(sin nombre)"));
+  lines.push("Correo: " + (state.candidate.email || "(sin correo)"));
+  lines.push("Duración: " + (MODE === "half" ? "Medio examen" : "Examen completo") + " (" + TOTAL + " preguntas)");
+  lines.push("Inicio: " + state.startedAt);
+  lines.push("Fin: " + new Date().toISOString());
+  lines.push("Preguntas respondidas: " + completed + " de " + TOTAL);
+  lines.push("");
+  const fullBatches = Math.floor(completed / BATCH_SIZE);
+  for(let bn=1; bn<=fullBatches; bn++){
+    const [bs,be] = batchBounds(bn);
+    const s = scoreBetween(bs,be);
+    lines.push(`Bloque ${bn} (P${bs+1}-${be}): ${s}/${be-bs} (${fmtPct(s/(be-bs))})`);
+  }
+  lines.push("");
+  lines.push("PUNTAJE POR ÁREA");
+  courseBreakdown(completed).forEach(r => lines.push(`${r.name}: ${r.correct}/${r.total} (${r.percent}%)`));
+  lines.push("");
+  lines.push(`TOTAL: ${score}/${completed} (${fmtPct(pct)}) — ${pct>=PASS_THRESHOLD ? "APROBADO" : "Aún no aprobado"}${partial ? " (provisional)" : ""} (mínimo ${Math.round(PASS_THRESHOLD*100)}%)`);
+  lines.push("");
+  lines.push("DETALLE DE RESPUESTAS");
+  QUESTIONS.slice(0, completed).forEach((q,i) => {
+    const given = state.answers[i];
+    const givenLetter = given === null ? "SIN RESPONDER" : String.fromCharCode(65+given);
+    const correctLetter = String.fromCharCode(65+q.a);
+    lines.push(`P${i+1} [${q.cat}] — Su respuesta: ${givenLetter} | Correcta: ${correctLetter} | ${given===q.a?"CORRECTA":"INCORRECTA"}`);
+    if(given !== q.a){
+      lines.push("   " + q.stem.replace(/\s+/g," "));
+      lines.push("   Respuesta correcta: " + correctLetter + ". " + q.opts[q.a]);
+      lines.push("   Explicación: " + q.fb);
+    }
+  });
+  const blob = new Blob([lines.join("\n")], {type:"text/plain"});
+  const url = URL.createObjectURL(blob);
+  const a = document.createElement("a");
+  const safeName = (state.candidate.name || "candidato").replace(/[^a-z0-9]+/gi, "_");
+  a.href = url; a.download = `Ingleslegal_Traduccion_${LEVEL_EN}_${safeName}.txt`;
+  document.body.appendChild(a); a.click(); document.body.removeChild(a);
+  URL.revokeObjectURL(url);
+}
+// ---- Progress saving + leave warning ----
+const SAVE_KEY = "ingleslegal_translation_" + LEVEL_KEY;
+function saveProgress(){ try{ localStorage.setItem(SAVE_KEY, JSON.stringify(state)); }catch(e){} }
+function clearProgress(){ try{ localStorage.removeItem(SAVE_KEY); }catch(e){} }
+function loadProgress(){
+  try{
+    const s = JSON.parse(localStorage.getItem(SAVE_KEY));
+    if(s && (s.screen === "question" || s.screen === "batchEnd") && Array.isArray(s.answers)){
+      const half = s.mode === "half";
+      const expected = half ? HALF_SIZE : ALL_QUESTIONS.length;
+      if(s.answers.length === expected && (!half || (Array.isArray(s.picked) && s.picked.length === HALF_SIZE))) return s;
+    }
+  }catch(e){}
+  return null;
+}
+
+// Hand-off from pathways/index.html (menu). Name and email travel in sessionStorage, never in the URL.
+const LAUNCH_KEY = "ingleslegal_pathway_launch";
+function readLaunch(){
+  try{
+    const raw = sessionStorage.getItem(LAUNCH_KEY);
+    if(!raw) return null;
+    sessionStorage.removeItem(LAUNCH_KEY);
+    const d = JSON.parse(raw);
+    const here = EXAM_URL.split("/").pop();
+    if(d && d.exam === here && typeof d.name === "string" && typeof d.email === "string" && d.name.trim() && EMAIL_RE.test(d.email.trim()) && Date.now() - Number(d.ts) < 10*60*1000){
+      return { name: d.name.trim(), email: d.email.trim(), length: d.length === "half" ? "half" : "full" };
+    }
+  }catch(e){}
+  return null;
+}
+
+window.addEventListener("beforeunload", e => {
+  if(state.screen === "question" || state.screen === "batchEnd"){
+    e.preventDefault(); e.returnValue = "";
+  }
+});
+
+const saved = loadProgress();
+const launch = readLaunch();
+if(saved && confirm("Tiene un examen en curso (pregunta " + (saved.qIndex + 1) + " de " + (saved.mode === "half" ? HALF_SIZE : ALL_QUESTIONS.length) + "). ¿Desea continuar donde lo dejó?")){
+  applyMode(saved.mode, saved.picked);
+  state = saved;
+} else {
+  clearProgress();
+  if(launch){ startWith(launch.name, launch.email, launch.length); }
+}
+render();
+</script>
+<script>
+/* QR code generator: MIT, (c) 2009 Kazuhiko Arase, http://www.d-project.com/ */
+
+var qrcode = function() {
+  //---------------------------------------------------------------------
+  // qrcode
+  //---------------------------------------------------------------------
+  /**
+   * qrcode
+   * @param typeNumber 1 to 40
+   * @param errorCorrectionLevel 'L','M','Q','H'
+   */
+  var qrcode = function(typeNumber, errorCorrectionLevel) {
+    var PAD0 = 0xEC;
+    var PAD1 = 0x11;
+    var _typeNumber = typeNumber;
+    var _errorCorrectionLevel = QRErrorCorrectionLevel[errorCorrectionLevel];
+    var _modules = null;
+    var _moduleCount = 0;
+    var _dataCache = null;
+    var _dataList = [];
+    var _this = {};
+    var makeImpl = function(test, maskPattern) {
+      _moduleCount = _typeNumber * 4 + 17;
+      _modules = function(moduleCount) {
+        var modules = new Array(moduleCount);
+        for (var row = 0; row < moduleCount; row += 1) {
+          modules[row] = new Array(moduleCount);
+          for (var col = 0; col < moduleCount; col += 1) {
+            modules[row][col] = null;
+          }
+        }
+        return modules;
+      }(_moduleCount);
+      setupPositionProbePattern(0, 0);
+      setupPositionProbePattern(_moduleCount - 7, 0);
+      setupPositionProbePattern(0, _moduleCount - 7);
+      setupPositionAdjustPattern();
+      setupTimingPattern();
+      setupTypeInfo(test, maskPattern);
+      if (_typeNumber >= 7) {
+        setupTypeNumber(test);
+      }
+      if (_dataCache == null) {
+        _dataCache = createData(_typeNumber, _errorCorrectionLevel, _dataList);
+      }
+      mapData(_dataCache, maskPattern);
+    };
+    var setupPositionProbePattern = function(row, col) {
+      for (var r = -1; r <= 7; r += 1) {
+        if (row + r <= -1 || _moduleCount <= row + r) continue;
+        for (var c = -1; c <= 7; c += 1) {
+          if (col + c <= -1 || _moduleCount <= col + c) continue;
+          if ( (0 <= r && r <= 6 && (c == 0 || c == 6) )
+              || (0 <= c && c <= 6 && (r == 0 || r == 6) )
+              || (2 <= r && r <= 4 && 2 <= c && c <= 4) ) {
+            _modules[row + r][col + c] = true;
+          } else {
+            _modules[row + r][col + c] = false;
+          }
+        }
+      }
+    };
+    var getBestMaskPattern = function() {
+      var minLostPoint = 0;
+      var pattern = 0;
+      for (var i = 0; i < 8; i += 1) {
+        makeImpl(true, i);
+        var lostPoint = QRUtil.getLostPoint(_this);
+        if (i == 0 || minLostPoint > lostPoint) {
+          minLostPoint = lostPoint;
+          pattern = i;
+        }
+      }
+      return pattern;
+    };
+    var setupTimingPattern = function() {
+      for (var r = 8; r < _moduleCount - 8; r += 1) {
+        if (_modules[r][6] != null) {
+          continue;
+        }
+        _modules[r][6] = (r % 2 == 0);
+      }
+      for (var c = 8; c < _moduleCount - 8; c += 1) {
+        if (_modules[6][c] != null) {
+          continue;
+        }
+        _modules[6][c] = (c % 2 == 0);
+      }
+    };
+    var setupPositionAdjustPattern = function() {
+      var pos = QRUtil.getPatternPosition(_typeNumber);
+      for (var i = 0; i < pos.length; i += 1) {
+        for (var j = 0; j < pos.length; j += 1) {
+          var row = pos[i];
+          var col = pos[j];
+          if (_modules[row][col] != null) {
+            continue;
+          }
+          for (var r = -2; r <= 2; r += 1) {
+            for (var c = -2; c <= 2; c += 1) {
+              if (r == -2 || r == 2 || c == -2 || c == 2
+                  || (r == 0 && c == 0) ) {
+                _modules[row + r][col + c] = true;
+              } else {
+                _modules[row + r][col + c] = false;
+              }
+            }
+          }
+        }
+      }
+    };
+    var setupTypeNumber = function(test) {
+      var bits = QRUtil.getBCHTypeNumber(_typeNumber);
+      for (var i = 0; i < 18; i += 1) {
+        var mod = (!test && ( (bits >> i) & 1) == 1);
+        _modules[Math.floor(i / 3)][i % 3 + _moduleCount - 8 - 3] = mod;
+      }
+      for (var i = 0; i < 18; i += 1) {
+        var mod = (!test && ( (bits >> i) & 1) == 1);
+        _modules[i % 3 + _moduleCount - 8 - 3][Math.floor(i / 3)] = mod;
+      }
+    };
+    var setupTypeInfo = function(test, maskPattern) {
+      var data = (_errorCorrectionLevel << 3) | maskPattern;
+      var bits = QRUtil.getBCHTypeInfo(data);
+      // vertical
+      for (var i = 0; i < 15; i += 1) {
+        var mod = (!test && ( (bits >> i) & 1) == 1);
+        if (i < 6) {
+          _modules[i][8] = mod;
+        } else if (i < 8) {
+          _modules[i + 1][8] = mod;
+        } else {
+          _modules[_moduleCount - 15 + i][8] = mod;
+        }
+      }
+      // horizontal
+      for (var i = 0; i < 15; i += 1) {
+        var mod = (!test && ( (bits >> i) & 1) == 1);
+        if (i < 8) {
+          _modules[8][_moduleCount - i - 1] = mod;
+        } else if (i < 9) {
+          _modules[8][15 - i - 1 + 1] = mod;
+        } else {
+          _modules[8][15 - i - 1] = mod;
+        }
+      }
+      // fixed module
+      _modules[_moduleCount - 8][8] = (!test);
+    };
+    var mapData = function(data, maskPattern) {
+      var inc = -1;
+      var row = _moduleCount - 1;
+      var bitIndex = 7;
+      var byteIndex = 0;
+      var maskFunc = QRUtil.getMaskFunction(maskPattern);
+      for (var col = _moduleCount - 1; col > 0; col -= 2) {
+        if (col == 6) col -= 1;
+        while (true) {
+          for (var c = 0; c < 2; c += 1) {
+            if (_modules[row][col - c] == null) {
+              var dark = false;
+              if (byteIndex < data.length) {
+                dark = ( ( (data[byteIndex] >>> bitIndex) & 1) == 1);
+              }
+              var mask = maskFunc(row, col - c);
+              if (mask) {
+                dark = !dark;
+              }
+              _modules[row][col - c] = dark;
+              bitIndex -= 1;
+              if (bitIndex == -1) {
+                byteIndex += 1;
+                bitIndex = 7;
+              }
+            }
+          }
+          row += inc;
+          if (row < 0 || _moduleCount <= row) {
+            row -= inc;
+            inc = -inc;
+            break;
+          }
+        }
+      }
+    };
+    var createBytes = function(buffer, rsBlocks) {
+      var offset = 0;
+      var maxDcCount = 0;
+      var maxEcCount = 0;
+      var dcdata = new Array(rsBlocks.length);
+      var ecdata = new Array(rsBlocks.length);
+      for (var r = 0; r < rsBlocks.length; r += 1) {
+        var dcCount = rsBlocks[r].dataCount;
+        var ecCount = rsBlocks[r].totalCount - dcCount;
+        maxDcCount = Math.max(maxDcCount, dcCount);
+        maxEcCount = Math.max(maxEcCount, ecCount);
+        dcdata[r] = new Array(dcCount);
+        for (var i = 0; i < dcdata[r].length; i += 1) {
+          dcdata[r][i] = 0xff & buffer.getBuffer()[i + offset];
+        }
+        offset += dcCount;
+        var rsPoly = QRUtil.getErrorCorrectPolynomial(ecCount);
+        var rawPoly = qrPolynomial(dcdata[r], rsPoly.getLength() - 1);
+        var modPoly = rawPoly.mod(rsPoly);
+        ecdata[r] = new Array(rsPoly.getLength() - 1);
+        for (var i = 0; i < ecdata[r].length; i += 1) {
+          var modIndex = i + modPoly.getLength() - ecdata[r].length;
+          ecdata[r][i] = (modIndex >= 0)? modPoly.getAt(modIndex) : 0;
+        }
+      }
+      var totalCodeCount = 0;
+      for (var i = 0; i < rsBlocks.length; i += 1) {
+        totalCodeCount += rsBlocks[i].totalCount;
+      }
+      var data = new Array(totalCodeCount);
+      var index = 0;
+      for (var i = 0; i < maxDcCount; i += 1) {
+        for (var r = 0; r < rsBlocks.length; r += 1) {
+          if (i < dcdata[r].length) {
+            data[index] = dcdata[r][i];
+            index += 1;
+          }
+        }
+      }
+      for (var i = 0; i < maxEcCount; i += 1) {
+        for (var r = 0; r < rsBlocks.length; r += 1) {
+          if (i < ecdata[r].length) {
+            data[index] = ecdata[r][i];
+            index += 1;
+          }
+        }
+      }
+      return data;
+    };
+    var createData = function(typeNumber, errorCorrectionLevel, dataList) {
+      var rsBlocks = QRRSBlock.getRSBlocks(typeNumber, errorCorrectionLevel);
+      var buffer = qrBitBuffer();
+      for (var i = 0; i < dataList.length; i += 1) {
+        var data = dataList[i];
+        buffer.put(data.getMode(), 4);
+        buffer.put(data.getLength(), QRUtil.getLengthInBits(data.getMode(), typeNumber) );
+        data.write(buffer);
+      }
+      // calc num max data.
+      var totalDataCount = 0;
+      for (var i = 0; i < rsBlocks.length; i += 1) {
+        totalDataCount += rsBlocks[i].dataCount;
+      }
+      if (buffer.getLengthInBits() > totalDataCount * 8) {
+        throw 'code length overflow. ('
+          + buffer.getLengthInBits()
+          + '>'
+          + totalDataCount * 8
+          + ')';
+      }
+      // end code
+      if (buffer.getLengthInBits() + 4 <= totalDataCount * 8) {
+        buffer.put(0, 4);
+      }
+      // padding
+      while (buffer.getLengthInBits() % 8 != 0) {
+        buffer.putBit(false);
+      }
+      // padding
+      while (true) {
+        if (buffer.getLengthInBits() >= totalDataCount * 8) {
+          break;
+        }
+        buffer.put(PAD0, 8);
+        if (buffer.getLengthInBits() >= totalDataCount * 8) {
+          break;
+        }
+        buffer.put(PAD1, 8);
+      }
+      return createBytes(buffer, rsBlocks);
+    };
+    _this.addData = function(data, mode) {
+      mode = mode || 'Byte';
+      var newData = null;
+      switch(mode) {
+      case 'Numeric' :
+        newData = qrNumber(data);
+        break;
+      case 'Alphanumeric' :
+        newData = qrAlphaNum(data);
+        break;
+      case 'Byte' :
+        newData = qr8BitByte(data);
+        break;
+      case 'Kanji' :
+        newData = qrKanji(data);
+        break;
+      default :
+        throw 'mode:' + mode;
+      }
+      _dataList.push(newData);
+      _dataCache = null;
+    };
+    _this.isDark = function(row, col) {
+      if (row < 0 || _moduleCount <= row || col < 0 || _moduleCount <= col) {
+        throw row + ',' + col;
+      }
+      return _modules[row][col];
+    };
+    _this.getModuleCount = function() {
+      return _moduleCount;
+    };
+    _this.make = function() {
+      if (_typeNumber < 1) {
+        var typeNumber = 1;
+        for (; typeNumber < 40; typeNumber++) {
+          var rsBlocks = QRRSBlock.getRSBlocks(typeNumber, _errorCorrectionLevel);
+          var buffer = qrBitBuffer();
+          for (var i = 0; i < _dataList.length; i++) {
+            var data = _dataList[i];
+            buffer.put(data.getMode(), 4);
+            buffer.put(data.getLength(), QRUtil.getLengthInBits(data.getMode(), typeNumber) );
+            data.write(buffer);
+          }
+          var totalDataCount = 0;
+          for (var i = 0; i < rsBlocks.length; i++) {
+            totalDataCount += rsBlocks[i].dataCount;
+          }
+          if (buffer.getLengthInBits() <= totalDataCount * 8) {
+            break;
+          }
+        }
+        _typeNumber = typeNumber;
+      }
+      makeImpl(false, getBestMaskPattern() );
+    };
+    _this.createTableTag = function(cellSize, margin) {
+      cellSize = cellSize || 2;
+      margin = (typeof margin == 'undefined')? cellSize * 4 : margin;
+      var qrHtml = '';
+      qrHtml += '<table style="';
+      qrHtml += ' border-width: 0px; border-style: none;';
+      qrHtml += ' border-collapse: collapse;';
+      qrHtml += ' padding: 0px; margin: ' + margin + 'px;';
+      qrHtml += '">';
+      qrHtml += '<tbody>';
+      for (var r = 0; r < _this.getModuleCount(); r += 1) {
+        qrHtml += '<tr>';
+        for (var c = 0; c < _this.getModuleCount(); c += 1) {
+          qrHtml += '<td style="';
+          qrHtml += ' border-width: 0px; border-style: none;';
+          qrHtml += ' border-collapse: collapse;';
+          qrHtml += ' padding: 0px; margin: 0px;';
+          qrHtml += ' width: ' + cellSize + 'px;';
+          qrHtml += ' height: ' + cellSize + 'px;';
+          qrHtml += ' background-color: ';
+          qrHtml += _this.isDark(r, c)? '#000000' : '#ffffff';
+          qrHtml += ';';
+          qrHtml += '"/>';
+        }
+        qrHtml += '</tr>';
+      }
+      qrHtml += '</tbody>';
+      qrHtml += '</table>';
+      return qrHtml;
+    };
+    _this.createSvgTag = function(cellSize, margin, alt, title) {
+      var opts = {};
+      if (typeof arguments[0] == 'object') {
+        // Called by options.
+        opts = arguments[0];
+        // overwrite cellSize and margin.
+        cellSize = opts.cellSize;
+        margin = opts.margin;
+        alt = opts.alt;
+        title = opts.title;
+      }
+      cellSize = cellSize || 2;
+      margin = (typeof margin == 'undefined')? cellSize * 4 : margin;
+      // Compose alt property surrogate
+      alt = (typeof alt === 'string') ? {text: alt} : alt || {};
+      alt.text = alt.text || null;
+      alt.id = (alt.text) ? alt.id || 'qrcode-description' : null;
+      // Compose title property surrogate
+      title = (typeof title === 'string') ? {text: title} : title || {};
+      title.text = title.text || null;
+      title.id = (title.text) ? title.id || 'qrcode-title' : null;
+      var size = _this.getModuleCount() * cellSize + margin * 2;
+      var c, mc, r, mr, qrSvg='', rect;
+      rect = 'l' + cellSize + ',0 0,' + cellSize +
+        ' -' + cellSize + ',0 0,-' + cellSize + 'z ';
+      qrSvg += '<svg version="1.1" xmlns="http://www.w3.org/2000/svg"';
+      qrSvg += !opts.scalable ? ' width="' + size + 'px" height="' + size + 'px"' : '';
+      qrSvg += ' viewBox="0 0 ' + size + ' ' + size + '" ';
+      qrSvg += ' preserveAspectRatio="xMinYMin meet"';
+      qrSvg += (title.text || alt.text) ? ' role="img" aria-labelledby="' +
+          escapeXml([title.id, alt.id].join(' ').trim() ) + '"' : '';
+      qrSvg += '>';
+      qrSvg += (title.text) ? '<title id="' + escapeXml(title.id) + '">' +
+          escapeXml(title.text) + '</title>' : '';
+      qrSvg += (alt.text) ? '<description id="' + escapeXml(alt.id) + '">' +
+          escapeXml(alt.text) + '</description>' : '';
+      qrSvg += '<rect width="100%" height="100%" fill="white" cx="0" cy="0"/>';
+      qrSvg += '<path d="';
+      for (r = 0; r < _this.getModuleCount(); r += 1) {
+        mr = r * cellSize + margin;
+        for (c = 0; c < _this.getModuleCount(); c += 1) {
+          if (_this.isDark(r, c) ) {
+            mc = c*cellSize+margin;
+            qrSvg += 'M' + mc + ',' + mr + rect;
+          }
+        }
+      }
+      qrSvg += '" stroke="transparent" fill="black"/>';
+      qrSvg += '</svg>';
+      return qrSvg;
+    };
+    _this.createDataURL = function(cellSize, margin) {
+      cellSize = cellSize || 2;
+      margin = (typeof margin == 'undefined')? cellSize * 4 : margin;
+      var size = _this.getModuleCount() * cellSize + margin * 2;
+      var min = margin;
+      var max = size - margin;
+      return createDataURL(size, size, function(x, y) {
+        if (min <= x && x < max && min <= y && y < max) {
+          var c = Math.floor( (x - min) / cellSize);
+          var r = Math.floor( (y - min) / cellSize);
+          return _this.isDark(r, c)? 0 : 1;
+        } else {
+          return 1;
+        }
+      } );
+    };
+    _this.createImgTag = function(cellSize, margin, alt) {
+      cellSize = cellSize || 2;
+      margin = (typeof margin == 'undefined')? cellSize * 4 : margin;
+      var size = _this.getModuleCount() * cellSize + margin * 2;
+      var img = '';
+      img += '<img';
+      img += '\u0020src="';
+      img += _this.createDataURL(cellSize, margin);
+      img += '"';
+      img += '\u0020width="';
+      img += size;
+      img += '"';
+      img += '\u0020height="';
+      img += size;
+      img += '"';
+      if (alt) {
+        img += '\u0020alt="';
+        img += escapeXml(alt);
+        img += '"';
+      }
+      img += '/>';
+      return img;
+    };
+    var escapeXml = function(s) {
+      var escaped = '';
+      for (var i = 0; i < s.length; i += 1) {
+        var c = s.charAt(i);
+        switch(c) {
+        case '<': escaped += '&lt;'; break;
+        case '>': escaped += '&gt;'; break;
+        case '&': escaped += '&amp;'; break;
+        case '"': escaped += '&quot;'; break;
+        default : escaped += c; break;
+        }
+      }
+      return escaped;
+    };
+    var _createHalfASCII = function(margin) {
+      var cellSize = 1;
+      margin = (typeof margin == 'undefined')? cellSize * 2 : margin;
+      var size = _this.getModuleCount() * cellSize + margin * 2;
+      var min = margin;
+      var max = size - margin;
+      var y, x, r1, r2, p;
+      var blocks = {
+        '██': '█',
+        '█ ': '▀',
+        ' █': '▄',
+        '  ': ' '
+      };
+      var blocksLastLineNoMargin = {
+        '██': '▀',
+        '█ ': '▀',
+        ' █': ' ',
+        '  ': ' '
+      };
+      var ascii = '';
+      for (y = 0; y < size; y += 2) {
+        r1 = Math.floor((y - min) / cellSize);
+        r2 = Math.floor((y + 1 - min) / cellSize);
+        for (x = 0; x < size; x += 1) {
+          p = '█';
+          if (min <= x && x < max && min <= y && y < max && _this.isDark(r1, Math.floor((x - min) / cellSize))) {
+            p = ' ';
+          }
+          if (min <= x && x < max && min <= y+1 && y+1 < max && _this.isDark(r2, Math.floor((x - min) / cellSize))) {
+            p += ' ';
+          }
+          else {
+            p += '█';
+          }
+          // Output 2 characters per pixel, to create full square. 1 character per pixels gives only half width of square.
+          ascii += (margin < 1 && y+1 >= max) ? blocksLastLineNoMargin[p] : blocks[p];
+        }
+        ascii += '\n';
+      }
+      if (size % 2 && margin > 0) {
+        return ascii.substring(0, ascii.length - size - 1) + Array(size+1).join('▀');
+      }
+      return ascii.substring(0, ascii.length-1);
+    };
+    _this.createASCII = function(cellSize, margin) {
+      cellSize = cellSize || 1;
+      if (cellSize < 2) {
+        return _createHalfASCII(margin);
+      }
+      cellSize -= 1;
+      margin = (typeof margin == 'undefined')? cellSize * 2 : margin;
+      var size = _this.getModuleCount() * cellSize + margin * 2;
+      var min = margin;
+      var max = size - margin;
+      var y, x, r, p;
+      var white = Array(cellSize+1).join('██');
+      var black = Array(cellSize+1).join('  ');
+      var ascii = '';
+      var line = '';
+      for (y = 0; y < size; y += 1) {
+        r = Math.floor( (y - min) / cellSize);
+        line = '';
+        for (x = 0; x < size; x += 1) {
+          p = 1;
+          if (min <= x && x < max && min <= y && y < max && _this.isDark(r, Math.floor((x - min) / cellSize))) {
+            p = 0;
+          }
+          // Output 2 characters per pixel, to create full square. 1 character per pixels gives only half width of square.
+          line += p ? white : black;
+        }
+        for (r = 0; r < cellSize; r += 1) {
+          ascii += line + '\n';
+        }
+      }
+      return ascii.substring(0, ascii.length-1);
+    };
+    _this.renderTo2dContext = function(context, cellSize) {
+      cellSize = cellSize || 2;
+      var length = _this.getModuleCount();
+      for (var row = 0; row < length; row++) {
+        for (var col = 0; col < length; col++) {
+          context.fillStyle = _this.isDark(row, col) ? 'black' : 'white';
+          context.fillRect(col * cellSize, row * cellSize, cellSize, cellSize);
+        }
+      }
+    }
+    return _this;
+  };
+  //---------------------------------------------------------------------
+  // qrcode.stringToBytes
+  //---------------------------------------------------------------------
+  qrcode.stringToBytesFuncs = {
+    'default' : function(s) {
+      var bytes = [];
+      for (var i = 0; i < s.length; i += 1) {
+        var c = s.charCodeAt(i);
+        bytes.push(c & 0xff);
+      }
+      return bytes;
+    }
+  };
+  qrcode.stringToBytes = qrcode.stringToBytesFuncs['default'];
+  //---------------------------------------------------------------------
+  // qrcode.createStringToBytes
+  //---------------------------------------------------------------------
+  /**
+   * @param unicodeData base64 string of byte array.
+   * [16bit Unicode],[16bit Bytes], ...
+   * @param numChars
+   */
+  qrcode.createStringToBytes = function(unicodeData, numChars) {
+    // create conversion map.
+    var unicodeMap = function() {
+      var bin = base64DecodeInputStream(unicodeData);
+      var read = function() {
+        var b = bin.read();
+        if (b == -1) throw 'eof';
+        return b;
+      };
+      var count = 0;
+      var unicodeMap = {};
+      while (true) {
+        var b0 = bin.read();
+        if (b0 == -1) break;
+        var b1 = read();
+        var b2 = read();
+        var b3 = read();
+        var k = String.fromCharCode( (b0 << 8) | b1);
+        var v = (b2 << 8) | b3;
+        unicodeMap[k] = v;
+        count += 1;
+      }
+      if (count != numChars) {
+        throw count + ' != ' + numChars;
+      }
+      return unicodeMap;
+    }();
+    var unknownChar = '?'.charCodeAt(0);
+    return function(s) {
+      var bytes = [];
+      for (var i = 0; i < s.length; i += 1) {
+        var c = s.charCodeAt(i);
+        if (c < 128) {
+          bytes.push(c);
+        } else {
+          var b = unicodeMap[s.charAt(i)];
+          if (typeof b == 'number') {
+            if ( (b & 0xff) == b) {
+              // 1byte
+              bytes.push(b);
+            } else {
+              // 2bytes
+              bytes.push(b >>> 8);
+              bytes.push(b & 0xff);
+            }
+          } else {
+            bytes.push(unknownChar);
+          }
+        }
+      }
+      return bytes;
+    };
+  };
+  //---------------------------------------------------------------------
+  // QRMode
+  //---------------------------------------------------------------------
+  var QRMode = {
+    MODE_NUMBER :    1 << 0,
+    MODE_ALPHA_NUM : 1 << 1,
+    MODE_8BIT_BYTE : 1 << 2,
+    MODE_KANJI :     1 << 3
+  };
+  //---------------------------------------------------------------------
+  // QRErrorCorrectionLevel
+  //---------------------------------------------------------------------
+  var QRErrorCorrectionLevel = {
+    L : 1,
+    M : 0,
+    Q : 3,
+    H : 2
+  };
+  //---------------------------------------------------------------------
+  // QRMaskPattern
+  //---------------------------------------------------------------------
+  var QRMaskPattern = {
+    PATTERN000 : 0,
+    PATTERN001 : 1,
+    PATTERN010 : 2,
+    PATTERN011 : 3,
+    PATTERN100 : 4,
+    PATTERN101 : 5,
+    PATTERN110 : 6,
+    PATTERN111 : 7
+  };
+  //---------------------------------------------------------------------
+  // QRUtil
+  //---------------------------------------------------------------------
+  var QRUtil = function() {
+    var PATTERN_POSITION_TABLE = [
+      [],
+      [6, 18],
+      [6, 22],
+      [6, 26],
+      [6, 30],
+      [6, 34],
+      [6, 22, 38],
+      [6, 24, 42],
+      [6, 26, 46],
+      [6, 28, 50],
+      [6, 30, 54],
+      [6, 32, 58],
+      [6, 34, 62],
+      [6, 26, 46, 66],
+      [6, 26, 48, 70],
+      [6, 26, 50, 74],
+      [6, 30, 54, 78],
+      [6, 30, 56, 82],
+      [6, 30, 58, 86],
+      [6, 34, 62, 90],
+      [6, 28, 50, 72, 94],
+      [6, 26, 50, 74, 98],
+      [6, 30, 54, 78, 102],
+      [6, 28, 54, 80, 106],
+      [6, 32, 58, 84, 110],
+      [6, 30, 58, 86, 114],
+      [6, 34, 62, 90, 118],
+      [6, 26, 50, 74, 98, 122],
+      [6, 30, 54, 78, 102, 126],
+      [6, 26, 52, 78, 104, 130],
+      [6, 30, 56, 82, 108, 134],
+      [6, 34, 60, 86, 112, 138],
+      [6, 30, 58, 86, 114, 142],
+      [6, 34, 62, 90, 118, 146],
+      [6, 30, 54, 78, 102, 126, 150],
+      [6, 24, 50, 76, 102, 128, 154],
+      [6, 28, 54, 80, 106, 132, 158],
+      [6, 32, 58, 84, 110, 136, 162],
+      [6, 26, 54, 82, 110, 138, 166],
+      [6, 30, 58, 86, 114, 142, 170]
+    ];
+    var G15 = (1 << 10) | (1 << 8) | (1 << 5) | (1 << 4) | (1 << 2) | (1 << 1) | (1 << 0);
+    var G18 = (1 << 12) | (1 << 11) | (1 << 10) | (1 << 9) | (1 << 8) | (1 << 5) | (1 << 2) | (1 << 0);
+    var G15_MASK = (1 << 14) | (1 << 12) | (1 << 10) | (1 << 4) | (1 << 1);
+    var _this = {};
+    var getBCHDigit = function(data) {
+      var digit = 0;
+      while (data != 0) {
+        digit += 1;
+        data >>>= 1;
+      }
+      return digit;
+    };
+    _this.getBCHTypeInfo = function(data) {
+      var d = data << 10;
+      while (getBCHDigit(d) - getBCHDigit(G15) >= 0) {
+        d ^= (G15 << (getBCHDigit(d) - getBCHDigit(G15) ) );
+      }
+      return ( (data << 10) | d) ^ G15_MASK;
+    };
+    _this.getBCHTypeNumber = function(data) {
+      var d = data << 12;
+      while (getBCHDigit(d) - getBCHDigit(G18) >= 0) {
+        d ^= (G18 << (getBCHDigit(d) - getBCHDigit(G18) ) );
+      }
+      return (data << 12) | d;
+    };
+    _this.getPatternPosition = function(typeNumber) {
+      return PATTERN_POSITION_TABLE[typeNumber - 1];
+    };
+    _this.getMaskFunction = function(maskPattern) {
+      switch (maskPattern) {
+      case QRMaskPattern.PATTERN000 :
+        return function(i, j) { return (i + j) % 2 == 0; };
+      case QRMaskPattern.PATTERN001 :
+        return function(i, j) { return i % 2 == 0; };
+      case QRMaskPattern.PATTERN010 :
+        return function(i, j) { return j % 3 == 0; };
+      case QRMaskPattern.PATTERN011 :
+        return function(i, j) { return (i + j) % 3 == 0; };
+      case QRMaskPattern.PATTERN100 :
+        return function(i, j) { return (Math.floor(i / 2) + Math.floor(j / 3) ) % 2 == 0; };
+      case QRMaskPattern.PATTERN101 :
+        return function(i, j) { return (i * j) % 2 + (i * j) % 3 == 0; };
+      case QRMaskPattern.PATTERN110 :
+        return function(i, j) { return ( (i * j) % 2 + (i * j) % 3) % 2 == 0; };
+      case QRMaskPattern.PATTERN111 :
+        return function(i, j) { return ( (i * j) % 3 + (i + j) % 2) % 2 == 0; };
+      default :
+        throw 'bad maskPattern:' + maskPattern;
+      }
+    };
+    _this.getErrorCorrectPolynomial = function(errorCorrectLength) {
+      var a = qrPolynomial([1], 0);
+      for (var i = 0; i < errorCorrectLength; i += 1) {
+        a = a.multiply(qrPolynomial([1, QRMath.gexp(i)], 0) );
+      }
+      return a;
+    };
+    _this.getLengthInBits = function(mode, type) {
+      if (1 <= type && type < 10) {
+        // 1 - 9
+        switch(mode) {
+        case QRMode.MODE_NUMBER    : return 10;
+        case QRMode.MODE_ALPHA_NUM : return 9;
+        case QRMode.MODE_8BIT_BYTE : return 8;
+        case QRMode.MODE_KANJI     : return 8;
+        default :
+          throw 'mode:' + mode;
+        }
+      } else if (type < 27) {
+        // 10 - 26
+        switch(mode) {
+        case QRMode.MODE_NUMBER    : return 12;
+        case QRMode.MODE_ALPHA_NUM : return 11;
+        case QRMode.MODE_8BIT_BYTE : return 16;
+        case QRMode.MODE_KANJI     : return 10;
+        default :
+          throw 'mode:' + mode;
+        }
+      } else if (type < 41) {
+        // 27 - 40
+        switch(mode) {
+        case QRMode.MODE_NUMBER    : return 14;
+        case QRMode.MODE_ALPHA_NUM : return 13;
+        case QRMode.MODE_8BIT_BYTE : return 16;
+        case QRMode.MODE_KANJI     : return 12;
+        default :
+          throw 'mode:' + mode;
+        }
+      } else {
+        throw 'type:' + type;
+      }
+    };
+    _this.getLostPoint = function(qrcode) {
+      var moduleCount = qrcode.getModuleCount();
+      var lostPoint = 0;
+      // LEVEL1
+      for (var row = 0; row < moduleCount; row += 1) {
+        for (var col = 0; col < moduleCount; col += 1) {
+          var sameCount = 0;
+          var dark = qrcode.isDark(row, col);
+          for (var r = -1; r <= 1; r += 1) {
+            if (row + r < 0 || moduleCount <= row + r) {
+              continue;
+            }
+            for (var c = -1; c <= 1; c += 1) {
+              if (col + c < 0 || moduleCount <= col + c) {
+                continue;
+              }
+              if (r == 0 && c == 0) {
+                continue;
+              }
+              if (dark == qrcode.isDark(row + r, col + c) ) {
+                sameCount += 1;
+              }
+            }
+          }
+          if (sameCount > 5) {
+            lostPoint += (3 + sameCount - 5);
+          }
+        }
+      };
+      // LEVEL2
+      for (var row = 0; row < moduleCount - 1; row += 1) {
+        for (var col = 0; col < moduleCount - 1; col += 1) {
+          var count = 0;
+          if (qrcode.isDark(row, col) ) count += 1;
+          if (qrcode.isDark(row + 1, col) ) count += 1;
+          if (qrcode.isDark(row, col + 1) ) count += 1;
+          if (qrcode.isDark(row + 1, col + 1) ) count += 1;
+          if (count == 0 || count == 4) {
+            lostPoint += 3;
+          }
+        }
+      }
+      // LEVEL3
+      for (var row = 0; row < moduleCount; row += 1) {
+        for (var col = 0; col < moduleCount - 6; col += 1) {
+          if (qrcode.isDark(row, col)
+              && !qrcode.isDark(row, col + 1)
+              &&  qrcode.isDark(row, col + 2)
+              &&  qrcode.isDark(row, col + 3)
+              &&  qrcode.isDark(row, col + 4)
+              && !qrcode.isDark(row, col + 5)
+              &&  qrcode.isDark(row, col + 6) ) {
+            lostPoint += 40;
+          }
+        }
+      }
+      for (var col = 0; col < moduleCount; col += 1) {
+        for (var row = 0; row < moduleCount - 6; row += 1) {
+          if (qrcode.isDark(row, col)
+              && !qrcode.isDark(row + 1, col)
+              &&  qrcode.isDark(row + 2, col)
+              &&  qrcode.isDark(row + 3, col)
+              &&  qrcode.isDark(row + 4, col)
+              && !qrcode.isDark(row + 5, col)
+              &&  qrcode.isDark(row + 6, col) ) {
+            lostPoint += 40;
+          }
+        }
+      }
+      // LEVEL4
+      var darkCount = 0;
+      for (var col = 0; col < moduleCount; col += 1) {
+        for (var row = 0; row < moduleCount; row += 1) {
+          if (qrcode.isDark(row, col) ) {
+            darkCount += 1;
+          }
+        }
+      }
+      var ratio = Math.abs(100 * darkCount / moduleCount / moduleCount - 50) / 5;
+      lostPoint += ratio * 10;
+      return lostPoint;
+    };
+    return _this;
+  }();
+  //---------------------------------------------------------------------
+  // QRMath
+  //---------------------------------------------------------------------
+  var QRMath = function() {
+    var EXP_TABLE = new Array(256);
+    var LOG_TABLE = new Array(256);
+    // initialize tables
+    for (var i = 0; i < 8; i += 1) {
+      EXP_TABLE[i] = 1 << i;
+    }
+    for (var i = 8; i < 256; i += 1) {
+      EXP_TABLE[i] = EXP_TABLE[i - 4]
+        ^ EXP_TABLE[i - 5]
+        ^ EXP_TABLE[i - 6]
+        ^ EXP_TABLE[i - 8];
+    }
+    for (var i = 0; i < 255; i += 1) {
+      LOG_TABLE[EXP_TABLE[i] ] = i;
+    }
+    var _this = {};
+    _this.glog = function(n) {
+      if (n < 1) {
+        throw 'glog(' + n + ')';
+      }
+      return LOG_TABLE[n];
+    };
+    _this.gexp = function(n) {
+      while (n < 0) {
+        n += 255;
+      }
+      while (n >= 256) {
+        n -= 255;
+      }
+      return EXP_TABLE[n];
+    };
+    return _this;
+  }();
+  //---------------------------------------------------------------------
+  // qrPolynomial
+  //---------------------------------------------------------------------
+  function qrPolynomial(num, shift) {
+    if (typeof num.length == 'undefined') {
+      throw num.length + '/' + shift;
+    }
+    var _num = function() {
+      var offset = 0;
+      while (offset < num.length && num[offset] == 0) {
+        offset += 1;
+      }
+      var _num = new Array(num.length - offset + shift);
+      for (var i = 0; i < num.length - offset; i += 1) {
+        _num[i] = num[i + offset];
+      }
+      return _num;
+    }();
+    var _this = {};
+    _this.getAt = function(index) {
+      return _num[index];
+    };
+    _this.getLength = function() {
+      return _num.length;
+    };
+    _this.multiply = function(e) {
+      var num = new Array(_this.getLength() + e.getLength() - 1);
+      for (var i = 0; i < _this.getLength(); i += 1) {
+        for (var j = 0; j < e.getLength(); j += 1) {
+          num[i + j] ^= QRMath.gexp(QRMath.glog(_this.getAt(i) ) + QRMath.glog(e.getAt(j) ) );
+        }
+      }
+      return qrPolynomial(num, 0);
+    };
+    _this.mod = function(e) {
+      if (_this.getLength() - e.getLength() < 0) {
+        return _this;
+      }
+      var ratio = QRMath.glog(_this.getAt(0) ) - QRMath.glog(e.getAt(0) );
+      var num = new Array(_this.getLength() );
+      for (var i = 0; i < _this.getLength(); i += 1) {
+        num[i] = _this.getAt(i);
+      }
+      for (var i = 0; i < e.getLength(); i += 1) {
+        num[i] ^= QRMath.gexp(QRMath.glog(e.getAt(i) ) + ratio);
+      }
+      // recursive call
+      return qrPolynomial(num, 0).mod(e);
+    };
+    return _this;
+  };
+  //---------------------------------------------------------------------
+  // QRRSBlock
+  //---------------------------------------------------------------------
+  var QRRSBlock = function() {
+    var RS_BLOCK_TABLE = [
+      // L
+      // M
+      // Q
+      // H
+      // 1
+      [1, 26, 19],
+      [1, 26, 16],
+      [1, 26, 13],
+      [1, 26, 9],
+      // 2
+      [1, 44, 34],
+      [1, 44, 28],
+      [1, 44, 22],
+      [1, 44, 16],
+      // 3
+      [1, 70, 55],
+      [1, 70, 44],
+      [2, 35, 17],
+      [2, 35, 13],
+      // 4
+      [1, 100, 80],
+      [2, 50, 32],
+      [2, 50, 24],
+      [4, 25, 9],
+      // 5
+      [1, 134, 108],
+      [2, 67, 43],
+      [2, 33, 15, 2, 34, 16],
+      [2, 33, 11, 2, 34, 12],
+      // 6
+      [2, 86, 68],
+      [4, 43, 27],
+      [4, 43, 19],
+      [4, 43, 15],
+      // 7
+      [2, 98, 78],
+      [4, 49, 31],
+      [2, 32, 14, 4, 33, 15],
+      [4, 39, 13, 1, 40, 14],
+      // 8
+      [2, 121, 97],
+      [2, 60, 38, 2, 61, 39],
+      [4, 40, 18, 2, 41, 19],
+      [4, 40, 14, 2, 41, 15],
+      // 9
+      [2, 146, 116],
+      [3, 58, 36, 2, 59, 37],
+      [4, 36, 16, 4, 37, 17],
+      [4, 36, 12, 4, 37, 13],
+      // 10
+      [2, 86, 68, 2, 87, 69],
+      [4, 69, 43, 1, 70, 44],
+      [6, 43, 19, 2, 44, 20],
+      [6, 43, 15, 2, 44, 16],
+      // 11
+      [4, 101, 81],
+      [1, 80, 50, 4, 81, 51],
+      [4, 50, 22, 4, 51, 23],
+      [3, 36, 12, 8, 37, 13],
+      // 12
+      [2, 116, 92, 2, 117, 93],
+      [6, 58, 36, 2, 59, 37],
+      [4, 46, 20, 6, 47, 21],
+      [7, 42, 14, 4, 43, 15],
+      // 13
+      [4, 133, 107],
+      [8, 59, 37, 1, 60, 38],
+      [8, 44, 20, 4, 45, 21],
+      [12, 33, 11, 4, 34, 12],
+      // 14
+      [3, 145, 115, 1, 146, 116],
+      [4, 64, 40, 5, 65, 41],
+      [11, 36, 16, 5, 37, 17],
+      [11, 36, 12, 5, 37, 13],
+      // 15
+      [5, 109, 87, 1, 110, 88],
+      [5, 65, 41, 5, 66, 42],
+      [5, 54, 24, 7, 55, 25],
+      [11, 36, 12, 7, 37, 13],
+      // 16
+      [5, 122, 98, 1, 123, 99],
+      [7, 73, 45, 3, 74, 46],
+      [15, 43, 19, 2, 44, 20],
+      [3, 45, 15, 13, 46, 16],
+      // 17
+      [1, 135, 107, 5, 136, 108],
+      [10, 74, 46, 1, 75, 47],
+      [1, 50, 22, 15, 51, 23],
+      [2, 42, 14, 17, 43, 15],
+      // 18
+      [5, 150, 120, 1, 151, 121],
+      [9, 69, 43, 4, 70, 44],
+      [17, 50, 22, 1, 51, 23],
+      [2, 42, 14, 19, 43, 15],
+      // 19
+      [3, 141, 113, 4, 142, 114],
+      [3, 70, 44, 11, 71, 45],
+      [17, 47, 21, 4, 48, 22],
+      [9, 39, 13, 16, 40, 14],
+      // 20
+      [3, 135, 107, 5, 136, 108],
+      [3, 67, 41, 13, 68, 42],
+      [15, 54, 24, 5, 55, 25],
+      [15, 43, 15, 10, 44, 16],
+      // 21
+      [4, 144, 116, 4, 145, 117],
+      [17, 68, 42],
+      [17, 50, 22, 6, 51, 23],
+      [19, 46, 16, 6, 47, 17],
+      // 22
+      [2, 139, 111, 7, 140, 112],
+      [17, 74, 46],
+      [7, 54, 24, 16, 55, 25],
+      [34, 37, 13],
+      // 23
+      [4, 151, 121, 5, 152, 122],
+      [4, 75, 47, 14, 76, 48],
+      [11, 54, 24, 14, 55, 25],
+      [16, 45, 15, 14, 46, 16],
+      // 24
+      [6, 147, 117, 4, 148, 118],
+      [6, 73, 45, 14, 74, 46],
+      [11, 54, 24, 16, 55, 25],
+      [30, 46, 16, 2, 47, 17],
+      // 25
+      [8, 132, 106, 4, 133, 107],
+      [8, 75, 47, 13, 76, 48],
+      [7, 54, 24, 22, 55, 25],
+      [22, 45, 15, 13, 46, 16],
+      // 26
+      [10, 142, 114, 2, 143, 115],
+      [19, 74, 46, 4, 75, 47],
+      [28, 50, 22, 6, 51, 23],
+      [33, 46, 16, 4, 47, 17],
+      // 27
+      [8, 152, 122, 4, 153, 123],
+      [22, 73, 45, 3, 74, 46],
+      [8, 53, 23, 26, 54, 24],
+      [12, 45, 15, 28, 46, 16],
+      // 28
+      [3, 147, 117, 10, 148, 118],
+      [3, 73, 45, 23, 74, 46],
+      [4, 54, 24, 31, 55, 25],
+      [11, 45, 15, 31, 46, 16],
+      // 29
+      [7, 146, 116, 7, 147, 117],
+      [21, 73, 45, 7, 74, 46],
+      [1, 53, 23, 37, 54, 24],
+      [19, 45, 15, 26, 46, 16],
+      // 30
+      [5, 145, 115, 10, 146, 116],
+      [19, 75, 47, 10, 76, 48],
+      [15, 54, 24, 25, 55, 25],
+      [23, 45, 15, 25, 46, 16],
+      // 31
+      [13, 145, 115, 3, 146, 116],
+      [2, 74, 46, 29, 75, 47],
+      [42, 54, 24, 1, 55, 25],
+      [23, 45, 15, 28, 46, 16],
+      // 32
+      [17, 145, 115],
+      [10, 74, 46, 23, 75, 47],
+      [10, 54, 24, 35, 55, 25],
+      [19, 45, 15, 35, 46, 16],
+      // 33
+      [17, 145, 115, 1, 146, 116],
+      [14, 74, 46, 21, 75, 47],
+      [29, 54, 24, 19, 55, 25],
+      [11, 45, 15, 46, 46, 16],
+      // 34
+      [13, 145, 115, 6, 146, 116],
+      [14, 74, 46, 23, 75, 47],
+      [44, 54, 24, 7, 55, 25],
+      [59, 46, 16, 1, 47, 17],
+      // 35
+      [12, 151, 121, 7, 152, 122],
+      [12, 75, 47, 26, 76, 48],
+      [39, 54, 24, 14, 55, 25],
+      [22, 45, 15, 41, 46, 16],
+      // 36
+      [6, 151, 121, 14, 152, 122],
+      [6, 75, 47, 34, 76, 48],
+      [46, 54, 24, 10, 55, 25],
+      [2, 45, 15, 64, 46, 16],
+      // 37
+      [17, 152, 122, 4, 153, 123],
+      [29, 74, 46, 14, 75, 47],
+      [49, 54, 24, 10, 55, 25],
+      [24, 45, 15, 46, 46, 16],
+      // 38
+      [4, 152, 122, 18, 153, 123],
+      [13, 74, 46, 32, 75, 47],
+      [48, 54, 24, 14, 55, 25],
+      [42, 45, 15, 32, 46, 16],
+      // 39
+      [20, 147, 117, 4, 148, 118],
+      [40, 75, 47, 7, 76, 48],
+      [43, 54, 24, 22, 55, 25],
+      [10, 45, 15, 67, 46, 16],
+      // 40
+      [19, 148, 118, 6, 149, 119],
+      [18, 75, 47, 31, 76, 48],
+      [34, 54, 24, 34, 55, 25],
+      [20, 45, 15, 61, 46, 16]
+    ];
+    var qrRSBlock = function(totalCount, dataCount) {
+      var _this = {};
+      _this.totalCount = totalCount;
+      _this.dataCount = dataCount;
+      return _this;
+    };
+    var _this = {};
+    var getRsBlockTable = function(typeNumber, errorCorrectionLevel) {
+      switch(errorCorrectionLevel) {
+      case QRErrorCorrectionLevel.L :
+        return RS_BLOCK_TABLE[(typeNumber - 1) * 4 + 0];
+      case QRErrorCorrectionLevel.M :
+        return RS_BLOCK_TABLE[(typeNumber - 1) * 4 + 1];
+      case QRErrorCorrectionLevel.Q :
+        return RS_BLOCK_TABLE[(typeNumber - 1) * 4 + 2];
+      case QRErrorCorrectionLevel.H :
+        return RS_BLOCK_TABLE[(typeNumber - 1) * 4 + 3];
+      default :
+        return undefined;
+      }
+    };
+    _this.getRSBlocks = function(typeNumber, errorCorrectionLevel) {
+      var rsBlock = getRsBlockTable(typeNumber, errorCorrectionLevel);
+      if (typeof rsBlock == 'undefined') {
+        throw 'bad rs block @ typeNumber:' + typeNumber +
+            '/errorCorrectionLevel:' + errorCorrectionLevel;
+      }
+      var length = rsBlock.length / 3;
+      var list = [];
+      for (var i = 0; i < length; i += 1) {
+        var count = rsBlock[i * 3 + 0];
+        var totalCount = rsBlock[i * 3 + 1];
+        var dataCount = rsBlock[i * 3 + 2];
+        for (var j = 0; j < count; j += 1) {
+          list.push(qrRSBlock(totalCount, dataCount) );
+        }
+      }
+      return list;
+    };
+    return _this;
+  }();
+  //---------------------------------------------------------------------
+  // qrBitBuffer
+  //---------------------------------------------------------------------
+  var qrBitBuffer = function() {
+    var _buffer = [];
+    var _length = 0;
+    var _this = {};
+    _this.getBuffer = function() {
+      return _buffer;
+    };
+    _this.getAt = function(index) {
+      var bufIndex = Math.floor(index / 8);
+      return ( (_buffer[bufIndex] >>> (7 - index % 8) ) & 1) == 1;
+    };
+    _this.put = function(num, length) {
+      for (var i = 0; i < length; i += 1) {
+        _this.putBit( ( (num >>> (length - i - 1) ) & 1) == 1);
+      }
+    };
+    _this.getLengthInBits = function() {
+      return _length;
+    };
+    _this.putBit = function(bit) {
+      var bufIndex = Math.floor(_length / 8);
+      if (_buffer.length <= bufIndex) {
+        _buffer.push(0);
+      }
+      if (bit) {
+        _buffer[bufIndex] |= (0x80 >>> (_length % 8) );
+      }
+      _length += 1;
+    };
+    return _this;
+  };
+  //---------------------------------------------------------------------
+  // qrNumber
+  //---------------------------------------------------------------------
+  var qrNumber = function(data) {
+    var _mode = QRMode.MODE_NUMBER;
+    var _data = data;
+    var _this = {};
+    _this.getMode = function() {
+      return _mode;
+    };
+    _this.getLength = function(buffer) {
+      return _data.length;
+    };
+    _this.write = function(buffer) {
+      var data = _data;
+      var i = 0;
+      while (i + 2 < data.length) {
+        buffer.put(strToNum(data.substring(i, i + 3) ), 10);
+        i += 3;
+      }
+      if (i < data.length) {
+        if (data.length - i == 1) {
+          buffer.put(strToNum(data.substring(i, i + 1) ), 4);
+        } else if (data.length - i == 2) {
+          buffer.put(strToNum(data.substring(i, i + 2) ), 7);
+        }
+      }
+    };
+    var strToNum = function(s) {
+      var num = 0;
+      for (var i = 0; i < s.length; i += 1) {
+        num = num * 10 + chatToNum(s.charAt(i) );
+      }
+      return num;
+    };
+    var chatToNum = function(c) {
+      if ('0' <= c && c <= '9') {
+        return c.charCodeAt(0) - '0'.charCodeAt(0);
+      }
+      throw 'illegal char :' + c;
+    };
+    return _this;
+  };
+  //---------------------------------------------------------------------
+  // qrAlphaNum
+  //---------------------------------------------------------------------
+  var qrAlphaNum = function(data) {
+    var _mode = QRMode.MODE_ALPHA_NUM;
+    var _data = data;
+    var _this = {};
+    _this.getMode = function() {
+      return _mode;
+    };
+    _this.getLength = function(buffer) {
+      return _data.length;
+    };
+    _this.write = function(buffer) {
+      var s = _data;
+      var i = 0;
+      while (i + 1 < s.length) {
+        buffer.put(
+          getCode(s.charAt(i) ) * 45 +
+          getCode(s.charAt(i + 1) ), 11);
+        i += 2;
+      }
+      if (i < s.length) {
+        buffer.put(getCode(s.charAt(i) ), 6);
+      }
+    };
+    var getCode = function(c) {
+      if ('0' <= c && c <= '9') {
+        return c.charCodeAt(0) - '0'.charCodeAt(0);
+      } else if ('A' <= c && c <= 'Z') {
+        return c.charCodeAt(0) - 'A'.charCodeAt(0) + 10;
+      } else {
+        switch (c) {
+        case ' ' : return 36;
+        case '$' : return 37;
+        case '%' : return 38;
+        case '*' : return 39;
+        case '+' : return 40;
+        case '-' : return 41;
+        case '.' : return 42;
+        case '/' : return 43;
+        case ':' : return 44;
+        default :
+          throw 'illegal char :' + c;
+        }
+      }
+    };
+    return _this;
+  };
+  //---------------------------------------------------------------------
+  // qr8BitByte
+  //---------------------------------------------------------------------
+  var qr8BitByte = function(data) {
+    var _mode = QRMode.MODE_8BIT_BYTE;
+    var _data = data;
+    var _bytes = qrcode.stringToBytes(data);
+    var _this = {};
+    _this.getMode = function() {
+      return _mode;
+    };
+    _this.getLength = function(buffer) {
+      return _bytes.length;
+    };
+    _this.write = function(buffer) {
+      for (var i = 0; i < _bytes.length; i += 1) {
+        buffer.put(_bytes[i], 8);
+      }
+    };
+    return _this;
+  };
+  //---------------------------------------------------------------------
+  // qrKanji
+  //---------------------------------------------------------------------
+  var qrKanji = function(data) {
+    var _mode = QRMode.MODE_KANJI;
+    var _data = data;
+    var stringToBytes = qrcode.stringToBytesFuncs['SJIS'];
+    if (!stringToBytes) {
+      throw 'sjis not supported.';
+    }
+    !function(c, code) {
+      // self test for sjis support.
+      var test = stringToBytes(c);
+      if (test.length != 2 || ( (test[0] << 8) | test[1]) != code) {
+        throw 'sjis not supported.';
+      }
+    }('\u53cb', 0x9746);
+    var _bytes = stringToBytes(data);
+    var _this = {};
+    _this.getMode = function() {
+      return _mode;
+    };
+    _this.getLength = function(buffer) {
+      return ~~(_bytes.length / 2);
+    };
+    _this.write = function(buffer) {
+      var data = _bytes;
+      var i = 0;
+      while (i + 1 < data.length) {
+        var c = ( (0xff & data[i]) << 8) | (0xff & data[i + 1]);
+        if (0x8140 <= c && c <= 0x9FFC) {
+          c -= 0x8140;
+        } else if (0xE040 <= c && c <= 0xEBBF) {
+          c -= 0xC140;
+        } else {
+          throw 'illegal char at ' + (i + 1) + '/' + c;
+        }
+        c = ( (c >>> 8) & 0xff) * 0xC0 + (c & 0xff);
+        buffer.put(c, 13);
+        i += 2;
+      }
+      if (i < data.length) {
+        throw 'illegal char at ' + (i + 1);
+      }
+    };
+    return _this;
+  };
+  //=====================================================================
+  // GIF Support etc.
+  //
+  //---------------------------------------------------------------------
+  // byteArrayOutputStream
+  //---------------------------------------------------------------------
+  var byteArrayOutputStream = function() {
+    var _bytes = [];
+    var _this = {};
+    _this.writeByte = function(b) {
+      _bytes.push(b & 0xff);
+    };
+    _this.writeShort = function(i) {
+      _this.writeByte(i);
+      _this.writeByte(i >>> 8);
+    };
+    _this.writeBytes = function(b, off, len) {
+      off = off || 0;
+      len = len || b.length;
+      for (var i = 0; i < len; i += 1) {
+        _this.writeByte(b[i + off]);
+      }
+    };
+    _this.writeString = function(s) {
+      for (var i = 0; i < s.length; i += 1) {
+        _this.writeByte(s.charCodeAt(i) );
+      }
+    };
+    _this.toByteArray = function() {
+      return _bytes;
+    };
+    _this.toString = function() {
+      var s = '';
+      s += '[';
+      for (var i = 0; i < _bytes.length; i += 1) {
+        if (i > 0) {
+          s += ',';
+        }
+        s += _bytes[i];
+      }
+      s += ']';
+      return s;
+    };
+    return _this;
+  };
+  //---------------------------------------------------------------------
+  // base64EncodeOutputStream
+  //---------------------------------------------------------------------
+  var base64EncodeOutputStream = function() {
+    var _buffer = 0;
+    var _buflen = 0;
+    var _length = 0;
+    var _base64 = '';
+    var _this = {};
+    var writeEncoded = function(b) {
+      _base64 += String.fromCharCode(encode(b & 0x3f) );
+    };
+    var encode = function(n) {
+      if (n < 0) {
+        // error.
+      } else if (n < 26) {
+        return 0x41 + n;
+      } else if (n < 52) {
+        return 0x61 + (n - 26);
+      } else if (n < 62) {
+        return 0x30 + (n - 52);
+      } else if (n == 62) {
+        return 0x2b;
+      } else if (n == 63) {
+        return 0x2f;
+      }
+      throw 'n:' + n;
+    };
+    _this.writeByte = function(n) {
+      _buffer = (_buffer << 8) | (n & 0xff);
+      _buflen += 8;
+      _length += 1;
+      while (_buflen >= 6) {
+        writeEncoded(_buffer >>> (_buflen - 6) );
+        _buflen -= 6;
+      }
+    };
+    _this.flush = function() {
+      if (_buflen > 0) {
+        writeEncoded(_buffer << (6 - _buflen) );
+        _buffer = 0;
+        _buflen = 0;
+      }
+      if (_length % 3 != 0) {
+        // padding
+        var padlen = 3 - _length % 3;
+        for (var i = 0; i < padlen; i += 1) {
+          _base64 += '=';
+        }
+      }
+    };
+    _this.toString = function() {
+      return _base64;
+    };
+    return _this;
+  };
+  //---------------------------------------------------------------------
+  // base64DecodeInputStream
+  //---------------------------------------------------------------------
+  var base64DecodeInputStream = function(str) {
+    var _str = str;
+    var _pos = 0;
+    var _buffer = 0;
+    var _buflen = 0;
+    var _this = {};
+    _this.read = function() {
+      while (_buflen < 8) {
+        if (_pos >= _str.length) {
+          if (_buflen == 0) {
+            return -1;
+          }
+          throw 'unexpected end of file./' + _buflen;
+        }
+        var c = _str.charAt(_pos);
+        _pos += 1;
+        if (c == '=') {
+          _buflen = 0;
+          return -1;
+        } else if (c.match(/^\s$/) ) {
+          // ignore if whitespace.
+          continue;
+        }
+        _buffer = (_buffer << 6) | decode(c.charCodeAt(0) );
+        _buflen += 6;
+      }
+      var n = (_buffer >>> (_buflen - 8) ) & 0xff;
+      _buflen -= 8;
+      return n;
+    };
+    var decode = function(c) {
+      if (0x41 <= c && c <= 0x5a) {
+        return c - 0x41;
+      } else if (0x61 <= c && c <= 0x7a) {
+        return c - 0x61 + 26;
+      } else if (0x30 <= c && c <= 0x39) {
+        return c - 0x30 + 52;
+      } else if (c == 0x2b) {
+        return 62;
+      } else if (c == 0x2f) {
+        return 63;
+      } else {
+        throw 'c:' + c;
+      }
+    };
+    return _this;
+  };
+  //---------------------------------------------------------------------
+  // gifImage (B/W)
+  //---------------------------------------------------------------------
+  var gifImage = function(width, height) {
+    var _width = width;
+    var _height = height;
+    var _data = new Array(width * height);
+    var _this = {};
+    _this.setPixel = function(x, y, pixel) {
+      _data[y * _width + x] = pixel;
+    };
+    _this.write = function(out) {
+      //---------------------------------
+      // GIF Signature
+      out.writeString('GIF87a');
+      //---------------------------------
+      // Screen Descriptor
+      out.writeShort(_width);
+      out.writeShort(_height);
+      out.writeByte(0x80); // 2bit
+      out.writeByte(0);
+      out.writeByte(0);
+      //---------------------------------
+      // Global Color Map
+      // black
+      out.writeByte(0x00);
+      out.writeByte(0x00);
+      out.writeByte(0x00);
+      // white
+      out.writeByte(0xff);
+      out.writeByte(0xff);
+      out.writeByte(0xff);
+      //---------------------------------
+      // Image Descriptor
+      out.writeString(',');
+      out.writeShort(0);
+      out.writeShort(0);
+      out.writeShort(_width);
+      out.writeShort(_height);
+      out.writeByte(0);
+      //---------------------------------
+      // Local Color Map
+      //---------------------------------
+      // Raster Data
+      var lzwMinCodeSize = 2;
+      var raster = getLZWRaster(lzwMinCodeSize);
+      out.writeByte(lzwMinCodeSize);
+      var offset = 0;
+      while (raster.length - offset > 255) {
+        out.writeByte(255);
+        out.writeBytes(raster, offset, 255);
+        offset += 255;
+      }
+      out.writeByte(raster.length - offset);
+      out.writeBytes(raster, offset, raster.length - offset);
+      out.writeByte(0x00);
+      //---------------------------------
+      // GIF Terminator
+      out.writeString(';');
+    };
+    var bitOutputStream = function(out) {
+      var _out = out;
+      var _bitLength = 0;
+      var _bitBuffer = 0;
+      var _this = {};
+      _this.write = function(data, length) {
+        if ( (data >>> length) != 0) {
+          throw 'length over';
+        }
+        while (_bitLength + length >= 8) {
+          _out.writeByte(0xff & ( (data << _bitLength) | _bitBuffer) );
+          length -= (8 - _bitLength);
+          data >>>= (8 - _bitLength);
+          _bitBuffer = 0;
+          _bitLength = 0;
+        }
+        _bitBuffer = (data << _bitLength) | _bitBuffer;
+        _bitLength = _bitLength + length;
+      };
+      _this.flush = function() {
+        if (_bitLength > 0) {
+          _out.writeByte(_bitBuffer);
+        }
+      };
+      return _this;
+    };
+    var getLZWRaster = function(lzwMinCodeSize) {
+      var clearCode = 1 << lzwMinCodeSize;
+      var endCode = (1 << lzwMinCodeSize) + 1;
+      var bitLength = lzwMinCodeSize + 1;
+      // Setup LZWTable
+      var table = lzwTable();
+      for (var i = 0; i < clearCode; i += 1) {
+        table.add(String.fromCharCode(i) );
+      }
+      table.add(String.fromCharCode(clearCode) );
+      table.add(String.fromCharCode(endCode) );
+      var byteOut = byteArrayOutputStream();
+      var bitOut = bitOutputStream(byteOut);
+      // clear code
+      bitOut.write(clearCode, bitLength);
+      var dataIndex = 0;
+      var s = String.fromCharCode(_data[dataIndex]);
+      dataIndex += 1;
+      while (dataIndex < _data.length) {
+        var c = String.fromCharCode(_data[dataIndex]);
+        dataIndex += 1;
+        if (table.contains(s + c) ) {
+          s = s + c;
+        } else {
+          bitOut.write(table.indexOf(s), bitLength);
+          if (table.size() < 0xfff) {
+            if (table.size() == (1 << bitLength) ) {
+              bitLength += 1;
+            }
+            table.add(s + c);
+          }
+          s = c;
+        }
+      }
+      bitOut.write(table.indexOf(s), bitLength);
+      // end code
+      bitOut.write(endCode, bitLength);
+      bitOut.flush();
+      return byteOut.toByteArray();
+    };
+    var lzwTable = function() {
+      var _map = {};
+      var _size = 0;
+      var _this = {};
+      _this.add = function(key) {
+        if (_this.contains(key) ) {
+          throw 'dup key:' + key;
+        }
+        _map[key] = _size;
+        _size += 1;
+      };
+      _this.size = function() {
+        return _size;
+      };
+      _this.indexOf = function(key) {
+        return _map[key];
+      };
+      _this.contains = function(key) {
+        return typeof _map[key] != 'undefined';
+      };
+      return _this;
+    };
+    return _this;
+  };
+  var createDataURL = function(width, height, getPixel) {
+    var gif = gifImage(width, height);
+    for (var y = 0; y < height; y += 1) {
+      for (var x = 0; x < width; x += 1) {
+        gif.setPixel(x, y, getPixel(x, y) );
+      }
+    }
+    var b = byteArrayOutputStream();
+    gif.write(b);
+    var base64 = base64EncodeOutputStream();
+    var bytes = b.toByteArray();
+    for (var i = 0; i < bytes.length; i += 1) {
+      base64.writeByte(bytes[i]);
+    }
+    base64.flush();
+    return 'data:image/gif;base64,' + base64;
+  };
+  //---------------------------------------------------------------------
+  // returns qrcode function.
+  return qrcode;
+}();
+!function() {
+  qrcode.stringToBytesFuncs['UTF-8'] = function(s) {
+    // http://stackoverflow.com/questions/18729405/how-to-convert-utf8-string-to-byte-array
+    function toUTF8Array(str) {
+      var utf8 = [];
+      for (var i=0; i < str.length; i++) {
+        var charcode = str.charCodeAt(i);
+        if (charcode < 0x80) utf8.push(charcode);
+        else if (charcode < 0x800) {
+          utf8.push(0xc0 | (charcode >> 6),
+              0x80 | (charcode & 0x3f));
+        }
+        else if (charcode < 0xd800 || charcode >= 0xe000) {
+          utf8.push(0xe0 | (charcode >> 12),
+              0x80 | ((charcode>>6) & 0x3f),
+              0x80 | (charcode & 0x3f));
+        }
+        // surrogate pair
+        else {
+          i++;
+          // UTF-16 encodes 0x10000-0x10FFFF by
+          // subtracting 0x10000 and splitting the
+          // 20 bits of 0x0-0xFFFFF into two halves
+          charcode = 0x10000 + (((charcode & 0x3ff)<<10)
+            | (str.charCodeAt(i) & 0x3ff));
+          utf8.push(0xf0 | (charcode >>18),
+              0x80 | ((charcode>>12) & 0x3f),
+              0x80 | ((charcode>>6) & 0x3f),
+              0x80 | (charcode & 0x3f));
+        }
+      }
+      return utf8;
+    }
+    return toUTF8Array(s);
+  };
+}();
+(function (factory) {
+  if (typeof define === 'function' && define.amd) {
+      define([], factory);
+  } else if (typeof exports === 'object') {
+      module.exports = factory();
+  }
+}(function () {
+    return qrcode;
+}));
+
+</script>
+<script>
+/* Ingleslegal certificate module (shared). Requires the qrcode() global from qrcode.js. */
+const CERT_PASS = 75;
+const CERT_VERIFY = "https://ingleslegal-hub.github.io/ingleslegal-exam/verify.html";
+const CERT_ALPHABET = "ABCDEFGHJKMNPQRSTUVWXYZ23456789";
+const CERT_CSS = `.il-rep{--aub:#2A1B33;--deep:#1E1226;--lift:#503A5C;--gold:#C9A96E;--cream:#F1EBDE;--bronze:#A9713F;--line:#6E5A79;--light:#FBF8F1;--ok:#2f6f4f;width:820px;margin:0 auto;background:var(--light);color:var(--lift);position:relative;overflow:hidden;font-family:"Archivo",Arial,sans-serif;line-height:1.4;box-sizing:border-box;text-align:left;-webkit-print-color-adjust:exact;print-color-adjust:exact}
+.il-rep *{box-sizing:border-box}
+.il-hd{position:relative;padding:34px 44px 36px;color:var(--cream);background:linear-gradient(135deg,var(--deep) 0%,var(--aub) 48%,var(--lift) 100%);overflow:hidden}
+.il-hd .il-arcs{position:absolute;right:-70px;top:-60px;width:380px;height:380px;opacity:.55}
+.il-brand{display:flex;align-items:center;gap:10px;position:relative}
+.il-brand .il-wm{font-weight:600;font-size:23px;letter-spacing:-.01em;color:var(--cream)} .il-brand .il-wm b{color:var(--gold);font-weight:600}
+.il-kick{position:relative;margin-top:30px;font-size:12px;letter-spacing:.34em;text-transform:uppercase;color:var(--gold);font-weight:600}
+.il-hd h1{position:relative;font-family:"Spectral",Georgia,serif;font-weight:500;font-size:44px;line-height:1.05;margin:8px 0 0;color:var(--cream);letter-spacing:0}
+.il-who{position:relative;margin-top:24px;display:flex;justify-content:space-between;align-items:flex-end;gap:20px}
+.il-who .il-lbl{font-size:11px;letter-spacing:.2em;text-transform:uppercase;color:#b9aac4}
+.il-who .il-nm{font-family:"Spectral",Georgia,serif;font-size:32px;color:var(--gold);margin-top:2px}
+.il-who .il-ex{font-size:15px;color:var(--cream);margin-top:4px;font-weight:500}
+.il-pill{display:inline-block;margin-top:8px;font-size:11px;letter-spacing:.12em;text-transform:uppercase;font-weight:700;padding:5px 12px;border-radius:20px;background:rgba(201,169,110,.18);border:1px solid var(--gold);color:var(--gold)}
+.il-who .il-dt{text-align:right}
+.il-who .il-dt .il-v{font-size:16px;font-weight:600;color:var(--cream);margin-top:2px}
+.il-sc{margin:-22px 44px 0;position:relative;background:#fff;border:1px solid rgba(110,90,121,.22);border-radius:6px;padding:20px 26px;display:flex;align-items:center;gap:26px;box-shadow:0 4px 14px rgba(42,27,51,.12)}
+.il-ring{position:relative;width:118px;height:118px;flex:none}
+.il-ring .il-t{position:absolute;left:0;top:0;right:0;bottom:0;display:flex;flex-direction:column;align-items:center;justify-content:center}
+.il-ring .il-t b{font-size:28px;color:var(--aub);font-weight:700;line-height:1} .il-ring .il-t span{font-size:10px;letter-spacing:.14em;text-transform:uppercase;color:var(--bronze);margin-top:3px}
+.il-sc .il-stats{display:flex;gap:30px;flex:1;justify-content:space-around}
+.il-stat .il-n{font-size:24px;font-weight:700;color:var(--aub)} .il-stat .il-l{font-size:10.5px;letter-spacing:.14em;text-transform:uppercase;color:var(--bronze);margin-top:3px}
+.il-passed{background:var(--ok);color:#fff;font-size:12px;letter-spacing:.16em;text-transform:uppercase;font-weight:700;padding:8px 16px;border-radius:4px}
+.il-bd{padding:26px 44px 8px}
+.il-sec{font-size:12px;letter-spacing:.22em;text-transform:uppercase;color:var(--bronze);font-weight:700;margin:0 0 10px}
+.il-ribbon{position:relative;margin:6px -16px 16px;padding:11px 28px;background:linear-gradient(180deg,#E8D09A,#C9A96E 55%,#B8964F);color:var(--aub);text-align:center;font-weight:700;letter-spacing:.2em;text-transform:uppercase;font-size:14px;box-shadow:0 3px 8px rgba(42,27,51,.25)}
+.il-ribbon::before,.il-ribbon::after{content:"";position:absolute;top:100%;border-style:solid}
+.il-ribbon::before{left:0;border-width:0 16px 12px 0;border-color:transparent #7d6430 transparent transparent}
+.il-ribbon::after{right:0;border-width:12px 16px 0 0;border-color:#7d6430 transparent transparent transparent;transform:scaleX(-1)}
+.il-top3{display:grid;grid-template-columns:repeat(3,1fr);gap:12px;margin-bottom:24px}
+.il-card{border-radius:6px;padding:14px 14px 13px;background:linear-gradient(160deg,var(--aub),var(--lift));color:var(--cream);position:relative;overflow:hidden;border:0;box-shadow:none}
+.il-card .il-rk{position:absolute;right:10px;top:4px;font-family:"Spectral",Georgia,serif;font-size:46px;color:rgba(201,169,110,.35);line-height:1}
+.il-card .il-nm{font-weight:600;font-size:14px;line-height:1.25;min-height:36px;padding-right:30px}
+.il-card .il-pc{font-size:30px;font-weight:700;color:var(--gold);margin-top:8px;line-height:1}
+.il-card .il-mini{height:5px;background:rgba(255,255,255,.18);border-radius:3px;margin-top:9px;overflow:hidden}.il-card .il-mini i{display:block;height:100%;background:var(--gold)}
+.il-card .il-sb{font-size:11px;color:#cdbfd6;margin-top:6px}
+.il-snap{margin-bottom:22px}
+.il-row{display:grid;grid-template-columns:230px 1fr 52px;align-items:center;gap:12px;margin:7px 0;font-size:13px}
+.il-row .il-tn{color:var(--aub);font-weight:500}
+.il-row .il-track{position:relative;height:10px;background:#ebe4d6;border-radius:5px}
+.il-row .il-fill{height:100%;border-radius:5px;background:linear-gradient(90deg,var(--lift),var(--gold))}
+.il-row .il-mk{position:absolute;top:-4px;bottom:-4px;width:2px;background:var(--aub)}
+.il-row .il-pv{text-align:right;font-weight:700;color:var(--aub)}
+.il-legend{font-size:11px;color:var(--bronze);margin-top:6px}
+.il-win{background:linear-gradient(150deg,var(--deep),var(--aub) 60%,#432c50);color:var(--cream);border-radius:8px;padding:22px 24px;margin:0 0 18px;position:relative;overflow:hidden}
+.il-win .il-sec{color:var(--gold)}
+.il-win .il-ttl{font-family:"Spectral",Georgia,serif;font-size:24px;color:var(--cream);margin:-2px 0 12px}
+.il-wgrid{display:grid;grid-template-columns:1fr 1fr;gap:14px}
+.il-w{border:1px solid rgba(201,169,110,.45);border-radius:6px;padding:12px 14px;background:rgba(255,255,255,.04)}
+.il-w .il-a{font-size:11px;letter-spacing:.14em;text-transform:uppercase;color:var(--gold);font-weight:700}
+.il-w .il-b{font-size:15px;font-weight:600;margin:3px 0 2px}
+.il-w .il-c{font-size:12.5px;color:#d8cfdf;line-height:1.5}
+.il-pw{margin-top:14px;border-top:1px solid rgba(201,169,110,.35);padding-top:12px;display:flex;justify-content:space-between;gap:16px;align-items:center}
+.il-pw .il-l{font-size:13px;line-height:1.5;color:#d8cfdf}.il-pw .il-l b{color:var(--gold)}
+.il-off{flex:none;text-align:center;border:1.5px dashed var(--gold);border-radius:6px;padding:8px 14px}
+.il-off code{display:block;font-family:"Courier New",monospace;font-size:19px;font-weight:700;letter-spacing:.16em;color:var(--gold)}
+.il-off span{font-size:10.5px;color:#d8cfdf;letter-spacing:.04em}
+.il-ft{background:var(--deep);color:var(--cream);padding:20px 44px;display:flex;align-items:center;gap:22px;margin-top:6px}
+.il-qr{background:#fff;padding:7px;border-radius:5px;flex:none;line-height:0}
+.il-ft .il-m{flex:1;font-size:12px;line-height:1.55;color:#cdbfd6}
+.il-ft .il-m b{color:var(--gold);letter-spacing:.06em}
+.il-ft .il-id{font-family:"Courier New",monospace;font-size:15px;color:var(--cream);letter-spacing:.08em;margin:2px 0}
+.il-ft .il-url{color:var(--gold);word-break:break-all}
+.il-seal{width:78px;height:78px;flex:none;border-radius:50%;background:radial-gradient(circle at 35% 30%,#E8D09A,var(--gold) 55%,#A9873F);display:flex;align-items:center;justify-content:center;position:relative}
+.il-seal::before{content:"";position:absolute;left:5px;top:5px;right:5px;bottom:5px;border:1.4px solid rgba(42,27,51,.55);border-radius:50%}
+.il-seal span{font-size:9px;letter-spacing:.14em;text-transform:uppercase;font-weight:700;color:var(--aub);text-align:center;line-height:1.35}
+.il-disc{padding:10px 44px 16px;font-size:10.5px;line-height:1.5;background:var(--deep);color:#9d8eab;border-top:1px solid rgba(110,90,121,.4)}
+`;
+const CERT_UI_CSS = `.certcard{border:1.5px solid #C9A96E;border-radius:6px;padding:20px 22px;margin:18px 0;background:linear-gradient(135deg,rgba(201,169,110,.2),rgba(201,169,110,.05));font-family:"Archivo",Arial,sans-serif;color:#F1EBDE}
+.certcard .ct{font-size:11px;letter-spacing:.8px;text-transform:uppercase;color:#C9A96E;font-weight:600;margin-bottom:4px}
+.certcard .headline{font-size:20px;font-weight:600;color:#F1EBDE;margin-bottom:6px}
+.certcard p{margin:0 0 14px;font-size:14px;line-height:1.55;color:#F1EBDE}
+.certrow{display:flex;gap:10px;flex-wrap:wrap}
+.certidline{margin-top:12px;font-family:"Courier New",monospace;font-size:12px;letter-spacing:.06em;color:#C9A96E}
+#certOverlay{position:fixed;left:0;top:0;right:0;bottom:0;z-index:99999;background:rgba(30,18,38,.94);display:flex;flex-direction:column}
+#certOverlay .certbar{display:flex;gap:10px;flex-wrap:wrap;justify-content:center;padding:12px;background:#1E1226;border-bottom:1px solid #6E5A79}
+#certOverlay .certscroll{flex:1;overflow:auto;padding:16px 0 40px}
+@media print{
+  body>*:not(#certOverlay){display:none!important}
+  html,body{background:#fff!important;overflow:visible!important;height:auto!important}
+  #certOverlay{position:static!important;background:none!important;display:block!important}
+  #certOverlay .certbar{display:none!important}
+  #certOverlay .certscroll{overflow:visible!important;padding:0!important}
+  @page{size:A4 portrait;margin:0}
+}
+`;
+let _certD = null;
+
+function certEsc(s){ return String(s).replace(/[&<>"]/g, c => ({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;"}[c])); }
+function certNewId(prefix){
+  const a = new Uint8Array(8); (window.crypto || window.msCrypto).getRandomValues(a);
+  let s = ""; for(let i=0;i<a.length;i++) s += CERT_ALPHABET[a[i] % CERT_ALPHABET.length];
+  return "IL-" + prefix + "-" + s;
+}
+function certDate(d){ return (d || new Date()).toLocaleDateString("en-US", {year:"numeric", month:"long", day:"numeric"}); }
+function certQrSvg(text, size){
+  const q = qrcode(0, "M"); q.addData(text); q.make();
+  const n = q.getModuleCount(), c = size / n; let d = "";
+  for(let r=0;r<n;r++) for(let k=0;k<n;k++) if(q.isDark(r,k)) d += "M"+(k*c)+","+(r*c)+"h"+c+"v"+c+"h-"+c+"z";
+  return `<svg width="${size}" height="${size}" viewBox="0 0 ${size} ${size}" shape-rendering="crispEdges"><path d="${d}" fill="#1E1226"/></svg>`;
+}
+const CERT_MARK = '<svg width="40" height="40" viewBox="0 0 40 40"><path d="M18,4 A16,16 0 0 0 18,36" fill="none" stroke="#6E5A79" stroke-width="1.5"/><path d="M18,9 A11,11 0 0 0 18,31" fill="none" stroke="#A9713F" stroke-width="2"/><path d="M18,14 A6,6 0 0 0 18,26" fill="none" stroke="#C9A96E" stroke-width="3"/><circle cx="25" cy="20" r="3" fill="#F1EBDE"/></svg>';
+const CERT_DISC = "Ingleslegal exams are self-assessments of legal English. This report is not a certification, license, bar admission or official credential. Verification confirms that this ID was issued by the Ingleslegal exam system.";
+
+function certWindowText(p, pm){
+  if(p < pm) return p + "% &middot; below the pass mark, your biggest opportunity.";
+  if(p <= pm + 5) return p + "% &middot; just above the pass mark, a small push makes it a strength.";
+  return p + "% &middot; already solid, polishing it completes your profile.";
+}
+function certReportHTML(D){
+  const sorted = D.skills.slice().sort((a,b) => b.p - a.p);
+  const top = sorted.slice(0,3), low = sorted.slice(-2).reverse();
+  const PM = D.passMark || CERT_PASS;
+  const circ = 2*Math.PI*52, dash = circ*D.pct/100;
+  const verify = CERT_VERIFY + "?id=" + D.id;
+  const diff = Math.round((D.pct - PM)*10)/10;
+  return `<div class="il-rep">
+  <div class="il-hd"><svg class="il-arcs" viewBox="0 0 400 400"><g fill="none" stroke="#C9A96E"><circle cx="200" cy="200" r="190" stroke-width="1" opacity=".35"/><circle cx="200" cy="200" r="140" stroke-width="2" opacity=".5"/><circle cx="200" cy="200" r="90" stroke-width="4" opacity=".7"/></g></svg>
+   <div class="il-brand">${CERT_MARK}<div class="il-wm"><b>Ingles</b>legal</div></div>
+   <div class="il-kick">Exam Results</div><h1>Legal English Proficiency Report</h1>
+   <div class="il-who"><div><div class="il-lbl">Prepared for</div><div class="il-nm">${certEsc(D.name)}</div><div class="il-ex">${certEsc(D.exam)}</div><span class="il-pill">${certEsc(D.level)}</span></div>
+   <div class="il-dt"><div class="il-lbl">Date issued</div><div class="il-v">${certEsc(D.date)}</div></div></div></div>
+  <div class="il-sc"><div class="il-ring"><svg width="118" height="118" viewBox="0 0 118 118"><circle cx="59" cy="59" r="52" fill="none" stroke="#ebe4d6" stroke-width="9"/><circle cx="59" cy="59" r="52" fill="none" stroke="#C9A96E" stroke-width="9" stroke-linecap="round" stroke-dasharray="${dash} ${circ}" transform="rotate(-90 59 59)"/></svg><div class="il-t"><b>${D.pct}%</b><span>Score</span></div></div>
+   <div class="il-stats"><div class="il-stat"><div class="il-n">${D.correct} / ${D.total}</div><div class="il-l">Correct answers</div></div><div class="il-stat"><div class="il-n">${PM}%</div><div class="il-l">Pass mark</div></div><div class="il-stat"><div class="il-n">${diff >= 0 ? "+" : ""}${diff}</div><div class="il-l">Points above pass mark</div></div></div>
+   <div class="il-passed">Passed</div></div>
+  <div class="il-bd">
+   <div class="il-ribbon">${certEsc(D.topLabel)}</div>
+   <div class="il-top3">${top.map((s,i) => `<div class="il-card"><div class="il-rk">${i+1}</div><div class="il-nm">${certEsc(s.n)}</div><div class="il-pc">${s.p}%</div><div class="il-mini"><i style="width:${s.p}%"></i></div><div class="il-sb">${s.c} of ${s.t} correct</div></div>`).join("")}</div>
+   <div class="il-snap"><div class="il-sec">${certEsc(D.snapLabel)}</div>
+   ${sorted.map(s => `<div class="il-row"><div class="il-tn">${certEsc(s.n)}</div><div class="il-track"><div class="il-fill" style="width:${s.p}%"></div><div class="il-mk" style="left:${PM}%"></div></div><div class="il-pv">${s.p}%</div></div>`).join("")}
+   <div class="il-legend">Dark marker = ${PM}% pass mark</div></div>
+   <div class="il-win"><div class="il-sec">Windows of opportunity</div><div class="il-ttl">Where your next gains are</div>
+    <div class="il-wgrid">${low.map(s => `<div class="il-w"><div class="il-a">Next to strengthen</div><div class="il-b">${certEsc(s.n)}</div><div class="il-c">${certWindowText(s.p, PM)}</div></div>`).join("")}</div>
+    <div class="il-pw"><div class="il-l"><b>Recommended pathway:</b> ${certEsc(D.pathway)}${certEsc(typeof ilOpens === "function" ? ilOpens(D.pathway) : "")}<br>${certEsc(D.pathwayWhy)}</div><div class="il-off"><code>EXAM15</code><span>15% off your first pathway when it opens, until ${certEsc(D.offerUntil)}</span></div></div></div>
+  </div>
+  <div class="il-ft"><div class="il-qr">${certQrSvg(verify, 92)}</div>
+   <div class="il-m"><b>VERIFY THIS REPORT</b><div class="il-id">${D.id}</div>Scan the code or visit<br><span class="il-url">${CERT_VERIFY.replace("https://","")}</span> and enter the ID.</div><div class="il-seal"><span>Ingles<br>Legal<br>Exam</span></div></div>
+  <div class="il-disc">${CERT_DISC}</div></div>`;
+}
+
+function certInjectStyles(){
+  if(document.getElementById("certStyles")) return;
+  const st = document.createElement("style"); st.id = "certStyles"; st.textContent = CERT_CSS + CERT_UI_CSS;
+  document.head.appendChild(st);
+}
+function certFit(on){
+  const rep = document.querySelector("#certOverlay .il-rep"); if(!rep) return;
+  if(on){ const h = rep.offsetHeight || 1476; rep.style.zoom = String(Math.min(794/820, 1070/h)); }
+  else { rep.style.zoom = ""; certZoomToScreen(); }
+}
+function certZoomToScreen(){
+  const rep = document.querySelector("#certOverlay .il-rep"); if(!rep) return;
+  rep.style.zoom = String(Math.min(1, (window.innerWidth - 24) / 820));
+}
+window.addEventListener("beforeprint", () => certFit(true));
+window.addEventListener("afterprint", () => certFit(false));
+window.addEventListener("resize", certZoomToScreen);
+
+function openCertificate(thenPrint){
+  if(!_certD) return;
+  certInjectStyles();
+  closeCertificate();
+  const o = document.createElement("div"); o.id = "certOverlay";
+  o.innerHTML = `<div class="certbar"><button type="button" class="${_certD.btn.gold}" onclick="printCertificate()">Guardar como PDF / Imprimir</button><button type="button" class="${_certD.btn.ghost}" onclick="downloadCertificateFile()">Descargar archivo</button><button type="button" class="${_certD.btn.ghost}" onclick="closeCertificate()">Cerrar</button></div><div class="certscroll">${certReportHTML(_certD)}</div>`;
+  document.body.appendChild(o); document.body.style.overflow = "hidden"; certZoomToScreen();
+  if(thenPrint) setTimeout(printCertificate, 350);
+}
+function closeCertificate(){
+  const o = document.getElementById("certOverlay"); if(o) o.remove();
+  document.body.style.overflow = "";
+}
+function printCertificate(){ try{ window.print(); }catch(e){ alert("La impresión está bloqueada aquí. Use Descargar archivo, ábralo e imprímalo o guárdelo como PDF."); } }
+function downloadCertificateFile(){
+  if(!_certD) return;
+  const html = '<!doctype html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1"><title>Ingleslegal Proficiency Report ' + _certD.id + '</title>'
+    + '<link href="https://fonts.googleapis.com/css2?family=Archivo:wght@400;500;600;700&family=Spectral:ital,wght@0,400;0,500;0,600;1,400&display=swap" rel="stylesheet">'
+    + '<style>body{margin:0;background:#cfc8bb;padding:24px}' + CERT_CSS + '@page{size:A4 portrait;margin:0}@media print{body{background:#fff;padding:0}.il-rep{zoom:.74;margin:0 auto}}</style></head><body>'
+    + certReportHTML(_certD) + '</body></html>';
+  const blob = new Blob([html], {type:"text/html"}), url = URL.createObjectURL(blob);
+  const a = document.createElement("a"); a.href = url; a.download = "Ingleslegal_Proficiency_Report_" + _certD.id + ".html";
+  document.body.appendChild(a); a.click(); document.body.removeChild(a); URL.revokeObjectURL(url);
+}
+function certRegister(D, webhookUrl){
+  if(!webhookUrl) return;
+  fetch(webhookUrl, { method:"POST", headers:{"Content-Type":"text/plain"}, body: JSON.stringify({
+    type:"certificate", id:D.id, kind:D.kind, name:D.name, email:D.email, exam:D.exam, level:D.level,
+    percent:D.pct, passMark:D.passMark, correct:D.correct, total:D.total, issuedAt:new Date().toISOString()
+  })}).catch(() => {});
+}
+/* Shows the results-screen card and registers the certificate once. D must be complete. */
+function certCardHTML(D, webhookUrl){
+  certInjectStyles();
+  _certD = D;
+  if(!D._registered){ D._registered = true; certRegister(D, webhookUrl); }
+  return `<div class="certcard"><div class="ct">Proficiency Report</div><div class="headline">Su Proficiency Report está listo</div>
+    <p>Aprobó con <strong>${D.pct}%</strong>. Abra su informe con sus áreas más fuertes y sus próximas oportunidades, guárdelo como PDF o compártalo. El informe está en inglés para que pueda mostrarlo a empleadores en EE. UU.</p>
+    <div class="certrow"><button type="button" class="${D.btn.gold}" onclick="openCertificate()">Ver informe</button><button type="button" class="${D.btn.ghost}" onclick="openCertificate(true)">Guardar como PDF</button></div>
+    <div class="certidline">ID del informe: ${D.id}</div></div>`;
+}
+function certPct1(c, t){ return Math.round(c / t * 1000) / 10; }
+
+/* ---- Exam-specific certificate data (tier and pathway exams) ---- */
+function certBuildExamData(completed, score, pct){
+  const mk = (n, c, t) => ({ n: n, c: c, t: t, p: certPct1(c, t) });
+  const en = name => (COURSES.find(c => c.name === name) || {}).en || name;
+  const skills = courseBreakdown(completed).map(r => mk(en(r.name), r.correct, r.total));
+  const pw = IL_PATHWAY_INFO[NEXT_PATHWAY];
+  if(!state._certId) state._certId = certNewId(CERT_PREFIX);
+  return {
+    id: state._certId, kind: "translation",
+    name: state.candidate.name || "Candidate", email: state.candidate.email || "",
+    exam: "Legal Translation Exam (Spanish to English): " + LEVEL_EN, level: LEVEL_EN + " Legal Translation", date: certDate(),
+    pct: Math.round(pct * 1000) / 10, passMark: Math.round(PASS_THRESHOLD * 100), correct: score, total: completed,
+    topLabel: "Strongest areas",
+    snapLabel: "Score by area",
+    skills: skills, pathway: pw.name, pathwayWhy: NEXT_PATHWAY_WHY,
+    offerUntil: certDate(new Date(Date.now() + 180 * 24 * 60 * 60 * 1000)),
+    btn: { gold: "btn gold", ghost: "btn ghost" }
+  };
+}
+function certCardForExam(completed, partial, passed, score, pct){
+  if(MODE === "half"){
+    return `<div class="nextstep"><div class="headline">¿Quiere su Proficiency Report?</div><p>El Proficiency Report se emite en el examen completo (${ALL_QUESTIONS.length} preguntas). Presente el examen completo y apruebe con ${Math.round(PASS_THRESHOLD*100)}% para obtenerlo.</p><a class="btn gold" href="${LEVEL_FILES[LEVEL_KEY]}">Presentar el examen completo</a></div>`;
+  }
+  if(partial || !passed) return "";
+  if(!state._certD){ state._certD = certBuildExamData(completed, score, pct); }
+  return certCardHTML(state._certD, RESULTS_WEBHOOK_URL);
+}
+</script>
+</body>
+</html>

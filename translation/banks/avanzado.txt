@@ -1,0 +1,789 @@
+## Falsos amigos | False Friends
+
+Q: Elija la mejor traducción al inglés:
+"El tribunal se declaró sin competencia para conocer del caso."
++ The court found that it lacked jurisdiction to hear the case.
+- The court declared itself incompetent to know the case.
+- The court said it had no competition to recognize the case.
+- The court refused to learn about the case.
+E: La competencia de un tribunal es "jurisdiction", y "conocer de un caso" es "to hear a case". "Incompetent" significa incapaz y "competition" significa rivalidad.
+
+Q: Elija la mejor traducción al inglés:
+"El actual representante legal de la sociedad firmó el contrato."
++ The current legal representative of the company signed the contract.
+- The actual legal representative of the society signed the contract.
+- The acting legal representative of the company signed the contract.
+- The former legal representative of the company signed the contract.
+E: "Actual" en inglés significa real o verdadero, "acting" significa interino y "former" significa anterior. Una sociedad comercial es una "company", no una "society".
+
+Q: Elija la mejor traducción al inglés:
+"Eventualmente, el arrendatario podrá solicitar una prórroga del contrato."
++ If the need arises, the tenant may request an extension of the lease.
+- Eventually, the tenant will request a prorogation of the contract.
+- Finally, the landlord may grant an extension of the lease.
+- Occasionally, the tenant must request a renewal of the lease.
+E: "Eventually" significa "con el tiempo", no "llegado el caso". "Prorogation" es la suspensión de un parlamento. "Podrá" se traduce "may" (una facultad), no "will" ni "must".
+
+Q: Elija la mejor traducción al inglés:
+"El abogado no asistió a la audiencia de conciliación."
++ The attorney did not attend the settlement conference.
+- The lawyer did not assist the conciliation audience.
+- The attorney did not help at the reconciliation hearing.
+- The lawyer did not appear for the audience of conciliation.
+E: "Asistir" es "to attend" ("to assist" es ayudar), y "audiencia" no es "audience" (el público). En EE. UU., la audiencia con el juez para buscar un acuerdo suele llamarse "settlement conference".
+
+Q: Elija la mejor traducción al inglés:
+"El demandante pretende una indemnización de USD 50.000."
++ The plaintiff seeks $50,000 in damages.
+- The plaintiff pretends an indemnization of $50,000.
+- The plaintiff intends to pay $50,000 in damages.
+- The plaintiff pretends to be owed $50,000.
+E: "Pretender" en un escrito es "to seek". "To pretend" significa fingir, así que la última opción dice que el demandante finge que le deben el dinero.
+
+Q: Elija la mejor traducción al inglés:
+"El abogado ignoraba que el plazo había vencido."
++ The attorney was unaware that the deadline had passed.
+- The attorney ignored that the deadline had expired.
+- The attorney was ignorant that the term had won.
+- The attorney knew that the deadline had passed.
+E: "Ignorar" algo (no saberlo) es "to be unaware". "To ignore" significa no hacer caso a propósito, lo que cambia la responsabilidad del abogado.
+
+Q: Elija la mejor traducción al inglés:
+"El juez rechazó la solicitud por extemporánea."
++ The judge denied the motion as untimely.
+- The judge disestimated the motion for being extemporaneous.
+- The judge granted the motion even though it was late.
+- The judge postponed the motion as premature.
+E: "Extemporáneo" (presentado fuera de plazo) es "untimely". En inglés, "extemporaneous" significa improvisado, sin preparación.
+
+Q: Elija la mejor traducción al inglés:
+"La abogada realizó una revisión del expediente."
++ The attorney conducted a review of the case file.
+- The attorney realized a revision of the expedient.
+- The attorney realized that the case file had been revised.
+- The attorney made changes to the case file.
+E: "Realizar" una actividad es "to conduct" o "to carry out". "To realize" significa darse cuenta, y "revision" significa cambio o corrección, no revisión.
+
+Q: Elija la mejor traducción al inglés:
+"La policía registró el vehículo sin orden judicial."
++ The police searched the vehicle without a warrant.
+- The police registered the vehicle without a judicial order.
+- The police recorded the vehicle without a court order.
+- The police seized the vehicle without a warrant.
+E: "Registrar" (inspeccionar) es "to search". "To register" significa inscribir, y "to seize" significa incautar, que es otra actuación.
+
+Q: Elija la mejor traducción al inglés:
+"Le advertimos al cliente sobre los riesgos de ir a juicio."
++ We warned the client about the risks of going to trial.
+- We advertised the client about the risks of the judgment.
+- We noticed the client about the risks of the trial.
+- We alerted the client's risks about the judgment.
+E: "Advertir" es "to warn". "To advertise" significa hacer publicidad, y "to notice" significa notar. "Ir a juicio" es "going to trial".
+
+Q: Elija la mejor traducción al inglés:
+"Nuestro despacho ejerce el derecho de inmigración desde 2010."
++ Our firm has practiced immigration law since 2010.
+- Our office exercises the immigration right since 2010.
+- Our firm has exercised immigration rights since 2010.
+- Our firm is practicing in the immigration right from 2010.
+E: Ejercer una profesión es "to practice". "Derecho" como disciplina es "law"; "right" es un derecho de una persona.
+
+Q: Elija la mejor traducción al inglés:
+"Los parientes del fallecido impugnaron el testamento."
++ The relatives of the deceased contested the will.
+- The parents of the deceased contested the will.
+- The relatives of the deceased contested the testimony.
+- The relatives of the deceased protested the will.
+E: "Parientes" son "relatives"; "parents" son solo el padre y la madre. "Testimony" es un testimonio, e impugnar un testamento es "to contest a will".
+
+Q: Elija la mejor traducción al inglés:
+"El acusado tiene derecho a un abogado de oficio."
++ The defendant is entitled to a court-appointed attorney.
+- The defendant has right to an office lawyer.
+- The defendant has the right to an in-house attorney.
+- The defendant is entitled to an officious lawyer.
+E: El abogado que asigna el tribunal es un "court-appointed attorney" (o "public defender"). "In-house attorney" es el abogado interno de una empresa, y "officious" significa entrometido.
+
+Q: Elija la mejor traducción al inglés:
+"La información del cliente es confidencial y sensible."
++ The client's information is confidential and sensitive.
+- The client's information is confidential and sensible.
+- The client's information is confident and sensitive.
+- The client's information is trustful and sensible.
+E: "Sensible" (información delicada) es "sensitive". En inglés, "sensible" significa sensato, y "confident" significa seguro de sí mismo.
+
+Q: Elija la mejor traducción al inglés:
+"La audiencia fue un éxito para nuestro cliente."
++ The hearing was a success for our client.
+- The hearing was an exit for our client.
+- The audience was a success for our client.
+- The hearing was successive for our client.
+E: "Éxito" es "success", y "exit" significa salida. "Audience" es el público, no la audiencia judicial ("hearing").
+
+Q: Elija la mejor traducción al inglés:
+"El abogado le pidió al cliente que no molestara a los testigos."
++ The attorney asked the client not to bother the witnesses.
+- The attorney asked the client not to molest the witnesses.
+- The attorney asked the client not to modify the witnesses.
+- The attorney asked the client to stop being bothered by the witnesses.
+E: "Molestar" es "to bother" o "to harass". En inglés, "to molest" significa abusar sexualmente de alguien, un error muy grave en un documento legal.
+
+Q: Elija la mejor traducción al inglés:
+"Los honorarios se pagarán en efectivo."
++ The fees will be paid in cash.
+- The fees will be paid effectively.
+- The fees will be paid in effective.
+- The honoraries will be paid in cash.
+E: "En efectivo" es "in cash", y "effectively" significa de manera eficaz. Los honorarios de un abogado son "fees"; "honorarium" es un pago simbólico, por ejemplo a un conferencista.
+
+Q: Elija la mejor traducción al inglés:
+"Guarde los documentos en la carpeta del cliente."
++ Keep the documents in the client's folder.
+- Keep the documents in the client's carpet.
+- Keep the documents in the client's portfolio.
+- Keep the documents in the client's cabinet.
+E: "Carpeta" es "folder" (o "file"). "Carpet" significa alfombra, "portfolio" es una cartera de inversiones o de trabajos y "cabinet" es un mueble o archivador.
+
+Q: Elija la mejor traducción al inglés:
+"Tenemos que resumir el expediente antes de la audiencia."
++ We need to summarize the case file before the hearing.
+- We have to resume the expedient before the audience.
+- We need to resume work on the case file before the hearing.
+- We need to sum up the expedient's audience.
+E: "Resumir" es "to summarize". "To resume" significa reanudar, así que la tercera opción dice "retomar el trabajo".
+
+Q: Elija la mejor traducción al inglés:
+"El suceso ocurrió a las 10 de la noche."
++ The incident occurred at 10 p.m.
+- The success occurred at 10 p.m.
+- The succession occurred at 10 p.m.
+- The happening succeeded at 10 p.m.
+E: "Suceso" es "incident" o "event". "Success" significa éxito, y "succession" significa sucesión, por ejemplo hereditaria.
+
+## Cláusulas contractuales | Contract Clauses
+
+Q: Elija la mejor traducción al inglés:
+"Las partes acuerdan que el presente contrato se regirá por las leyes del Estado de Florida."
++ The parties agree that this Agreement shall be governed by the laws of the State of Florida.
+- The parties agree that the present contract will be ruled by the laws of the State of Florida.
+- Both sides are OK with this contract being under Florida law.
+- The parties agree that this Agreement shall govern the laws of the State of Florida.
+E: Es la fórmula estándar de la cláusula de ley aplicable ("governing law clause"). Una opción tiene un registro demasiado informal para un contrato, y otra invierte el sentido: no es el contrato el que rige las leyes, sino las leyes las que rigen el contrato.
+
+Q: Elija la mejor traducción al inglés:
+"El Arrendatario se obliga a pagar el canon dentro de los cinco primeros días de cada mes."
++ The Tenant shall pay the rent within the first five days of each month.
+- The Tenant obliges himself to pay the canon within the first five days of each month.
+- The Tenant may pay the rent within the first five days of each month.
+- The Landlord shall pay the rent within the first five days of each month.
+E: Una obligación contractual se expresa con "shall". "May" la convierte en una facultad, y el canon de arrendamiento es la "rent", no "canon".
+
+Q: Elija la mejor traducción al inglés:
+"Ninguna de las partes podrá ceder este contrato sin el consentimiento previo y por escrito de la otra."
++ Neither party may assign this Agreement without the prior written consent of the other party.
+- Neither party shall cede this contract without the previous and written consent of the other.
+- Either party may assign this Agreement without the prior written consent of the other party.
+- Neither party may assign this Agreement with the prior written consent of the other party.
+E: Ceder un contrato es "to assign", y la fórmula es "prior written consent". Las otras dos opciones con "assign" cambian el sentido: una permite la cesión sin consentimiento y la otra la prohíbe aun con consentimiento.
+
+Q: Elija la mejor traducción al inglés:
+"El presente contrato constituye el acuerdo total entre las partes y reemplaza cualquier acuerdo anterior."
++ This Agreement constitutes the entire agreement between the parties and supersedes all prior agreements.
+- The present contract constitutes the total accord between the parts and replaces any anterior agreement.
+- This Agreement constitutes the entire agreement between the parties and is superseded by all prior agreements.
+- This Agreement constitutes a partial agreement between the parties and supplements all prior agreements.
+E: Es la cláusula de acuerdo total ("entire agreement clause"). El verbo es "supersede" en voz activa: este contrato reemplaza a los anteriores, no al revés.
+
+Q: Elija la mejor traducción al inglés:
+"Ninguna demora en el ejercicio de un derecho constituirá una renuncia al mismo."
++ No delay in exercising any right shall operate as a waiver thereof.
+- No demur in the exercise of a right will constitute a resignation to it.
+- Any delay in exercising a right shall operate as a waiver thereof.
+- No delay in exercising any right shall operate as an exercise thereof.
+E: Renunciar a un derecho es "waiver". "Resignation" es renunciar a un cargo y "demur" es una excepción procesal. La tercera opción dice lo contrario: que cualquier demora implica renuncia.
+
+Q: Elija la mejor traducción al inglés:
+"El Vendedor garantiza que los bienes están libres de gravámenes."
++ The Seller warrants that the goods are free and clear of all liens and encumbrances.
+- The Seller guarantees that the goods are free of all taxes and impositions.
+- The Buyer warrants that the goods are free and clear of all liens and encumbrances.
+- The Seller warrants that the goods are free of charge.
+E: Garantizar algo en un contrato es "to warrant", y los gravámenes son "liens and encumbrances". "Free of charge" significa gratis.
+
+Q: Elija la mejor traducción al inglés:
+"Las partes se comprometen a mantener la confidencialidad de la información durante la vigencia del contrato y dos años después de su terminación."
++ The parties undertake to keep the information confidential during the term of this Agreement and for two years after its termination.
+- The parties compromise to maintain the confidentiality during the vigency of the contract and two years after its termination.
+- The parties undertake to keep the information confidential during the term of this Agreement and for two years before its termination.
+- The parties undertake to keep the information confidential for two years, starting on the termination of this Agreement.
+E: Comprometerse es "to undertake" o "to agree". "To compromise" significa ceder en una negociación o poner algo en riesgo. Las dos últimas opciones cambian el periodo de la obligación.
+
+Q: Elija la mejor traducción al inglés:
+"El incumplimiento de cualquiera de las obligaciones dará derecho a la parte cumplida a terminar el contrato."
++ Any breach of this Agreement shall entitle the non-breaching party to terminate it.
+- The non-compliance of any obligation will give right to the complied party to finish the contract.
+- Any breach of this Agreement shall entitle the breaching party to terminate it.
+- Any breach of this Agreement shall oblige the non-breaching party to terminate it.
+E: La parte cumplida es la "non-breaching party", y "dar derecho" es "to entitle". "Oblige" la convertiría en una obligación.
+
+Q: Elija la mejor traducción al inglés:
+"Si alguna disposición de este contrato fuere declarada nula, las demás disposiciones conservarán su validez."
++ If any provision of this Agreement is held invalid, the remaining provisions shall remain in full force and effect.
+- If any disposition of this contract were declared null, the other dispositions will conserve their validity.
+- If any provision of this Agreement is held invalid, the entire Agreement shall be void.
+- If any provision of this Agreement is held invalid, the remaining provisions shall be renegotiated.
+E: Es la cláusula de divisibilidad ("severability clause"). Las disposiciones de un contrato son "provisions"; "disposition" significa resolución final o temperamento.
+
+Q: Elija la mejor traducción al inglés:
+"El Contratista indemnizará y mantendrá indemne al Contratante frente a cualquier reclamación de terceros."
++ The Contractor shall indemnify and hold harmless the Client from and against any third-party claims.
+- The Contractor will indemnize and maintain indemnified the Contracting from any claim of thirds.
+- The Client shall indemnify and hold harmless the Contractor from and against any third-party claims.
+- The Contractor shall be indemnified and held harmless by the Client from any third-party claims.
+E: La fórmula es "indemnify and hold harmless... from and against". Las dos últimas opciones invierten quién protege a quién.
+
+Q: Elija la mejor traducción al inglés:
+"El precio no incluye impuestos."
++ The price is exclusive of taxes.
+- The price is inclusive of taxes.
+- The price excludes the impositions.
+- The price is exempt from taxes.
+E: "Exclusive of taxes" significa que los impuestos se suman al precio. "Exempt from taxes" significa que no se pagan impuestos, que es otra cosa.
+
+Q: Elija la mejor traducción al inglés:
+"El pago se hará mediante transferencia bancaria a la cuenta que designe el Proveedor."
++ Payment shall be made by wire transfer to the account designated by the Supplier.
+- The payment will make itself through bank transference to the account designed by the Provider.
+- Payment shall be made by wire transfer to the account designated by the Customer.
+- Payment shall be made in cash to the account designated by the Supplier.
+E: Se dice "wire transfer", y "designate" significa señalar o indicar; "design" significa diseñar.
+
+Q: Elija la mejor traducción al inglés:
+"En caso de mora, se causarán intereses moratorios a la tasa máxima legal."
++ In the event of late payment, interest shall accrue at the maximum rate permitted by law.
+- In case of moratorium, moratory interests will be caused at the maximum legal tax.
+- In the event of late payment, interest shall be waived up to the maximum rate permitted by law.
+- In the event of prepayment, interest shall accrue at the maximum rate permitted by law.
+E: Los intereses "accrue" (se causan) a una "rate" (tasa). "Tax" significa impuesto, y "moratorium" es una suspensión general de pagos.
+
+Q: Elija la mejor traducción al inglés:
+"Cualquiera de las partes podrá dar por terminado este contrato mediante aviso escrito con treinta (30) días de antelación."
++ Either party may terminate this Agreement upon thirty (30) days' prior written notice.
+- Any of the parts may finish this contract through written warning with thirty (30) days of anticipation.
+- Either party shall terminate this Agreement thirty (30) days after written notice.
+- Only the Supplier may terminate this Agreement upon thirty (30) days' prior written notice.
+E: "Podrá" es "may" (una facultad); "shall" lo convierte en una obligación. "De antelación" es "prior notice", y "anticipation" significa expectativa.
+
+Q: Elija la mejor traducción al inglés:
+"El Comprador tendrá un plazo de diez (10) días hábiles para inspeccionar la mercancía."
++ The Buyer shall have ten (10) business days to inspect the goods.
+- The Buyer will have a term of ten (10) habile days to inspect the merchandise.
+- The Buyer shall have ten (10) calendar days to inspect the goods.
+- The Seller shall have ten (10) business days to inspect the goods.
+E: Los días hábiles son "business days"; los "calendar days" incluyen fines de semana y festivos.
+
+Q: Elija la mejor traducción al inglés:
+"Las partes renuncian expresamente a su derecho a un juicio con jurado."
++ The parties expressly waive their right to a jury trial.
+- The parties expressly resign their right to a trial with jury.
+- The parties expressly reserve their right to a jury trial.
+- The parties expressly waive their right to arbitration.
+E: Renunciar a un derecho es "to waive". "Resign" es renunciar a un cargo, y "reserve" significa conservar el derecho.
+
+Q: Elija la mejor traducción al inglés:
+"Las obligaciones de confidencialidad subsistirán después de la terminación del contrato."
++ The confidentiality obligations shall survive the termination of this Agreement.
+- The confidentiality obligations will overlive the end of the contract.
+- The confidentiality obligations shall expire upon the termination of this Agreement.
+- The confidentiality obligations shall come into force upon the termination of this Agreement.
+E: Una obligación que sigue vigente después de terminado el contrato "survives" ("survival clause"). La última opción dice que la obligación empieza al terminar el contrato, no que continúa.
+
+Q: Elija la mejor traducción al inglés:
+"El Cliente reembolsará al Despacho los gastos razonables en que incurra."
++ The Client shall reimburse the Firm for reasonable expenses incurred.
+- The Client will reimburse to the Dispatch the reasonable expenses it incurs.
+- The Firm shall reimburse the Client for reasonable expenses incurred.
+- The Client shall reimburse the Firm for all expenses incurred, whether reasonable or not.
+E: El despacho de abogados es la "Firm", y "dispatch" significa envío. La fórmula es "reimburse [alguien] for expenses incurred".
+
+Q: Elija la mejor traducción al inglés:
+"El presente contrato se firma en dos ejemplares del mismo tenor."
++ This Agreement is executed in two counterparts, each of which shall be deemed an original.
+- This contract is signed in two examples of the same tenor.
+- This Agreement is executed by two signatories of the same tenure.
+- This Agreement shall be executed in two languages, each of which shall prevail.
+E: Cada ejemplar firmado es un "counterpart". "Tenor" es una voz de cantante y "tenure" es la permanencia en un cargo.
+
+Q: Elija la mejor traducción al inglés:
+"El Proveedor no será responsable por demoras causadas por circunstancias ajenas a su control."
++ The Supplier shall not be liable for delays caused by circumstances beyond its reasonable control.
+- The Provider will not be responsible for demurs caused by circumstances alien to its control.
+- The Supplier shall be liable for delays caused by circumstances beyond its reasonable control.
+- The Supplier shall not be liable for delays caused by circumstances within its reasonable control.
+E: "Ajeno a su control" es "beyond its control", y la responsabilidad contractual es "liable". "Alien" se usa para cosas extrañas o para extranjeros.
+
+## Escritos y actuaciones judiciales | Court Filings and Proceedings
+
+Q: Elija la mejor traducción al inglés:
+"El demandado contestó la demanda dentro del término legal."
++ The defendant filed an answer to the complaint within the time allowed by law.
+- The defendant contested the demand within the legal term.
+- The defendant answered the complaint after the deadline had passed.
+- The plaintiff filed an answer to the complaint within the time allowed by law.
+E: Contestar la demanda es "to file an answer to the complaint". "To contest" significa impugnar, y "demand" no es la demanda judicial.
+
+Q: Elija la mejor traducción al inglés:
+"Solicito respetuosamente al Despacho que decrete el embargo de los bienes del demandado."
++ I respectfully request that the Court order the attachment of the defendant's property.
+- I respectfully solicit the Office to decree the embargo of the defendant's goods.
+- I respectfully request that the Court release the defendant's property from attachment.
+- I respectfully request that the Court order the defendant to purchase the property.
+E: En un escrito, "el Despacho" es "the Court". El embargo judicial de bienes es "attachment" (o "levy"); "embargo" en inglés es una prohibición de comerciar con un país.
+
+Q: Elija la mejor traducción al inglés:
+"La parte demandante apeló la sentencia de primera instancia."
++ The plaintiff appealed the trial court's judgment.
+- The demanding party appealed the first instance sentence.
+- The plaintiff filed a motion for reconsideration of the trial court's judgment.
+- The defendant appealed the trial court's judgment.
+E: La sentencia de primera instancia es el "trial court's judgment". Una "motion for reconsideration" se presenta ante el mismo juez, como el recurso de reposición.
+
+Q: Elija la mejor traducción al inglés:
+"Se fija el 15 de marzo como fecha para el juicio."
++ The trial is set for March 15.
+- The audience of judgment is fixed for March 15.
+- The trial was held on March 15.
+- The hearing on the motion is set for March 15.
+E: Se dice "the trial is set for". "Audience of judgment" no tiene sentido en inglés, y "was held" indica que el juicio ya ocurrió.
+
+Q: Elija la mejor traducción al inglés:
+"El testigo manifestó que no le constaban los hechos."
++ The witness stated that he had no personal knowledge of the facts.
+- The witness manifested that the facts did not consist to him.
+- The witness stated that the facts were not true.
+- The witness refused to testify about the facts.
+E: "No me consta" significa no tener conocimiento personal ("personal knowledge"). No es lo mismo que negar los hechos.
+
+Q: Elija la mejor traducción al inglés:
+"El apoderado de la parte demandada solicitó el aplazamiento de la audiencia."
++ Defense counsel moved for a continuance of the hearing.
+- The empowered of the demanded party solicited the postponement of the audience.
+- Defense counsel moved to dismiss the hearing.
+- Plaintiff's counsel moved for a continuance of the hearing.
+E: El aplazamiento de una audiencia es una "continuance", y pedirla al juez es "to move for". "Apoderado" no se traduce como "empowered".
+
+Q: Elija la mejor traducción al inglés (contestación de demanda):
+"Niego los hechos 3 y 4 de la demanda por no ser ciertos."
++ Defendant denies the allegations in paragraphs 3 and 4 of the complaint.
+- I deny the facts 3 and 4 of the demand for not being certain.
+- Defendant admits the allegations in paragraphs 3 and 4 of the complaint.
+- Defendant lacks knowledge of the allegations in paragraphs 3 and 4 of the complaint.
+E: En una contestación de EE. UU. se responde a las "allegations" de cada párrafo, en tercera persona. "Certain" significa seguro, no cierto.
+
+Q: Elija la mejor traducción al inglés (en un escrito):
+"Con el debido respeto, me permito presentar las siguientes consideraciones."
++ Defendant respectfully submits the following.
+- With the due respect, I permit myself to present the following considerations.
+- Respectfully, I give myself permission to consider the following.
+- With all respect, I allow the following presentations.
+E: En un escrito de EE. UU. la fórmula es "respectfully submits", a menudo en tercera persona. "Permit myself" es un calco que no se usa.
+
+Q: Elija la mejor traducción al inglés:
+"El juzgado admitió la demanda y ordenó notificar al demandado."
++ The court accepted the complaint for filing and ordered service on the defendant.
+- The court admitted the demand and ordered to notify the demanded.
+- The court dismissed the complaint and ordered service on the defendant.
+- The court accepted the complaint and ordered the defendant to pay.
+E: En EE. UU. no hay un auto admisorio como tal; lo más cercano es "accepted for filing". Notificar al demandado es "service on the defendant".
+
+Q: Elija la mejor traducción al inglés:
+"Se condena al demandado a pagar la suma de USD 20.000 más intereses."
++ Judgment is entered against the defendant in the amount of $20,000, plus interest.
+- The demanded is condemned to pay the sum of $20,000 plus interests.
+- The defendant is sentenced to pay $20,000 plus interest.
+- Judgment is entered for the defendant in the amount of $20,000, plus interest.
+E: En lo civil, "judgment is entered against" una parte. "Sentenced" es solo para penas, e "interest" no lleva -s en este sentido.
+
+Q: Elija la mejor traducción al inglés:
+"La parte actora no acreditó el daño."
++ The plaintiff failed to prove damages.
+- The acting party did not accredit the damage.
+- The plaintiff failed to report the damage.
+- The actor failed to credit the damages.
+E: La parte actora es el "plaintiff", y "acreditar" en un proceso es probar ("to prove"). "Accredit" significa acreditar a una institución o a un diplomático.
+
+Q: Elija la mejor traducción al inglés:
+"El juez negó la solicitud de medida cautelar."
++ The judge denied the request for a preliminary injunction.
+- The judge negated the solicitude of cautelar measure.
+- The judge granted the request for a preliminary injunction.
+- The judge denied the request for a protective order in discovery.
+E: Una medida cautelar es una "preliminary injunction" (o "temporary restraining order" si es urgente). El juez "denies", no "negates".
+
+Q: Elija la mejor traducción al inglés:
+"Las partes llegaron a un acuerdo conciliatorio que pone fin al proceso."
++ The parties reached a settlement that ends the case.
+- The parties arrived at a conciliatory accord that puts end to the process.
+- The parties reached a verdict that ends the case.
+- The parties reached a settlement that reopens the case.
+E: El acuerdo que termina el pleito es un "settlement". "Process" en inglés jurídico se refiere a los documentos que se notifican ("service of process"), no al proceso judicial.
+
+Q: Elija la mejor traducción al inglés:
+"Se corre traslado a la parte demandada por el término de diez días."
++ The defendant shall have ten days to respond.
+- Transfer is run to the demanded party for the term of ten days.
+- The case is transferred to the defendant's court for ten days.
+- The defendant must pay within ten days.
+E: "Correr traslado" no tiene un equivalente literal: se explica su efecto ("shall have ten days to respond").
+
+Q: Elija la mejor traducción al inglés:
+"El dictamen pericial concluyó que el vehículo circulaba a exceso de velocidad."
++ The expert report concluded that the vehicle was speeding.
+- The pericial dictamen concluded that the vehicle was circulating at excess of velocity.
+- The expert witness dictated that the vehicle was circulating at excessive speed.
+- The police report concluded that the vehicle was speeding.
+E: El dictamen pericial es el "expert report", y "circular a exceso de velocidad" es "to be speeding". Una opción cambia la fuente del informe, de un perito a la policía.
+
+Q: Elija la mejor traducción al inglés:
+"El abogado presentó un memorial solicitando copias del expediente."
++ The attorney filed a request for copies of the case file.
+- The attorney presented a memorial soliciting copies of the expedient.
+- The attorney filed a motion to seal the case file.
+- The attorney requested a memorial service for the case file.
+E: En inglés, "memorial" significa monumento o ceremonia conmemorativa. Un memorial es un "filing", "request" o "motion".
+
+Q: Elija la mejor traducción al inglés:
+"Solicito se tenga como prueba el documento anexo."
++ I request that the attached document be admitted into evidence.
+- I solicit that the annexed document is had as proof.
+- I request that the attached document be excluded from evidence.
+- I request that the attached document be filed under seal.
+E: Se dice "admitted into evidence". "Filed under seal" significa presentado con reserva, para que no sea público.
+
+Q: Elija la mejor traducción al inglés:
+"El testimonio fue tachado por el parentesco del testigo con el demandante."
++ The witness was impeached for bias because of his family relationship with the plaintiff.
+- The testimony was crossed out for the kinship of the witness with the demandant.
+- The witness was arrested as a suspect because he is related to the plaintiff.
+- The witness was disqualified as an expert because of his relationship with the plaintiff.
+E: Atacar la credibilidad de un testigo es "to impeach" ("impeached for bias"). "Crossed out" significa tachado con una raya, literalmente.
+
+Q: Elija la mejor traducción al inglés:
+"La sentencia fue revocada en segunda instancia."
++ The judgment was reversed on appeal.
+- The sentence was revoked in second instance.
+- The judgment was affirmed on appeal.
+- The judgment was enforced on appeal.
+E: Un tribunal de apelación "reverses" (revoca) o "affirms" (confirma) una sentencia. "Revoke" se usa para licencias, poderes u ofertas.
+
+Q: Elija la mejor traducción al inglés:
+"El demandado incurrió en desacato al no cumplir la orden judicial."
++ The defendant was held in contempt of court for failing to comply with the court order.
+- The defendant incurred in disrespect for not fulfilling the judicial order.
+- The defendant was held in contempt of court for appealing the court order.
+- The defendant committed perjury by failing to comply with the court order.
+E: El desacato es "contempt of court" ("to be held in contempt"). "Perjury" es falso testimonio bajo juramento.
+
+## Registro formal | Formal Register
+
+Q: Elija la versión en inglés con el registro profesional adecuado:
+"Le informamos que su caso fue asignado a la abogada Martínez."
++ Please be advised that your case has been assigned to Attorney Martínez.
+- We inform you that your case has been designed to the lawyer Martínez.
+- Hey, your case went to Martínez.
+- We let you know your case was signed to Attorney Martínez.
+E: "Please be advised that" es una fórmula formal para dar información. "Designed" significa diseñado, y "Hey" es demasiado informal para un cliente.
+
+Q: Elija la versión en inglés con el registro profesional adecuado:
+"Agradecemos la confianza depositada en nuestro despacho."
++ Thank you for placing your trust in our firm.
+- We appreciate the confidence deposited in our dispatch.
+- Thanks a lot for trusting our office, buddy.
+- We are grateful of your confidence in our dispatch.
+E: Se dice "placing your trust in our firm". "Deposited" se usa para dinero, y "dispatch" significa envío.
+
+Q: Elija la versión en inglés con el registro profesional adecuado:
+"Por medio de la presente, nos permitimos informarle que..."
++ We are writing to inform you that...
+- By means of the present, we permit ourselves to inform you that...
+- Through this present letter, we allow ourselves to inform you that...
+- Just a heads-up that...
+E: El inglés jurídico moderno prefiere un estilo directo: "We are writing to inform you that...". Las fórmulas de cortesía en español no se traducen palabra por palabra.
+
+Q: Elija la versión en inglés con el registro profesional adecuado (cierre de carta):
+"Sin otro particular, me despido."
++ Sincerely,
+- Without other particular, I say goodbye.
+- Nothing else, bye.
+- Without another particular, I dismiss myself.
+E: La carta formal en inglés se cierra con "Sincerely," (o "Very truly yours,") y la firma. No hace falta una frase de despedida.
+
+Q: Elija la versión en inglés con el registro profesional adecuado (dirigiéndose al juez en audiencia):
+"Su Señoría, la defensa no tiene más preguntas."
++ Your Honor, the defense has no further questions.
+- Your Lordship, the defense has no more asks.
+- Your Excellency, the defense does not have more questions.
+- Mister Judge, the defense is done asking.
+E: En EE. UU. al juez se le dice "Your Honor", y la fórmula es "no further questions". "Your Lordship" es británico, y "Your Excellency" se usa para jefes de Estado o embajadores.
+
+Q: Elija la versión en inglés con el registro profesional adecuado:
+"Con el fin de dar trámite a su solicitud, le agradecemos enviarnos copia de su pasaporte."
++ In order to process your request, please send us a copy of your passport.
+- With the end of giving procedure to your solicitude, we thank you to remit us a copy of your passport.
+- In order to process your request, we thank you for sending us a copy of your passport.
+- To process your request, send your passport copy ASAP or else.
+E: "Le agradecemos + infinitivo" es una petición cortés, que en inglés se dice con "please". "We thank you for sending" agradece algo que el cliente aún no ha hecho.
+
+Q: Elija la versión en inglés con el registro profesional adecuado:
+"Lamentamos informarle que su solicitud fue negada."
++ We regret to inform you that your application has been denied.
+- We lament to inform you that your solicitude was negated.
+- Sorry, but they said no to your application.
+- Unfortunately your application got rejected, sorry!
+E: La fórmula formal es "We regret to inform you". "Lament" significa llorar una pérdida, y "negated" significa anulado o contrarrestado.
+
+Q: Elija la versión en inglés con el registro profesional adecuado:
+"Quedamos a su disposición para cualquier inquietud."
++ Please do not hesitate to contact us with any questions.
+- We remain at your disposition for any inquietude.
+- Feel free to bug us anytime.
+- We stay at your disposal for any restlessness.
+E: La fórmula natural es "Please do not hesitate to contact us". "Inquietude" y "restlessness" significan intranquilidad, no una pregunta.
+
+Q: Elija la versión en inglés con el registro profesional adecuado (correo al abogado de la contraparte):
+"Apreciado colega:"
++ Dear Counsel:
+- Appreciated colleague:
+- Hi buddy,
+- Esteemed colleague:
+E: Entre abogados de partes contrarias se usa "Dear Counsel:" o "Dear Mr./Ms. [apellido]:". "Colleague" se usa para compañeros de la misma organización.
+
+Q: Elija la versión en inglés con el registro profesional adecuado (inicio de un escrito):
+"El demandante, a través de su apoderado, manifiesta..."
++ Plaintiff, by and through his undersigned counsel, states...
+- The demandant, through his empowered, manifests...
+- The plaintiff and his attorney say...
+- Plaintiff, through his apoderado, manifests...
+E: La fórmula estándar es "by and through undersigned counsel". "Manifest" no se usa como verbo de declaración en los escritos.
+
+Q: Elija la versión en inglés con el registro profesional adecuado (petición final de un escrito):
+"Por lo anterior, solicito respetuosamente al Despacho..."
++ WHEREFORE, Plaintiff respectfully requests that the Court...
+- Therefore, I beg the Office to please...
+- Plaintiff demands the Court to...
+- For the above, Plaintiff solicits the Dispatch to...
+E: La sección de peticiones de un escrito de EE. UU. empieza con "WHEREFORE" y "respectfully requests". "Demands the Court to" es incorrecto y suena a una exigencia al juez.
+
+Q: Elija la versión en inglés con el registro profesional adecuado (llamada con un cliente):
+"Señora, ¿me regala su nombre completo?"
++ Ma'am, may I have your full name, please?
+- Lady, do you gift me your complete name?
+- Woman, give me your full name.
+- Madam, can you regale me your name?
+E: "¿Me regala...?" es una forma coloquial colombiana de pedir algo con cortesía; en inglés se dice "May I have...?". "Regale" significa entretener con historias.
+
+Q: Elija la versión en inglés con el registro profesional adecuado (reunión con un socio del despacho):
+"Con todo respeto, discrepo de esa interpretación."
++ With all due respect, I disagree with that interpretation.
+- With all respect, I discrepate of that interpretation.
+- No way, that is wrong.
+- I respectfully discrepancy with that interpretation.
+E: Se dice "With all due respect, I disagree". "Discrepancy" es un sustantivo (una diferencia entre datos), no un verbo.
+
+Q: Elija la versión en inglés con el registro profesional adecuado:
+"El cliente manifestó su inconformidad con el resultado."
++ The client expressed dissatisfaction with the outcome.
+- The client manifested his inconformity with the result.
+- The client was mad about how things went.
+- The client manifested nonconformity with the resultant.
+E: "Inconformidad" es "dissatisfaction", y "manifestar" es "to express". "Nonconformity" se usa para productos que no cumplen una especificación.
+
+Q: Elija la versión en inglés con el registro profesional adecuado:
+"Adjunto encontrará la documentación solicitada."
++ Please find the requested documents attached.
+- Attached you will encounter the required documentation.
+- Here's the stuff you wanted.
+- Adjunct you will find the documentation required.
+E: "Requested" significa solicitado, y "required" significa obligatorio. "Encounter" significa encontrarse con algo por casualidad.
+
+Q: Elija la versión en inglés con el registro profesional adecuado (carta al abogado de la contraparte):
+"Le solicitamos abstenerse de contactar directamente a nuestro cliente."
++ We ask that you refrain from contacting our client directly.
+- We solicit you to abstain from contacting directly our client.
+- Stop calling our client.
+- We request you to abstain yourself of contacting our client directly.
+E: La fórmula es "refrain from". "Abstain" se usa sobre todo para votaciones o para el alcohol.
+
+Q: Elija la versión en inglés con el registro profesional adecuado:
+"Nos permitimos recordarle que el pago vence el próximo viernes."
++ This is a reminder that payment is due this Friday.
+- We permit ourselves to remember you that the payment expires next Friday.
+- Don't forget to pay on Friday, ok?
+- We allow ourselves to remind you that the payment wins next Friday.
+E: Un pago que vence está "due". "Expire" se usa para documentos y plazos, y "remember" no tiene complemento de persona.
+
+Q: Elija la versión en inglés con el registro profesional adecuado:
+"De la manera más atenta le solicitamos que firme y devuelva el documento."
++ We kindly ask that you sign and return the document.
+- In the most attentive manner we solicit you to sign and return the document.
+- Sign and send back the document.
+- We attentively solicit your signing and returning of the document.
+E: La cortesía en inglés es más breve: "We kindly ask that you..." o "Please sign and return...".
+
+Q: Elija la versión en inglés con el registro profesional adecuado (al final de una declaración):
+"Declaro bajo la gravedad del juramento que lo anterior es cierto."
++ I declare under penalty of perjury that the foregoing is true and correct.
+- I declare under the gravity of the oath that the anterior is certain.
+- I swear to God the above is true.
+- I declare under penalty of perjury that the following is true and correct.
+E: La fórmula legal (28 U.S.C. § 1746) es "under penalty of perjury that the foregoing is true and correct". "Foregoing" es lo anterior, y "following" es lo que sigue.
+
+Q: Elija la versión en inglés con el registro profesional adecuado:
+"Agradezco de antemano su colaboración."
++ Thank you in advance for your assistance.
+- I thank in advance your collaboration.
+- Thanks before for collaborating.
+- I appreciate beforehand your collaboration.
+E: Se dice "Thank you in advance for your assistance" (o "cooperation"). "Collaboration" sugiere trabajar juntos en un proyecto.
+
+## Conceptos sin equivalente exacto | Concepts Without a Direct Equivalent
+
+Q: ¿Cuál es la mejor manera de explicar en inglés "acción de tutela" a un abogado de EE. UU.?
++ a constitutional action for the fast-track protection of fundamental rights (acción de tutela)
+- a guardianship action to appoint a legal guardian for a minor (tutela)
+- a tutoring action in which the court supervises the plaintiff's legal education
+- a petition for a writ of habeas corpus to challenge an unlawful detention
+E: La tutela no tiene equivalente en EE. UU.: se deja el término en español y se describe su función. "Guardianship" es la tutela de menores o incapaces, y el habeas corpus protege solo la libertad.
+
+Q: ¿Cuál es la mejor manera de explicar en inglés "derecho de petición" a un abogado de EE. UU.?
++ a formal request to a public authority (or certain private entities) that must be answered within a legal deadline
+- a petition for a writ of certiorari asking the Supreme Court to review a case
+- a right of first refusal to buy a property before it is offered to third parties
+- a class action petition filed on behalf of a group of consumers
+E: El derecho de petición se explica por su función: una solicitud formal que la entidad debe responder dentro de un plazo legal. Las otras opciones son figuras de EE. UU. que no corresponden.
+
+Q: ¿Cuál es la mejor manera de explicar en inglés "auto admisorio de la demanda"?
++ a court order accepting the complaint and directing service on the defendant
+- an automatic admission of liability by the defendant upon filing of the complaint
+- a default judgment entered when the defendant fails to answer the complaint
+- a confession of judgment signed by the defendant before the lawsuit is filed
+E: "Auto" es una decisión judicial (order), no "automatic". En EE. UU. el tribunal no dicta un auto admisorio, así que se explica su efecto.
+
+Q: ¿Cuál es la mejor manera de explicar en inglés "revisor fiscal" (de una sociedad colombiana)?
++ a statutory auditor required by law to oversee a company's accounts and compliance
+- a fiscal reviser appointed by the prosecutor to investigate tax crimes
+- a tax prosecutor from the national tax authority assigned to the company
+- the company's chief financial officer, who manages its finances and budget
+E: El revisor fiscal es un "statutory auditor", un auditor externo exigido por ley. No tiene nada que ver con la fiscalía ni con el director financiero (CFO).
+
+Q: ¿Cuál es la mejor manera de explicar en inglés "personería jurídica"?
++ legal personality, that is, the status of an entity that can hold rights and obligations
+- legal personnel, that is, the lawyers and staff employed by an entity
+- personal jurisdiction, that is, a court's power over a particular defendant
+- a power of attorney that allows a person to act on behalf of an entity
+E: "Personería jurídica" es "legal personality" (o "legal entity status"). "Personal jurisdiction" es la competencia del tribunal sobre una persona, otro concepto.
+
+Q: ¿Cuál es la mejor manera de explicar en inglés "RUT" (Colombia)?
++ Colombia's taxpayer registration (RUT), comparable to a U.S. taxpayer identification number
+- the Unique Tributary Registry, a list of all tributes paid by a company
+- Colombia's equivalent of a Social Security Number, used for retirement benefits
+- a municipal business license required to open a commercial establishment
+E: El RUT se explica como un registro tributario, comparable al "taxpayer identification number" (TIN) de EE. UU. "Tributary" significa afluente de un río.
+
+Q: ¿Cuál es la mejor manera de explicar en inglés "sociedad por acciones simplificada (S.A.S.)"?
++ a Colombian simplified stock company (S.A.S.), often compared to a U.S. LLC or close corporation
+- a simplified society of actions formed only by people from the same family
+- a sole proprietorship in which the owner is personally liable for all debts
+- a nonprofit corporation formed for charitable or educational purposes
+E: Se describe como "simplified stock company" y se compara con figuras de EE. UU. que el lector conoce. "Actions" significa acciones judiciales o actos, no participaciones en una sociedad ("shares").
+
+Q: ¿Cuál es la mejor manera de explicar en inglés "conciliación extrajudicial como requisito de procedibilidad"?
++ mandatory pre-suit conciliation that must be attempted before certain lawsuits can be filed
+- extrajudicial reconciliation between spouses before a divorce can be granted
+- an out-of-court settlement agreement that ends a lawsuit already filed
+- a pretrial conference held by the judge after the complaint is filed
+E: Lo esencial es que se trata de un requisito previo a la demanda ("pre-suit", "condition precedent to filing"). "Reconciliation" es la reconciliación de una pareja.
+
+Q: ¿Cuál es la mejor manera de explicar en inglés "proceso ejecutivo"?
++ an expedited action to collect a debt backed by an enforceable instrument, such as a promissory note
+- an executive process in which the government issues an order without a court
+- an executive order signed by the president or a governor
+- a probate proceeding to distribute the assets of a deceased person
+E: El proceso ejecutivo se explica como una acción de cobro basada en un título ejecutivo ("enforceable instrument"). "Executive" se asocia con el poder ejecutivo.
+
+Q: ¿Cuál es la mejor manera de explicar en inglés "cesantías" (Colombia)?
++ mandatory severance savings that the employer deposits each year into a fund for the employee
+- cessation payments that the employer makes only when the company closes
+- unemployment insurance benefits paid by the government after a layoff
+- a retirement pension paid monthly after the employee reaches retirement age
+E: Las cesantías no existen en EE. UU.: se explican como un ahorro obligatorio por terminación ("severance savings"), que el empleador deposita en un fondo.
+
+Q: ¿Cuál es la mejor manera de explicar en inglés "prima de servicios" (Colombia)?
++ a mandatory service bonus that employers pay twice a year
+- a service premium that the employee pays for health insurance
+- an insurance premium paid by the employer for workers' compensation coverage
+- a signing bonus paid once when the employee accepts the job offer
+E: La prima de servicios es un "mandatory bonus" semestral. "Premium" en inglés es la prima de un seguro.
+
+Q: ¿Cuál es la mejor manera de explicar en inglés "Fiscalía General de la Nación" (Colombia)?
++ Colombia's Attorney General's Office, the national prosecution service
+- the National General Fiscal Office, which manages the government's budget
+- the Treasury Department, which collects taxes and manages public money
+- the Comptroller General's Office, which audits the use of public funds
+E: La Fiscalía se presenta como "Attorney General's Office (Fiscalía)". "Fiscal" en inglés se refiere a las finanzas públicas, y "Comptroller General" corresponde a la Contraloría.
+
+Q: ¿Cuál es la mejor manera de explicar en inglés "Procuraduría General de la Nación" (Colombia)?
++ the Office of the Inspector General, which oversees the conduct of public officials
+- the National Procurement Office, which buys goods and services for the government
+- the Attorney General's Office, which prosecutes crimes before the courts
+- the Public Defender's Office, which represents defendants who cannot afford a lawyer
+E: Se presenta como "Office of the Inspector General (Procuraduría)". "Procurement" significa compras públicas, y la persecución penal corresponde a la Fiscalía.
+
+Q: ¿Cuál es la mejor manera de explicar en inglés "Defensoría del Pueblo" (Colombia)?
++ the Ombudsman's Office, which protects and promotes human rights
+- the People's Defense Department, which oversees the armed forces
+- the Department of Justice, which represents the national government in court
+- the Civil Rights Division, a unit of the national prosecution service
+E: La Defensoría del Pueblo se presenta como "Ombudsman's Office" (también coordina la defensa pública). "Defense Department" sugiere el Ministerio de Defensa.
+
+Q: ¿Cuál es la mejor manera de explicar en inglés "acción popular" (Colombia)?
++ an action to protect collective rights and interests, such as public health or the environment
+- a popular action that becomes a lawsuit after collecting enough citizen signatures
+- a class action seeking compensation for a group of people harmed by the same act
+- a popular vote in which citizens approve or reject a proposed law
+E: La acción popular protege derechos colectivos. La más parecida a la "class action" de EE. UU. es la acción de grupo, que busca indemnizar a un grupo de personas.
+
+Q: ¿Cuál es la mejor manera de explicar en inglés "salario mínimo legal mensual vigente (SMLMV)"?
++ the current statutory monthly minimum wage, set each year by the national government
+- the minimal legal salary monthly vigent, set each year by the national government
+- a living wage calculated by nonprofit groups for each region of the country
+- the federal minimum wage, set by Congress as an hourly rate
+E: Se traduce como "current statutory monthly minimum wage". Conviene aclarar que es mensual, porque en EE. UU. el salario mínimo se fija por hora.
+
+Q: ¿Cuál es la mejor manera de explicar en inglés "estrato socioeconómico" (de una vivienda en Colombia)?
++ a socioeconomic tier (1 to 6) assigned to residential properties, used to set utility rates and subsidies
+- a social class to which a person belongs according to their family's last name
+- an income tax bracket assigned by the tax authority to each household
+- a zip code that identifies the neighborhood for mail delivery
+E: El estrato no tiene equivalente en EE. UU.: se explica como una clasificación de las viviendas que se usa para fijar tarifas de servicios públicos y subsidios.
+
+Q: ¿Cuál es la mejor manera de explicar en inglés "unión marital de hecho"?
++ a de facto marital union between partners who live together, comparable in some ways to a common-law marriage
+- a civil marriage performed by a notary instead of a judge or a church
+- a marital factual union that requires a prenuptial agreement to be valid
+- a prenuptial agreement that defines which property belongs to each partner
+E: Se explica como "de facto marital union". Puede compararse con el "common-law marriage", pero solo algunos estados de EE. UU. lo reconocen y sus requisitos son distintos.
+
+Q: ¿Cuál es la mejor manera de explicar en inglés "paz y salvo"?
++ a certificate confirming that no amounts are owed (a clearance or no-debt certificate)
+- a peace and safety certificate issued by the police for travel purposes
+- a safe harbor provision that protects a party from liability in a contract
+- a no-contest clause that disinherits an heir who challenges the will
+E: El paz y salvo es un "clearance certificate" o "no-debt certificate". "Safe harbor" es una cláusula o regla de protección legal.
+
+Q: ¿Cuál es la mejor manera de explicar en inglés "certificado de existencia y representación legal"?
++ a Chamber of Commerce certificate showing that a company exists and who its legal representative is, similar to a certificate of good standing
+- a certificate of incorporation issued by a notary when a company is first formed
+- a power of attorney that a company's legal representative grants to a lawyer
+- the company's articles of representation, which list all its shareholders and their shares
+E: Se explica por su función: acredita que la sociedad existe y quién la representa. En EE. UU. el documento más parecido es el "certificate of good standing", que emite el Secretary of State.

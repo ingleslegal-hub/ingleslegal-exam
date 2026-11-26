@@ -1,0 +1,709 @@
+## Personas y profesiones jurídicas | People in the Legal System
+
+Q: ¿Cuál es la traducción al inglés de "fiscal" (en un proceso penal)?
++ prosecutor
+- fiscal officer
+- tax auditor
+- magistrate
+E: En un proceso penal, el fiscal es el "prosecutor" (en EE. UU. también "district attorney" o "DA"). En inglés, "fiscal" es un adjetivo de finanzas públicas (fiscal year = año fiscal).
+
+Q: ¿Cuál es la traducción al inglés de "abogado defensor" (en un proceso penal)?
++ defense attorney
+- district attorney
+- bailiff
+- court clerk
+E: El abogado del acusado es el "defense attorney" (o "defense counsel"); si lo paga el Estado, es un "public defender". El "district attorney" es el fiscal y el "bailiff" es el alguacil de la sala.
+
+Q: ¿Cuál es la traducción al inglés de "secretario del juzgado" (quien lleva el expediente y recibe los escritos)?
++ court clerk
+- law clerk
+- Secretary of State
+- bailiff
+E: El "court clerk" lleva el expediente y recibe los escritos. Un "law clerk" es un abogado joven que ayuda al juez a investigar y redactar, y el "Secretary of State" es un cargo de gobierno.
+
+Q: ¿Cuál es la traducción al inglés de "acusado" (en un proceso penal)?
++ defendant
+- accuser
+- plaintiff
+- prosecuted witness
+E: En un caso penal, el acusado es el "defendant" (también "the accused"). "Plaintiff" solo existe en lo civil, y quien acusa es el "prosecutor".
+
+Q: ¿Cuál es la traducción al inglés de "perito" (que declara en juicio sobre temas técnicos)?
++ expert witness
+- eyewitness
+- character witness
+- court interpreter
+E: El perito que declara en juicio es un "expert witness". El "eyewitness" vio los hechos y el "character witness" declara sobre la reputación de una persona.
+
+Q: ¿Cuál es la traducción al inglés de "testigo presencial"?
++ eyewitness
+- present witness
+- attesting witness
+- character witness
+E: Quien vio los hechos es un "eyewitness". Un "attesting witness" firma como testigo de un documento, por ejemplo de un testamento.
+
+Q: ¿Cuál es la traducción al inglés de "apoderado" (el abogado que representa a una parte en el expediente)?
++ attorney of record
+- power holder
+- trustee
+- guardian ad litem
+E: El abogado que figura como representante de la parte es el "attorney of record" (o "counsel of record"). El "trustee" es un fiduciario, y el "guardian ad litem" es la persona que el juez nombra para representar a un menor en el proceso.
+
+Q: ¿Cuál es la traducción al inglés de "juez de primera instancia"?
++ trial judge
+- appellate judge
+- chief justice
+- justice of the peace
+E: En EE. UU., el juez que conoce el caso en primera instancia es el "trial judge" (del "trial court"). El "justice of the peace" resuelve asuntos locales menores, y el "chief justice" preside un tribunal supremo.
+
+Q: ¿Cuál es la traducción al inglés de "magistrado de la Corte Suprema"?
++ justice
+- magistrate judge
+- attorney general
+- juror
+E: Los miembros de la Corte Suprema de EE. UU. son "justices". Un "magistrate judge" es un juez federal auxiliar de menor rango, así que "magistrado" y "magistrate" son falsos amigos.
+
+Q: ¿Cuál es la traducción al inglés de "miembro del jurado"?
++ juror
+- jury
+- jurist
+- assessor
+E: "Jury" es el grupo completo; cada miembro es un "juror". "Jurist" significa jurista, es decir, un experto en derecho.
+
+Q: ¿Cuál es la traducción al inglés de "árbitro" (en un arbitraje)?
++ arbitrator
+- mediator
+- umpire
+- notary
+E: El "arbitrator" decide la controversia y dicta un laudo. El "mediator" solo ayuda a las partes a negociar, y el "umpire" es el árbitro de algunos deportes, como el béisbol.
+
+Q: ¿Cuál es la traducción al inglés de "tutor" (de un menor, designado por el juez)?
++ guardian
+- tutor
+- trustee
+- foster parent
+E: El tutor legal de un menor es su "guardian". En inglés, "tutor" es un profesor particular, y el "foster parent" es la familia de acogida temporal.
+
+Q: ¿Cuál es la traducción al inglés de "albacea" (nombrado en el testamento)?
++ executor
+- heir
+- beneficiary
+- probate judge
+E: El albacea nombrado en el testamento es el "executor". Si lo nombra el juez porque no hay testamento, se le llama "administrator".
+
+Q: ¿Cuál es la traducción al inglés de "abogado litigante"?
++ litigator
+- litigant
+- solicitor
+- paralegal
+E: El abogado que lleva pleitos es un "litigator" (o "trial lawyer"). "Litigant" es una de las partes del pleito, no su abogado, y "solicitor" es un tipo de abogado británico.
+
+Q: ¿Cuál es la traducción al inglés de "asistente legal" (quien apoya al abogado, sin ser abogado)?
++ paralegal
+- legal auxiliary
+- court reporter
+- process server
+E: En EE. UU., el asistente legal es un "paralegal" (o "legal assistant"). "Legal auxiliary" no se usa, y las otras dos opciones son oficios distintos.
+
+Q: ¿Cuál es la traducción al inglés de "taquígrafo judicial" (quien transcribe audiencias y declaraciones)?
++ court reporter
+- law reporter
+- court interpreter
+- docket clerk
+E: El "court reporter" transcribe audiencias y declaraciones. Un "law reporter" es una colección publicada de sentencias, no una persona.
+
+Q: ¿Cuál es la traducción al inglés de "notificador" (quien entrega la demanda al demandado)?
++ process server
+- notifier
+- summons clerk
+- courier attorney
+E: Quien entrega la demanda y la citación al demandado es el "process server" ("process" = los documentos que inician el proceso). "Notifier" no es un término jurídico.
+
+Q: ¿Cuál es la traducción al inglés de "fiador" (persona que garantiza la deuda de otro)?
++ guarantor
+- bondholder
+- creditor
+- trustee
+E: El fiador es el "guarantor" (también "surety"). El "bondholder" es el tenedor de bonos, y el "creditor" es a quien se le debe.
+
+Q: ¿Cuál es la traducción al inglés de "acreedor"?
++ creditor
+- debtor
+- believer
+- accreditor
+E: El acreedor es el "creditor", y el deudor es el "debtor". Un "accreditor" es una entidad que acredita la calidad de instituciones, por ejemplo de universidades.
+
+Q: ¿Cuál es la traducción al inglés de "menor de edad"?
++ minor
+- junior
+- dependent
+- youth offender
+E: Una persona menor de 18 años es un "minor". "Junior" indica a un hijo con el mismo nombre o un rango inferior, y "dependent" es una persona a cargo (por ejemplo, para impuestos).
+
+## Tribunales y proceso | Courts and Procedure
+
+Q: ¿Cuál es la traducción al inglés de "expediente" (del proceso)?
++ case file
+- expedient
+- dossier fee
+- brief
+E: El expediente es el "case file" (el registro oficial del tribunal es el "record"). "Expedient" significa conveniente o recurso práctico, y un "brief" es un escrito de argumentos.
+
+Q: ¿Cuál es la traducción al inglés de "escrito" (cualquier documento que una parte presenta al juzgado)?
++ filing
+- script
+- writ
+- letter rogatory
+E: Todo documento presentado al tribunal es un "filing". Un "writ" es una orden del tribunal, y un "letter rogatory" es un exhorto a un tribunal extranjero.
+
+Q: ¿Cuál es la traducción al inglés de "radicar" (un escrito en el juzgado)?
++ to file
+- to radicate
+- to serve
+- to settle
+E: Los escritos se "file" en el tribunal. "To serve" es notificar o entregar a la otra parte, y "to radicate" no existe en inglés jurídico.
+
+Q: ¿Cuál es la traducción al inglés de "notificar la demanda" (al demandado)?
++ to serve the complaint
+- to notify the demand
+- to file the complaint
+- to answer the complaint
+E: Entregar formalmente la demanda al demandado es "to serve the complaint" (de ahí "service of process"). "To file" es presentarla en el tribunal y "to answer" es contestarla.
+
+Q: ¿Cuál es la traducción al inglés de "contestación de la demanda"?
++ answer
+- contestation
+- reply
+- counterclaim
+E: El escrito en que el demandado responde es el "answer". El "counterclaim" es la demanda de reconvención y el "reply" es la réplica del demandante.
+
+Q: ¿Cuál es la traducción al inglés de "prueba documental"?
++ documentary evidence
+- documentary test
+- paper proof
+- written trial
+E: Se dice "documentary evidence". "Evidence" se refiere a las pruebas, "proof" a la demostración de un hecho y "test" a un examen.
+
+Q: ¿Cuál es la traducción al inglés de "prueba" (cada documento u objeto marcado que se presenta en juicio)?
++ exhibit
+- proof
+- test
+- sample
+E: Cada documento u objeto marcado ("Exhibit A", "Exhibit B") es un "exhibit". "Proof" es la demostración en sí, no el documento.
+
+Q: ¿Cuál es la traducción al inglés de "juzgado de familia"?
++ family court
+- juvenile court
+- probate court
+- small claims court
+E: Es el "family court". El "juvenile court" juzga a menores, el "probate court" tramita sucesiones y el "small claims court" decide reclamos de poca cuantía.
+
+Q: ¿Cuál es la traducción al inglés de "juzgado de pequeñas causas"?
++ small claims court
+- minor causes court
+- traffic court
+- municipal hall
+E: Los reclamos de poca cuantía van al "small claims court". "Minor causes court" no existe, y el "traffic court" ve infracciones de tránsito.
+
+Q: ¿Cuál es la traducción al inglés de "tribunal de apelación"?
++ court of appeals
+- trial court
+- district court
+- court of claims
+E: El tribunal que revisa las sentencias es el "court of appeals" (o "appellate court"). El "trial court" y el "district court" federal son tribunales de primera instancia.
+
+Q: ¿Cuál es la traducción al inglés de "decisión del juez sobre una solicitud" (durante el proceso)?
++ ruling
+- failure
+- verdict
+- sentence
+E: La decisión sobre una solicitud u objeción es un "ruling". "Failure" significa fracaso (falso amigo de "fallo"), el "verdict" lo da el jurado y "sentence" es la pena.
+
+Q: ¿Cuál es la traducción al inglés de "solicitud" (que una parte presenta pidiendo al juez una orden)?
++ motion
+- solicitation
+- request for admission
+- summons
+E: Se dice "motion" ("motion to dismiss", "motion for continuance"). "Solicitation" puede significar inducir a alguien a cometer un delito o buscar clientes, y un "request for admission" es un medio de prueba.
+
+Q: ¿Cuál es la traducción al inglés de "citación" (documento que acompaña la demanda y llama al demandado a responder)?
++ summons
+- citation
+- subpoena
+- warrant
+E: El "summons" llama al demandado a responder. El "subpoena" cita a un testigo, y "citation" suele ser una multa de tránsito o una cita de jurisprudencia.
+
+Q: ¿Cuál es la traducción al inglés de "jurisprudencia" (sentencias anteriores que sirven de precedente)?
++ case law
+- jurisprudence
+- legislation
+- legal doctrine
+E: Las sentencias que sirven de precedente son "case law" (o "precedent"). En inglés, "jurisprudence" suele significar filosofía o teoría del derecho.
+
+Q: ¿Cuál es la traducción al inglés de "plazo" (para presentar un escrito)?
++ deadline
+- term
+- delay
+- extension
+E: El plazo para presentar algo es el "deadline". "Delay" es un retraso, "extension" es una prórroga y "term" se refiere a una duración (por ejemplo, la de un contrato).
+
+Q: ¿Cuál es la traducción al inglés de "suspensión del proceso" (por orden del juez)?
++ stay
+- suspension
+- dismissal
+- recess
+E: Cuando el juez detiene el proceso temporalmente, hay un "stay" ("stay of proceedings"). "Dismissal" pone fin al caso y "recess" es un receso breve en una audiencia.
+
+Q: ¿Cuál es la traducción al inglés de "archivo del caso" (el juez lo da por terminado sin decidir el fondo)?
++ dismissal
+- archive
+- filing
+- closing argument
+E: Terminar el caso sin decidir el fondo es un "dismissal". "Filing" es presentar un escrito y "archive" se refiere al lugar donde se guardan documentos.
+
+Q: ¿Cuál es la traducción al inglés de "alegatos de conclusión"?
++ closing arguments
+- conclusion allegations
+- final pleadings
+- opening statements
+E: Al final del juicio, los abogados presentan sus "closing arguments". Los "opening statements" son las exposiciones iniciales, y "allegations" son los hechos que se afirman en la demanda.
+
+Q: ¿Cuál es la traducción al inglés de "sala de audiencias"?
++ courtroom
+- audience hall
+- chambers
+- court registry
+E: Las audiencias se celebran en el "courtroom". "Chambers" es el despacho privado del juez, y "audience" significa público.
+
+Q: ¿Cuál es la traducción al inglés de "transcripción" (de lo dicho en una audiencia)?
++ transcript
+- hearing act
+- court docket
+- brief
+E: El texto de lo dicho en la audiencia es el "transcript". El "docket" es la lista de actuaciones del caso y un "brief" es un escrito de argumentos.
+
+## Contratos, negocios y documentos | Contracts, Business and Documents
+
+Q: ¿Cuál es la traducción al inglés de "acta" (de una reunión de junta directiva)?
++ minutes
+- act
+- deed
+- certificate
+E: El acta de una reunión son las "minutes", siempre en plural ("the board approved the minutes"). "Act" es una ley del Congreso y "deed" es una escritura de propiedad.
+
+Q: ¿Cuál es la traducción al inglés de "firma" (el nombre escrito a mano en un documento)?
++ signature
+- firm
+- signing bonus
+- sign
+E: El nombre escrito a mano es la "signature". "Firm" significa empresa o despacho ("law firm"), y "sign" es un letrero o el verbo firmar.
+
+Q: ¿Cuál es la traducción al inglés de "despacho de abogados"?
++ law firm
+- lawyer dispatch
+- bar association
+- law school
+E: Se dice "law firm". La "bar association" es el colegio de abogados, y "dispatch" significa envío.
+
+Q: ¿Cuál es la traducción al inglés de "sociedad anónima"?
++ corporation
+- anonymous society
+- partnership
+- sole proprietorship
+E: La sociedad anónima equivale a la "corporation". "Partnership" es una sociedad de personas, y "sole proprietorship" es una empresa unipersonal sin sociedad.
+
+Q: ¿Cuál es la traducción al inglés de "socio" (de un despacho de abogados, uno de sus dueños)?
++ partner
+- associate
+- paralegal
+- of counsel
+E: Los dueños del despacho son los "partners". Un "associate" es un abogado empleado que aún no es socio, y "of counsel" es un abogado vinculado al despacho que no es ni socio ni empleado común.
+
+Q: ¿Cuál es la traducción al inglés de "contrato de trabajo"?
++ employment agreement
+- work order
+- collective bargaining agreement
+- job description
+E: Se dice "employment agreement" (o "employment contract"). El "collective bargaining agreement" es la convención colectiva con un sindicato, y un "work order" es una orden de trabajo.
+
+Q: ¿Cuál es la traducción al inglés de "contrato de compraventa" (de una casa)?
++ purchase and sale agreement
+- buy-sell agreement
+- lease-to-own agreement
+- sales commission agreement
+E: Se dice "purchase and sale agreement" (o "purchase agreement"). Un "buy-sell agreement" regula la compra de la participación de un socio que se retira o fallece.
+
+Q: ¿Cuál es la traducción al inglés de "factura"?
++ invoice
+- facture
+- receipt
+- quote
+E: Se dice "invoice" (también "bill"). "Receipt" es un recibo, y "quote" es una cotización.
+
+Q: ¿Cuál es la traducción al inglés de "recibo" (comprobante de que se hizo un pago)?
++ receipt
+- recipe
+- reception
+- invoice
+E: El comprobante de pago es el "receipt". "Recipe" significa receta de cocina, y "invoice" es la factura que se emite antes del pago.
+
+Q: ¿Cuál es la traducción al inglés de "pagaré"?
++ promissory note
+- I will pay note
+- bill of lading
+- money order
+E: El pagaré es una "promissory note". El "bill of lading" es un conocimiento de embarque, y el "money order" es un giro postal.
+
+Q: ¿Cuál es la traducción al inglés de "fecha de vencimiento" (de una factura)?
++ due date
+- effective date
+- issue date
+- closing date
+E: El último día para pagar es el "due date". "Effective date" es la fecha de entrada en vigor, "issue date" la de emisión y "closing date" la de cierre de una operación.
+
+Q: ¿Cuál es la traducción al inglés de "cotización" (el precio que se ofrece por un servicio)?
++ quote
+- cotization
+- invoice
+- retainer
+E: Una cotización es un "quote" (o "estimate"). "Cotization" no se usa en inglés, y la factura ("invoice") se emite después.
+
+Q: ¿Cuál es la traducción al inglés de "anticipo de honorarios" (que el cliente paga al contratar al abogado)?
++ retainer
+- hourly rate
+- filing fee
+- flat fee
+E: El pago anticipado al abogado es el "retainer". "Hourly rate" es la tarifa por hora, "filing fee" es la tasa judicial y "flat fee" es una tarifa fija.
+
+Q: ¿Cuál es la traducción al inglés de "cuota litis" (el abogado cobra un porcentaje de lo que gane el cliente)?
++ contingency fee
+- quota litis
+- flat fee
+- court costs
+E: En EE. UU. se dice "contingency fee". Es el modelo habitual en casos de lesiones personales: si no hay recuperación, no hay honorarios.
+
+Q: ¿Cuál es la traducción al inglés de "cédula de ciudadanía" (Colombia)?
++ national ID card
+- citizenship certificate
+- Social Security card
+- green card
+E: Es el "national ID card" (o "national identity card"). El "citizenship certificate" acredita la ciudadanía adquirida, y la "Social Security card" muestra el número de seguro social estadounidense.
+
+Q: ¿Cuál es la traducción al inglés de "pasaporte vigente"?
++ valid passport
+- vigent passport
+- expired passport
+- provisional passport
+E: Un documento vigente es "valid" (y una ley o contrato vigente está "in force" o "in effect"). "Vigent" no se usa en inglés corriente.
+
+Q: ¿Cuál es la traducción al inglés de "registro civil de nacimiento"?
++ birth certificate
+- civil birth registry act
+- baptismal record
+- birth announcement
+E: Para USCIS y otros trámites se usa "birth certificate". El "baptismal record" es la partida de bautismo, que solo reemplaza al registro civil en casos excepcionales.
+
+Q: ¿Cuál es la traducción al inglés de "apostilla"?
++ apostille
+- apostle
+- notarization
+- certified translation
+E: Se dice "apostille", el certificado que valida un documento público para usarlo en otro país del Convenio de La Haya. "Notarization" es una autenticación ante un notario.
+
+Q: ¿Cuál es la traducción al inglés de "traducción certificada" (como la que exige USCIS)?
++ certified translation
+- sworn statement
+- notarized copy
+- literal translation
+E: USCIS pide una "certified translation": una traducción completa con una declaración del traductor de que es competente y de que la traducción es exacta.
+
+Q: ¿Cuál es la traducción al inglés de "membrete" (del papel de una empresa)?
++ letterhead
+- membership
+- header file
+- stamp
+E: El encabezado impreso con el nombre y los datos de la empresa es el "letterhead". "Membership" es la calidad de miembro, y "stamp" es un sello.
+
+## Derecho penal | Criminal Law
+
+Q: ¿Cuál es la traducción al inglés de "orden de captura"?
++ arrest warrant
+- capture order
+- search warrant
+- subpoena
+E: Se dice "arrest warrant". El "search warrant" es una orden de allanamiento, el "subpoena" es una citación para comparecer o entregar documentos y "capture order" no se usa.
+
+Q: ¿Cuál es la traducción al inglés de "denuncia" (ante la policía, por un robo)?
++ police report
+- denunciation
+- lawsuit
+- indictment
+E: Ante la policía se hace un "police report" (denunciar un delito = to report a crime). "Denunciation" es una crítica o condena pública, "lawsuit" es una demanda civil e "indictment" es la acusación del gran jurado.
+
+Q: ¿Cuál es la traducción al inglés de "orden de allanamiento"?
++ search warrant
+- raid order
+- bench warrant
+- restraining order
+E: Se dice "search warrant". El "bench warrant" es una orden de arresto que dicta el juez cuando alguien no comparece, y el "restraining order" es una orden de alejamiento.
+
+Q: ¿Cuál es la traducción al inglés de "robo" (con violencia o intimidación contra una persona)?
++ robbery
+- burglary
+- embezzlement
+- shoplifting
+E: Tomar algo de una persona con violencia o intimidación es "robbery". "Burglary" es entrar ilegalmente a un inmueble para delinquir, "embezzlement" es apropiarse del dinero que uno administra y "shoplifting" es hurtar en una tienda.
+
+Q: ¿Cuál es la traducción al inglés de "hurto" (tomar algo ajeno sin violencia)?
++ theft
+- robbery
+- burglary
+- fraud
+E: Tomar algo ajeno sin violencia es "theft" (en algunos estados, "larceny"). "Robbery" implica violencia o intimidación, y "fraud" implica engaño.
+
+Q: ¿Cuál es la traducción al inglés de "homicidio culposo" (sin intención de matar)?
++ involuntary manslaughter
+- first-degree murder
+- guilty homicide
+- aggravated assault
+E: Causar una muerte por imprudencia, sin intención, es "involuntary manslaughter". "First-degree murder" es el homicidio intencional y premeditado, y "guilty" no describe un tipo de homicidio.
+
+Q: ¿Cuál es la traducción al inglés de "estafa"?
++ fraud
+- extortion
+- bribery
+- forgery
+E: Obtener dinero mediante engaño es "fraud". "Extortion" es extorsión, "bribery" es soborno y "forgery" es falsificación de documentos o firmas.
+
+Q: ¿Cuál es la traducción al inglés de "soborno"?
++ bribery
+- blackmail
+- money laundering
+- perjury
+E: Ofrecer o recibir dinero para influir en un funcionario es "bribery". "Blackmail" es chantaje y "perjury" es falso testimonio bajo juramento.
+
+Q: ¿Cuál es la traducción al inglés de "lavado de activos"?
++ money laundering
+- asset washing
+- tax evasion
+- asset forfeiture
+E: Se dice "money laundering". "Asset forfeiture" es la pérdida de bienes a favor del Estado, parecida a la extinción de dominio.
+
+Q: ¿Cuál es la traducción al inglés de "falso testimonio" (mentir bajo juramento)?
++ perjury
+- false witness
+- defamation
+- obstruction of justice
+E: Mentir bajo juramento es "perjury". "Defamation" es difamación, y "obstruction of justice" es entorpecer una investigación o un proceso.
+
+Q: ¿Cuál es la traducción al inglés de "libertad condicional" (después de cumplir parte de la pena en prisión)?
++ parole
+- probation
+- bail
+- conditional freedom
+E: La salida anticipada de prisión bajo supervisión es "parole". La "probation" es un periodo de prueba en lugar de prisión, y "bail" es la fianza antes del juicio.
+
+Q: ¿Cuál es la traducción al inglés de "condena" (la pena que impone el juez)?
++ sentence
+- conviction
+- condemnation
+- verdict
+E: La pena es la "sentence". La "conviction" es la declaración de culpabilidad, que va antes de la pena, y "condemnation" suele significar reprobación o expropiación de un inmueble.
+
+Q: ¿Cuál es la traducción al inglés de "antecedentes penales"?
++ criminal record
+- criminal antecedents
+- police custody
+- pending charges
+E: Se dice "criminal record" (también "criminal history"). "Antecedents" no se usa con este sentido, y "pending charges" son cargos que aún no se han resuelto.
+
+Q: ¿Cuál es la traducción al inglés de "detención preventiva"?
++ pretrial detention
+- preventive arrest
+- house arrest
+- probation
+E: Estar detenido antes del juicio es "pretrial detention". "House arrest" es la detención domiciliaria.
+
+Q: ¿Cuál es la traducción al inglés de "cargos" (formulados contra el acusado)?
++ charges
+- loads
+- fees
+- claims
+E: Las imputaciones penales son "charges" ("to face charges"). "Loads" es carga física, "fees" son tarifas y "claims" son reclamaciones civiles.
+
+Q: ¿Cuál es la traducción al inglés de "declararse culpable"?
++ to plead guilty
+- to declare oneself culpable
+- to be found guilty
+- to plead the Fifth
+E: Cuando el propio acusado admite su culpabilidad ante el juez, "pleads guilty". "To be found guilty" es ser declarado culpable por el jurado o el juez, y "to plead the Fifth" es acogerse al derecho a no declarar.
+
+Q: ¿Cuál es la traducción al inglés de "circunstancia agravante"?
++ aggravating factor
+- aggravation
+- mitigating factor
+- aggravated assault
+E: Se dice "aggravating factor" (o "aggravating circumstance"). El "mitigating factor" es una atenuante, y el "aggravated assault" es un delito específico.
+
+Q: ¿Cuál es la traducción al inglés de "reincidente"?
++ repeat offender
+- reincident
+- first-time offender
+- habitual witness
+E: Quien vuelve a delinquir es un "repeat offender". El "first-time offender" es quien delinque por primera vez.
+
+Q: ¿Cuál es la traducción al inglés de "cadena perpetua"?
++ life sentence
+- perpetual chain
+- death penalty
+- consecutive sentences
+E: Se dice "life sentence" (o "life imprisonment"). "Consecutive sentences" son penas que se cumplen una después de otra.
+
+Q: ¿Cuál es la traducción al inglés de "derecho a guardar silencio"?
++ right to remain silent
+- right to a speedy trial
+- right to counsel
+- freedom of speech
+E: Se dice "right to remain silent", una de las advertencias Miranda. "Right to counsel" es el derecho a un abogado, y "freedom of speech" es la libertad de expresión.
+
+## Familia, sucesiones, bienes y trabajo | Family, Estates, Property and Employment
+
+Q: ¿Cuál es la traducción al inglés de "testamento"?
++ will
+- trust
+- estate
+- probate
+E: Se dice "will" (o "last will and testament"). "Trust" es un fideicomiso, "estate" es la masa sucesoral y "probate" es el proceso judicial de sucesión.
+
+Q: ¿Cuál es la traducción al inglés de "divorcio de mutuo acuerdo"?
++ uncontested divorce
+- mutual divorce
+- contested divorce
+- legal separation
+E: Cuando los cónyuges están de acuerdo en todo, es un "uncontested divorce". En el "contested divorce" hay desacuerdo, y la "legal separation" no disuelve el matrimonio.
+
+Q: ¿Cuál es la traducción al inglés de "cuota alimentaria" (para un hijo)?
++ child support
+- alimony
+- food stamps
+- child custody
+E: El dinero para la manutención de un hijo es "child support". "Alimony" es la pensión para el excónyuge (falso amigo de "alimentos"), y "food stamps" es una ayuda pública para comprar comida.
+
+Q: ¿Cuál es la traducción al inglés de "pensión para el excónyuge" (después del divorcio)?
++ spousal support
+- pension
+- survivor benefits
+- marital property
+E: Se dice "spousal support" (o "alimony"). En inglés, "pension" es una pensión de jubilación, y "survivor benefits" son pagos al cónyuge de una persona fallecida.
+
+Q: ¿Cuál es la traducción al inglés de "régimen de visitas" (de un hijo)?
++ visitation schedule
+- visiting regime
+- sole custody
+- home visit
+E: Se dice "visitation schedule" (en algunos estados, "parenting time"). "Sole custody" es la custodia exclusiva de uno de los padres.
+
+Q: ¿Cuál es la traducción al inglés de "registro civil de matrimonio"?
++ marriage certificate
+- marriage act
+- marriage license
+- prenuptial agreement
+E: El documento que prueba el matrimonio es el "marriage certificate". La "marriage license" es el permiso que se obtiene antes de casarse.
+
+Q: ¿Cuál es la traducción al inglés de "capitulaciones matrimoniales" (acuerdo antes de casarse)?
++ prenuptial agreement
+- marital capitulation
+- separation agreement
+- divorce decree
+E: Se dice "prenuptial agreement" (o "prenup"). El "separation agreement" se firma al separarse, y el "divorce decree" es la sentencia de divorcio.
+
+Q: ¿Cuál es la traducción al inglés de "bienes gananciales" (adquiridos durante el matrimonio)?
++ community property
+- gain goods
+- separate property
+- joint venture
+E: En estados como California y Texas se dice "community property". "Separate property" son los bienes propios de cada cónyuge.
+
+Q: ¿Cuál es la traducción al inglés de "heredar"?
++ to inherit
+- to heir
+- to bequeath
+- to probate
+E: Recibir bienes de un fallecido es "to inherit". "To bequeath" es lo contrario: dejar bienes en el testamento. "Heir" es un sustantivo (heredero), no un verbo.
+
+Q: ¿Cuál es la traducción al inglés de "masa sucesoral" (bienes y deudas del fallecido)?
++ estate
+- heritage
+- legacy
+- heirloom
+E: El conjunto de bienes y deudas del fallecido es su "estate". "Heritage" es patrimonio cultural y "heirloom" es una reliquia familiar.
+
+Q: ¿Cuál es la traducción al inglés de "sucesión intestada" (cuando no hay testamento)?
++ intestate succession
+- testamentary trust
+- intestate will
+- living trust
+E: Se dice "intestate succession". "Intestate will" es una contradicción, porque "intestate" significa sin testamento.
+
+Q: ¿Cuál es la traducción al inglés de "hipoteca"?
++ mortgage
+- lease option
+- property tax
+- title insurance
+E: Se dice "mortgage". "Title insurance" es el seguro que protege contra defectos en el título de propiedad.
+
+Q: ¿Cuál es la traducción al inglés de "cuota inicial" (al comprar una casa)?
++ down payment
+- initial quota
+- closing costs
+- monthly installment
+E: El pago inicial es el "down payment". Los "closing costs" son los gastos de cierre de la compra, y el "monthly installment" es la cuota mensual.
+
+Q: ¿Cuál es la traducción al inglés de "avalúo comercial" (de una casa)?
++ appraisal
+- avaluation
+- home inspection
+- land survey
+E: El valor que fija un perito es un "appraisal". La "home inspection" revisa el estado físico de la casa, y el "land survey" es un levantamiento topográfico.
+
+Q: ¿Cuál es la traducción al inglés de "despido" (el empleador termina el contrato)?
++ termination
+- retirement
+- demotion
+- leave of absence
+E: Se dice "termination" (o "dismissal"; de manera informal, "firing"). "Demotion" es bajar de cargo y "leave of absence" es una licencia.
+
+Q: ¿Cuál es la traducción al inglés de "renuncia" (el trabajador deja su empleo)?
++ resignation
+- renunciation
+- waiver
+- retirement
+E: Dejar el empleo por voluntad propia es "resignation". "Waiver" es la renuncia a un derecho, y "renunciation" se usa para renunciar a una ciudadanía o a una herencia.
+
+Q: ¿Cuál es la traducción al inglés de "horas extras"?
++ overtime
+- extra hours
+- double shift
+- part-time
+E: Se dice "overtime" ("overtime pay"). "Double shift" es un doble turno, y "part-time" es un trabajo de medio tiempo.
+
+Q: ¿Cuál es la traducción al inglés de "salario mínimo"?
++ minimum wage
+- minimal salary
+- base pay
+- living wage
+E: Se dice "minimum wage". "Base pay" es el salario básico sin extras, y "living wage" es el salario necesario para vivir dignamente.
+
+Q: ¿Cuál es la traducción al inglés de "accidente de trabajo"?
++ work-related injury
+- labor accident
+- occupational disease
+- vehicle accident
+E: Se dice "work-related injury" (o "workplace injury"), y se reclama por medio del "workers' compensation". "Occupational disease" es una enfermedad laboral.
+
+Q: ¿Cuál es la traducción al inglés de "incapacidad" (médica, que impide trabajar)?
++ disability
+- incompetence
+- disqualification
+- impairment rating
+E: Se dice "disability" ("temporary total disability"). "Incompetence" es ineptitud, y el "impairment rating" es la calificación del porcentaje de pérdida de capacidad.
