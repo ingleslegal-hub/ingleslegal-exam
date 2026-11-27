@@ -34,10 +34,10 @@
 </style>
 </head>
 <body>
-  <div class="brand">
+  <a href="https://www.ingleslegal.com" target="_blank" rel="noopener" title="Ingleslegal home" class="brand" style="color:inherit;text-decoration:none">
     <svg width="40" height="40" viewBox="0 0 40 40" aria-hidden="true"><path d="M18,4 A16,16 0 0 0 18,36" fill="none" stroke="#6E5A79" stroke-width="1.5"/><path d="M18,9 A11,11 0 0 0 18,31" fill="none" stroke="#A9713F" stroke-width="2"/><path d="M18,14 A6,6 0 0 0 18,26" fill="none" stroke="#C9A96E" stroke-width="3"/><circle cx="25" cy="20" r="3" fill="#F1EBDE"/></svg>
     <div class="wm"><b>Ingles</b>legal</div>
-  </div>
+  </a>
   <div class="card">
     <h1>Verify a Proficiency Report</h1>
     <p>Enter the report ID printed on the Proficiency Report, or scan its QR code.</p>
@@ -75,5 +75,8 @@
   var q = new URLSearchParams(location.search).get("id");
   if(q){ lookup(q); }
 </script>
+<!-- Site footer: contact and legal links (same block on every exam page) -->
+<style>.il-sitefoot{max-width:860px;margin:32px auto 0;padding:18px 16px 28px;text-align:center;font:13px/1.9 system-ui,-apple-system,"Segoe UI",Roboto,sans-serif;color:inherit;opacity:.8}.il-sitefoot a{color:inherit;text-decoration:underline;text-underline-offset:2px;white-space:nowrap}.il-sitefoot span{margin:0 3px;opacity:.6}@media print{.il-sitefoot{display:none}}</style>
+<footer class="il-sitefoot"><a href="https://www.ingleslegal.com" target="_blank" rel="noopener">ingleslegal.com</a> <span aria-hidden="true">&middot;</span> <a href="mailto:hello@ingleslegal.com">hello@ingleslegal.com</a> <span aria-hidden="true">&middot;</span> <a href="https://wa.me/573001229214" target="_blank" rel="noopener">WhatsApp +57 300 122 9214</a> <span aria-hidden="true">&middot;</span> <a href="https://www.ingleslegal.com/privacy" target="_blank" rel="noopener">Privacy Policy</a> <span aria-hidden="true">&middot;</span> <a href="https://www.ingleslegal.com/terms" target="_blank" rel="noopener">Terms &amp; Conditions</a></footer>
 </body>
 </html>
