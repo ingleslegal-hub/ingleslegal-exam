@@ -292,7 +292,7 @@ The report module is embedded in each exam file (it must work as a standalone fi
 
 ## Site footer, logo link and sharing
 
-Every candidate-facing page (the exam menu, tier, pathway, translation and vocabulary exams, the waitlist and the verify page) ends with the same footer: ingleslegal.com, hello@ingleslegal.com, WhatsApp (+57 300 122 9214), Privacy Policy and Terms & Conditions (in Spanish on the translation exams). The Ingleslegal logo links to www.ingleslegal.com in a new tab, so an exam in progress is not lost. To change a contact detail, update the footer block at the end of each page.
+Every candidate-facing page (the exam menu, tier, pathway, translation and vocabulary exams, the waitlist and the verify page) ends with the same footer: ingleslegal.com, hello@ingleslegal.com, WhatsApp, Privacy Policy and Terms & Conditions (in Spanish on the translation exams). The Ingleslegal logo links to www.ingleslegal.com in a new tab, so an exam in progress is not lost. To change a contact detail, update the footer block at the end of each page.
 
 The share box on the results screen depends on the result:
 
