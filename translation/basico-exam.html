@@ -4,6 +4,15 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Ingleslegal — Examen de traducción jurídica · Básico</title>
+<meta name="description" content="Examen gratuito de traducción jurídica (español a inglés) de Ingleslegal. Vea su puntaje por área y reciba un Proficiency Report si aprueba.">
+<meta property="og:type" content="website">
+<meta property="og:title" content="Ingleslegal — Examen de traducción jurídica · Básico">
+<meta property="og:description" content="Examen gratuito de traducción jurídica (español a inglés) de Ingleslegal. Vea su puntaje por área y reciba un Proficiency Report si aprueba.">
+<meta property="og:url" content="https://ingleslegal-hub.github.io/ingleslegal-exam/translation/basico-exam.html">
+<meta property="og:image" content="https://ingleslegal-hub.github.io/ingleslegal-exam/share-images/translation-basico.png">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="627">
+<meta name="twitter:card" content="summary_large_image">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Archivo:ital,wght@0,400;0,500;0,600;1,400&family=Spectral:ital,wght@0,400;0,600;1,400&display=swap" rel="stylesheet">
@@ -201,7 +210,7 @@ body:not(.results-dark) .scorebox .lbl{ color:#B9AAC4; }
   </div>
   <div class="tag">Traducción jurídica · Básico</div>
 </div>
-<div class="logo-wrap"><img src="../vocabulary/logo.png" alt="Ingleslegal"></div>
+<div class="logo-wrap"><a href="https://www.ingleslegal.com" target="_blank" rel="noopener" title="Ingleslegal home"><img src="../vocabulary/logo.png" alt="Ingleslegal"></a></div>
 <div class="progress-shell" id="progressShell" style="display:none;">
   <div class="tabs" id="tabs"></div>
   <div class="bar-outer"><div class="bar-inner" id="barInner"></div></div>
@@ -417,9 +426,10 @@ function render(){
         <div>El puntaje mínimo para aprobar es ${Math.round(PASS_THRESHOLD*100)}%. Usted obtuvo ${fmtPct(pct)}${partial ? ", con base en " + completed + " de " + TOTAL + " preguntas." : "."}${passed ? "" : " " + shortBy(score, completed)}</div>
       </div>
       ${certCardForExam(completed, partial, passed, score, pct)}
+      ${passed && !partial ? shareHTML(fmtPct(pct), true) : ""}
       ${nextStepHTML(completed, passed)}
       ${discountHTML()}
-      ${shareHTML(fmtPct(pct))}
+      ${passed && !partial ? "" : shareHTML(fmtPct(pct), false)}
       ${reviewHTML(completed)}
       <div class="navrow">
         <button class="btn ghost" onclick="downloadResults()">Descargar mis resultados</button>
@@ -496,21 +506,33 @@ function discountHTML(){
 }
 function shareText(pctText){ return "Obtuve " + pctText + " en el " + EXAM_NAME + " de Ingleslegal. Preséntelo gratis: " + EXAM_URL; }
 function inviteText(){ return "Acabo de presentar el " + EXAM_NAME + " gratuito de Ingleslegal y creo que le puede interesar: " + EXAM_URL; }
-let _sharePct = "";
+let _sharePct = "", _shareMsg = "";
 function doShare(btn){
-  const text = shareText(_sharePct);
+  const text = _shareMsg || shareText(_sharePct);
   if(navigator.share){ navigator.share({ title: "Ingleslegal - " + EXAM_NAME, text: text, url: EXAM_URL }).catch(() => {}); }
   else { copyText(text, btn, "Compartir"); }
 }
-function shareHTML(pctText){
+// LinkedIn's share link only takes a URL, so the post text is copied first for the candidate to paste.
+function shareLinkedIn(btn){
+  copyText(_shareMsg || shareText(_sharePct), null, "");
+  window.open("https://www.linkedin.com/sharing/share-offsite/?url=" + encodeURIComponent(EXAM_URL), "_blank", "noopener");
+  if(btn){ btn.textContent = "Texto copiado: péguelo en su publicación"; }
+}
+// passed: a completed, passing exam. It shares the score and shows above the next steps;
+// otherwise the box invites a colleague (no score) and shows after the next steps.
+function shareHTML(pctText, passed){
   _sharePct = pctText;
-  const wa = "https://wa.me/?text=" + encodeURIComponent(shareText(pctText));
+  _shareMsg = passed ? shareText(pctText) : inviteText();
+  const card = passed ? ilCardHTML() : "";
+  const wa = "https://wa.me/?text=" + encodeURIComponent(_shareMsg);
   const mail = "mailto:?subject=" + encodeURIComponent("Examen gratuito de traducción jurídica de Ingleslegal") + "&body=" + encodeURIComponent(inviteText());
   return `<div class="sharebox">
-    <div class="headline">Comparta su resultado</div>
-    <p>¿Conoce a un colega que esté aprendiendo inglés jurídico? Invítelo a presentar el examen.</p>
+    <div class="headline">${passed ? "Comparta su resultado" : "Invite a un colega"}</div>
+    <p>${passed ? (card ? "Aprobó. Comparta su tarjeta de resultado en LinkedIn y ayude a un colega a encontrar el examen gratuito." : "Aprobó. Publique su resultado en LinkedIn y ayude a un colega a encontrar el examen gratuito.") : "¿Conoce a alguien que esté aprendiendo inglés jurídico? Envíele el examen gratuito."}</p>
+    ${card}
     <div class="sharerow">
-      <button type="button" class="btn gold" onclick="doShare(this)">Compartir</button>
+      <button type="button" class="btn ${card ? "ghost" : "gold"}" onclick="shareLinkedIn(this)">${card ? "Compartir el enlace en LinkedIn" : "Compartir en LinkedIn"}</button>
+      <button type="button" class="btn ghost" onclick="doShare(this)">Compartir</button>
       <a class="btn ghost" href="${wa}" target="_blank" rel="noopener">WhatsApp</a>
       <a class="btn ghost" href="${mail}">Enviar por correo</a>
     </div>
@@ -2856,5 +2878,209 @@ function certCardForExam(completed, partial, passed, score, pct){
   return certCardHTML(state._certD, RESULTS_WEBHOOK_URL);
 }
 </script>
+<script>
+/* ---- Shareable result card (the same block on every exam page; only IL_CARD_LANG and IL_CARD_LOGO differ).
+   Draws a 1080x1350 PNG from the Proficiency Report data (_certD), so it exists only when a report was issued.
+   Phones: the share sheet with the image. Computers: the image downloads and the post text is copied. ---- */
+const IL_CARD_LANG = "es";
+const IL_CARD_LOGO = "../vocabulary/logo.png";
+const IL_CARD_T = {
+  en: { share: "Share my result card", download: "Download image", wait: "Preparing your card…", alt: "Your result card",
+        done: "Image saved and post text copied. Start a LinkedIn post, add the image and paste the text.", open: "Open LinkedIn",
+        name: "Show my name on the card" },
+  es: { share: "Compartir mi tarjeta de resultado", download: "Descargar imagen", wait: "Preparando su tarjeta…", alt: "Su tarjeta de resultado",
+        done: "Imagen guardada y texto copiado. Cree una publicación en LinkedIn, agregue la imagen y pegue el texto.", open: "Abrir LinkedIn",
+        name: "Mostrar mi nombre en la tarjeta" }
+}[IL_CARD_LANG];
+let _ilCardBlob = null, _ilCardId = null, _ilCardShowName = true;
+function ilCardData(){
+  if(typeof state !== "undefined" && state && state._certD) return state._certD;
+  if(typeof app !== "undefined" && app && app.certId && typeof _certD !== "undefined" && _certD && _certD.id === app.certId) return _certD;
+  return null;
+}
+function ilCardMsg(){
+  if(typeof _shareMsg !== "undefined" && _shareMsg) return _shareMsg;
+  if(typeof app !== "undefined" && app && app.shareMsg) return app.shareMsg;
+  return "";
+}
+function ilCardFileName(D){ return "Ingleslegal_Result_" + D.id + ".png"; }
+function ilCardImg(src){ return new Promise((ok, no) => { const i = new Image(); i.onload = () => ok(i); i.onerror = no; i.src = src; }); }
+async function ilCardFonts(){
+  if(!document.querySelector("link[data-il-card-fonts]")){
+    const l = document.createElement("link"); l.rel = "stylesheet"; l.setAttribute("data-il-card-fonts", "1");
+    l.href = "https://fonts.googleapis.com/css2?family=Archivo:wght@400;600&family=Spectral:wght@400&display=swap";
+    document.head.appendChild(l);
+  }
+  try{
+    await Promise.race([
+      Promise.all(["400 80px Spectral", "600 40px Archivo", "400 40px Archivo"].map(f => document.fonts.load(f))),
+      new Promise(r => setTimeout(r, 2500))
+    ]);
+  }catch(e){}
+}
+function ilCardFit(x, text, maxW){
+  text = String(text);
+  if(x.measureText(text).width <= maxW) return text;
+  let t = text;
+  while(t.length > 1 && x.measureText(t + "…").width > maxW) t = t.slice(0, -1);
+  return t.trimEnd() + "…";
+}
+function ilCardRound(x, l, t, w, h, r){
+  x.beginPath(); x.moveTo(l + r, t); x.arcTo(l + w, t, l + w, t + h, r); x.arcTo(l + w, t + h, l, t + h, r);
+  x.arcTo(l, t + h, l, t, r); x.arcTo(l, t, l + w, t, r); x.closePath();
+}
+function ilCardPct(p){ return (Math.round(p * 10) / 10) + "%"; }
+async function ilCardDraw(D){
+  await ilCardFonts();
+  const W = 1080, H = 1350, P = 72;
+  const BG = "#2A1A32", GOLD = "#C9A96E", CREAM = "#F1EBDE", MUTED = "#CFC2D6", SOFT = "#A898B4", TRACK = "#4A3657", INK = "#1E1226";
+  const SERIF = "Spectral, Georgia, serif", SANS = "Archivo, Arial, sans-serif";
+  const c = document.createElement("canvas"); c.width = W; c.height = H;
+  const x = c.getContext("2d");
+  x.fillStyle = BG; x.fillRect(0, 0, W, H);
+  // Full logo: waves, dot and wordmark (the PNG's own background matches BG).
+  try{
+    const logo = await ilCardImg(IL_CARD_LOGO);
+    const lw = 560; x.drawImage(logo, P - 30, 40, lw, lw * logo.height / logo.width);
+  }catch(e){ x.fillStyle = GOLD; x.font = "600 72px " + SANS; x.fillText("Ingleslegal", P, 140); }
+  // "Passed" pill.
+  x.font = "600 30px " + SANS;
+  const pw = x.measureText("Passed").width + 56;
+  ilCardRound(x, W - P - pw, 96, pw, 60, 30); x.fillStyle = GOLD; x.fill();
+  x.fillStyle = BG; x.textBaseline = "middle"; x.fillText("Passed", W - P - pw + 28, 127); x.textBaseline = "alphabetic";
+  // Report title, name, exam.
+  x.fillStyle = GOLD; x.font = "600 28px " + SANS;
+  if("letterSpacing" in x) x.letterSpacing = "4px";
+  x.fillText("LEGAL ENGLISH PROFICIENCY REPORT", P, 300);
+  if("letterSpacing" in x) x.letterSpacing = "0px";
+  // Long names and exam titles shrink to fit before they are cut short.
+  const ilShrink = (text, weight, size, min, family) => { x.font = weight + " " + size + "px " + family;
+    while(size > min && x.measureText(String(text)).width > W - 2 * P){ size -= 1; x.font = weight + " " + size + "px " + family; } };
+  if(_ilCardShowName){
+    x.fillStyle = CREAM; ilShrink(D.name, "400", 84, 60, SERIF); x.fillText(ilCardFit(x, D.name, W - 2 * P), P, 392);
+    x.fillStyle = MUTED; ilShrink(D.exam, "400", 36, 27, SANS); x.fillText(ilCardFit(x, D.exam, W - 2 * P), P, 456);
+    x.fillStyle = SOFT; x.font = "400 30px " + SANS; x.fillText(ilCardFit(x, D.level, W - 2 * P), P, 502);
+  } else {
+    // Without the name, the exam title takes its place: one line if it fits, otherwise two.
+    x.fillStyle = CREAM; ilShrink(D.exam, "400", 72, 56, SERIF);
+    if(x.measureText(String(D.exam)).width <= W - 2 * P){
+      x.fillText(D.exam, P, 392);
+      x.fillStyle = MUTED; x.font = "400 36px " + SANS; x.fillText(ilCardFit(x, D.level, W - 2 * P), P, 456);
+    } else {
+      const words = String(D.exam).split(" "); let l1 = "";
+      while(words.length && x.measureText((l1 + " " + words[0]).trim()).width <= W - 2 * P) l1 = (l1 + " " + words.shift()).trim();
+      x.fillText(l1, P, 372); x.fillText(ilCardFit(x, words.join(" "), W - 2 * P), P, 440);
+      x.fillStyle = SOFT; x.font = "400 30px " + SANS; x.fillText(ilCardFit(x, D.level, W - 2 * P), P, 502);
+    }
+  }
+  // Score.
+  x.fillStyle = GOLD; x.font = "400 200px " + SERIF;
+  const score = ilCardPct(D.pct); x.fillText(score, P - 6, 724);
+  const sw = x.measureText(score).width;
+  x.fillStyle = MUTED; x.font = "400 32px " + SANS; x.fillText("Pass mark " + D.passMark + "%", P + sw + 22, 700);
+  // Strongest skills (top three).
+  const top = (D.skills || []).slice().sort((a, b) => b.p - a.p).slice(0, 3);
+  x.fillStyle = GOLD; x.font = "600 30px " + SANS; x.fillText(D.topLabel || "Strongest skills", P, 806);
+  top.forEach((s, i) => {
+    const y = 862 + i * 96;
+    x.font = "400 34px " + SANS; x.fillStyle = CREAM;
+    const pct = ilCardPct(s.p), pctW = x.measureText(pct).width;
+    x.fillText(ilCardFit(x, s.n, W - 2 * P - pctW - 30), P, y);
+    x.fillText(pct, W - P - pctW, y);
+    ilCardRound(x, P, y + 20, W - 2 * P, 14, 7); x.fillStyle = TRACK; x.fill();
+    ilCardRound(x, P, y + 20, Math.max(14, (W - 2 * P) * Math.min(100, s.p) / 100), 14, 7); x.fillStyle = GOLD; x.fill();
+  });
+  // Footer: date, report ID, invitation, QR code to the verify page.
+  x.fillStyle = TRACK; x.fillRect(P, 1160, W - 2 * P, 2);
+  const qs = 150, qx = W - P - qs, qy = 1182;
+  x.fillStyle = SOFT; x.font = "400 28px " + SANS;
+  x.fillText(ilCardFit(x, D.date + " · ID " + D.id, qx - P - 24), P, 1222);
+  x.fillStyle = CREAM; x.font = "600 34px " + SANS; x.fillText("Take it free at ingleslegal.com", P, 1276);
+  ilCardRound(x, qx, qy, qs, qs, 12); x.fillStyle = CREAM; x.fill();
+  try{
+    const q = qrcode(0, "M"); q.addData(CERT_VERIFY + "?id=" + D.id); q.make();
+    const n = q.getModuleCount(), cell = (qs - 20) / n;
+    x.fillStyle = INK;
+    for(let r = 0; r < n; r++) for(let k = 0; k < n; k++) if(q.isDark(r, k)) x.fillRect(qx + 10 + k * cell, qy + 10 + r * cell, Math.ceil(cell), Math.ceil(cell));
+  }catch(e){}
+  return new Promise((ok, no) => c.toBlob(b => b ? ok(b) : no(new Error("toBlob")), "image/png"));
+}
+/* Draws the card as soon as the share box is on screen, so a tap can share it straight away. */
+async function ilCardPrepare(){
+  const D = ilCardData(), img = document.getElementById("ilCardImg"), hint = document.getElementById("ilCardHint");
+  if(!D || !img) return;
+  try{
+    const key = D.id + (_ilCardShowName ? ":name" : ":noname");
+    if(!_ilCardBlob || _ilCardId !== key){
+      _ilCardBlob = null;
+      const b = await ilCardDraw(D);
+      if(key !== D.id + (_ilCardShowName ? ":name" : ":noname")) return; // the box was toggled again meanwhile
+      _ilCardBlob = b; _ilCardId = key;
+    }
+    if(img.src) URL.revokeObjectURL(img.src);
+    img.src = URL.createObjectURL(_ilCardBlob);
+    img.closest(".ilcard").classList.add("ready");
+    if(hint) hint.textContent = "";
+  }catch(e){
+    const box = img.closest(".ilcard"); if(box) box.remove();
+  }
+}
+function ilCardCopy(text){
+  if(!text) return;
+  const fallback = () => { const t = document.createElement("textarea"); t.value = text; document.body.appendChild(t); t.select(); try{ document.execCommand("copy"); }catch(e){} document.body.removeChild(t); };
+  if(navigator.clipboard && navigator.clipboard.writeText){ navigator.clipboard.writeText(text).catch(fallback); } else { fallback(); }
+}
+function ilCardDownload(){
+  const D = ilCardData(); if(!D || !_ilCardBlob) return;
+  const a = document.createElement("a"); a.href = URL.createObjectURL(_ilCardBlob); a.download = ilCardFileName(D);
+  document.body.appendChild(a); a.click(); a.remove();
+}
+function ilCardShare(btn){
+  const D = ilCardData(), hint = document.getElementById("ilCardHint");
+  if(!D) return;
+  if(!_ilCardBlob){ if(hint) hint.textContent = IL_CARD_T.wait; ilCardPrepare(); return; }
+  const msg = ilCardMsg();
+  const file = new File([_ilCardBlob], ilCardFileName(D), { type: "image/png" });
+  if(navigator.canShare && navigator.share && navigator.canShare({ files: [file] })){
+    ilCardCopy(msg);
+    navigator.share({ files: [file], text: msg }).catch(() => {});
+    return;
+  }
+  ilCardDownload();
+  ilCardCopy(msg);
+  if(hint) hint.innerHTML = IL_CARD_T.done + ' <a href="https://www.linkedin.com/feed/?shareActive=true" target="_blank" rel="noopener">' + IL_CARD_T.open + "</a>";
+}
+/* "Show my name on the card": redraws the card with or without the candidate's name. */
+function ilCardToggleName(cb){
+  _ilCardShowName = !!cb.checked;
+  const hint = document.getElementById("ilCardHint");
+  if(hint) hint.textContent = IL_CARD_T.wait;
+  ilCardPrepare();
+}
+function ilCardHTML(){
+  const D = ilCardData(); if(!D) return "";
+  if(!document.getElementById("ilCardCss")){
+    const s = document.createElement("style"); s.id = "ilCardCss";
+    s.textContent = ".ilcard{display:flex;gap:18px;align-items:flex-start;flex-wrap:wrap;margin:4px 0 16px}"
+      + ".ilcard img{width:190px;aspect-ratio:4/5;border-radius:6px;background:#2A1A32;border:1px solid rgba(201,169,110,.45);display:block}"
+      + ".ilcard:not(.ready) img{visibility:hidden}"
+      + ".ilcard-side{flex:1;min-width:200px;display:flex;flex-direction:column;gap:10px;align-items:flex-start}"
+      + ".ilcard-hint{font-size:13px;line-height:1.5;opacity:.9}.ilcard-hint a{color:#C9A96E}"
+      + ".ilcard-name{display:flex;gap:8px;align-items:center;font-size:14px;line-height:1.4;cursor:pointer;color:#F1EBDE}"
+      + ".ilcard-name input{width:16px;height:16px;margin:0;accent-color:#C9A96E;cursor:pointer}";
+    document.head.appendChild(s);
+  }
+  setTimeout(ilCardPrepare, 0);
+  const b = D.btn || { gold: "btn gold", ghost: "btn ghost" };
+  return `<div class="ilcard"><img id="ilCardImg" alt="${IL_CARD_T.alt}"><div class="ilcard-side">`
+    + `<button type="button" class="${b.gold}" onclick="ilCardShare(this)">${IL_CARD_T.share}</button>`
+    + `<button type="button" class="${b.ghost}" onclick="ilCardDownload()">${IL_CARD_T.download}</button>`
+    + `<label class="ilcard-name"><input type="checkbox" id="ilCardName" ${_ilCardShowName ? "checked" : ""} onchange="ilCardToggleName(this)">${IL_CARD_T.name}</label>`
+    + `<div class="ilcard-hint" id="ilCardHint" aria-live="polite">${IL_CARD_T.wait}</div></div></div>`;
+}
+</script>
+<!-- Site footer: contact and legal links (same block on every exam page) -->
+<style>.il-sitefoot{max-width:860px;margin:32px auto 0;padding:18px 16px 28px;text-align:center;font:13px/1.9 system-ui,-apple-system,"Segoe UI",Roboto,sans-serif;color:inherit;opacity:.8}.il-sitefoot a{color:inherit;text-decoration:underline;text-underline-offset:2px;white-space:nowrap}.il-sitefoot span{margin:0 3px;opacity:.6}@media print{.il-sitefoot{display:none}}</style>
+<footer class="il-sitefoot"><a href="https://www.ingleslegal.com" target="_blank" rel="noopener">ingleslegal.com</a> <span aria-hidden="true">&middot;</span> <a href="mailto:hello@ingleslegal.com">hello@ingleslegal.com</a> <span aria-hidden="true">&middot;</span> <a href="https://wa.me/573001229214" target="_blank" rel="noopener">WhatsApp +57 300 122 9214</a> <span aria-hidden="true">&middot;</span> <a href="https://www.ingleslegal.com/privacy" target="_blank" rel="noopener">Política de privacidad</a> <span aria-hidden="true">&middot;</span> <a href="https://www.ingleslegal.com/terms" target="_blank" rel="noopener">Términos y condiciones</a></footer>
 </body>
 </html>

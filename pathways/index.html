@@ -4,6 +4,15 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Career Pathway Exams | Ingleslegal</title>
+<meta name="description" content="Free career pathway exams from Ingleslegal: immigration, personal injury, workers' compensation, family law and criminal defense.">
+<meta property="og:type" content="website">
+<meta property="og:title" content="Career Pathway Exams | Ingleslegal">
+<meta property="og:description" content="Free career pathway exams from Ingleslegal: immigration, personal injury, workers' compensation, family law and criminal defense.">
+<meta property="og:url" content="https://ingleslegal-hub.github.io/ingleslegal-exam/pathways/index.html">
+<meta property="og:image" content="https://ingleslegal-hub.github.io/ingleslegal-exam/share-images/pathways.png">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="627">
+<meta name="twitter:card" content="summary_large_image">
   <style>
     :root{
       --aubergine:#2A1B33;
@@ -28,10 +37,14 @@
       font-family:'Source Sans 3','Segoe UI',Tahoma,sans-serif;
       padding:32px 16px;
       display:flex;
+      flex-wrap:wrap;
+      align-content:flex-start;
       justify-content:center;
       min-height:100vh;
     }
     .wrap{width:100%; max-width:640px;}
+    /* The site footer takes its own row under the content. */
+    body > .il-sitefoot{flex:0 0 100%;}
     h1{
       font-family:'Fraunces',Georgia,serif;
       font-weight:600;
@@ -101,7 +114,7 @@
 <body>
   <div class="wrap">
     <div style="text-align:center; margin-bottom:24px;">
-      <img src="../vocabulary/logo.png" alt="Ingleslegal" style="width:100%; max-width:320px; height:auto; display:inline-block;">
+      <a href="https://www.ingleslegal.com" target="_blank" rel="noopener" title="Ingleslegal home"><img src="../vocabulary/logo.png" alt="Ingleslegal" style="width:100%; max-width:320px; height:auto; display:inline-block;"></a>
     </div>
 
     <form id="menu" class="card" novalidate>
@@ -206,5 +219,8 @@
       location.href = exam.file + "?length=" + encodeURIComponent(length);
     });
   </script>
+<!-- Site footer: contact and legal links (same block on every exam page) -->
+<style>.il-sitefoot{max-width:860px;margin:32px auto 0;padding:18px 16px 28px;text-align:center;font:13px/1.9 system-ui,-apple-system,"Segoe UI",Roboto,sans-serif;color:inherit;opacity:.8}.il-sitefoot a{color:inherit;text-decoration:underline;text-underline-offset:2px;white-space:nowrap}.il-sitefoot span{margin:0 3px;opacity:.6}@media print{.il-sitefoot{display:none}}</style>
+<footer class="il-sitefoot"><a href="https://www.ingleslegal.com" target="_blank" rel="noopener">ingleslegal.com</a> <span aria-hidden="true">&middot;</span> <a href="mailto:hello@ingleslegal.com">hello@ingleslegal.com</a> <span aria-hidden="true">&middot;</span> <a href="https://wa.me/573001229214" target="_blank" rel="noopener">WhatsApp +57 300 122 9214</a> <span aria-hidden="true">&middot;</span> <a href="https://www.ingleslegal.com/privacy" target="_blank" rel="noopener">Privacy Policy</a> <span aria-hidden="true">&middot;</span> <a href="https://www.ingleslegal.com/terms" target="_blank" rel="noopener">Terms &amp; Conditions</a></footer>
 </body>
 </html>

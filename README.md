@@ -287,3 +287,33 @@ The report shows the strongest skills (golden ribbon), a skills snapshot, window
 **Verification.** Each report gets an ID like `IL-T2-XXXXXXXX`. The exam posts it (type `certificate`) to the same Apps Script webhook as the results, which stores it in a `Certificates` sheet. `verify.html` looks the ID up and shows the full name, exam, score and date. Setup steps are in `apps-script/certificates.gs` (paste into the existing Apps Script project and redeploy).
 
 The report module is embedded in each exam file (it must work as a standalone file). To change the design, edit it in one exam file and copy the block between the two `<script>` tags at the end of the page into the others.
+
+---
+
+## Site footer, logo link and sharing
+
+Every candidate-facing page (the exam menu, tier, pathway, translation and vocabulary exams, the waitlist and the verify page) ends with the same footer: ingleslegal.com, hello@ingleslegal.com, WhatsApp (+57 300 122 9214), Privacy Policy and Terms & Conditions (in Spanish on the translation exams). The Ingleslegal logo links to www.ingleslegal.com in a new tab, so an exam in progress is not lost. To change a contact detail, update the footer block at the end of each page.
+
+The share box on the results screen depends on the result:
+
+| Result | Where the box appears | Text shared |
+|---|---|---|
+| Completed exam at 75% or higher | Above "Your next step" | The score ("I scored …") |
+| Not passing, or stopped early | After the exam taker offer | An invitation to take the free exam (no score) |
+
+"Share on LinkedIn" copies the post text to the clipboard and opens LinkedIn's share window with the exam link; LinkedIn does not accept prefilled text, so the candidate pastes it. Each exam page has `og:` tags so the link shows a title, description and the logo in LinkedIn and WhatsApp previews.
+
+### Result card (image to share)
+
+When a candidate earns a Proficiency Report, the share box on the results screen shows a preview of a branded **result card**: a 1080×1350 PNG with the full Ingleslegal logo, the candidate's name, exam and level, score, the three strongest skills, the date, the report ID and a QR code to `verify.html`. It is drawn in the browser from the report data (`_certD`), so there is no card without a report (Half pathway, translation and vocabulary exams, fails, and exams stopped early).
+
+- **Share my result card**: on phones it opens the share sheet with the image attached (the candidate picks LinkedIn); on computers it downloads the image, copies the post text and shows a link to open LinkedIn.
+- **Download image**: saves the PNG (`Ingleslegal_Result_<report ID>.png`).
+- **Show my name on the card** (ticked by default): unticking it redraws the card without the name, with the exam title in its place.
+- The card text is in English on every exam, like the Proficiency Report; the buttons are in Spanish on the translation exams.
+
+The code is the `Shareable result card` script block before the site footer in each exam page. It is the same in every page except `IL_CARD_LANG` and `IL_CARD_LOGO`: to change the design, edit it in one page and copy the block to the others.
+
+### Link preview banners
+
+Each exam page's `og:image` points to a 1200×627 banner in `share-images/` (logo, exam name, one line, "Take it free"), which LinkedIn and WhatsApp show when the link is shared. To change the wording, edit `BANNERS` in `tools/make-share-banners.py` and run it from the repository root with the path to the Source Sans 3 font file. LinkedIn caches previews: after a change, paste the page URL into LinkedIn's Post Inspector to refresh it.
