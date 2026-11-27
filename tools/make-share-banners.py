@@ -31,7 +31,7 @@ BANNERS = {"index.html": ("exams", "FREE LEGAL ENGLISH EXAMS", "Find your level 
            "vocabulary/quiz-standalone.html": ("vocabulary", "FREE VOCABULARY TESTS", "Legal English vocabulary",
                                                "12 topics, from contract law to Spanish-English translation", "Take it free")}
 for n, lvl in TIER.items():
-    BANNERS[f"tier-{n}-exam.html"] = (f"tier-{n}", "FREE PROFICIENCY EXAM", f"Tier {n}: {lvl} legal English",
+    BANNERS[f"tier-{n}-exam.html"] = (f"tier-{n}", "FREE PROFICIENCY EXAM", f"{lvl} legal English",
                                       "Your score by topic, and a Proficiency Report when you pass", "Take it free")
 for key, name in PATHS.items():
     BANNERS[f"pathways/{key}-exam.html"] = (f"pathway-{key}", "FREE CAREER PATHWAY EXAM", name,

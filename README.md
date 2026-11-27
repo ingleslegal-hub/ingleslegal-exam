@@ -4,6 +4,8 @@ Free practice exams for legal English learners. Three systems:
 
 ## 1. Tier Exams (Proficiency)
 
+Candidates see the level names (Intermediate, Advanced, Expert) everywhere: exam pages, results, Proficiency Report, result card, share text, banners and results emails. The code, page addresses and webhook keep `Tier 1` to `Tier 3` (`TIER_LABEL`), because `apps-script/Code.gs` keys on them; `tierName_()` in `Code.gs` turns them into level names for the emails.
+
 Three self-assessment exams matching your proficiency levels:
 
 - **Tier 1 Exam** (`tier-1-exam.html`) — Intermediate level

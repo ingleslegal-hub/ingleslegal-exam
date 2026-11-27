@@ -3,10 +3,10 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Ingleslegal — Tier 2 Exam</title>
+<title>Ingleslegal — Advanced Proficiency Exam</title>
 <meta name="description" content="Free legal English exam from Ingleslegal. See your score by topic and get a Proficiency Report when you pass.">
 <meta property="og:type" content="website">
-<meta property="og:title" content="Ingleslegal — Tier 2 Exam">
+<meta property="og:title" content="Ingleslegal — Advanced Proficiency Exam">
 <meta property="og:description" content="Free legal English exam from Ingleslegal. See your score by topic and get a Proficiency Report when you pass.">
 <meta property="og:url" content="https://ingleslegal-hub.github.io/ingleslegal-exam/tier-2-exam.html">
 <meta property="og:image" content="https://ingleslegal-hub.github.io/ingleslegal-exam/share-images/tier-2.png">
@@ -231,7 +231,7 @@ body.entry .card{ background:transparent; border:none; box-shadow:none; padding:
     </svg>
     <div class="wordmark"><span class="ingles">Ingles</span><span class="legal">legal</span></div>
   </div>
-  <div class="tag">Tier 2 Exam</div>
+  <div class="tag">Advanced Exam</div>
 </div>
 <div class="logo-wrap"><a href="https://www.ingleslegal.com" target="_blank" rel="noopener" title="Ingleslegal home"><img src="https://ingleslegal-hub.github.io/ingleslegal-exam/vocabulary/logo.png" alt="Ingleslegal"></a></div>
 <div class="progress-shell" id="progressShell" style="display:none;">
@@ -245,6 +245,7 @@ body.entry .card{ background:transparent; border:none; box-shadow:none; padding:
 // Tier 2 — 150 questions (Advanced professional level), rebuilt Oct 2026.
 // Answer positions balanced; option lengths checked for bias. Source: scratch bank t2*.json
 // ============================================================
+// TIER_LABEL is what the results webhook and Apps Script key on; candidates see TIER_LEVEL (Intermediate, Advanced, Expert).
 const TIER_LABEL = "Tier 2";
 const PASS_THRESHOLD = 0.75; // fraction, e.g. 0.75
 const RESULTS_WEBHOOK_URL = "https://script.google.com/macros/s/AKfycbyLtcitp5MB6QoNl0jVXOCI7TPHot9Lj-wYJNosfrQZpnI5pmH2ECoX2Ytv5pVQt1f-/exec"; // set once the Apps Script webhook is deployed; leave blank to skip auto-submit
@@ -376,7 +377,7 @@ function render(){
       <div class="entry-logo"><a href="https://www.ingleslegal.com" target="_blank" rel="noopener" title="Ingleslegal home"><img src="${LOGO_URL}" alt="Ingleslegal"></a></div>
       <form class="entry-card" id="entryForm" novalidate>
         <div class="entry-eyebrow">${TIER_LEVEL} &middot; Free &middot; No cost to try</div>
-        <h1>${TIER_LABEL} Proficiency Exam</h1>
+        <h1>${TIER_LEVEL} Proficiency Exam</h1>
         <p>Test your legal English at the ${TIER_LEVEL} level. Choose one, two or three batches of ${BATCH_SIZE} questions, with a score check after every batch. Correct answers and explanations are in your final report, and a score of ${Math.round(PASS_THRESHOLD*100)}% or higher on any length earns your Proficiency Report.</p>
 
         <label class="first" for="inLength">Select length:</label>
@@ -497,7 +498,7 @@ function render(){
         <tr><td><strong>${partial ? "Overall so far" : "Overall"}</strong></td><td>${score} / ${completed}</td><td>${fmtPct(pct)}</td></tr>
       </table>
       <div class="placement">
-        <div class="headline">${TIER_LABEL} — ${passed ? "PASSED" : "Not yet passing"}${partial ? " (provisional)" : ""}</div>
+        <div class="headline">${TIER_LEVEL} Proficiency Exam — ${passed ? "PASSED" : "Not yet passing"}${partial ? " (provisional)" : ""}</div>
         <div>Passing threshold is ${Math.round(PASS_THRESHOLD*100)}%. You scored ${fmtPct(pct)}${partial ? " based on " + completed + " of " + TOTAL + " questions." : "."}${passed ? "" : " " + shortBy(score, completed)}</div>
       </div>
       ${topicHTML(completed)}
@@ -544,7 +545,7 @@ const DISCOUNT_PCT = 15;
 const DISCOUNT_DAYS = 180;
 const COURSES_URL = "https://www.ingleslegal.com/courses";
 const EXAM_URL = "https://ingleslegal-hub.github.io/ingleslegal-exam/tier-2-exam.html";
-const EXAM_NAME = TIER_LABEL + " proficiency exam";
+const EXAM_NAME = TIER_LEVEL + " Proficiency Exam";
 function copyText(text, btn, label){
   const done = () => { if(!btn) return; btn.textContent = "Copied"; setTimeout(() => { btn.textContent = label; }, 1800); };
   const fallback = () => {
@@ -617,7 +618,7 @@ const TIER_DEFAULT = { 1:"intake", 2:"lit", 3:"trial" };
 function recommendPathways(completed){
   // Each Tier recommends the general pathway built for its level (Tier 1: Intake & Support, Tier 2: Litigation & Management, Tier 3: Trial & Strategy).
   const n = parseInt((TIER_LABEL.match(/\d+/) || ["1"])[0], 10);
-  return [{ key: TIER_DEFAULT[n], reason: "It is the pathway for the " + TIER_LABEL + " (" + TIER_LEVEL + ") level." }];
+  return [{ key: TIER_DEFAULT[n], reason: "It is the pathway for the " + TIER_LEVEL + " level." }];
 }
 // Specialty pathway for the branch of law chosen on the start screen (no match for Civil, Commercial, International or Others).
 const BRANCH_PATHWAY = { "Immigration": "immigration", "Personal Injury": "personal_injury", "Labor": "workers_comp", "Family": "family_law", "Criminal": "criminal_defense" };
@@ -649,7 +650,7 @@ function nextStepHTML(completed, passed){
   const recs = recommendPathways(completed);
   let body;
   if(passed){
-    body = n < 3 ? "Great work. You are ready to take the Tier " + (n+1) + " exam. The pathways below will keep building your legal English." : "Great work. You have reached the top tier. The pathways below will put your legal English to work.";
+    body = n < 3 ? "Great work. You are ready to take the " + ["Intermediate", "Advanced", "Expert"][n] + " exam. The pathways below will keep building your legal English." : "Great work. You have reached the top level. The pathways below will put your legal English to work.";
   } else {
     body = "Review the answers below, then retake this exam. The pathways below build these skills step by step.";
   }
@@ -845,7 +846,7 @@ function downloadResults(){
   const partial = completed < TOTAL;
   const score = scoreBetween(0, completed); const pct = score/completed;
   let lines = [];
-  lines.push(`INGLESLEGAL ${TIER_LABEL.toUpperCase()} EXAM — RESULTS` + (partial ? " (PARTIAL — STOPPED EARLY)" : ""));
+  lines.push(`INGLESLEGAL ${TIER_LEVEL.toUpperCase()} PROFICIENCY EXAM — RESULTS` + (partial ? " (PARTIAL — STOPPED EARLY)" : ""));
   lines.push("==========================================");
   lines.push("Candidate: " + (state.candidate.name || "(not provided)"));
   lines.push("Email: " + (state.candidate.email || "(not provided)"));
@@ -886,7 +887,7 @@ function downloadResults(){
   const url = URL.createObjectURL(blob);
   const a = document.createElement("a");
   const safeName = (state.candidate.name || "candidate").replace(/[^a-z0-9]+/gi, "_");
-  a.href = url; a.download = `Ingleslegal_${TIER_LABEL.replace(/\s+/g,"_")}_${safeName}.txt`;
+  a.href = url; a.download = `Ingleslegal_${TIER_LEVEL}_${safeName}.txt`;
   document.body.appendChild(a); a.click(); document.body.removeChild(a);
   URL.revokeObjectURL(url);
 }
@@ -2933,7 +2934,7 @@ function certBuildExamData(completed, score, pct){
     why = low.length ? "Next, deepen: " + low.join(" and ") + "." : "Keep building your skills in this pathway.";
   } else {
     prefix = "T" + num;
-    exam = TIER_LABEL + " Proficiency Exam" + (MODE !== "full" ? " \u00b7 " + lengthLabel() : "");
+    exam = TIER_LEVEL + " Proficiency Exam" + (MODE !== "full" ? " \u00b7 " + lengthLabel() : "");
     level = TIER_LEVEL + " Legal English";
     const rec = recommendPathways(completed)[0];
     pathway = PATHWAYS[rec.key].name;
